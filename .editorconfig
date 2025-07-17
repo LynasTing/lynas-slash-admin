@@ -1,0 +1,13 @@
+root = true
+
+[*] # 表示使用所有文件
+charset = utf-8
+indent_size = 2
+indent_style = space
+end_of_line = lf
+trim_trailing_whitespace = true # 去除行首的任意空白字符
+insert_final_newline = false # 始终在文件末尾插入一个新行
+
+[*.md] # 表示仅 md 文件适用以下规则
+max_line_length = off
+trim_trailing_whitespace = false
