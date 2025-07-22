@@ -12,9 +12,15 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@iconify/react": "^6.0.0",
+    "@iconify/utils": "^2.3.0",
+    "@tailwindcss/vite": "^4.1.11",
+    "clsx": "^2.1.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-router": "^7.7.0"
+    "react-router": "^7.7.0",
+    "tailwind-merge": "^3.3.1",
+    "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
