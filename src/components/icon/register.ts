@@ -37,7 +37,7 @@ export default async function registerIcons() {
     return;
   }
 
-  const svgModules = import.meta.glob('@/assets/icons/**/*.svg', { as: 'raw', eager: true });
+  const svgModules = import.meta.glob('@/assets/icons/**/*.svg', { query: '?raw', import: 'default', eager: true });
   const icons: Record<string, IconifyIcon> = {};
 
   for (const [path, content] of Object.entries(svgModules)) {
