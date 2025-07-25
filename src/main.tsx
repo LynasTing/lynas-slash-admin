@@ -1,8 +1,11 @@
 import { createRoot } from 'react-dom/client';
-import './index.css';
 import App from './App.tsx';
+import '@/assets/styles/global.css';
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router';
-import { authRoutes } from '@/routes/sections/auth';
+import { sectionsRoutes } from '@/routes/sections';
+import { registerIcons } from '@/components/icon';
+
+await registerIcons();
 
 const router = createBrowserRouter([
   {
@@ -11,7 +14,7 @@ const router = createBrowserRouter([
         <Outlet />
       </App>
     ),
-    children: authRoutes
+    children: sectionsRoutes
   }
 ]);
 
