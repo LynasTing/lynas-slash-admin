@@ -1,0 +1,190 @@
+# =============================
+# Logs
+# =============================
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# =============================
+# Dependency directories
+# =============================
+node_modules/
+jspm_packages/
+bower_components/
+
+# =============================
+# Build output
+# =============================
+dist/
+dist-ssr/
+out/
+build/
+coverage/
+.temp/
+.temp_*/
+
+# =============================
+# System files
+# =============================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+Desktop.ini
+
+# =============================
+# Environment files
+# =============================
+.env
+.env.*
+!.env.example
+
+# =============================
+# Editor / IDE
+# =============================
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.iml
+
+# =============================
+# TypeScript
+# =============================
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# =============================
+# Test / Coverage
+# =============================
+coverage/
+.nyc_output/
+cypress/videos/
+cypress/screenshots/
+playwright-report/
+test-results/
+jest-stare/
+
+# =============================
+# Framework caches
+# =============================
+.cache/
+.nuxt/
+.next/
+out/
+.storybook-out/
+.sass-cache/
+.stylelintcache
+vite.config.timestamp-*
+.vite/
+.eslintcache
+
+# =============================
+# Lock files (optional)
+# =============================
+# Uncomment one if your team uses a single package manager only
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# =============================
+# Misc build tools
+# =============================
+*.tgz
+*.zip
+*.tar.gz
+*.rar
+
+# =============================
+# Firebase / Netlify / Vercel / Docker
+# =============================
+.firebase/
+.firebaserc
+.vercel/
+.netlify/
+.docker/
+docker-compose.override.yml
+docker-compose.local.yml
+
+# =============================
+# Local dev server files
+# =============================
+*.local
+*.pid
+*.seed
+*.pid.lock
+*.tmp
+*.bak
+*.backup
+*.orig
+
+# =============================
+# OS + CLI crap
+# =============================
+*.log.old
+*.psd
+*.tga
+*.tif
+*.tiff
+*.mp4
+*.mov
+
+# =============================
+# Yarn 3 Berry cache
+# =============================
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+.yarnrc.yml
+
+# =============================
+# VSCode project data (optional)
+# =============================
+.history/
+project.code-workspace
+
+# =============================
+# Storybook / Docs build
+# =============================
+storybook-static/
+docs/.vitepress/dist/
+docs/.vuepress/dist/
+
+# =============================
+# Lerna / Monorepo tools
+# =============================
+.lerna/
+turbo/
+.turbo/
+changeset/
+.changeset/
+
+# =============================
+# Local configuration or secrets
+# =============================
+*.pem
+*.key
+*.crt
+*.cer
+*.p12
+*.mobileprovision
+*.certSigningRequest
+
+# =============================
+# Lock or runtime artifacts
+# =============================
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
