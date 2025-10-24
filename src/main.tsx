@@ -1,9 +1,23 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { createBrowserRouter, Outlet, RouterProvider } from 'react-router';
 import App from './App.tsx';
+import { routersSections } from './router/sections/index.tsx';
 
-createRoot(document.getElementById('root')!).render(
+const router = createBrowserRouter([
+  {
+    Component: () => (
+      <App>
+        <Outlet />
+      </App>
+    ),
+    children: routersSections
+  }
+]);
+
+const root = createRoot(document.getElementById('root') as HTMLElement);
+root.render(
   <StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </StrictMode>
 );

@@ -5,7 +5,7 @@ interface IProps {
 }
 
 function App({ children }: IProps) {
-  return <div>React</div>;
+  return <>{children}</>;
 }
 
 export default App;
