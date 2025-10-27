@@ -51,5 +51,20 @@ export default function Icon({ icon, size = '1em', color = 'currentColor', class
    * Handel local SVG and third-party icon library
    * 处理本地 SVG 和第三方图标库
    */
-  return <IconifyIcon icon={icon} width={size} height={size} color={color} className={className} style={style} {...props} />;
+  return (
+    <IconifyIcon
+      icon={icon}
+      width={size}
+      height={size}
+      color={color}
+      className={cn('inline-block', className)}
+      style={{
+        color,
+        width: size,
+        height: size,
+        ...style
+      }}
+      {...props}
+    />
+  );
 }

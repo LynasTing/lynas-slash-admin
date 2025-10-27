@@ -1,12 +1,11 @@
 /**
  * @file register.ts
  * @description 通过 @iconify/react库 进行本地图标注册
- *
- * 调用时机
- * - 项目启动时 main.tsx 入口文件
- *
  * @author LynasTing
  * @date 2025-10-24
+ *
+ * - 调用时机
+ * - 项目启动时 main.tsx 入口文件
  */
 import { addCollection } from '@iconify/react';
 import { parseSVGContent } from '@iconify/utils/lib/svg/parse';
@@ -138,8 +137,8 @@ export default function registerLocalIcons() {
 
         icons[iconName] = {
           body: parsedSVG.body,
-          height,
-          width
+          width,
+          height
         };
       }
     } catch (e) {
