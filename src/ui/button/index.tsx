@@ -2,7 +2,7 @@ import * as React from 'react';
 import { cn } from '@/utils';
 import { Slot as SlotPrimitive } from 'radix-ui';
 import { VariantProps } from 'class-variance-authority';
-import { buttonVariants } from './styles.ts';
+import { buttonVariants } from './style.ts';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
   asChild?: boolean;
