@@ -17,14 +17,14 @@ interface IconifyIcon {
   body: string;
 
   /**
-   * 图标高度
-   */
-  height: number;
-
-  /**
    * 图标宽度
    */
   width: number;
+
+  /**
+   * 图标高度
+   */
+  height: number;
 }
 
 /**
@@ -40,7 +40,13 @@ let iconCollection: Record<string, IconifyIcon> | null = null;
  */
 interface ParsedSVG {
   body: string;
-  attr?: {
+
+  /**
+   * @warning
+   * attribs is a fixed property name returned by parseSVGContent(), do not change
+   * attribs 是 parseSVGContent() 返回结果里固定的属性名，不能更改
+   */
+  attribs?: {
     width: string;
     height: string;
     viewBox: string;
@@ -122,12 +128,12 @@ export default function registerLocalIcons() {
          * Extract dimensions from SVG attributes
          * 从 SVG 属性中提取尺寸
          */
-        if (parsedSVG.attr?.viewBox) {
+        if (parsedSVG.attribs?.viewBox) {
           /**
            * viewBox: min-x min-y width height
            * min-x min-y 是图标的左上角坐标，width height 是图标的宽度和高度
            */
-          const viewBox = parsedSVG.attr.viewBox.split(' ');
+          const viewBox = parsedSVG.attribs.viewBox.split(' ');
           if (viewBox.length === 4) {
             // parseInt(string, 10) 将字符串转换为十进制整数
             width = Number.parseInt(viewBox[2], 10);

@@ -5,9 +5,9 @@
  * @date 2025-10-24
  */
 import { cn } from '@/utils';
+import { Icon as IconifyIcon } from '@iconify/react';
 import type { IconProps as IconifyIconProps } from '@iconify/react';
 import type { CSSProperties } from 'react';
-import { Icon as IconifyIcon } from '@iconify/react';
 
 /**
  * Icon name or path
@@ -23,14 +23,33 @@ interface IconProps extends IconifyIconProps {
    * 图标源
    */
   icon: string;
+
+  /**
+   * Icon size
+   * 图标尺寸
+   */
   size?: string | number;
+
+  /**
+   * Icon color
+   * 图标颜色
+   */
   color?: string;
+
+  /**
+   * Custom class name
+   * 自定义类名
+   */
   className?: string;
+
+  /**
+   * Custom style
+   * 自定义样式
+   */
   style?: CSSProperties;
 }
 
 /**
- *
  * @param param color = 'currentColor',来源于css，让元素继承父元素的文字颜色
  */
 export default function Icon({ icon, size = '1em', color = 'currentColor', className = '', style = {}, ...props }: IconProps) {
@@ -56,7 +75,6 @@ export default function Icon({ icon, size = '1em', color = 'currentColor', class
       icon={icon}
       width={size}
       height={size}
-      color={color}
       className={cn('inline-block', className)}
       style={{
         color,
