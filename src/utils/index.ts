@@ -1,3 +1,4 @@
 import { cn } from './helper';
+import { getItem } from './storage';
 
-export { cn };
+export { cn, getItem };
