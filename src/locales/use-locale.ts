@@ -90,14 +90,14 @@ export default function useLocale() {
    * 2. change <html lang="...">
    * 3. set dayjs locale
    */
-  const setLocale = () => {
-    i18n.changeLanguage(locale);
+  const setLocale = (payload: Locale) => {
+    i18n.changeLanguage(payload);
 
     // 设置 HTML 根节点 lang 属性
-    document.documentElement.lang = locale;
+    document.documentElement.lang = payload;
 
     // 设置 dayjs 本地化
-    dayjs.locale(locale);
+    dayjs.locale(payload);
   };
 
   /**
