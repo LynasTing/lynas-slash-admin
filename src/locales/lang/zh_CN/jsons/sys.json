@@ -1,0 +1,8 @@
+{
+  "sys": {
+    "api": {
+      "apiRequestFailed": "请求出错，请稍候重试",
+      "errorMessage": "操作失败,系统异常!"
+    }
+  }
+}
