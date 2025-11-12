@@ -37,7 +37,7 @@ export const buttonVariants = cva(
         // 大
         lg: 'h-10 rounded-md px-8',
         // 图标
-        icon: 'w-9 h-9  cursor-pointer'
+        icon: 'w-9 h-9 cursor-pointer'
       }
     },
     defaultVariants: {
