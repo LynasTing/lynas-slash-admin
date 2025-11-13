@@ -30,6 +30,19 @@ export interface CommonOptions {
    */
   updatedAt?: string;
 }
+export interface UserToken {
+  /**
+   * 访问 token
+   * Access token
+   */
+  accessToken?: string;
+
+  /**
+   * 刷新 token
+   * Refresh token
+   */
+  refreshToken?: string;
+}
 
 /**
  * 用户
@@ -71,6 +84,26 @@ export interface User extends CommonOptions {
    * Avatar
    */
   avatar?: string;
+}
+
+export interface Role extends CommonOptions {
+  /**
+   * ID
+   * uuid
+   */
+  id: string;
+
+  /**
+   * 名称
+   * Name
+   */
+  name: string;
+
+  /**
+   * 编码
+   * Code
+   */
+  code: string;
 }
 
 /**
