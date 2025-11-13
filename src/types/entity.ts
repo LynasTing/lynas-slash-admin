@@ -30,6 +30,7 @@ export interface CommonOptions {
    */
   updatedAt?: string;
 }
+
 export interface UserToken {
   /**
    * 访问 token
