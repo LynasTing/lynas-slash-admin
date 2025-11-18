@@ -1,1 +1,31 @@
 @import 'tailwindcss';
+
+/* Shadcn UI Light Theme */
+:root {
+  /* Common aliases used by shadcn ui */
+  --background: var(--colors-background-default);
+  --foreground: var(--colors-text-primary);
+  --popover: var(--colors-background-paper);
+  --popover-foreground: var(--colors-text-secondary);
+  --accent: var(--colors-palette-primary-default);
+  --accent-foreground: var(--colors-common-white);
+
+  /* Existing mappings */
+  --muted-foreground: var(--colors-palette-gray-500);
+  --primary-foreground: var(--colors-palette-primary-lighter);
+  --destructive: var(--colors-palette-error-default);
+}
+
+/* Shadcn UI Dark Theme (match app's data attribute) */
+:root[data-theme-mode='dark'] {
+  --background: var(--colors-background-default);
+  --foreground: var(--colors-text-primary);
+  --popover: var(--colors-background-paper);
+  --popover-foreground: var(--colors-text-secondary);
+  --accent: var(--colors-palette-primary-default);
+  --accent-foreground: var(--colors-common-white);
+
+  --muted-foreground: var(--colors-palette-gray-400);
+  --primary-foreground: var(--colors-palette-primary-darker);
+  --destructive: var(--colors-palette-error-default);
+}
