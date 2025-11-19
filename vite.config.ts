@@ -7,13 +7,22 @@ import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 export default defineConfig({
   plugins: [
     react(),
-    tailwindcss(),
     tsconfigPaths(),
+    tailwindcss(),
     vanillaExtractPlugin({
       identifiers: ({ debugId }) => `${debugId}`
     })
   ],
   server: {
-    port: 5678
+    port: 5678,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5678',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api/, ''),
+        // 忽略 https 证书
+        secure: false
+      }
+    }
   }
 });
