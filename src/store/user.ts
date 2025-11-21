@@ -36,6 +36,7 @@ const useUserStore = create<UserStore>()(
   )
 );
 
+export const useUserToken = () => useUserStore(state => state.userToken);
 export const useUserActions = () => useUserStore(state => state.actions);
 
 export const useSignIn = () => {
