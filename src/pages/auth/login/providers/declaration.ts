@@ -35,7 +35,6 @@ export enum LoginStateEnum {
 export interface LoginStateContextType {
   loginState: LoginStateEnum;
   setLoginState: (loginState: LoginStateEnum) => void;
-  backToLogin: () => void;
 }
 
 /**
@@ -43,8 +42,7 @@ export interface LoginStateContextType {
  */
 export const LoginStateContext = React.createContext<LoginStateContextType>({
   loginState: LoginStateEnum.LOGIN,
-  setLoginState: () => {},
-  backToLogin: () => {}
+  setLoginState: () => {}
 });
 
 /**

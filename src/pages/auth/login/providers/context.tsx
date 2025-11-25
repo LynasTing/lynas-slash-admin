@@ -6,15 +6,10 @@ import { type LoginStateContextType, LoginStateEnum, LoginStateContext } from '.
 export function LoginProvider({ children }: PropsWithChildren) {
   const [loginState, setLoginState] = React.useState(LoginStateEnum.LOGIN);
 
-  const backToLogin = () => {
-    setLoginState(LoginStateEnum.LOGIN);
-  };
-
   const value: LoginStateContextType = React.useMemo(
     () => ({
       loginState,
-      setLoginState,
-      backToLogin
+      setLoginState
     }),
     [loginState]
   );
