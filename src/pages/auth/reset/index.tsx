@@ -2,7 +2,7 @@
  * @description 忘记密码
  * @author LynasTing
  */
-import { LoginStateEnum, useLoginStateContext } from './providers/declaration';
+import { LoginStateEnum, useLoginStateContext } from '../providers/declaration';
 import { Icon } from '@/components/icon';
 import { Form, FormField, FormItem, FormControl, FormMessage } from '@/ui/form';
 import { Input } from '@/ui/input';
@@ -11,7 +11,7 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 
-function ResetForm() {
+function ResetPage() {
   const form = useForm();
   const { t } = useTranslation();
   const { loginState } = useLoginStateContext();
@@ -56,4 +56,4 @@ function ResetForm() {
   );
 }
 
-export default ResetForm;
+export default ResetPage;
