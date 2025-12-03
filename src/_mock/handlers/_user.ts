@@ -34,7 +34,7 @@ const signIn = http.post(GLOBAL_CONFIG.apiBaseUrl + UserApi.SignIn, async ({ req
   if (!user || user.password !== password) {
     return HttpResponse.json({
       status: 10001,
-      messages: 'Incorrect username or password'
+      message: 'Incorrect username or password'
     });
   }
 
@@ -85,4 +85,63 @@ const signIn = http.post(GLOBAL_CONFIG.apiBaseUrl + UserApi.SignIn, async ({ req
   });
 });
 
-export { signIn };
+/**
+ * Mock 注册接口
+ * Mock sign-up API handler
+ */
+const signUp = http.post(GLOBAL_CONFIG.apiBaseUrl + UserApi.SignUp, async ({ request }) => {
+  const { username, password, email } = (await request.json()) as Record<string, string>;
+
+  /**
+   * 检查用户是否已存在
+   * Check if user already exists
+   */
+  const exist = DB_USER.find(i => i.username === username);
+
+  if (exist) {
+    return HttpResponse.json({
+      status: 10001,
+      message: 'User already exists'
+    });
+  }
+
+  /**
+   * 生成新用户
+   * Generate new user
+   */
+  const userId = faker.string.uuid();
+  const user = {
+    id: userId,
+    username,
+    password,
+    email,
+    avatar: faker.image.avatarGitHub()
+  };
+
+  /**
+   * 写入库
+   * Write to DB
+   */
+  DB_USER.push(user);
+
+  /**
+   * 给新用户分配默认角色
+   * Assign default role to new user
+   */
+  const roleId = DB_ROLE.find(i => i.id === 'role_test_id')?.id;
+  if (roleId) {
+    DB_USER_ROLE.push({
+      id: userId,
+      userId: user.id,
+      roleId
+    });
+  }
+
+  return HttpResponse.json({
+    status: ResultStatusEnum.SUCCESS,
+    message: 'Register success',
+    data: {}
+  });
+});
+
+export { signIn, signUp };

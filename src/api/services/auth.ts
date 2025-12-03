@@ -2,7 +2,8 @@ import { UserToken, User } from '#/entity';
 import { apiClient } from '@/utils';
 
 export enum UserApi {
-  SignIn = '/auth/signin'
+  SignIn = '/auth/signin',
+  SignUp = '/auth/signup'
 }
 
 export interface SignInRequest {
@@ -16,6 +17,22 @@ export interface SignInRequest {
 export type SignInResponse = UserToken & { user: User };
 
 /**
+ * 注册参数
+ */
+export interface SignUpRequest extends SignInRequest {
+  email: string;
+}
+
+/**
+ * 注册
+ */
+const signupApi = (data: SignUpRequest) =>
+  apiClient.post<SignInResponse>({
+    url: UserApi.SignUp,
+    data
+  });
+
+/**
  * 登录
  */
 const signinApi = (data: SignInRequest) =>
@@ -24,4 +41,4 @@ const signinApi = (data: SignInRequest) =>
     data
   });
 
-export { signinApi };
+export { signinApi, signupApi };
