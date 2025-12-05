@@ -37,7 +37,7 @@ function ResetPage() {
           <FormField
             name="email"
             control={form.control}
-            rules={{ required: t('auth.emaildPlaceholder') }}
+            rules={{ required: t('auth.emailPlaceholder') }}
             render={({ field }) => (
               <FormItem>
                 <FormControl>
