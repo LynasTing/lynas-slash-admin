@@ -30,7 +30,7 @@ function LoginForm({ className, ...props }: ComponentPropsWithoutRef<'form'>) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  // 记住我
+  /** 记住我 / remeberme */
   const [remember, setRemember] = useState(true);
 
   const { loginState, setLoginState } = useLoginStateContext();
@@ -43,13 +43,14 @@ function LoginForm({ className, ...props }: ComponentPropsWithoutRef<'form'>) {
     }
   });
 
-  // 渲染条件
+  /** 渲染条件 / render condition */
   if (loginState !== LoginStateEnum.LOGIN) {
     return null;
   }
 
   /**
    * 忘记密码
+   * forget password
    */
   const forgetPassword = () => {
     setLoginState(LoginStateEnum.RESET_PASSWORD);
@@ -58,6 +59,7 @@ function LoginForm({ className, ...props }: ComponentPropsWithoutRef<'form'>) {
 
   /**
    * 手机号登录
+   * login by phone number
    */
   const phoneNumber = () => {
     setLoginState(LoginStateEnum.MOBILE);
@@ -65,7 +67,17 @@ function LoginForm({ className, ...props }: ComponentPropsWithoutRef<'form'>) {
   };
 
   /**
+   * 注册
+   * register
+   */
+  const register = () => {
+    setLoginState(LoginStateEnum.REGISTER);
+    navigate('/auth/register');
+  };
+
+  /**
    * 提交登录
+   * submit
    */
   const finish = async (values: SignInRequest) => {
     setLoading(true);
@@ -152,6 +164,13 @@ function LoginForm({ className, ...props }: ComponentPropsWithoutRef<'form'>) {
             <Button variant="outline">
               <Icon icon="uil:qrcode-scan" size={20} />
               {t('auth.qrSignInFormTitle')}
+            </Button>
+          </div>
+          {/* 注册 */}
+          <div className="text-sm text-center">
+            {t('auth.noAccount')}
+            <Button variant="link" className="px-1" onClick={register}>
+              {t('auth.signUpFormTitle')}
             </Button>
           </div>
         </form>
