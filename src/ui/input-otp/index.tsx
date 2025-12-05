@@ -42,7 +42,7 @@ function InputOTPSlot({
   const { char, hasFakeCaret, isActive } = inputOTPContext?.slots[index] ?? {};
 
   return (
-    <div data-slot="input-otp-slot" data-active={isActive} className={cn(otpSlotVariants, className)} {...props}>
+    <div data-slot="input-otp-slot" data-active={isActive} className={cn(otpSlotVariants(), className)} {...props}>
       {char}
       {hasFakeCaret && (
         <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
