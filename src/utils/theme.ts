@@ -153,7 +153,7 @@ export function rgbAlpha(colorVal: string | Array<string> | Array<number>, alpha
      * @returns rgba(var(--colors-palette-primary-main) / 1)
      */
     if (colorVal.startsWith('--')) {
-      return `rgba(val(${colorVal}) / ${safeAlpha})`;
+      return `rgba(var(${colorVal}) / ${safeAlpha})`;
     }
 
     /**
