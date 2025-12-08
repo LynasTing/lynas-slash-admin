@@ -67,6 +67,15 @@ function LoginForm({ className, ...props }: ComponentPropsWithoutRef<'form'>) {
   };
 
   /**
+   * 扫码登录
+   * login by qrcode
+   */
+  const scanQRCode = () => {
+    setLoginState(LoginStateEnum.QR_CODE);
+    navigate('/auth/qrcode');
+  };
+
+  /**
    * 注册
    * register
    */
@@ -155,17 +164,19 @@ function LoginForm({ className, ...props }: ComponentPropsWithoutRef<'form'>) {
             {loading && <Loader2 className="mr-2 animate-spin" />}
             {t('auth.loginButton')}
           </Button>
+
           {/* 手机号登录/二维码登录 */}
           <div className="grid gap-4 sm:grid-cols-2">
             <Button variant="outline" className="w-full" onClick={phoneNumber}>
               <Icon icon="uil:mobile-android" size={20} />
               {t('auth.mobileSignInFormTitle')}
             </Button>
-            <Button variant="outline">
+            <Button variant="outline" onClick={scanQRCode}>
               <Icon icon="uil:qrcode-scan" size={20} />
               {t('auth.qrSignInFormTitle')}
             </Button>
           </div>
+
           {/* 注册 */}
           <div className="text-sm text-center">
             {t('auth.noAccount')}
