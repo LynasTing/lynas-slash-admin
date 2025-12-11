@@ -6,6 +6,7 @@ const LoginPage = lazy(() => import('@/pages/auth/login'));
 const ResetPage = lazy(() => import('@/pages/auth/reset'));
 const RegisterPage = lazy(() => import('@/pages/auth/register'));
 const PhoneNumberPage = lazy(() => import('@/pages/auth/phone-number'));
+const QRCodePage = lazy(() => import('@/pages/auth/qrcode'));
 
 const authCustomRoutes: RouteObject[] = [
   {
@@ -23,6 +24,10 @@ const authCustomRoutes: RouteObject[] = [
   {
     path: 'phone-number',
     element: <PhoneNumberPage />
+  },
+  {
+    path: 'qrcode',
+    element: <QRCodePage />
   }
 ];
 
