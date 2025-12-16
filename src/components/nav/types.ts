@@ -82,3 +82,27 @@ export type NavItemDataProps = {
    * Extends NavItemStateProps to include state support
    */
   NavItemStateProps;
+
+/**
+ * 导航项选项属性
+ * Navigation item options
+ */
+export type NavItemOptionsProps = {
+  /**
+   * 深度
+   * Depth
+   */
+  depth?: number;
+
+  /**
+   * 是否拥有子导航项
+   * Whether the item has child navigation items
+   */
+  hasChild?: boolean;
+};
+
+/**
+ * 导航项属性
+ * Navigation item props
+ */
+export type NavItemProps = React.ComponentProps<'div'> & NavItemDataProps & NavItemOptionsProps;
