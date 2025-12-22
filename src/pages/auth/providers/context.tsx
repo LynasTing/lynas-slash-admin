@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { type PropsWithChildren } from 'react';
-
 import { type LoginStateContextType, LoginStateEnum, LoginStateContext } from './declaration';
 
 export function LoginProvider({ children }: PropsWithChildren) {
