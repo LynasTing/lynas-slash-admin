@@ -106,3 +106,59 @@ export type NavItemOptionsProps = {
  * Navigation item props
  */
 export type NavItemProps = React.ComponentProps<'div'> & NavItemDataProps & NavItemOptionsProps;
+
+/**
+ * 导航列表属性
+ * Navigation list props
+ */
+export type NavListProps = Pick<NavItemProps, 'depth'> & {
+  data: NavItemDataProps;
+
+  /**
+   * 权限校验函数（由外部注入）
+   *
+   * NavList / NavItem 在渲染时，会把 「当前导航项配置的 auth」
+   * 传给这个函数，让使用者自行决定：
+   *    - true 有权限，允许显示该导航
+   *    - false 无权限，不渲染
+   *
+   * @description
+   *  - auth 来源于 NavItemDataProps.auth
+   *  - auth 可能为空（未配置权限时， 通常视为放行）
+   *
+   * auth validation function
+   *
+   * NavList / NavItem will pass the auth config from the current NavItem
+   * to this function, let the user decide:
+   *    - true allow display
+   *    - false deny
+   *
+   * @description
+   * - auth comes from NavItemDataProps.auth
+   * - auth may be empty (unconfigured auth, usually treated as pass-through)
+   */
+  authenticate?: (auth?: NavItemProps['auth']) => boolean;
+};
+
+/**
+ * 导航分组属性
+ * Navigation group props
+ */
+export type NavGroupProps = Omit<NavListProps, 'data' | 'depth'> & {
+  /** 导航分组名称 / name */
+  name?: string;
+  /** 子导航项 / children */
+  items: NavItemDataProps[];
+};
+
+/**
+ * 导航属性
+ * Main
+ */
+export type NavProps = React.ComponentProps<'nav'> &
+  Omit<NavListProps, 'data' | 'depth'> & {
+    data: {
+      name?: string;
+      items: NavItemDataProps[];
+    }[];
+  };
