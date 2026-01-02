@@ -1,5 +1,5 @@
 import { useSettingStoreState } from '@/store/setting';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { HtmlDataAttribute } from '#/enum';
 import { UILibraryAdapter } from './type';
 
@@ -15,7 +15,7 @@ export function ThemeProvider({ children, adapters = [] }: ThemeProviderProps) {
    * 当 themeMode 发生变化时， 更新 HTML 根元素的 data-theme-mode 属性
    * When themeMode changes, update the data-theme-mode attribute of the HTML root element
    */
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.documentElement.setAttribute(HtmlDataAttribute.ThemeMode, themeMode);
   }, [themeMode]);
 
@@ -23,7 +23,7 @@ export function ThemeProvider({ children, adapters = [] }: ThemeProviderProps) {
    * 当 themeColorPresets 发生变化时， 更新 HTML 根元素的 data-color-palette 属性
    * When themeColorPresets changes, update the data-color-palette attribute of the HTML root element
    */
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.documentElement.setAttribute(HtmlDataAttribute.ColorPalette, themeColorPresets);
   }, [themeColorPresets]);
 
@@ -31,7 +31,7 @@ export function ThemeProvider({ children, adapters = [] }: ThemeProviderProps) {
    * 当 fontFamily 或 fontSize 发生变化时， 更新 HTML 根元素的 font-family 和 font-size
    * When fontFamily or fontSize changes, update the font-family and font-size of the HTML root element
    */
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.documentElement.style.fontSize = `${fontSize}px`;
     document.body.style.fontFamily = fontFamily;
   }, [fontFamily, fontSize]);
