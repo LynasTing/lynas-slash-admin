@@ -6,38 +6,67 @@
  * @date 2025-10-24
  */
 import type { Config } from 'tailwindcss';
-import { createColorChannel, createTailwindConfig } from '@/utils';
-import { HtmlDataAttribute } from '#/enum';
+import { createColorChannel, createTailwindConfig } from './src/utils/theme';
+import { HtmlDataAttribute } from './src/types/enum';
+import { breakpointsTokens } from './src/theme/tokens/breakpoint';
 
 export default {
   darkMode: ['selector', `[${HtmlDataAttribute.ThemeMode}='dark']`],
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
+    fontFamily: createTailwindConfig('typography.fontFamily'),
     extend: {
       colors: {
-        /** 项目主题色 / slash admin theme tokens */
+        // slash admin theme tokens
         primary: createColorChannel('colors.palette.primary'),
-        bg: createColorChannel('colors.background'),
+        success: createColorChannel('colors.palette.success'),
+        warning: createColorChannel('colors.palette.warning'),
+        error: createColorChannel('colors.palette.error'),
+        info: createColorChannel('colors.palette.info'),
+        gray: createColorChannel('colors.palette.gray'),
         common: createColorChannel('colors.common'),
         text: createColorChannel('colors.text'),
+        bg: createColorChannel('colors.background'),
         action: createTailwindConfig('colors.action'),
 
-        /** Shadcn UI 主题色 / shadcn ui theme tokens */
-        /** 基础别名（与组件类名一致，使用短横线命名） */
-        'popover': 'var(--popover)',
-        'popover-foreground': 'var(--popover-foreground)',
-        'accent': 'var(--accent)',
-        'accent-foreground': 'var(--accent-foreground)',
-        'muted-foreground': 'var(--muted-foreground)',
-        'primary-foreground': 'var(--primary-foreground)',
-        'destructive': 'var(--destructive)'
+        // shadcn ui theme tokens
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
+        card: 'var(--card)',
+        cardForeground: 'var(--card-foreground)',
+        popover: 'var(--popover)',
+        popoverForeground: 'var(--popover-foreground)',
+        primaryForeground: 'var(--primary-foreground)',
+        secondary: 'var(--secondary)',
+        secondaryForeground: 'var(--secondary-foreground)',
+        muted: 'var(--muted)',
+        mutedForeground: 'var(--muted-foreground)',
+        accent: 'var(--accent)',
+        accentForeground: 'var(--accent-foreground)',
+        destructive: 'var(--destructive)',
+        border: 'var(--border)',
+        input: 'var(--input)',
+        ring: 'var(--ring)',
+        chart1: 'var(--chart-1)',
+        chart2: 'var(--chart-2)',
+        chart3: 'var(--chart-3)',
+        chart4: 'var(--chart-4)',
+        chart5: 'var(--chart-5)',
+        sidebar: 'var(--sidebar)',
+        sidebarForeground: 'var(--sidebar-foreground)',
+        sidebarPrimary: 'var(--sidebar-primary)',
+        sidebarPrimaryForeground: 'var(--sidebar-primary-foreground)',
+        sidebarAccent: 'var(--sidebar-accent)',
+        sidebarAccentForeground: 'var(--sidebar-accent-foreground)',
+        sidebarBorder: 'var(--sidebar-border)',
+        sidebarRing: 'var(--sidebar-ring)'
       },
-      /** 将设计系统变量注册到 Tailwind（间距、圆角、透明度、层级） */
-      spacing: createTailwindConfig('spacing'),
-      borderRadius: createTailwindConfig('borderRadius'),
       opacity: createTailwindConfig('opacity'),
-      zIndex: createTailwindConfig('zIndex')
-      }
+      borderRadius: createTailwindConfig('borderRadius'),
+      boxShadow: createTailwindConfig('shadows'),
+      spacing: createTailwindConfig('spacing'),
+      zIndex: createTailwindConfig('zIndex'),
+      screens: breakpointsTokens
     }
   }
 } satisfies Config;
