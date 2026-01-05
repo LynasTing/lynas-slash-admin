@@ -4,7 +4,7 @@ import { GLOBAL_CONFIG } from '@/config/global';
 import { LoginProvider } from './providers/context';
 import LocalePicker from '@/components/locale-picker';
 import { Icon } from '@/components/icon';
-import { Button } from '@/ui/button';
+import Button from '@/ui/button';
 import { useTranslation } from 'react-i18next';
 import { useLoginStateContext } from './providers/declaration';
 import { LoginStateEnum } from './providers/declaration';

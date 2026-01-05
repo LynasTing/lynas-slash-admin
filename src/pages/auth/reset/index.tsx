@@ -6,7 +6,7 @@ import { LoginStateEnum, useLoginStateContext } from '../providers/declaration';
 import { Icon } from '@/components/icon';
 import { Form, FormField, FormItem, FormControl, FormMessage } from '@/ui/form';
 import { Input } from '@/ui/input';
-import { Button } from '@/ui/button';
+import Button from '@/ui/button';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';

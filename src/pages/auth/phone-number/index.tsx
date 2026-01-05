@@ -5,7 +5,7 @@ import { Input } from '@/ui/input';
 import { useEffect, useState } from 'react';
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp';
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from '@/ui/input-otp';
-import { Button } from '@/ui/button';
+import Button from '@/ui/button';
 import { Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import { toast } from 'sonner';

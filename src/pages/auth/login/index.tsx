@@ -9,7 +9,7 @@ import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '
 import { Input } from '@/ui/input';
 import { useForm } from 'react-hook-form';
 import type { SignInRequest } from '@/api/services/auth';
-import { Button } from '@/ui/button';
+import Button from '@/ui/button';
 import { useTranslation } from 'react-i18next';
 import { useState, type ComponentPropsWithoutRef } from 'react';
 import { useSignIn } from '@/store/user';
@@ -174,6 +174,22 @@ function LoginForm({ className, ...props }: ComponentPropsWithoutRef<'form'>) {
             <Button variant="outline" onClick={scanQRCode}>
               <Icon icon="uil:qrcode-scan" size={20} />
               {t('auth.qrSignInFormTitle')}
+            </Button>
+          </div>
+
+          {/* 其它登录方式 */}
+          <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
+            <span className="relative bg-background text-muted-foreground px-2 z-10">{t('auth.otherSignIn')}</span>
+          </div>
+          <div className="flex justify-around cursor-pointer text-2xl">
+            <Button variant="ghost" size="icon">
+              <Icon icon="mdi:github" size={24} />
+            </Button>
+            <Button variant="ghost" size="icon">
+              <Icon icon="mdi:wechat" size={24} />
+            </Button>
+            <Button variant="ghost" size="icon">
+              <Icon icon="ant-design:google-circle-filled" size={24} />
             </Button>
           </div>
 
