@@ -1,4 +1,4 @@
-import { themeTokens, type AddChannelToLeaf } from '@/theme/type';
+import { themeTokens, type AddChannelToLeaf } from '../theme/type';
 import color from 'color';
 
 /**
