@@ -7,7 +7,7 @@ export const dropdownMenuContentVariants = cva([
   'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
   // 方向过渡（Radix data-side）
   'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
-  //  布局与外观
+  // 布局与外观
   'z-50 max-h-(--radix-dropdown-menu-content-available-height) min-w-[8rem] origin-(--radix-dropdown-menu-content-transform-origin) overflow-x-hidden overflow-y-auto rounded-md border p-1 shadow-md'
 ]);
 
@@ -18,4 +18,56 @@ export const dropdownMenuItemVariants = cva([
   "[&_svg:not([class*='text-'])]:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   // 布局与外观
   'relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-[inset]:pl-8'
+]);
+
+export const dropdownMenuCheckboxItemVariants = cva([
+  // 交互与状态
+  'focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+  // 布局与外观
+  'relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 pr-2 pl-8 text-sm outline-hidden select-none',
+  // SVG 与图标样式
+  '[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*="size-"])]:size-4'
+]);
+
+export const dropdownMenuRadioItemVariants = cva([
+  // 交互与状态（focus / disabled）
+  'focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+  // 布局（position / flex / alignment）
+  'relative flex cursor-default items-center gap-2',
+  // 尺寸与间距（padding / size）
+  'py-1.5 pr-2 pl-8',
+  // 文本与外观（text / radius / selection / outline）
+  'rounded-sm text-sm outline-hidden select-none',
+  // SVG 与图标样式
+  "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+]);
+
+export const dropdownMenuSubTriggerVariants = cva([
+  // 交互与状态（focus / open）
+  'focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground',
+  // 布局（flex / alignment / cursor）
+  'flex cursor-default items-center',
+  // 尺寸与间距（padding / inset）
+  'px-2 py-1.5 data-[inset]:pl-8',
+  // 文本与外观（text / radius / selection / outline）
+  'rounded-sm text-sm outline-hidden select-none'
+]);
+
+export const dropdownMenuSubContentVariants = cva([
+  // 外观（背景 / 文本 / 边框 / 阴影） Appearance (bg / text / border / shadow)
+  'bg-popover text-popover-foreground rounded-md border shadow-lg',
+  // 层级与尺寸（z-index / 最小宽度） Layer & size (z-index / min width)
+  'z-50 min-w-[8rem] overflow-hidden',
+  // 动画状态（开 / 关） Animation state (open / closed)
+  'data-[state=open]:animate-in data-[state=closed]:animate-out',
+  // 淡入淡出 Fade (in / out)
+  'data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0',
+  // 缩放 Zoom (in / out)
+  'data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95',
+  // 方向位移 Slide (by side)
+  'data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2',
+  // 变换原点 Transform origin
+  'origin-(--radix-dropdown-menu-content-transform-origin)',
+  // 内边距 Padding
+  'p-1'
 ]);
