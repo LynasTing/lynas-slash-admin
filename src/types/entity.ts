@@ -203,3 +203,7 @@ export interface Permission extends CommonOptions {
    */
   code: string;
 }
+
+export type MenuTree = Menu & {
+  children?: MenuTree[];
+};
