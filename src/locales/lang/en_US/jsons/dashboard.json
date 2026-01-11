@@ -1,0 +1,15 @@
+{
+  "dashboard": {
+    "bannerTitle": "Explore Redesigned {{appName}}",
+    "bannerDescription": "The rand new User Interface with power of Shadcn/ui Components. Explore the Endless possibilities with {{appName}}",
+    "nav": {
+      "dashboard": "Dashboard",
+      "user": {
+        "account": "Account",
+        "index": "User",
+        "profile": "Profile"
+      },
+      "workbench": "Workbench"
+    }
+  }
+}

@@ -2,7 +2,8 @@
   "sys": {
     "api": {
       "apiRequestFailed": "The interface request failed, please try again later!",
-      "errorMessage": "The operation failed, the system is abnormal!"
+      "errorMessage": "The operation failed, the system is abnormal!",
+      "docs": "Document"
     }
   }
 }

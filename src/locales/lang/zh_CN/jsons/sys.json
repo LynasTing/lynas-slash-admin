@@ -2,7 +2,13 @@
   "sys": {
     "api": {
       "apiRequestFailed": "请求出错，请稍候重试",
-      "errorMessage": "操作失败,系统异常!"
+      "errorMessage": "操作失败,系统异常!",
+      "docs": "文档",
+      "user": {
+        "index": "用户",
+        "profile": "个人资料",
+        "account": "账户"
+      }
     }
   }
 }
