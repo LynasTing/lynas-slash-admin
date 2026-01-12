@@ -1,17 +1,18 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import type { User, UserToken } from '#/entity';
+import type { UserInfo, UserToken } from '#/entity';
 import { StorageEnum } from '#/enum';
 import { useMutation } from '@tanstack/react-query';
 import { signinApi, type SignInRequest } from '@/api/services/auth';
 import { toast } from 'sonner';
 
 type UserStore = {
-  userInfo: Partial<User>;
+  userInfo: Partial<UserInfo>;
   userToken: UserToken;
   actions: {
-    setUserInfo: (userInfo: Partial<User>) => void;
+    setUserInfo: (userInfo: Partial<UserInfo>) => void;
     setUserToken: (userToken: UserToken) => void;
+    clearUserInfoAndToken: () => void;
   };
 };
 
@@ -22,7 +23,10 @@ const useUserStore = create<UserStore>()(
       userToken: {},
       actions: {
         setUserInfo: userInfo => set({ userInfo }),
-        setUserToken: userToken => set({ userToken })
+        setUserToken: userToken => set({ userToken }),
+        clearUserInfoAndToken: () => {
+          set({ userInfo: {}, userToken: {} });
+        }
       }
     }),
     {
@@ -36,8 +40,10 @@ const useUserStore = create<UserStore>()(
   )
 );
 
-export const useUserToken = () => useUserStore(state => state.userToken);
-export const useUserActions = () => useUserStore(state => state.actions);
+export const useUserToken = () => useUserStore(s => s.userToken);
+export const useUserActions = () => useUserStore(s => s.actions);
+export const useUserInfo = () => useUserStore(s => s.userInfo);
+export const useUserPermissions = () => useUserStore(s => s.userInfo.permissions || []);
 
 export const useSignIn = () => {
   const { setUserToken, setUserInfo } = useUserActions();

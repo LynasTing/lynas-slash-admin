@@ -207,3 +207,64 @@ export interface Permission extends CommonOptions {
 export type MenuTree = Menu & {
   children?: MenuTree[];
 };
+
+/**
+ * 用户信息
+ * User information
+ */
+export interface UserInfo {
+  /**
+   * 用户 ID
+   * User ID (uuid)
+   */
+  id: string;
+
+  /**
+   * 邮箱
+   * Email
+   */
+  email: string;
+
+  /**
+   * 用户名
+   * Username
+   */
+  username: string;
+
+  /**
+   * 密码
+   * Password
+   * - Optional, usually not returned by backend
+   */
+  password?: string;
+
+  /**
+   * 头像
+   * Avatar
+   */
+  avatar?: string;
+
+  /**
+   * 角色列表
+   * Roles
+   */
+  roles?: Role[];
+
+  /**
+   * 用户状态
+   * User status
+   */
+  status?: BasicStatusEnum;
+
+  /**
+   * 权限列表
+   * Permissions
+   */
+  permissions?: Permission[];
+
+  /**
+   * 菜单树
+   * Menu tree
+   */
+  menu?: MenuTree[];
+}
