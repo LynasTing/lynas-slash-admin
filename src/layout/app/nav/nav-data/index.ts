@@ -106,8 +106,11 @@ const filterNavData = (permissions: string[]) => {
 };
 
 /**
- * 使用 code 拿到菜单数据
- * Get menu data using code
+ * 根据权限过滤导航数据
+ * @returns 过滤后的导航数据
+ *
+ * Filter navigation data based on permissions
+ * @returns Filtered navigation data
  */
 export const useFilteredNavData = () => {
   /**
