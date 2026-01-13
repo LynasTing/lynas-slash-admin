@@ -71,10 +71,10 @@ function BreadcrumbLink({
  * Example Usage:
  * <Breadcrumb>
  *   <BreadcrumbItem href="/home">Home</BreadcrumbItem>
- *   <BraedcrumbPage>Current Page</BraedcrumbPage>
+ *   <BreadcrumbPage>Current Page</BreadcrumbPage>
  * </Breadcrumb>
  */
-function BraedcrumbPage({ className, ...props }: ComponentProps<'span'>) {
+function BreadcrumbPage({ className, ...props }: ComponentProps<'span'>) {
   return (
     <span
       data-slot="breadcrumb-page"
@@ -127,4 +127,4 @@ function BreadcrumbEllipsis({ className, ...props }: ComponentProps<'span'>) {
   );
 }
 
-export { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BraedcrumbPage, BreadcrumbSeparator, BreadcrumbEllipsis };
+export { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator, BreadcrumbEllipsis };
