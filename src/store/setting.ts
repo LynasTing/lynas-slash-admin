@@ -1,4 +1,4 @@
-import { ThemeMode, ThemeColorPresets, StorageEnum } from '#/enum';
+import { ThemeMode, ThemeColorPresets, StorageEnum, ThemeLayoutEnum } from '#/enum';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 import { FontFamilyPreset, typographyTokens } from '@/theme/tokens/typography';
@@ -12,10 +12,25 @@ export type SettingStateType = {
   fontFamily: string;
   /** 字号 / Font size */
   fontSize: number;
+  /** 主题布局 / Theme layout */
+  themeLayout: ThemeLayoutEnum;
+  /** 是否开启全屏模式 / Whether to enable full screen mode */
+  themeStretch: boolean;
+  /** 是否开启面包屑导航 / Whether to enable breadcrumb navigation */
+  breadCrumb: boolean;
+  /** 是否开启折叠菜单 / Whether to enable accordion menu */
+  accordion: boolean;
+  /** 是否开启多标签页模式 / Whether to enable multi-tab mode */
+  multiTab: boolean;
+  /** 是否开启侧边栏暗色模式 / Whether to enable dark sidebar mode */
+  darkSidebar: boolean;
+  /** 文档阅读方向（ltr 左→右 / rtl 右→左），用于整体布局镜像与多语言（如阿拉伯语）适配 / Controls document reading direction, affecting global layout mirroring and RTL language support */
+  direction: 'ltr' | 'rtl';
 };
 
 type SettingStore = {
   settings: SettingStateType;
+  // 使用 actions 命名空间来存放所有的 action
   actions: {
     setSettings: (settings: SettingStateType) => void;
     clearSettings: () => void;
@@ -29,7 +44,14 @@ const useSettingStore = create<SettingStore>()(
         themeMode: ThemeMode.Light,
         themeColorPresets: ThemeColorPresets.Default,
         fontFamily: FontFamilyPreset.openSans,
-        fontSize: Number(typographyTokens.fontSize.sm)
+        fontSize: Number(typographyTokens.fontSize.sm),
+        themeLayout: ThemeLayoutEnum.Vertical,
+        themeStretch: false,
+        breadCrumb: false,
+        accordion: false,
+        multiTab: false,
+        darkSidebar: false,
+        direction: 'ltr'
       },
       actions: {
         setSettings: settings => {

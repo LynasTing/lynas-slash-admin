@@ -155,3 +155,16 @@ export enum ResultStatusEnum {
   /** */
   TIMEOUT = 401
 }
+
+/**
+ * 主题布局
+ * Theme layout
+ */
+export enum ThemeLayoutEnum {
+  /** 垂直 / Vertical */
+  Vertical = 'vertical',
+  /** 水平 / Horizontal */
+  Horizontal = 'horizontal',
+  /** 小型 / Mini */
+  Mini = 'mini'
+}
