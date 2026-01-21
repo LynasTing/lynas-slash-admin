@@ -9,6 +9,11 @@
         "profile": "个人资料",
         "account": "账户"
       }
+    },
+    "settings": {
+      "layout": "布局",
+      "mode": "模式",
+      "title": "设置"
     }
   }
 }

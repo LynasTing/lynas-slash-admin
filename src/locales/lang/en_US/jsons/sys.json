@@ -4,6 +4,11 @@
       "apiRequestFailed": "The interface request failed, please try again later!",
       "errorMessage": "The operation failed, the system is abnormal!",
       "docs": "Document"
+    },
+    "settings": {
+      "layout": "Layout",
+      "mode": "Mode",
+      "title": "Settings"
     }
   }
 }
