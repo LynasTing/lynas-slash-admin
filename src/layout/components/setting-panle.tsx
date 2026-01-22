@@ -9,13 +9,16 @@ import { ScrollArea } from '@/ui/scroll-area';
 import { Text } from '@/ui/typography';
 import { Card } from '@/ui/card';
 import { type SettingStateType, useSettingStoreState, useSettingStoreActions } from '@/store/setting';
-import { ThemeMode } from '#/enum';
+import { ThemeLayoutEnum, ThemeMode } from '#/enum';
 import { themeVars } from '@/theme/theme.css';
+import { cn } from '@/utils';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/ui/tooltip';
+import { Switch } from '@/ui/switch';
 
 export default function SettingPanel() {
   const { t } = useTranslation();
   const settingsState = useSettingStoreState();
-  const { themeMode } = settingsState;
+  const { themeMode, themeLayout, themeStretch } = settingsState;
   const { setSettings } = useSettingStoreActions();
 
   const updateSettings = (partialSettings: Partial<SettingStateType>) => {
@@ -36,6 +39,13 @@ export default function SettingPanel() {
     backgroundPosition: `right top, left bottom`,
     backgroundSize: `50%, 50%`
   };
+
+  /**
+   * 布局的背景颜色
+   * background color of the current layout
+   */
+  const layoutBackground = (layout: ThemeLayoutEnum) =>
+    themeLayout === layout ? themeVars.colors.palette.primary.light : themeVars.colors.palette.gray[500];
 
   return (
     <Sheet modal={false}>
@@ -81,6 +91,126 @@ export default function SettingPanel() {
                     color={themeMode === ThemeMode.Dark ? themeVars.colors.palette.primary.default : ''}
                   />
                 </Card>
+              </div>
+            </div>
+
+            {/* theme layout */}
+            <div className="flex flex-col gap-2">
+              <Text variant="subTitle1">{t('sys.settings.layout')}</Text>
+              {/* vertical */}
+              <Card
+                className="flex-1 h-16 flex flex-row p-0 gap-1 cursor-pointer"
+                onClick={() => updateSettings({ themeLayout: ThemeLayoutEnum.Vertical })}>
+                <div className="flex flex-col w-5 h-full gap-1 p-1">
+                  <div
+                    className="w-2 h-2 shrink-0 rounded"
+                    style={{
+                      backgroundColor: layoutBackground(ThemeLayoutEnum.Vertical)
+                    }}
+                  />
+                  <div
+                    className="w-full h-1 shrink-0 rounded opacity-50"
+                    style={{
+                      backgroundColor: layoutBackground(ThemeLayoutEnum.Vertical)
+                    }}
+                  />
+                  <div
+                    className="max-w-[12px] h-1 shrink-0 rounded opacity-20"
+                    style={{ backgroundColor: layoutBackground(ThemeLayoutEnum.Vertical) }}
+                  />
+                </div>
+                <div className="flex-1 flex flex-col w-full h-full grow gap-1 p-1">
+                  <div
+                    className="w-full h-1.5 rounded opacity-20"
+                    style={{ backgroundColor: layoutBackground(ThemeLayoutEnum.Vertical) }}
+                  />
+                  <div
+                    className={cn(
+                      'flex-1 w-full rounded mx-auto opacity-20 transition-all duration-300 ease-in-out',
+                      !themeStretch && 'w-10'
+                    )}
+                    style={{ backgroundColor: layoutBackground(ThemeLayoutEnum.Vertical) }}
+                  />
+                </div>
+              </Card>
+              {/* mini */}
+              <Card
+                className="flex-1 flex-row h-16 gap-0 p-0 cursor-pointer"
+                onClick={() => updateSettings({ themeLayout: ThemeLayoutEnum.Mini })}>
+                <div
+                  className="flex-0 flex flex-col items-center w-3 h-full gap-1 p-1"
+                  style={{ backgroundColor: layoutBackground(ThemeLayoutEnum.Mini) }}>
+                  <div className="shrink-0 w-2 h-2 rounded" style={{ backgroundColor: layoutBackground(ThemeLayoutEnum.Mini) }} />
+                  <div
+                    className="shrink-0 w-full h-1 rounded opacity-50"
+                    style={{ backgroundColor: layoutBackground(ThemeLayoutEnum.Mini) }}
+                  />
+                  <div
+                    className="shrink-0 w-full h-1 rounded opacity-20"
+                    style={{ backgroundColor: layoutBackground(ThemeLayoutEnum.Mini) }}
+                  />
+                </div>
+                <div className="flex-1 flex flex-col grow w-full h-full gap-1 p-1">
+                  <div className="w-full h-1.5 rounded opacity-20" style={{ backgroundColor: layoutBackground(ThemeLayoutEnum.Mini) }} />
+                  <div
+                    className={cn(
+                      'flex-1 w-full mx-auto rounded opacity-20 transition-all duration-300 ease-in-out',
+                      !themeStretch && 'w-10'
+                    )}
+                    style={{ backgroundColor: layoutBackground(ThemeLayoutEnum.Mini) }}
+                  />
+                </div>
+              </Card>
+              {/* horizontal */}
+              <Card className="flex-1 flex h-16 gap-0 p-0 cursor-pointer">
+                <div className="flex-0 flex items-center w-full h-full gap-1 p-1">
+                  <div
+                    className="w-2 h-2 shrink-0 rounded"
+                    style={{
+                      backgroundColor: layoutBackground(ThemeLayoutEnum.Horizontal)
+                    }}
+                  />
+                  <div
+                    className="shrink-0 w-4 h-1 rounded opacity-50"
+                    style={{
+                      backgroundColor: layoutBackground(ThemeLayoutEnum.Horizontal)
+                    }}
+                  />
+                  <div
+                    className="shrink-0 w-3 h-1 rounded opacity-20"
+                    style={{
+                      backgroundColor: layoutBackground(ThemeLayoutEnum.Horizontal)
+                    }}
+                  />
+                </div>
+                <div
+                  className="h-1.5 mx-1 rounded opacity-20 "
+                  style={{
+                    backgroundColor: layoutBackground(ThemeLayoutEnum.Horizontal)
+                  }}
+                />
+                <div className="flex-1 flex flex-col grow w-full h-full gap-1 p-1">
+                  <div
+                    className={cn(
+                      'w-full h-full mx-auto rounded opacity-20 transition-all duration-300 ease-in-out',
+                      !themeStretch && 'w-10'
+                    )}
+                    style={{
+                      backgroundColor: layoutBackground(ThemeLayoutEnum.Horizontal)
+                    }}
+                  />
+                </div>
+              </Card>
+              {/* stretch */}
+              <div className="flex justify-between items-center">
+                <Tooltip delayDuration={700} defaultOpen={false} disableHoverableContent>
+                  <TooltipTrigger>
+                    <Text variant="subTitle2">{t('sys.settings.stretch')}</Text>
+                    <Icon icon="solar:question-circle-linear" className="ml-1" />
+                  </TooltipTrigger>
+                  <TooltipContent>{t('sys.settings.stretchTip')}</TooltipContent>
+                </Tooltip>
+                <Switch checked={themeStretch} onCheckedChange={checked => updateSettings({ themeStretch: checked })} />
               </div>
             </div>
           </div>
