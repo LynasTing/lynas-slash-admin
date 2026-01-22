@@ -3,7 +3,7 @@ import { ComponentProps } from 'react';
 import { switchRootVariants, switchThumbVariants } from './style';
 import { cn } from '@/utils';
 
-function Swtich({ className, ...props }: ComponentProps<typeof SwitchPrimitive.Root>) {
+function Switch({ className, ...props }: ComponentProps<typeof SwitchPrimitive.Root>) {
   return (
     <SwitchPrimitive.Root data-slot="switch" className={cn(switchRootVariants(), className)} {...props}>
       <SwitchPrimitive.Thumb data-slot="switch-thumb" className={cn(switchThumbVariants())} />
@@ -11,4 +11,4 @@ function Swtich({ className, ...props }: ComponentProps<typeof SwitchPrimitive.R
   );
 }
 
-export { Swtich };
+export { Switch };
