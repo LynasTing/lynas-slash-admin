@@ -7,7 +7,7 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/ui/tooltip';
 type TooltipMode = 'always' | 'hover' | 'never';
 
 interface SliderProps extends ComponentProps<typeof SliderPrimitive.Root> {
-  tooltipMode: TooltipMode;
+  tooltipMode?: TooltipMode;
 }
 
 /**
