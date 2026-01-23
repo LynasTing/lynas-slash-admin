@@ -1,7 +1,7 @@
 import { ThemeMode, ThemeColorPresets, StorageEnum, ThemeLayoutEnum } from '#/enum';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
-import { FontFamilyPreset, typographyTokens } from '@/theme/tokens/typography';
+import { fontFamilyPreset, typographyTokens } from '@/theme/tokens/typography';
 
 export type SettingStateType = {
   /** 主题模式 / Theme mode */
@@ -43,7 +43,7 @@ const useSettingStore = create<SettingStore>()(
       settings: {
         themeMode: ThemeMode.Light,
         themeColorPresets: ThemeColorPresets.Default,
-        fontFamily: FontFamilyPreset.openSans,
+        fontFamily: fontFamilyPreset.openSans,
         fontSize: Number(typographyTokens.fontSize.sm),
         themeLayout: ThemeLayoutEnum.Vertical,
         themeStretch: false,

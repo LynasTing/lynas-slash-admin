@@ -2,7 +2,7 @@
  * 字体家族预设 / Font family presets
  * - 用于统一管理项目中使用的字体名称
  */
-export const FontFamilyPreset = {
+export const fontFamilyPreset = {
   /** Open Sans 字体 / Open Sans font */
   openSans: 'Open Sans Variable',
 
@@ -17,8 +17,8 @@ export const FontFamilyPreset = {
 export const typographyTokens = {
   /** 字体族 / Font family */
   fontFamily: {
-    openSans: FontFamilyPreset.openSans, // "Open Sans Variable"
-    inter: FontFamilyPreset.inter // "Inter Variable"
+    openSans: fontFamilyPreset.openSans, // "Open Sans Variable"
+    inter: fontFamilyPreset.inter // "Inter Variable"
   },
 
   /** 字体大小 / Font size (单位 px，可按需转换 rem) */
