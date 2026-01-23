@@ -8,6 +8,8 @@
     "settings": {
       "layout": "Layout",
       "mode": "Mode",
+      "stretch": "Stretch",
+      "stretchTip": "Only available when the screen width is greater than 1280px (xl)",
       "title": "Settings"
     }
   }

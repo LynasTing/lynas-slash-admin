@@ -13,6 +13,8 @@
     "settings": {
       "layout": "布局",
       "mode": "模式",
+      "stretch": "拉伸",
+      "stretchTip": "仅在屏幕宽度大于 1280px 时可用(xl)",
       "title": "设置"
     }
   }
