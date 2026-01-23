@@ -14,11 +14,13 @@ import { themeVars } from '@/theme/theme.css';
 import { cn } from '@/utils';
 import { Tooltip, TooltipTrigger, TooltipContent } from '@/ui/tooltip';
 import { Switch } from '@/ui/switch';
+import { presetsColors } from '@/theme/tokens/color';
+import { type ThemeColorPresets } from '#/enum';
 
 export default function SettingPanel() {
   const { t } = useTranslation();
   const settingsState = useSettingStoreState();
-  const { themeMode, themeLayout, themeStretch } = settingsState;
+  const { themeMode, themeLayout, themeStretch, themeColorPresets } = settingsState;
   const { setSettings } = useSettingStoreActions();
 
   const updateSettings = (partialSettings: Partial<SettingStateType>) => {
@@ -211,6 +213,34 @@ export default function SettingPanel() {
                   <TooltipContent>{t('sys.settings.stretchTip')}</TooltipContent>
                 </Tooltip>
                 <Switch checked={themeStretch} onCheckedChange={checked => updateSettings({ themeStretch: checked })} />
+              </div>
+            </div>
+
+            {/* theme presets */}
+            <div className="flex flex-col gap-2">
+              <Text variant="subTitle1">{t('sys.settings.presetThemes')}</Text>
+              <div className="flex flex-wrap gap-1">
+                {Object.entries(presetsColors).map(([preset, color]) => (
+                  <div
+                    key={preset}
+                    className={cn(
+                      'relative flex justify-center itemc w-5 h-13 rounded p-1 cursor-pointer transition-all duration-300 ease-in-out',
+                      themeColorPresets === preset && 'w-13'
+                    )}
+                    style={{ backgroundColor: color.default }}
+                    onClick={() =>
+                      updateSettings({
+                        themeColorPresets: preset as ThemeColorPresets
+                      })
+                    }>
+                    <div
+                      className={cn(
+                        'flex justify-center items-center w-full h-full rounded hover:bg-white/30 transition-all duration-300 ease-in-out'
+                      )}>
+                      {themeColorPresets === preset && <Icon icon="bi:check-all" size={24} color="white" />}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
