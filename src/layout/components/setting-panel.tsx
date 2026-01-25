@@ -16,11 +16,13 @@ import { Tooltip, TooltipTrigger, TooltipContent } from '@/ui/tooltip';
 import { Switch } from '@/ui/switch';
 import { presetsColors } from '@/theme/tokens/color';
 import { type ThemeColorPresets } from '#/enum';
+import { fontFamilyPreset } from '@/theme/tokens/typography';
+import { Slider } from '@/ui/slider';
 
 export default function SettingPanel() {
   const { t } = useTranslation();
   const settingsState = useSettingStoreState();
-  const { themeMode, themeLayout, themeStretch, themeColorPresets } = settingsState;
+  const { themeMode, themeLayout, themeStretch, themeColorPresets, fontFamily, fontSize } = settingsState;
   const { setSettings } = useSettingStoreActions();
 
   const updateSettings = (partialSettings: Partial<SettingStateType>) => {
@@ -243,6 +245,44 @@ export default function SettingPanel() {
                 ))}
               </div>
             </div>
+
+            {/* font */}
+            <div className="flex flex-col gap-2">
+              <Text variant="subTitle1">{t('sys.settings.font')}</Text>
+              <Text variant="subTitle2">{t('sys.settings.family')}</Text>
+              <div className="flex gap-3">
+                {Object.entries(fontFamilyPreset).map(([font, family]) => (
+                  <Card
+                    key={font}
+                    className={cn(
+                      'flex justify-center items-center w-full h-20 text-text-disabled cursor-pointer',
+                      family === fontFamily && 'text-primary font-medium',
+                      family === fontFamilyPreset.inter && 'font-inter',
+                      family === fontFamilyPreset.openSans && 'font-open-sans'
+                    )}
+                    onClick={() => updateSettings({ fontFamily: family })}>
+                    <div className="text-center text-lg">
+                      <span>A</span>
+                      <span className="ml-0.5">a</span>
+                    </div>
+                    <span className="text-sm text-text-primary">{family.replace('Variable', '')}</span>
+                  </Card>
+                ))}
+              </div>
+              <Text variant="subTitle2">{t('sys.settings.size')}</Text>
+              <Slider
+                min={12}
+                max={20}
+                step={1}
+                defaultValue={[fontSize]}
+                onValueChange={value => updateSettings({ fontSize: value[0] })}
+              />
+            </div>
+
+            {/* page config */}
+            {/* <div className="flex flex-col gap-2">
+
+            </div> */}
           </div>
         </ScrollArea>
       </SheetContent>
