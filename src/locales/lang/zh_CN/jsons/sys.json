@@ -11,6 +11,8 @@
       }
     },
     "settings": {
+      "family": "字体系列",
+      "font": "字体",
       "layout": "布局",
       "mode": "模式",
       "stretch": "拉伸",

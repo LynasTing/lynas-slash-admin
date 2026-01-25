@@ -6,6 +6,8 @@
       "docs": "Document"
     },
     "settings": {
+      "family": "Family",
+      "font": "Font",
       "layout": "Layout",
       "mode": "Mode",
       "stretch": "Stretch",
