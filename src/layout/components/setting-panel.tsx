@@ -22,7 +22,7 @@ import { Slider } from '@/ui/slider';
 export default function SettingPanel() {
   const { t } = useTranslation();
   const settingsState = useSettingStoreState();
-  const { themeMode, themeLayout, themeStretch, themeColorPresets, fontFamily, fontSize } = settingsState;
+  const { themeMode, themeLayout, themeStretch, themeColorPresets, fontFamily, fontSize, breadcrumb } = settingsState;
   const { setSettings } = useSettingStoreActions();
 
   const updateSettings = (partialSettings: Partial<SettingStateType>) => {
@@ -280,9 +280,13 @@ export default function SettingPanel() {
             </div>
 
             {/* page config */}
-            {/* <div className="flex flex-col gap-2">
-
-            </div> */}
+            <div className="flex flex-col gap-2">
+              <Text variant="subTitle1">{t('sys.settings.page')}</Text>
+              <div className="flex justify-between items-center">
+                <Text variant="subTitle2">{t('sys.settings.breadcrumb')}</Text>
+                <Switch checked={breadcrumb} onCheckedChange={checked => updateSettings({ breadcrumb: checked })} />
+              </div>
+            </div>
           </div>
         </ScrollArea>
       </SheetContent>

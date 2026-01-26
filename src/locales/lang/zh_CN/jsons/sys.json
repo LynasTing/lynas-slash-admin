@@ -11,10 +11,12 @@
       }
     },
     "settings": {
+      "breadcrumb": "面包屑",
       "family": "字体系列",
       "font": "字体",
       "layout": "布局",
       "mode": "模式",
+      "page": "页面",
       "stretch": "拉伸",
       "stretchTip": "仅在屏幕宽度大于 1280px 时可用(xl)",
       "title": "设置"
