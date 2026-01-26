@@ -17,7 +17,7 @@ export type SettingStateType = {
   /** 是否开启全屏模式 / Whether to enable full screen mode */
   themeStretch: boolean;
   /** 是否开启面包屑导航 / Whether to enable breadcrumb navigation */
-  breadCrumb: boolean;
+  breadcrumb: boolean;
   /** 是否开启折叠菜单 / Whether to enable accordion menu */
   accordion: boolean;
   /** 是否开启多标签页模式 / Whether to enable multi-tab mode */
@@ -47,7 +47,7 @@ const useSettingStore = create<SettingStore>()(
         fontSize: Number(typographyTokens.fontSize.sm),
         themeLayout: ThemeLayoutEnum.Vertical,
         themeStretch: false,
-        breadCrumb: false,
+        breadcrumb: false,
         accordion: false,
         multiTab: false,
         darkSidebar: false,
