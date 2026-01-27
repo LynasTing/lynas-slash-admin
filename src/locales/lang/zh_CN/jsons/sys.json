@@ -12,8 +12,10 @@
     },
     "settings": {
       "breadcrumb": "面包屑",
+      "exitFullScreen": "退出全屏",
       "family": "字体系列",
       "font": "字体",
+      "fullScreen": "全屏",
       "layout": "布局",
       "mode": "模式",
       "page": "页面",

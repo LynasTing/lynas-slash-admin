@@ -7,8 +7,10 @@
     },
     "settings": {
       "breadcrumb": "Breadcrumb",
+      "exitFullScreen": "Exit FullScreen",
       "family": "Family",
       "font": "Font",
+      "fullScreen": "FullScreen",
       "layout": "Layout",
       "mode": "Mode",
       "page": "Page",

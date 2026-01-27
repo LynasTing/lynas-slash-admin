@@ -1,7 +1,7 @@
-import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription } from '@/ui/sheet';
+import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter } from '@/ui/sheet';
 import Button from '@/ui/button';
 import { Icon } from '@/components/icon';
-import { type CSSProperties } from 'react';
+import { useState, type CSSProperties, useCallback, useEffect } from 'react';
 import CyanBlurIMG from '@/assets/images/background/cyan-blur.png';
 import RedBlurIMG from '@/assets/images/background/red-blur.png';
 import { useTranslation } from 'react-i18next';
@@ -18,6 +18,7 @@ import { presetsColors } from '@/theme/tokens/color';
 import { type ThemeColorPresets } from '#/enum';
 import { fontFamilyPreset } from '@/theme/tokens/typography';
 import { Slider } from '@/ui/slider';
+import screenfull from 'screenfull';
 
 export default function SettingPanel() {
   const { t } = useTranslation();
@@ -50,6 +51,61 @@ export default function SettingPanel() {
    */
   const layoutBackground = (layout: ThemeLayoutEnum) =>
     themeLayout === layout ? themeVars.colors.palette.primary.light : themeVars.colors.palette.gray[500];
+
+  // 是否全屏 / is full screen
+  const [isFullScreen, setIsFullScreen] = useState(screenfull.isFullscreen);
+
+  /**
+   * 切换全屏按钮点击处理
+   * Handle full screen toggle button click
+   */
+  const handleFullScreenToggle = () => {
+    if (screenfull.isEnabled) {
+      screenfull.toggle();
+    }
+  };
+
+  /**
+   * 键盘按下事件（Esc 处理退出全屏）
+   * Keyboard keydown event (handle Escape to exit full screen)
+   */
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (e.key === 'Escape' && screenfull.isEnabled && screenfull.isFullscreen) {
+      // 更新 react 状态，退出全屏
+      // Update React state to exit full screen
+      setIsFullScreen(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    /**
+     * 当全屏状态发生变化时触发
+     * Triggerd when full screen status changes
+     */
+    const onFullScreenChange = () => {
+      if (screenfull.isEnabled) {
+        // 把当前的全屏状态同步到 react 状态
+        // Sync current full screen status to react state
+        setIsFullScreen(screenfull.isFullscreen);
+      }
+    };
+    if (screenfull.isEnabled) {
+      // 绑定全屏状态变化事件监听
+      // Bind event listener for full screen status change
+      screenfull.on('change', onFullScreenChange);
+    }
+
+    // 全局监听键盘事件（Esc 退出全屏）
+    // Globally listen to keyboard events (Escape to exit full screen)
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      if (screenfull.isEnabled) {
+        screenfull.off('change', onFullScreenChange);
+      }
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [handleKeyDown]);
 
   return (
     <Sheet modal={false}>
@@ -289,6 +345,28 @@ export default function SettingPanel() {
             </div>
           </div>
         </ScrollArea>
+        <SheetFooter className="shrink-0 px-6 py-4 border border-t">
+          <Button
+            variant="outline"
+            className="w-full text-text-primary border-dashed hover:border-primary hover:text-primary"
+            onClick={handleFullScreenToggle}>
+            <div
+              className="flex justify-center items-center"
+              aria-label={isFullScreen ? t('sys.settings.exitFullScreen') : t('sys.settings.fullScreen')}>
+              {isFullScreen ? (
+                <>
+                  <Icon icon="local:ic-settings-exit-fullScreen" />
+                  <span>{t('sys.settings.exitFullScreen')}</span>
+                </>
+              ) : (
+                <>
+                  <Icon icon="local:ic-settings-fullScreen" />
+                  <span>{t('sys.settings.fullScreen')}</span>
+                </>
+              )}
+            </div>
+          </Button>
+        </SheetFooter>
       </SheetContent>
     </Sheet>
   );
