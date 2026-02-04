@@ -6,6 +6,7 @@
       "docs": "Document"
     },
     "settings": {
+      "archiveAll": "Archive all",
       "breadcrumb": "Breadcrumb",
       "exitFullScreen": "Exit FullScreen",
       "family": "Family",
@@ -13,6 +14,8 @@
       "fullScreen": "FullScreen",
       "layout": "Layout",
       "mode": "Mode",
+      "markAllAsRead": "Mark all as read",
+      "notifications": "Notifications",
       "page": "Page",
       "stretch": "Stretch",
       "stretchTip": "Only available when the screen width is greater than 1280px (xl)",
