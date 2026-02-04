@@ -20,7 +20,7 @@ interface AvatarGroup {
      * 作用在最后一个头像上
      * Applied to the last avatar
      */
-    style: CSSProperties;
+    style?: CSSProperties;
   };
   /**
    * 所有头像尺寸
