@@ -1,5 +1,5 @@
 /** 文件类型 / Notification file types */
-export type FileType = 'ppt' | 'excel' | 'word' | 'figma';
+export type FileType = 'ppt' | 'excel' | 'word' | 'figma' | 'svg';
 
 /** 标签类型 / Notification tag type */
 export type NoticeTag = 'Client-Request' | 'Figma' | 'Redesign' | 'Improvement' | 'Bug';
@@ -125,7 +125,7 @@ export interface NotificationProps {
   tags?: NoticeTag[];
 
   /** 文件 / file */
-  file: NoticeFile;
+  file?: NoticeFile;
 
   /** 文件名 / File name */
   fileName?: string;
@@ -167,5 +167,5 @@ export interface NotificationProps {
   artworks?: NoticeArtwork[];
 
   /** 任务 */
-  task: NoticeTask;
+  task?: NoticeTask;
 }
