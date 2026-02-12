@@ -222,3 +222,38 @@ export function createTailwindConfig(propertyPath: string) {
 
   return result;
 }
+
+/**
+ * 去除 px 单位
+ * remove px unit
+ *
+ * @example 10px -> 10
+ */
+export const removePx = (value: string | number): number => {
+  // 如果已经是 number 了，直接返回 / Return if it's already a number
+  if (typeof value === 'number') return value;
+
+  // 空值抛错 / Throw error for empty value
+  if (!value) {
+    throw new Error('Invalid value: empty string');
+  }
+
+  // 去掉首尾空格 / Trim leading and trailing spaces
+  const trimed = value.trim();
+
+  // 检查是否以 px 结尾 / Check if it ends with px
+  const hasPx = /px$/i.test(trimed);
+
+  // 提取数字部分 / Extract the numeric part
+  const num = hasPx ? trimed.slice(0, -2) : trimed;
+
+  // 转为 number / Convert to number
+  const result = Number.parseFloat(num);
+
+  // 是否是有效数字 / Check if it's a valid number
+  if (Number.isNaN(result)) {
+    throw new Error(`Invalid value: ${value}`);
+  }
+
+  return result;
+};
