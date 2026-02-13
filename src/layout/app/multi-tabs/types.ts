@@ -123,3 +123,70 @@ export type TabDropdownProps = {
    */
   menuClick: (tab: KeepAliveTab) => void;
 };
+
+/**
+ * 多标签操作类型枚举
+ * Multi-tab operation enum
+ *
+ * 用于定义右键菜单以及标签栏中所有可执行的操作类型。
+ * Used to define all executable operations in the tab context menu and tab bar.
+ *
+ * 枚举值会作为：
+ * - 菜单项的 key
+ * - 操作映射表的索引
+ * - 国际化 key 的一部分
+ *
+ * Enum values are used as:
+ * - Menu item keys
+ * - Keys of the operation mapping object
+ * - Part of the i18n translation key
+ *
+ * 采用字符串枚举而不是数字枚举，
+ * 目的是提高可读性、可调试性和类型安全性。
+ *
+ * String enum is used instead of numeric enum
+ * for better readability, debuggability, and type safety.
+ */
+export enum MultiTabOperation {
+  /**
+   * 全屏显示当前标签页
+   * Display current tab in fullscreen mode
+   */
+  FULLSCREEN = 'fullscreen',
+
+  /**
+   * 刷新当前标签页
+   * Refresh the current tab
+   */
+  REFRESH = 'refresh',
+
+  /**
+   * 关闭当前标签页
+   * Close the current tab
+   */
+  CLOSE = 'close',
+
+  /**
+   * 关闭除当前标签外的其他标签
+   * Close all tabs except the current one
+   */
+  CLOSEOTHERS = 'closeOthers',
+
+  /**
+   * 关闭所有标签页
+   * Close all tabs
+   */
+  CLOSEALL = 'closeAll',
+
+  /**
+   * 关闭当前标签左侧的所有标签
+   * Close all tabs to the left of the current tab
+   */
+  CLOSELEFT = 'closeLeft',
+
+  /**
+   * 关闭当前标签右侧的所有标签
+   * Close all tabs to the right of the current tab
+   */
+  CLOSERIGHT = 'closeRight'
+}
