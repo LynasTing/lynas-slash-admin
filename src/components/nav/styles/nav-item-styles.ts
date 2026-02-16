@@ -7,6 +7,7 @@ export type NavItemStyle = {
   caption: CSSProperties;
   info: CSSProperties;
   arrow: CSSProperties;
+  texts: CSSProperties;
 };
 
 export const navItemStyles: NavItemStyle = {
@@ -56,5 +57,11 @@ export const navItemStyles: NavItemStyle = {
     height: 16,
     marginLeft: '6px',
     transition: 'all 0.3s ease-in-out'
+  },
+  texts: {
+    display: 'inline-flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    flex: '1 1 auto'
   }
 };
