@@ -5,11 +5,14 @@
     "nav": {
       "dashboard": "仪表板",
       "user": {
-        "account": "Account",
-        "index": "User",
-        "profile": "Profile"
+        "account": "账户",
+        "index": "用户",
+        "profile": "个人资料"
       },
-      "workbench": "工作台"
+      "workbench": "工作台",
+      "system": {
+        "userDetail": "用户详情"
+      }
     }
   }
 }

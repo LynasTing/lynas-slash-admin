@@ -9,7 +9,10 @@
         "index": "User",
         "profile": "Profile"
       },
-      "workbench": "Workbench"
+      "workbench": "Workbench",
+      "system": {
+        "userDetail": "User Detail"
+      }
     }
   }
 }
