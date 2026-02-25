@@ -69,6 +69,8 @@ const CollapsibleContent = forwardRef<
   )
 );
 
+CollapsibleContent.displayName = CollapsiblePrimitive.CollapsibleContent.displayName;
+
 /**
  * 导出封装后的组件
  * Export wrapped components
