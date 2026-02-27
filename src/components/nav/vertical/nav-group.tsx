@@ -55,7 +55,7 @@ function Group({ name, open, onClick }: GroupProps) {
   );
 }
 
-export function NavGroup({ name, items }: NavGroupProps) {
+export function NavVerticalGroup({ name, items }: NavGroupProps) {
   const [open, toggleOpen] = useToggle(true);
 
   return (
@@ -63,7 +63,6 @@ export function NavGroup({ name, items }: NavGroupProps) {
       <CollapsibleTrigger asChild>
         <Group name={name} open={open} onClick={toggleOpen} />
       </CollapsibleTrigger>
-
       <CollapsibleContent>
         <ul className="flex flex-col gap-1 w-full">
           {items.map((item, idx) => (
