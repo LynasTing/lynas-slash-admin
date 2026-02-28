@@ -1,13 +1,13 @@
 import { useLocation } from 'react-router';
 import type { NavListProps } from '../types';
-import { NavItem } from './nav-item';
+import { NavHorizontalItem } from './nav-item';
 import { HoverCard, HoverCardTrigger, HoverCardContent } from '@/ui/hover-card';
 
 /**
  * 导航列表组件（递归）
  * Navigation list component (recursive)
  */
-export function NavList({ data, depth = 0 }: NavListProps) {
+export function NavHorizontalList({ data, depth = 0 }: NavListProps) {
   /**
    * 是否有子菜单
    * Whether the current navigation item has children
@@ -35,7 +35,7 @@ export function NavList({ data, depth = 0 }: NavListProps) {
    * Render a single navigation item
    */
   const renderNavItem = () => (
-    <NavItem
+    <NavHorizontalItem
       key={data.title} // 唯一 key / Unique key
       path={data.path} // 路由路径 / Route path
       title={data.title} // 标题 / Title
@@ -71,7 +71,7 @@ export function NavList({ data, depth = 0 }: NavListProps) {
         >
           {/* 递归渲染子菜单 / Recursively render child navigation items */}
           {data.children?.map(i => (
-            <NavList key={i.title} data={i} depth={depth + 1} />
+            <NavHorizontalList key={i.title} data={i} depth={depth + 1} />
           ))}
         </HoverCardContent>
       </HoverCard>

@@ -6,7 +6,7 @@ import { cn } from '@/utils';
 import { navItemClasses, navItemStyles } from '../styles';
 import { NavItemRenderer } from '../components';
 
-export const NavSubItem = (item: NavItemProps) => {
+export const NavMiniSubItem = (item: NavItemProps) => {
   const { t } = useLocale();
 
   const content = (

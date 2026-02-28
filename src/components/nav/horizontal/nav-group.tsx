@@ -1,12 +1,12 @@
 import type { NavGroupProps } from '../types';
-import { NavList } from './nav-list';
+import { NavHorizontalList } from './nav-list';
 
-export function NavGroup({ items }: NavGroupProps) {
+export function NavHorizontalGroup({ items }: NavGroupProps) {
   return (
     <li className="flex items-center">
       <ul className="flex flex-row gap-1">
         {items.map((i, idx) => (
-          <NavList key={i.title || idx} data={i} depth={1} />
+          <NavHorizontalList key={i.title || idx} data={i} depth={1} />
         ))}
       </ul>
     </li>

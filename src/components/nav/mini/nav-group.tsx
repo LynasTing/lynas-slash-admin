@@ -1,7 +1,7 @@
 import type { NavGroupProps } from '../types';
 import { NavList } from './nav-list';
 
-export function NavGroup({ items }: NavGroupProps) {
+export function NavMiniGroup({ items }: NavGroupProps) {
   return (
     <li>
       <ul className="flex flex-col gap-1">

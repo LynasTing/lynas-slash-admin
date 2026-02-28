@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router';
 import type { NavListProps } from '../types';
-import { NavRootItem } from './nav-root-item';
-import { NavSubItem } from './nav-sub-item';
+import { NavMiniRootItem } from './nav-root-item';
+import { NavMiniSubItem } from './nav-sub-item';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/ui/hover-card';
 
 export function NavList({ data, depth = 0 }: NavListProps) {
@@ -12,7 +12,7 @@ export function NavList({ data, depth = 0 }: NavListProps) {
   if (data.hidden) return null;
 
   const renderRootNavItem = () => (
-    <NavRootItem
+    <NavMiniRootItem
       key={data.title}
       path={data.path}
       title={data.title}
@@ -28,7 +28,7 @@ export function NavList({ data, depth = 0 }: NavListProps) {
   );
 
   const renderSubNavItem = () => (
-    <NavSubItem
+    <NavMiniSubItem
       key={data.title}
       path={data.path}
       title={data.title}

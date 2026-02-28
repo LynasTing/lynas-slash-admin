@@ -57,7 +57,7 @@ const ItemIcon = ({ depth = 1 }: { depth?: number }) => {
  *
  * Navigation item renderer component.
  */
-export const NavItem = (item: NavItemProps) => {
+export const NavHorizontalItem = (item: NavItemProps) => {
   const { t } = useTranslation();
 
   /**
