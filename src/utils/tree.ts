@@ -46,3 +46,37 @@ export function convertFlatToTree<T extends { id: string; parentId: string }>(it
   }
   return tree;
 }
+
+/**
+ * 将树形结构拍平成一维数组
+ * Flatten a tree structure into a flat array
+ *
+ * 例如：
+ * Example:
+ *
+ * 示例 Example:
+ * 输入 Input: [{ id: 1, children: [{ id: 2 }] }]
+ * 输出 Output: [{ id: 1 }, { id: 2 }]
+ *
+ * @param tree 树形结构数组 Tree structure array
+ * @returns 扁平数组 Flattened array
+ */
+export function flattenTree<T extends { children?: T[] }>(tree: T[] = []): T[] {
+  /**
+   * 使用 flatMap 遍历每个节点
+   * Use flatMap to iterate through each node
+   */
+  return tree.flatMap(node => [
+    /**
+     * 当前节点本身
+     * Current node itself
+     */
+    node,
+
+    /**
+     * 递归展开 children
+     * Recursively flatten children
+     */
+    ...flattenTree(node.children ?? [])
+  ]);
+}
