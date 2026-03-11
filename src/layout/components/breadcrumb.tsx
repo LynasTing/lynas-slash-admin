@@ -68,7 +68,7 @@ import { ChevronDown } from 'lucide-react';
  * 面包屑 Props
  */
 interface BreadCrumbProps {
-  maxItems: number;
+  maxItems?: number;
 }
 
 /**
