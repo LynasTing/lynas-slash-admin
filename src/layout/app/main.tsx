@@ -9,7 +9,8 @@ import { useSettingStoreState } from '@/store/setting';
 import { AuthGuard } from '@/components/auth';
 
 /** 导航数据 / Navigation data */
-const navData = GLOBAL_CONFIG.routerMode === 'frontend' ? structuredClone(frontendNavData) : backendNavData;
+// const navData = GLOBAL_CONFIG.routerMode === 'frontend' ? structuredClone(frontendNavData) : backendNavData;
+const navData = GLOBAL_CONFIG.routerMode === 'frontend' ? frontendNavData : backendNavData;
 
 /** 平铺导航数据后的所有导航项 / Flattened navigation items */
 const allItems = navData.flatMap(i => flattenTree(i.items));
