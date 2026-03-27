@@ -2,8 +2,8 @@ import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescri
 import Button from '@/ui/button';
 import { Icon } from '@/components/icon';
 import { useState, type CSSProperties, useCallback, useEffect } from 'react';
-import CyanBlurIMG from '@/assets/images/background/cyan-blur.png';
-import RedBlurIMG from '@/assets/images/background/red-blur.png';
+import CyanBlurIMG from '@/assets/images/background/cyan_blur.png';
+import RedBlurIMG from '@/assets/images/background/red_blur.png';
 import { useTranslation } from 'react-i18next';
 import { ScrollArea } from '@/ui/scroll-area';
 import { Text } from '@/ui/typography';
