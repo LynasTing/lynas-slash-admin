@@ -21,6 +21,7 @@ import { useNavigate } from 'react-router';
 import { GLOBAL_CONFIG } from '@/config/global';
 import { Checkbox } from '@/ui/checkbox';
 import { Icon } from '@/components/icon';
+import { DB_USER } from '@/_mock/_backup';
 
 /**
  * ComponentPropsWithoutRef React 内置的类型工具
@@ -38,8 +39,8 @@ function LoginForm({ className, ...props }: ComponentPropsWithoutRef<'form'>) {
 
   const form = useForm<SignInRequest>({
     defaultValues: {
-      username: '',
-      password: ''
+      username: DB_USER[0].username,
+      password: DB_USER[0].password
     }
   });
 
