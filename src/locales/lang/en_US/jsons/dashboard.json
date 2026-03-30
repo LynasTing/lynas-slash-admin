@@ -1,7 +1,10 @@
 {
   "dashboard": {
+    "addProject": "Add Project",
+    "addTask": "Add Task",
     "bannerTitle": "Explore Redesigned {{appName}}",
     "bannerDescription": "The rand new User Interface with power of Shadcn/ui Components. Explore the Endless possibilities with {{appName}}",
+    "monthlyRevenue": "Monthly Revenue",
     "nav": {
       "dashboard": "Dashboard",
       "user": {
@@ -13,6 +16,9 @@
       "system": {
         "userDetail": "User Detail"
       }
-    }
+    },
+    "projectOverview": "Project Overview",
+    "pendingTasks": "Pending Tasks",
+    "totalTasks": "Total Tasks"
   }
 }

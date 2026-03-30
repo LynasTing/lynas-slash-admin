@@ -1,7 +1,10 @@
 {
   "dashboard": {
+    "addProject": "新增项目",
+    "addTask": "新增任务",
     "bannerTitle": "探索焕然一新的 {{appName}}",
     "bannerDescription": "全新界面搭配 Shadcn/ui 组件系统，为你开启 {{appName}} 的无限可能。",
+    "monthlyRevenue": "月度收入",
     "nav": {
       "dashboard": "仪表板",
       "user": {
@@ -13,6 +16,9 @@
       "system": {
         "userDetail": "用户详情"
       }
-    }
+    },
+    "projectOverview": "项目概览",
+    "pendingTasks": "待办任务",
+    "totalTasks": "总任务"
   }
 }
