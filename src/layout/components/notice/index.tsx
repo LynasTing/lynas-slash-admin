@@ -36,7 +36,7 @@ export default function NoticePanel() {
       </div>
       <Sheet open={drawerOpen} onOpenChange={setDrawerOpen}>
         <SheetContent side="right" className="flex flex-col p-0 sm:max-w-md [&>button]:hidden" style={sheetContentStyle}>
-          <SheetHeader className="flex justify-between items-center shrink-0  h-16 p-4 ">
+          <SheetHeader className="flex flex-row justify-between items-center shrink-0 h-16 p-4">
             <SheetTitle>{t('sys.settings.notifications')}</SheetTitle>
             <Button
               variant="ghost"
