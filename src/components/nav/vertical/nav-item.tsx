@@ -34,7 +34,7 @@ export function NavVerticalItem(item: NavItemProps) {
 
       <span className="min-h-[24px]" style={navItemStyles.texts}>
         {/* Title */}
-        <span style={navItemStyles.title}>{title}</span>
+        <span style={navItemStyles.title}>{t(title)}</span>
 
         {/* Caption */}
         {caption && (
