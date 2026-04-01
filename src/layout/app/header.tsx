@@ -20,7 +20,7 @@ export default function Header({ leftSlot }: { leftSlot?: ReactNode }) {
         'sticky top-0 left-0 right-0 z-app-bar',
         'flex justify-between items-center px-2 shrink-0 grow-0',
         'bg-background/60 backdrop-blur-xl',
-        'h-[--layout-header-height]'
+        'h-[var(--layout-header-height)]'
       )}>
       <div className="flex items-center">
         {leftSlot}
