@@ -27,16 +27,12 @@ interface SearchItem {
 const SearchBar = () => {
   /** 过滤后的导航数据 / Filtered navigation tree */
   const navData = useFilteredNavData();
-
   /** Command Dialog 是否打开 / Dialog open state */
   const [open, setOpen] = useBoolean(false);
-
   /** 当前搜索关键字 / Current search keyword */
   const [searchQuery, setSearchQuery] = useState('');
-
   /** 国际化函数 / i18n translate function */
   const { t } = useLocale();
-
   /** 路由跳转方法 / Router navigation */
   const navigate = useNavigate();
 
@@ -44,7 +40,7 @@ const SearchBar = () => {
    * 扁平化导航数据
    * Flatten nested navigation into a searchable list
    */
-  const flattendItems = useMemo(() => {
+  const flattenedItems = useMemo(() => {
     const items: SearchItem[] = [];
 
     /**
@@ -96,7 +92,7 @@ const SearchBar = () => {
 
     // 卸载监听 / Cleanup listener
     return () => document.removeEventListener('keydown', down);
-  });
+  }, [setOpen]);
 
   /**
    * 选择搜索项后的行为
@@ -115,11 +111,11 @@ const SearchBar = () => {
 
   return (
     <>
-      <Button variant="ghost" className="px-2 bg-action-selected rounded-lg" size="sm">
+      <Button variant="ghost" className="px-2 bg-action-selected rounded-lg" size="sm" onClick={() => setOpen(true)}>
         <div className="flex justify-center items-center gap-4">
           <Icon icon="local:ic-search" size="20" />
           {/* 快捷键提示 / Shortcut hint */}
-          <kbd className="flex justify-center items-center rounded-md bg-primary/80 text-common-white px-1.5 py-0.5 txt-sm font-semibold">
+          <kbd className="flex justify-center items-center rounded-md bg-primary/80 text-common-white px-1.5 py-0.5 text-sm font-semibold">
             <Icon icon="qlementine-icons:key-cmd-16" />
             <span>K</span>
           </kbd>
@@ -131,13 +127,13 @@ const SearchBar = () => {
         <ScrollArea className="h-[400px]">
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Navigations">
-            {flattendItems.map(({ key, label }) => (
+            {flattenedItems.map(({ key, label }) => (
               <CommandItem key={key} className="flex flex-col items-start" onSelect={() => handleSelect(key)}>
                 <div className="font-medium">
                   <HighlightText text={t(label)} query={searchQuery} />
                 </div>
                 <div className="text-xs text-muted-foreground">
-                  <HighlightText text={label} query={searchQuery} />
+                  <HighlightText text={key} query={searchQuery} />
                 </div>
               </CommandItem>
             ))}
