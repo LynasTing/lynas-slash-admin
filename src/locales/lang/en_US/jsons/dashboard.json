@@ -19,6 +19,7 @@
     },
     "projectOverview": "Project Overview",
     "pendingTasks": "Pending Tasks",
-    "totalTasks": "Total Tasks"
+    "totalTasks": "Total Tasks",
+    "totalIncome": "Total Income"
   }
 }
