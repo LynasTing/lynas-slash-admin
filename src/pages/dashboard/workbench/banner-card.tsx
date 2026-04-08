@@ -6,6 +6,9 @@ import Button from '@/ui/button';
 import { Icon } from '@/components/icon';
 import Character3IMG from '@/assets/images/characters/character_3.png';
 
+/**
+ * Banner
+ */
 export default function BannerCard() {
   const bgStyle: CSSProperties = {
     position: 'absolute',
