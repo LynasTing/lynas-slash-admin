@@ -4,11 +4,11 @@ type LazyImport = () => Promise<{
   default: React.ComponentType<unknown>;
 }>;
 /** 明确 glob 的类型 / confirm the type of glob */
-const Pages = import.meta.glob('/src/pages/**/*.tsx') as Record<string, LazyImport>;
+export const Pages = import.meta.glob('/src/pages/**/*.tsx') as Record<string, LazyImport>;
 
 type lazyComponent = React.LazyExoticComponent<React.ComponentType<unknown>>;
 /** 缓存 / cache */
-const lazyComponentCache = new Map<string, lazyComponent>();
+export const lazyComponentCache = new Map<string, lazyComponent>();
 
 /**
  * 根据路径加载组件

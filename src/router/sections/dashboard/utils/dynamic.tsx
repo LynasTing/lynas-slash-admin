@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { getLazyComponent } from './load';
 
 /**
@@ -7,7 +8,9 @@ import { getLazyComponent } from './load';
  * @param path - 组件路径 / component path
  * @param props - 组件属性 / component props
  */
-export const Component = (path: string, props?: Record<string, unknown>) => {
+export const Component = (path: string, props?: Record<string, unknown>): ReactNode => {
+  if (!path) return null;
+
   const Element = getLazyComponent(path);
   if (!Element) return null;
 
