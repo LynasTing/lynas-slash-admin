@@ -47,6 +47,10 @@ export interface QuickStatProps {
   chart: number[];
 }
 
+/**
+ * 快速统计
+ * Quick stats
+ */
 export function QuickStats({ data }: { data: QuickStatProps[] }) {
   /**
    * 调用自定义 Hook 获取基础图表配置
@@ -111,7 +115,7 @@ export function QuickStats({ data }: { data: QuickStatProps[] }) {
               </span>
             </div>
             <div className="w-full h-10 mt-2">
-              <Chart type="bar" height={40} options={options[index]} series={[{ data: item.chart }]} />
+              <Chart type="bar" height={40} options={options[index]} series={[{ data: item.chart, color: item.color }]} />
             </div>
           </CardContent>
         </Card>
