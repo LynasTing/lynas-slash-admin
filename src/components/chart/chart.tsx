@@ -8,7 +8,7 @@ export function Chart(props: ApexChartProps) {
       <ReactApexChart
         {...props}
         options={{
-          ...props,
+          ...props.options,
           chart: {
             ...props.options?.chart,
             // 优化响应式性能 / Performance optimization
