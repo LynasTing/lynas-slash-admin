@@ -4,7 +4,7 @@ import Button from '@/ui/button';
 import { Card } from '@/ui/card';
 import { Icon } from '@/components/icon';
 import { Text } from '@/ui/typography';
-import { useTranslation } from 'react-i18next';
+import useLocale from '@/locales/use-locale';
 
 /**
  * 项目任务数据类型
@@ -28,15 +28,15 @@ export interface ProjectTaskData {
  * Project progress
  */
 export function ProjectProgres({ projectTasks }: { projectTasks: ProjectTaskData[] }) {
-  const { t } = useTranslation();
+  const { t } = useLocale();
 
   return (
     <Card className="flex flex-col gap-4 p-6">
       <Text variant="body2" className="font-semibold mb-2">
-        Project - {GLOBAL_CONFIG.appName}
+        {t('dashboard.projectTitle', { appName: GLOBAL_CONFIG.appName })}
       </Text>
       <div className="flex justify-between items-center mb-2">
-        <Text variant="body2">Release v{GLOBAL_CONFIG.appVersion}</Text>
+        <Text variant="body2">{t('dashboard.releaseVersion', { version: GLOBAL_CONFIG.appVersion })}</Text>
         <span className="text-xs font-bold text-blue-500">70%</span>
       </div>
       <Progress value={70} />

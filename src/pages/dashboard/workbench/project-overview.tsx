@@ -2,15 +2,15 @@ import { Card } from '@/ui/card';
 import { Icon } from '@/components/icon';
 import { Text, Title } from '@/ui/typography';
 import { Chart, useChart } from '@/components/chart';
-import { useTranslation } from 'react-i18next';
 import Button from '@/ui/button';
+import useLocale from '@/locales/use-locale';
 
 /**
  * 项目概览
  * Project overview
  */
 export function ProjectOverview() {
-  const { t } = useTranslation();
+  const { t } = useLocale();
 
   const options = useChart({
     chart: { sparkline: { enabled: true } },

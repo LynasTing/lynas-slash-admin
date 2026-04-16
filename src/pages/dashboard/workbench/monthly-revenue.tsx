@@ -2,7 +2,7 @@ import { Card, CardContent } from '@/ui/card';
 import { Icon } from '@/components/icon';
 import { Text } from '@/ui/typography';
 import { Chart, useChart } from '@/components/chart';
-import { useTranslation } from 'react-i18next';
+import useLocale from '@/locales/use-locale';
 
 /**
  * 月度收入数据类型
@@ -29,7 +29,8 @@ export interface MonthlyRevenueData {
    * 类别，即月份
    * Categories, representing months
    */
-  categories: Array<'Jan' | 'Feb' | 'Mar' | 'Apr' | 'May' | 'Jun' | 'Jul' | 'Aug' | 'Sep' | 'Oct' | 'Nov' | 'Dec'>;
+  // categories: Array<'Jan' | 'Feb' | 'Mar' | 'Apr' | 'May' | 'Jun' | 'Jul' | 'Aug' | 'Sep' | 'Oct' | 'Nov' | 'Dec'>;
+  categories: string[];
   /**
    * 增长百分比
    * Growth percentage
@@ -42,7 +43,7 @@ export interface MonthlyRevenueData {
  * Monthly revenue
  */
 export function MonthlyRevenue({ monthlyRevenue }: { monthlyRevenue: MonthlyRevenueData }) {
-  const { t } = useTranslation();
+  const { t } = useLocale();
 
   const chartOptions = useChart({
     xaxis: { categories: monthlyRevenue.categories },

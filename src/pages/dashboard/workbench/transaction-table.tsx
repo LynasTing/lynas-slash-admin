@@ -4,6 +4,7 @@ import { Text } from '@/ui/typography';
 import { useState } from 'react';
 import { Icon } from '@/components/icon';
 import { cn } from '@/utils';
+import useLocale from '@/locales/use-locale';
 
 /**
  * 交易数据类型
@@ -58,25 +59,32 @@ export interface Transaction {
  * Transaction table
  */
 export function TransactionTable({ transactions }: { transactions: Transaction[] }) {
-  const tabs = ['All', 'Success', 'Pending', 'Failed'];
+  const { t } = useLocale();
+  const tabs: Array<{ value: 'all' | Transaction['status']; label: string }> = [
+    { value: 'all', label: t('dashboard.all') },
+    { value: 'success', label: t('dashboard.transactionStatus.success') },
+    { value: 'pending', label: t('dashboard.transactionStatus.pending') },
+    { value: 'failed', label: t('dashboard.transactionStatus.failed') }
+  ];
 
-  const [activeTab, setActiveTab] = useState('All');
+  const [activeTab, setActiveTab] = useState<'all' | Transaction['status']>('all');
+  const visibleTransactions = activeTab === 'all' ? transactions : transactions.filter(item => item.status === activeTab);
 
   return (
     <Card className="flex flex-col p-6 lg:col-span-2">
       <div className="flex items-center gap-4 mb-4">
         <Text variant="body2" className="font-semibold">
-          Transactions
+          {t('dashboard.transactions')}
         </Text>
         <div className="flex gap-2">
-          {tabs.map((item, index) => (
+          {tabs.map(item => (
             <Button
-              key={index}
+              key={item.value}
               size="sm"
-              variant={activeTab === item ? 'default' : 'ghost'}
+              variant={activeTab === item.value ? 'default' : 'ghost'}
               className="cursor-pointer"
-              onClick={() => setActiveTab(item)}>
-              {item}
+              onClick={() => setActiveTab(item.value)}>
+              {item.label}
             </Button>
           ))}
         </div>
@@ -84,7 +92,7 @@ export function TransactionTable({ transactions }: { transactions: Transaction[]
       <div className="flex-1 overflow-x-auto">
         <table className="w-full text-sm">
           <tbody>
-            {transactions.map(item => (
+            {visibleTransactions.map(item => (
               <tr key={item.id} className="border-b last:border-0">
                 <td className="w-12 py-2">
                   <span className="inline-flex justify-center items-center w-10 h-10 rounde-full">

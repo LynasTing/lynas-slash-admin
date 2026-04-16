@@ -5,11 +5,14 @@ import { GLOBAL_CONFIG } from '@/config/global';
 import Button from '@/ui/button';
 import { Icon } from '@/components/icon';
 import Character3IMG from '@/assets/images/characters/character_3.png';
+import useLocale from '@/locales/use-locale';
 
 /**
  * Banner
  */
 export default function BannerCard() {
+  const { t } = useLocale();
+
   const bgStyle: CSSProperties = {
     position: 'absolute',
     top: 0,
@@ -35,25 +38,21 @@ export default function BannerCard() {
         <div className="grid grid-cols-2 gap-4">
           <div className="col-span-2 md:col-span-1">
             {/* 标题和描述 / Title and Description */}
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col justify-between gap-4 h-full">
               <Title as="h2" className="text-white">
-                Explore Redesigned {GLOBAL_CONFIG.appName}
+                {t('dashboard.bannerTitle', { appName: GLOBAL_CONFIG.appName })}
               </Title>
-              <Text className="text-white">
-                The rand new User Interface with power of Shadcn/ui Components. Explore the Endless possibilities with{' '}
-                {GLOBAL_CONFIG.appName}.
-              </Text>
-              {/* 按钮 / Button */}
-              <Button>
+              <Text className="text-white">{t('dashboard.bannerDescription', { appName: GLOBAL_CONFIG.appName })}</Text>
+              <Button className="hover:bg-white hover:text-primary cursor-pointer">
                 <Icon icon="carbon:logo-discord" size={24} />
-                <span className="ml-2 font-black ">Join Discord</span>
+                <span className="ml-2 font-black ">{t('dashboard.joinDiscord')}</span>
               </Button>
             </div>
           </div>
           {/* 右侧图片 / Character */}
           <div className="col-span-2 md:col-span-1">
-            <div className="flex justify-end items-center w-full h-full">
-              <img src={Character3IMG} className="w-56 h-56" alt="character" />
+            <div className="flex md:justify-end justify-center items-center w-full h-full">
+              <img src={Character3IMG} className="w-56 h-56 " alt={t('dashboard.characterAlt')} />
             </div>
           </div>
         </div>

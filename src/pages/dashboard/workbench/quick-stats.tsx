@@ -4,6 +4,7 @@ import { cn, rgbAlpha } from '@/utils';
 import { Text, Title } from '@/ui/typography';
 import { Chart, useChart } from '@/components/chart';
 import { useMemo } from 'react';
+import useLocale from '@/locales/use-locale';
 
 /**
  * 快捷统计卡片数据类型
@@ -52,6 +53,7 @@ export interface QuickStatProps {
  * Quick stats
  */
 export function QuickStats({ data }: { data: QuickStatProps[] }) {
+  const { t } = useLocale();
   /**
    * 调用自定义 Hook 获取基础图表配置
    * 这里是顶层 Hook 调用，保证 React Hook 规则不报错
@@ -111,7 +113,7 @@ export function QuickStats({ data }: { data: QuickStatProps[] }) {
                     {Math.abs(item.percent)}%
                   </>
                 )}
-                {item.percent === 0 && item.label === 'Total Task' && 'New'}
+                {item.percent === 0 && item.label === t('dashboard.quickStats.totalTask') && t('dashboard.new')}
               </span>
             </div>
             <div className="w-full h-10 mt-2">
