@@ -2,24 +2,130 @@
   "dashboard": {
     "addProject": "新增项目",
     "addTask": "新增任务",
-    "bannerTitle": "探索焕然一新的 {{appName}}",
+    "all": "全部",
+    "analyticsOverview": "分析总览",
+    "analyticsOverviewDescription": "查看关键指标，了解趋势变化并辅助决策。",
     "bannerDescription": "全新界面搭配 Shadcn/ui 组件系统，为你开启 {{appName}} 的无限可能。",
+    "bannerTitle": "探索焕然一新的 {{appName}}",
+    "characterAlt": "角色插图",
+    "comparison": {
+      "vsLastDay": "较上一天",
+      "vsLastMonth": "较上个月",
+      "vsLastWeek": "较上周",
+      "vsLastYear": "较去年"
+    },
+    "devices": {
+      "desktop": "桌面端",
+      "mobile": "移动端",
+      "tablet": "平板端"
+    },
+    "incomeBreakdown": {
+      "download": "下载",
+      "income": "收入",
+      "rent": "租金",
+      "views": "浏览量"
+    },
+    "joinDiscord": "加入 Discord",
+    "metricCards": {
+      "adCampaigns": "广告活动",
+      "conversionRate": "转化率",
+      "visitors": "访客数"
+    },
     "monthlyRevenue": "月度收入",
+    "months": {
+      "apr": "4月",
+      "aug": "8月",
+      "dec": "12月",
+      "feb": "2月",
+      "jan": "1月",
+      "jul": "7月",
+      "jun": "6月",
+      "mar": "3月",
+      "may": "5月",
+      "nov": "11月",
+      "oct": "10月",
+      "sep": "9月"
+    },
     "nav": {
+      "analysis": "分析",
       "dashboard": "仪表板",
+      "system": {
+        "userDetail": "用户详情"
+      },
       "user": {
         "account": "账户",
         "index": "用户",
         "profile": "个人资料"
       },
-      "workbench": "工作台",
-      "system": {
-        "userDetail": "用户详情"
-      }
+      "workbench": "工作台"
     },
-    "projectOverview": "项目概览",
+    "new": "新",
+    "pageUrl": "页面 URL",
     "pendingTasks": "待办任务",
+    "projectOverview": "项目概览",
+    "projectTasks": {
+      "figmaAutoLayout": "Figma 自动布局",
+      "horizontalLayout": "横向布局",
+      "invoiceGenerator": "发票生成器",
+      "packageUpgrades": "依赖升级"
+    },
+    "projectTitle": "项目 - {{appName}}",
+    "quickStats": {
+      "allEarnings": "总收益",
+      "download": "下载量",
+      "pageViews": "页面浏览量",
+      "totalTask": "总任务"
+    },
+    "releaseVersion": "发布版本 v{{version}}",
+    "revenue": "收入",
+    "sessionDevices": {
+      "title": "会话设备"
+    },
+    "showBy": "显示维度：",
+    "time": {
+      "day": "天",
+      "month": "月",
+      "week": "周"
+    },
+    "topChannels": {
+      "channel": "渠道",
+      "percent": "占比",
+      "title": "热门渠道",
+      "views": "浏览量"
+    },
+    "topPages": {
+      "title": "热门页面"
+    },
+    "totalIncome": "总收入",
     "totalTasks": "总任务",
-    "totalIncome": "总收入"
+    "trafficData": {
+      "avgSessionDuration": "平均会话时长",
+      "bounceRate": "跳出率",
+      "progressToGoal": "目标进度 (%)",
+      "source": "来源",
+      "title": "流量数据",
+      "uniqueVisitors": "独立访客",
+      "visits": "访问量"
+    },
+    "trafficSource": {
+      "direct": "直接访问",
+      "emailCampaign": "邮件营销",
+      "natural": "自然流量",
+      "referral": "引荐流量",
+      "socialMedia": "社交媒体"
+    },
+    "transactionStatus": {
+      "failed": "失败",
+      "pending": "处理中",
+      "success": "成功"
+    },
+    "transactions": "交易记录",
+    "uniqueVisitors": "独立访客",
+    "views": "浏览量",
+    "webAnalysis": {
+      "avgTimeOnPage": "页面平均停留时长",
+      "pageViews": "页面浏览量",
+      "title": "网站分析"
+    }
   }
 }

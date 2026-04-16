@@ -1,5 +1,6 @@
 {
   "common": {
-    "close": "Close"
+    "close": "Close",
+    "exportData": "Export Data"
   }
 }

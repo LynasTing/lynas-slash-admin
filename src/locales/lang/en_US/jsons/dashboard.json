@@ -2,24 +2,130 @@
   "dashboard": {
     "addProject": "Add Project",
     "addTask": "Add Task",
-    "bannerTitle": "Explore Redesigned {{appName}}",
-    "bannerDescription": "The rand new User Interface with power of Shadcn/ui Components. Explore the Endless possibilities with {{appName}}",
+    "all": "All",
+    "analyticsOverview": "Analytics Overview",
+    "analyticsOverviewDescription": "Explore key metrics to understand trends and support decisions.",
+    "bannerDescription": "The brand new interface powered by Shadcn/ui components unlocks the full potential of {{appName}}.",
+    "bannerTitle": "Explore the Redesigned {{appName}}",
+    "characterAlt": "Character illustration",
+    "comparison": {
+      "vsLastDay": "vs last day",
+      "vsLastMonth": "vs last month",
+      "vsLastWeek": "vs last week",
+      "vsLastYear": "vs last year"
+    },
+    "devices": {
+      "desktop": "Desktop",
+      "mobile": "Mobile",
+      "tablet": "Tablet"
+    },
+    "incomeBreakdown": {
+      "download": "Download",
+      "income": "Income",
+      "rent": "Rent",
+      "views": "Views"
+    },
+    "joinDiscord": "Join Discord",
+    "metricCards": {
+      "adCampaigns": "Ad Campaigns",
+      "conversionRate": "Conversion Rate",
+      "visitors": "Visitors"
+    },
     "monthlyRevenue": "Monthly Revenue",
+    "months": {
+      "apr": "Apr",
+      "aug": "Aug",
+      "dec": "Dec",
+      "feb": "Feb",
+      "jan": "Jan",
+      "jul": "Jul",
+      "jun": "Jun",
+      "mar": "Mar",
+      "may": "May",
+      "nov": "Nov",
+      "oct": "Oct",
+      "sep": "Sep"
+    },
     "nav": {
+      "analysis": "Analysis",
       "dashboard": "Dashboard",
+      "system": {
+        "userDetail": "User Detail"
+      },
       "user": {
         "account": "Account",
         "index": "User",
         "profile": "Profile"
       },
-      "workbench": "Workbench",
-      "system": {
-        "userDetail": "User Detail"
-      }
+      "workbench": "Workbench"
     },
-    "projectOverview": "Project Overview",
+    "new": "New",
+    "pageUrl": "PAGE URL",
     "pendingTasks": "Pending Tasks",
+    "projectOverview": "Project Overview",
+    "projectTasks": {
+      "figmaAutoLayout": "Figma Auto Layout",
+      "horizontalLayout": "Horizontal Layout",
+      "invoiceGenerator": "Invoice Generator",
+      "packageUpgrades": "Package Upgrades"
+    },
+    "projectTitle": "Project - {{appName}}",
+    "quickStats": {
+      "allEarnings": "All Earnings",
+      "download": "Download",
+      "pageViews": "Page Views",
+      "totalTask": "Total Task"
+    },
+    "releaseVersion": "Release v{{version}}",
+    "revenue": "Revenue",
+    "sessionDevices": {
+      "title": "Session Devices"
+    },
+    "showBy": "Show by:",
+    "time": {
+      "day": "Day",
+      "month": "Month",
+      "week": "Week"
+    },
+    "topChannels": {
+      "channel": "Channel",
+      "percent": "Percent",
+      "title": "Top Channels",
+      "views": "Views"
+    },
+    "topPages": {
+      "title": "Top Pages"
+    },
+    "totalIncome": "Total Income",
     "totalTasks": "Total Tasks",
-    "totalIncome": "Total Income"
+    "trafficData": {
+      "avgSessionDuration": "Avg. Session Duration",
+      "bounceRate": "Bounce Rate",
+      "progressToGoal": "Progress to Goal (%)",
+      "source": "Source",
+      "title": "Traffic Data",
+      "uniqueVisitors": "Unique Visitors",
+      "visits": "Visits"
+    },
+    "trafficSource": {
+      "direct": "Direct",
+      "emailCampaign": "Email Campaign",
+      "natural": "Natural",
+      "referral": "Referral",
+      "socialMedia": "Social Media"
+    },
+    "transactionStatus": {
+      "failed": "Failed",
+      "pending": "Pending",
+      "success": "Success"
+    },
+    "transactions": "Transactions",
+    "uniqueVisitors": "UNIQUE VISITORS",
+    "views": "VIEWS",
+    "webAnalysis": {
+      "avgTimeOnPage": "Avg. Time on Page",
+      "pageViews": "Page Views",
+      "title": "Web Analysis"
+    }
   }
 }

@@ -1,5 +1,6 @@
 {
   "common": {
-    "close": "关闭"
+    "close": "关闭",
+    "exportData": "导出数据"
   }
 }
