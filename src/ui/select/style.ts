@@ -3,7 +3,7 @@ import { cva } from 'class-variance-authority';
 export const selectTriggerVariants = cva(
   [
     /** 基础外观 / Base appearance */
-    'border-input bg-transparent shadow-xs rounded-md',
+    'border border-input bg-transparent shadow-xs rounded-md',
 
     /** 布局 / Layout */
     'flex w-fit items-center justify-between gap-2 whitespace-nowrap',
