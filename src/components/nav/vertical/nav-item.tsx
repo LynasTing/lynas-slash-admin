@@ -49,21 +49,21 @@ export function NavVerticalItem(item: NavItemProps) {
             </Tooltip>
           </TooltipProvider>
         )}
-
-        {/* Info */}
-        {info && <span style={navItemStyles.info}>{info}</span>}
-
-        {/* Arrow */}
-        {hasChild && (
-          <Icon
-            icon="eva:arrow-ios-forward-fill"
-            style={{
-              ...navItemStyles.arrow,
-              transform: open ? 'rotate(90deg)' : 'rotate(0deg)'
-            }}
-          />
-        )}
       </span>
+
+      {/* Info */}
+      {info && <span style={navItemStyles.info}>{info}</span>}
+
+      {/* Arrow */}
+      {hasChild && (
+        <Icon
+          icon="eva:arrow-ios-forward-fill"
+          style={{
+            ...navItemStyles.arrow,
+            transform: open ? 'rotate(90deg)' : 'rotate(0deg)'
+          }}
+        />
+      )}
     </NavItemRenderer>
   );
 }
