@@ -4,7 +4,7 @@ import Button from '@/ui/button';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useMutation } from '@tanstack/react-query';
-import { signupApi } from '@/api/services/auth';
+import { signUpApi } from '@/api/services/auth';
 import { useNavigate } from 'react-router';
 import { toast } from 'sonner';
 
@@ -26,7 +26,7 @@ function Register() {
   });
 
   const signUpmution = useMutation({
-    mutationFn: signupApi
+    mutationFn: signUpApi
   });
 
   const onFinish = async (values: typeof defaultForm) => {

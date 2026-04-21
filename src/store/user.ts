@@ -3,7 +3,7 @@ import { persist, createJSONStorage } from 'zustand/middleware';
 import type { UserInfo, UserToken } from '#/entity';
 import { StorageEnum } from '#/enum';
 import { useMutation } from '@tanstack/react-query';
-import { signinApi, type SignInRequest } from '@/api/services/auth';
+import { signInApi, type SignInRequest } from '@/api/services/auth';
 import { toast } from 'sonner';
 
 type UserStore = {
@@ -60,7 +60,7 @@ export const useSignIn = () => {
    * - error — 请求失败返回的错误对象
    */
   const signInMutation = useMutation({
-    mutationFn: signinApi
+    mutationFn: signInApi
   });
 
   const signIn = async (data: SignInRequest) => {

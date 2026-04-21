@@ -2,8 +2,9 @@ import { UserToken, User } from '#/entity';
 import { apiClient } from '@/utils';
 
 export enum UserApi {
-  SignIn = '/auth/signin',
-  SignUp = '/auth/signup'
+  SignIn = '/auth/signIn',
+  SignUp = '/auth/signUp',
+  TokenExpired = '/user/tokenExpired'
 }
 
 export interface SignInRequest {
@@ -25,8 +26,9 @@ export interface SignUpRequest extends SignInRequest {
 
 /**
  * 注册
+ * Register
  */
-const signupApi = (data: SignUpRequest) =>
+const signUpApi = (data: SignUpRequest) =>
   apiClient.post<SignInResponse>({
     url: UserApi.SignUp,
     data
@@ -34,11 +36,20 @@ const signupApi = (data: SignUpRequest) =>
 
 /**
  * 登录
+ * Sign in
  */
-const signinApi = (data: SignInRequest) =>
+const signInApi = (data: SignInRequest) =>
   apiClient.post<SignInResponse>({
     url: UserApi.SignIn,
     data
   });
 
-export { signinApi, signupApi };
+/**
+ * token过期
+ */
+const tokenExpiredApi = () =>
+  apiClient.post({
+    url: UserApi.TokenExpired
+  });
+
+export { signInApi, signUpApi, tokenExpiredApi };
