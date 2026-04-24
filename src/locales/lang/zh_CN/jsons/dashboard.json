@@ -46,19 +46,6 @@
       "oct": "10月",
       "sep": "9月"
     },
-    "nav": {
-      "analysis": "分析",
-      "dashboard": "仪表板",
-      "system": {
-        "userDetail": "用户详情"
-      },
-      "user": {
-        "account": "账户",
-        "index": "用户",
-        "profile": "个人资料"
-      },
-      "workbench": "工作台"
-    },
     "new": "新",
     "pageUrl": "页面 URL",
     "pendingTasks": "待办任务",

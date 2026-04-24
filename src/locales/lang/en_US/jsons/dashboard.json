@@ -46,19 +46,6 @@
       "oct": "Oct",
       "sep": "Sep"
     },
-    "nav": {
-      "analysis": "Analysis",
-      "dashboard": "Dashboard",
-      "system": {
-        "userDetail": "User Detail"
-      },
-      "user": {
-        "account": "Account",
-        "index": "User",
-        "profile": "Profile"
-      },
-      "workbench": "Workbench"
-    },
     "new": "New",
     "pageUrl": "PAGE URL",
     "pendingTasks": "Pending Tasks",

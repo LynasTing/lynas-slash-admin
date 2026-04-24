@@ -5,6 +5,25 @@
       "errorMessage": "The operation failed, the system is abnormal!",
       "docs": "Document"
     },
+    "nav": {
+      "analysis": "Analysis",
+      "dashboard": "Dashboard",
+      "functions": {
+        "clipboard": "Clipboard",
+        "tokenExpired": "Token Expired",
+        "label": "Functions"
+      },
+      "system": {
+        "userDetail": "User Detail"
+      },
+      "ui": "UI",
+      "user": {
+        "account": "Account",
+        "index": "User",
+        "profile": "Profile"
+      },
+      "workbench": "Workbench"
+    },
     "settings": {
       "archiveAll": "Archive all",
       "breadcrumb": "Breadcrumb",

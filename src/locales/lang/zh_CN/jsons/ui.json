@@ -1,0 +1,16 @@
+{
+  "ui": {
+    "functions": {
+      "copy": "复制",
+      "copied": "已复制",
+      "clipboardNotSupported": "不支持复制",
+      "onChange": "复制输入框内容",
+      "onDoubleClick": "双击文本复制",
+      "tokenExpired": {
+        "label": "Token 过期",
+        "desc": "点击按钮模拟 token 过期场景。",
+        "action": "模拟 Token 过期"
+      }
+    }
+  }
+}

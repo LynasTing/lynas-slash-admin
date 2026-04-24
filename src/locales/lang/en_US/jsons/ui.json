@@ -1,0 +1,16 @@
+{
+  "ui": {
+    "functions": {
+      "copy": "Copy",
+      "copied": "Copied",
+      "clipboardNotSupported": "'Clipboard not supported",
+      "onChange": "ON CHANGE",
+      "onDoubleClick": "ON DOUBLE CLICK",
+      "tokenExpired": {
+        "label": "Token expired",
+        "desc": "Click the button to simulate token expiration scenario.",
+        "action": "Simulate token expiration"
+      }
+    }
+  }
+}

@@ -10,6 +10,26 @@
         "account": "账户"
       }
     },
+    "nav": {
+      "analysis": "分析",
+      "clipboard": "剪贴板",
+      "dashboard": "仪表板",
+      "functions": {
+        "clipboard": "剪贴板",
+        "tokenExpired": "Token 过期",
+        "label": "功能"
+      },
+      "system": {
+        "userDetail": "用户详情"
+      },
+      "ui": "页面",
+      "user": {
+        "account": "账户",
+        "index": "用户",
+        "profile": "个人资料"
+      },
+      "workbench": "工作台"
+    },
     "settings": {
       "archiveAll": "全部存档",
       "breadcrumb": "面包屑",
