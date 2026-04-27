@@ -1,9 +1,11 @@
 import axios, { AxiosError, AxiosRequestConfig, type AxiosResponse } from 'axios';
 import { GLOBAL_CONFIG } from '@/config/global';
 import { t } from '@/locales/i18n';
-import { ResultStatusEnum } from '#/enum';
+import { ResultStatusEnum, HttpStatusEnum } from '#/enum';
 import type { Api } from '#/api';
 import { toast } from 'sonner';
+import { useUserActions } from '@/store/user';
+import { useNavigate } from 'react-router';
 
 const instance = axios.create({
   baseURL: GLOBAL_CONFIG.apiBaseUrl,
@@ -22,6 +24,7 @@ instance.interceptors.request.use(
     return config;
   },
   error => {
+    console.log(`hhhh + ::>>`);
     return Promise.reject(error);
   }
 );
@@ -40,9 +43,17 @@ instance.interceptors.response.use(
     throw new Error(message || t('sys.api.apiRequestFailed'));
   },
   (error: AxiosError<Api<unknown>>) => {
+    const navigate = useNavigate();
+    navigate('/auth/login', { replace: true });
+
     const { response, message } = error ?? {};
     const errMsg = response?.data?.message ?? (message || t('sys.api.errorMessage'));
     toast.error(errMsg, { position: 'top-center' });
+
+    if (error?.status === HttpStatusEnum.UNAUTHORIZED) {
+      const { clearUserInfoAndToken } = useUserActions();
+      clearUserInfoAndToken();
+    }
     return Promise.reject(error);
   }
 );

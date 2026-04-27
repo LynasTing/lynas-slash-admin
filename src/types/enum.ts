@@ -151,9 +151,16 @@ export enum ResultStatusEnum {
   /** 成功 / Success */
   SUCCESS = 0,
   /** 失败 / Failure */
-  ERROR = -1,
-  /** */
-  TIMEOUT = 401
+  ERROR = -1
+}
+
+/**
+ * HTTP 状态码
+ * HTTP status code
+ */
+export enum HttpStatusEnum {
+  /** 未授权 / Unauthorized */
+  UNAUTHORIZED = 401
 }
 
 /**
