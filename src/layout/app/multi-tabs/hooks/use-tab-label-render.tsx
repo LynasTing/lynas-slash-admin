@@ -30,7 +30,7 @@ export function useTabLabelRender() {
        * Example result:
        * 张三-用户详情
        */
-      'dashboard.nav.system.userDetail': (tab: KeepAliveTab) => {
+      'sys.nav.system.userDetail': (tab: KeepAliveTab) => {
         // Get user id from route params / 从路由参数中获取用户 ID
         const userId = tab.params?.id;
 

@@ -56,14 +56,14 @@ export default function AccountDropdown() {
         {/* 个人资料 / profile */}
         <DropdownMenuItem asChild>
           <NavLink to="https://docs-admin.slashspaces.com/" target="_black">
-            {t('dashboard.nav.user.profile')}
+            {t('sys.nav.user.profile')}
           </NavLink>
         </DropdownMenuItem>
 
         {/* 账户 / account */}
         <DropdownMenuItem asChild>
           <NavLink to="https://docs-admin.slashspaces.com/" target="_black">
-            {t('dashboard.nav.user.account')}
+            {t('sys.nav.user.account')}
           </NavLink>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
