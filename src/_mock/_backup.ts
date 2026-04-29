@@ -68,5 +68,15 @@ export const DB_MENU: Menu[] = [
     type: MENU,
     path: '/workbench',
     component: '/pages/dashboard/workbench'
+  },
+  {
+    id: 'analysis',
+    parentId: 'group_dashboard',
+    name: 'sys.nav.analysis',
+    code: 'analysis',
+    icon: 'local:ic-analysis',
+    type: MENU,
+    path: '/analysis',
+    component: '/pages/dashboard/analysis'
   }
 ];

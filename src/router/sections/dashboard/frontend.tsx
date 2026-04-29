@@ -1,4 +1,4 @@
-import type { RouteObject } from 'react-router';
+import { Navigate, type RouteObject } from 'react-router';
 import { Component } from './utils/dynamic';
 
 export function GetFrontendRoutes() {
@@ -10,6 +10,23 @@ export function GetFrontendRoutes() {
     {
       path: 'analysis',
       element: Component('/pages/dashboard/analysis')
+    },
+    {
+      path: 'functions',
+      children: [
+        {
+          index: true,
+          element: <Navigate to="clipboard" replace />
+        },
+        {
+          path: 'clipboard',
+          element: Component('/pages/functions/clipboard')
+        },
+        {
+          path: 'token-expired',
+          element: Component('/pages/functions/token-expired')
+        }
+      ]
     }
   ];
   return frontendRoutes;

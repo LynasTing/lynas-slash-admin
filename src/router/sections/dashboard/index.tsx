@@ -1,8 +1,8 @@
 import { type RouteObject, Navigate } from 'react-router';
 import AppLayout from '@/layout/app';
-import { GetFrontendRoutes } from './frontend';
 import AuthGuard from '../../components/auth-guard';
 import { GLOBAL_CONFIG } from '@/config/global';
+import { GetFrontendRoutes } from './frontend';
 
 const getRoutes = () => {
   return GetFrontendRoutes();
