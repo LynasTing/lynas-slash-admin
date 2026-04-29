@@ -3,12 +3,37 @@ import { Icon } from '@/components/icon';
 
 export const frontendNavData: NavProps['data'] = [
   {
-    name: 'dashboard.nav.dashboard',
+    name: 'sys.nav.dashboard',
     items: [
       {
-        title: 'dashboard.nav.workbench',
+        title: 'sys.nav.workbench',
         path: '/workbench',
         icon: <Icon icon="local:ic-workbench" size="24" />
+      },
+      {
+        title: 'sys.nav.analysis',
+        path: '/analysis',
+        icon: <Icon icon="local:ic-analysis" size="24" />
+      }
+    ]
+  },
+  {
+    name: 'sys.nav.ui',
+    items: [
+      {
+        title: 'sys.nav.functions.label',
+        path: '/functions',
+        icon: <Icon icon="solar:plain-2-bold-duotone" size="24" />,
+        children: [
+          {
+            title: 'sys.nav.functions.clipboard',
+            path: '/functions/clipboard'
+          },
+          {
+            title: 'sys.nav.functions.tokenExpired',
+            path: '/functions/token-expired'
+          }
+        ]
       }
     ]
   }
