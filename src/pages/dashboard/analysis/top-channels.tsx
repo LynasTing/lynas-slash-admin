@@ -71,7 +71,7 @@ export function TopChannels({ topChannels }: { topChannels: TopChannelProps }) {
           <Title as="h3" className="text-xl">
             {total.toLocaleString()}
           </Title>
-          <div className="flex items-center  gap-2">
+          <div className="flex items-center gap-2">
             <Trend value={topChannels.change} />
             <Text variant="caption" className="flex items-center text-muted-foreground">
               {t(topChannels.tip)}

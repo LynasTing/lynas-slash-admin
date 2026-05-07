@@ -9,7 +9,7 @@ function Checkbox({ className, ...props }: React.ComponentProps<typeof CheckboxP
     <CheckboxPrimitive.Root data-slot="checkbox" className={cn(checkboxVariants(), className)} {...props}>
       <CheckboxPrimitive.Indicator
         data-slot="checkbox-indicator"
-        className="flex justify-center items-center text-current transition-none ">
+        className="flex justify-center items-center text-current transition-none">
         <CheckIcon className="size-3.5" />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>

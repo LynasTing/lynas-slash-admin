@@ -5,7 +5,7 @@ import { commonColors, paletteColors } from '@/theme/tokens/color';
 export function LineLoading() {
   const { themeMode } = useSettingStoreState();
   return (
-    <div className="flex flex-col justify-center items-center w-full h-full min-h-screen ">
+    <div className="flex flex-col justify-center items-center w-full h-full min-h-screen">
       <div
         className="relative w-96 h-1.5 rounded overflow-hidden"
         style={{

@@ -52,7 +52,7 @@ export default function NoticePanel() {
           <div className="flex-1 px-4 overflow-hidden">
             <NoticeTabs />
           </div>
-          <SheetFooter className="flex justify-between items-center shrink-0 w-full h-16 p-4 ">
+          <SheetFooter className="flex justify-between items-center shrink-0 w-full h-16 p-4">
             <Button variant="outline" className="flex-1 mr-2">
               {t('sys.settings.archiveAll')}
             </Button>

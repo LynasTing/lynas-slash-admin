@@ -160,7 +160,7 @@ export default function MultiTabItem({ tab, style, onClose }: TabItemProps) {
           <Icon
             icon="ion:close-outline"
             size={18}
-            className="ml-2 opacity-50 cursor-pointer "
+            className="ml-2 opacity-50 cursor-pointer"
             onClick={e => {
               e.stopPropagation();
               onClose?.();

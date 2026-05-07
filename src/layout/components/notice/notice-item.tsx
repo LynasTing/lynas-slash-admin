@@ -220,7 +220,7 @@ function NotificationFile(props: Pick<NotificationProps, 'fileName' | 'fileType'
 
   if (fileName) {
     return (
-      <div className="flex items-center space-x-3 mt-3 p-3 bg-bg-neutral rounded-lg ">
+      <div className="flex items-center space-x-3 mt-3 p-3 bg-bg-neutral rounded-lg">
         {fileType && <Icon icon={getFileIcon(fileType)} size={32} />}
         <div className="flex-1">
           <Text variant="subTitle2">{fileName}</Text>

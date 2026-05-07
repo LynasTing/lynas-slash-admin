@@ -38,7 +38,7 @@ const ScrollArea = forwardRef<ComponentRef<typeof ScrollAreaPrimitive.Root>, Com
       <ScrollAreaPrimitive.Viewport className="w-full h-full rounded-[inherit] block!" asChild>
         {children}
       </ScrollAreaPrimitive.Viewport>
-      <ScrollBar className="z-scrollbar " />
+      <ScrollBar className="z-scrollbar" />
       {/**
        * 当既有横向滚动又有纵向滚动时，左下角或右下角通常会出现一个小空白角落
        * Corner 自动为这个角落补一个可控样式的小方块

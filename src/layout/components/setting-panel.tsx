@@ -124,7 +124,7 @@ export default function SettingPanel() {
             {/* theme mode */}
             <div className="flex flex-col gap-2">
               <Text>{t('sys.settings.mode')}</Text>
-              <div className="flex  gap-4">
+              <div className="flex gap-4">
                 <Card
                   className="flex-1 h-20 flex justify-center items-center cursor-pointer"
                   onClick={() =>
@@ -251,7 +251,7 @@ export default function SettingPanel() {
                     />
                   </div>
                   <div
-                    className="h-1.5 mx-1 rounded opacity-20 "
+                    className="h-1.5 mx-1 rounded opacity-20"
                     style={{
                       backgroundColor: layoutBackground(ThemeLayoutEnum.Horizontal)
                     }}

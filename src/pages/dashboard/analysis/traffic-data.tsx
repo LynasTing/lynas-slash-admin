@@ -53,12 +53,12 @@ export interface TrafficDataProps {
 export function TrafficData({ trafficData }: { trafficData: TrafficDataProps[] }) {
   const { t } = useLocale();
   const titles = [
-    { label: t('dashboard.trafficData.source'), className: 'text-left ' },
-    { label: t('dashboard.trafficData.visits'), className: 'text-right ' },
-    { label: t('dashboard.trafficData.uniqueVisitors'), className: 'text-right ' },
-    { label: t('dashboard.trafficData.bounceRate'), className: 'text-right ' },
-    { label: t('dashboard.trafficData.avgSessionDuration'), className: 'text-right ' },
-    { label: t('dashboard.trafficData.progressToGoal'), className: 'text-left ' }
+    { label: t('dashboard.trafficData.source'), className: 'text-left' },
+    { label: t('dashboard.trafficData.visits'), className: 'text-right' },
+    { label: t('dashboard.trafficData.uniqueVisitors'), className: 'text-right' },
+    { label: t('dashboard.trafficData.bounceRate'), className: 'text-right' },
+    { label: t('dashboard.trafficData.avgSessionDuration'), className: 'text-right' },
+    { label: t('dashboard.trafficData.progressToGoal'), className: 'text-left' }
   ];
 
   if (!trafficData.length) return null;

@@ -62,7 +62,7 @@ export function MonthlyRevenue({ monthlyRevenue }: { monthlyRevenue: MonthlyReve
           <Text variant="body2" className="font-semibold">
             {t('dashboard.monthlyRevenue')}
           </Text>
-          <span className=" items-center gap-1 text-green-500 font-bold text-sm">
+          <span className="items-center gap-1 text-green-500 font-bold text-sm">
             <Icon icon="mdi:arrow-up" size={16} />
             {monthlyRevenue.percent}%
           </span>

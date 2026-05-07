@@ -45,14 +45,14 @@ export default function BannerCard() {
               <Text className="text-white">{t('dashboard.bannerDescription', { appName: GLOBAL_CONFIG.appName })}</Text>
               <Button className="hover:bg-white hover:text-primary cursor-pointer">
                 <Icon icon="carbon:logo-discord" size={24} />
-                <span className="ml-2 font-black ">{t('dashboard.joinDiscord')}</span>
+                <span className="ml-2 font-black">{t('dashboard.joinDiscord')}</span>
               </Button>
             </div>
           </div>
           {/* 右侧图片 / Character */}
           <div className="col-span-2 md:col-span-1">
             <div className="flex md:justify-end justify-center items-center w-full h-full">
-              <img src={Character3IMG} className="w-56 h-56 " alt={t('dashboard.characterAlt')} />
+              <img src={Character3IMG} className="w-56 h-56" alt={t('dashboard.characterAlt')} />
             </div>
           </div>
         </div>

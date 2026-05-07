@@ -16,7 +16,7 @@ export function NavMobileLayout({ data }: NavProps) {
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="[&>button]:hidden px-2 w-[280px]">
-        <div className="flex items-center gap-2 px-2 h-[var-(--layout-header-height)] ">
+        <div className="flex items-center gap-2 px-2 h-[var-(--layout-header-height)]">
           <Logo />
           <span className="text-xl font-bold">{GLOBAL_CONFIG.appName}</span>
         </div>

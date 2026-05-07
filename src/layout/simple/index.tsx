@@ -9,7 +9,7 @@ import HeaderSimple from '../components/header-simple';
  */
 export default function SimpleLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex flex-col w-full h-screen text-text-base bg-bg ">
+    <div className="flex flex-col w-full h-screen text-text-base bg-bg">
       <HeaderSimple />
       {children}
     </div>
