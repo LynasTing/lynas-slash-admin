@@ -28,6 +28,12 @@
         "index": "用户",
         "profile": "个人资料"
       },
+      "pages": {
+        "label": "页面",
+        "management": "管理",
+        "user": "用户",
+        "profile": "个人资料"
+      },
       "workbench": "工作台"
     },
     "settings": {

@@ -1,0 +1,37 @@
+{
+  "pages": {
+    "management": {
+      "user": {
+        "profile": {
+          "about": "个人简介",
+          "clientAvatarAlt": "客户头像",
+          "connections": "联系人",
+          "connectionCount": "{{count}} 个联系人",
+          "countries": {
+            "usa": "美国"
+          },
+          "fullName": "姓名",
+          "role": "角色",
+          "roles": {
+            "developer": "开发者"
+          },
+          "country": "国家",
+          "language": "语言",
+          "languages": {
+            "english": "英语"
+          },
+          "contact": "联系方式",
+          "email": "邮箱",
+          "memberCount": "{{count}} 名成员",
+          "teams": {
+            "title": "团队"
+          },
+          "timeline": {
+            "title": "活动时间线"
+          },
+          "tsFullStack": "TypeScript 全栈"
+        }
+      }
+    }
+  }
+}

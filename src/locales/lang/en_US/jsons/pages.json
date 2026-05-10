@@ -1,0 +1,37 @@
+{
+  "pages": {
+    "management": {
+      "user": {
+        "profile": {
+          "about": "About",
+          "clientAvatarAlt": "Client avatar",
+          "connections": "Connections",
+          "connectionCount": "{{count}} Connections",
+          "countries": {
+            "usa": "USA"
+          },
+          "fullName": "Full Name",
+          "role": "Role",
+          "roles": {
+            "developer": "Developer"
+          },
+          "country": "Country",
+          "language": "Language",
+          "languages": {
+            "english": "English"
+          },
+          "contact": "Contact",
+          "email": "Email",
+          "memberCount": "{{count}} Members",
+          "teams": {
+            "title": "Teams"
+          },
+          "timeline": {
+            "title": "Activity Timeline"
+          },
+          "tsFullStack": "TypeScript Full Stack"
+        }
+      }
+    }
+  }
+}
