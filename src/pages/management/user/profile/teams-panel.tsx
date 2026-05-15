@@ -5,7 +5,12 @@ import Button from '@/ui/button';
 import { Avatar, AvatarImage } from '@/ui/avatar';
 import { Badge } from '@/ui/badge';
 
+/**
+ * 用户团队面板。
+ * User teams panel.
+ */
 function TeamsPanel() {
+  // 团队卡片数据 / Team card items
   const items = [
     {
       icon: <Icon icon="logos:react" size={40} />,
@@ -66,8 +71,8 @@ function TeamsPanel() {
             <div className="flex justify-between">
               <div className="flex">
                 {item.members.slice(0, 4).map((sub, subIndex) => (
-                  <Avatar>
-                    <AvatarImage src={sub} key={subIndex} />
+                  <Avatar key={subIndex}>
+                    <AvatarImage src={sub} />
                   </Avatar>
                 ))}
               </div>

@@ -23,11 +23,34 @@
           "contact": "联系方式",
           "email": "邮箱",
           "memberCount": "{{count}} 名成员",
+          "avatarAlt": "{{name}} 的头像",
+          "tabs": {
+            "profile": "资料",
+            "teams": "团队",
+            "projects": "项目",
+            "connections": "联系人"
+          },
+          "actions": {
+            "connect": "连接",
+            "connected": "已连接"
+          },
+          "stats": {
+            "projects": "项目",
+            "tasks": "任务",
+            "connections": "联系人"
+          },
           "teams": {
             "title": "团队"
           },
           "timeline": {
             "title": "活动时间线"
+          },
+          "projects": {
+            "client": "客户",
+            "startDate": "开始日期",
+            "deadline": "截止日期",
+            "allHours": "总工时",
+            "daysLeft": "剩余 {{count}} 天"
           },
           "tsFullStack": "TypeScript 全栈"
         }

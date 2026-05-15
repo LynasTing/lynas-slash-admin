@@ -8,8 +8,17 @@ import Button from '@/ui/button';
 import { Badge } from '@/ui/badge';
 import AvatarGroup from '@/components/avatar-group';
 import { Avatar, AvatarImage } from '@/ui/avatar';
+import useLocale from '@/locales/use-locale';
 
+/**
+ * 用户项目面板。
+ * User projects panel.
+ */
 function ProjectsPanel() {
+  // 国际化函数 / Translation function
+  const { t } = useLocale();
+
+  // 项目卡片数据 / Project card items
   const items = [
     {
       icon: <Icon icon="logos:react" size={40} />,
@@ -86,7 +95,9 @@ function ProjectsPanel() {
               {item.icon}
               <div className="flex flex-col">
                 <Text variant="body1">{item.name}</Text>
-                <Text variant="caption">Client: {item.client}</Text>
+                <Text variant="caption">
+                  {t('pages.management.user.profile.projects.client')}: {item.client}
+                </Text>
               </div>
             </div>
             <Button variant="ghost" size="icon" className="ml-auto opacity-70">
@@ -96,13 +107,13 @@ function ProjectsPanel() {
           <CardContent>
             <div className="by-2 flex items-center justify-between">
               <Text variant="body1">
-                Start Date:
+                {t('pages.management.user.profile.projects.startDate')}:
                 <Text variant="caption" className="ml-2">
                   {item.startDate.format('YYYY-MM-DD')}
                 </Text>
               </Text>
               <Text variant="body1">
-                Deadline:
+                {t('pages.management.user.profile.projects.deadline')}:
                 <Text variant="caption" className="ml-2">
                   {item.deadline.format('YYYY-MM-DD')}
                 </Text>
@@ -111,13 +122,13 @@ function ProjectsPanel() {
             <p className="opacity-70">{item.desc}</p>
             <div className="my-2 flex">
               <Text variant="body1">
-                All Hours:
+                {t('pages.management.user.profile.projects.allHours')}:
                 <Text variant="caption" className="ml-2">
                   {item.allHours}
                 </Text>
               </Text>
               <Badge variant="warning" className="ml-auto">
-                {item.deadline.diff(dayjs(), 'day')} days left
+                {t('pages.management.user.profile.projects.daysLeft', { count: item.deadline.diff(dayjs(), 'day') })}
               </Badge>
             </div>
             <div className="flex w-full">

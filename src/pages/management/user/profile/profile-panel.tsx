@@ -133,7 +133,11 @@ export default function ProfilePanel() {
             Project kickoff has been prepared for the client.
           </Text>
           <div className="mt-2 flex items-center gap-2">
-            <img src={faker.image.avatarGitHub()} className="h-8 w-8 rounded-full" alt={t('pages.management.user.profile.clientAvatarAlt')} />
+            <img
+              src={faker.image.avatarGitHub()}
+              className="h-8 w-8 rounded-full"
+              alt={t('pages.management.user.profile.clientAvatarAlt')}
+            />
             <span className="font-medium opacity-60">{faker.person.fullName()} (client)</span>
           </div>
         </div>

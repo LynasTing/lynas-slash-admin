@@ -23,11 +23,34 @@
           "contact": "Contact",
           "email": "Email",
           "memberCount": "{{count}} Members",
+          "avatarAlt": "{{name}} avatar",
+          "tabs": {
+            "profile": "Profile",
+            "teams": "Teams",
+            "projects": "Projects",
+            "connections": "Connections"
+          },
+          "actions": {
+            "connect": "CONNECT",
+            "connected": "CONNECTED"
+          },
+          "stats": {
+            "projects": "Projects",
+            "tasks": "Tasks",
+            "connections": "Connections"
+          },
           "teams": {
             "title": "Teams"
           },
           "timeline": {
             "title": "Activity Timeline"
+          },
+          "projects": {
+            "client": "Client",
+            "startDate": "Start Date",
+            "deadline": "Deadline",
+            "allHours": "All Hours",
+            "daysLeft": "{{count}} days left"
           },
           "tsFullStack": "TypeScript Full Stack"
         }
