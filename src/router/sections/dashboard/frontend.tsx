@@ -27,6 +27,28 @@ export function GetFrontendRoutes() {
           element: Component('/pages/functions/token-expired')
         }
       ]
+    },
+    {
+      path: 'management',
+      children: [
+        {
+          index: true,
+          element: <Navigate to="user" replace />
+        },
+        {
+          path: 'user',
+          children: [
+            {
+              index: true,
+              element: <Navigate to="profile" replace />
+            },
+            {
+              path: 'profile',
+              element: Component('/pages/management/user/profile')
+            }
+          ]
+        }
+      ]
     }
   ];
   return frontendRoutes;

@@ -36,5 +36,27 @@ export const frontendNavData: NavProps['data'] = [
         ]
       }
     ]
+  },
+  {
+    name: 'sys.nav.pages.label',
+    items: [
+      {
+        title: 'sys.nav.pages.management',
+        path: '/management',
+        icon: <Icon icon="local:ic-management" size="24" />,
+        children: [
+          {
+            title: 'sys.nav.pages.user',
+            path: '/management/user',
+            children: [
+              {
+                title: 'sys.nav.pages.profile',
+                path: '/management/user/profile'
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
 ];
