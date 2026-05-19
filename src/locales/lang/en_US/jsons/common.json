@@ -1,6 +1,10 @@
 {
   "common": {
     "close": "Close",
-    "exportData": "Export Data"
+    "exportData": "Export Data",
+    "upload": {
+      "avatarAcceptedTypes": "Only JPEG, PNG and GIF images are allowed.",
+      "avatarMaxSize": "Avatar must be smaller than {{size}}."
+    }
   }
 }

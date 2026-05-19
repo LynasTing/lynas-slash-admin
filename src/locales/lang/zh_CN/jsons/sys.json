@@ -32,7 +32,9 @@
         "label": "页面",
         "management": "管理",
         "user": "用户",
-        "profile": "个人资料"
+        "profile": "个人资料",
+        "system": "系统",
+        "menu": "菜单"
       },
       "workbench": "工作台"
     },

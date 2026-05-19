@@ -17,7 +17,10 @@
         "label": "Pages",
         "management": "Management",
         "user": "User",
-        "profile": "Profile"
+        "profile": "Profile",
+        "account": "Account",
+        "system": "System",
+        "menu": "Menu"
       },
       "system": {
         "userDetail": "User Detail"

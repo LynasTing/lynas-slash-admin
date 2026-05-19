@@ -2,6 +2,63 @@
   "pages": {
     "management": {
       "user": {
+        "account": {
+          "tabs": {
+            "general": "通用",
+            "notifications": "通知",
+            "security": "安全"
+          },
+          "general": {
+            "publicProfile": "公开资料",
+            "deleteUser": "删除用户",
+            "saveChanges": "保存更改",
+            "toast": {
+              "savedChanges": "已保存更改"
+            },
+            "fields": {
+              "username": "用户名",
+              "email": "邮箱",
+              "phone": "电话",
+              "address": "地址",
+              "city": "城市",
+              "code": "邮政编码",
+              "about": "个人简介"
+            }
+          },
+          "notifications": {
+            "activity": {
+              "title": "活动",
+              "items": {
+                "answerForm": "当有人回答我的表单时给我发送邮件",
+                "commentArticle": "当有人评论我的文章时给我发送邮件",
+                "followMe": "当有人关注我时给我发送邮件"
+              }
+            },
+            "applications": {
+              "title": "应用通知",
+              "items": {
+                "news": "新闻与公告",
+                "productUpdates": "每周产品更新",
+                "blogDigest": "每周博客摘要"
+              }
+            }
+          },
+          "security": {
+            "fields": {
+              "oldPassword": "旧密码",
+              "newPassword": "新密码",
+              "confirmPassword": "确认新密码"
+            },
+            "validation": {
+              "oldPasswordRequired": "请输入旧密码",
+              "newPasswordRequired": "请输入新密码",
+              "confirmPasswordRequired": "请确认你的新密码"
+            },
+            "toast": {
+              "changedSuccess": "密码修改成功"
+            }
+          }
+        },
         "profile": {
           "about": "个人简介",
           "clientAvatarAlt": "客户头像",

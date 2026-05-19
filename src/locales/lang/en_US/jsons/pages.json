@@ -2,6 +2,63 @@
   "pages": {
     "management": {
       "user": {
+        "account": {
+          "tabs": {
+            "general": "General",
+            "notifications": "Notifications",
+            "security": "Security"
+          },
+          "general": {
+            "publicProfile": "Public Profile",
+            "deleteUser": "Delete User",
+            "saveChanges": "Save Changes",
+            "toast": {
+              "savedChanges": "Saved changes"
+            },
+            "fields": {
+              "username": "Username",
+              "email": "Email",
+              "phone": "Phone",
+              "address": "Address",
+              "city": "City",
+              "code": "Code",
+              "about": "About"
+            }
+          },
+          "notifications": {
+            "activity": {
+              "title": "Activity",
+              "items": {
+                "answerForm": "Email me when someone answers on my form",
+                "commentArticle": "Email me when someone comments on my article",
+                "followMe": "Email me when someone follows me"
+              }
+            },
+            "applications": {
+              "title": "Applications",
+              "items": {
+                "news": "News and announcements",
+                "productUpdates": "Weekly product updates",
+                "blogDigest": "Weekly blog digest"
+              }
+            }
+          },
+          "security": {
+            "fields": {
+              "oldPassword": "Old Password",
+              "newPassword": "New Password",
+              "confirmPassword": "Confirm New Password"
+            },
+            "validation": {
+              "oldPasswordRequired": "Old Password is required.",
+              "newPasswordRequired": "New Password is required.",
+              "confirmPasswordRequired": "Confirm your new password please."
+            },
+            "toast": {
+              "changedSuccess": "Password changed successfully."
+            }
+          }
+        },
         "profile": {
           "about": "About",
           "clientAvatarAlt": "Client avatar",
