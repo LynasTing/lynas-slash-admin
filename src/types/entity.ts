@@ -268,3 +268,95 @@ export interface UserInfo {
    */
   menu?: MenuTree[];
 }
+
+export interface MenuTreeNode {
+  /**
+   * 权限唯一标识
+   * Unique permission identifier
+   */
+  id: string;
+
+  /**
+   * 父级权限 ID
+   * Parent permission ID
+   */
+  parentId: string;
+
+  /**
+   * 权限名称
+   * Permission name
+   */
+  name: string;
+
+  /**
+   * 权限显示标题
+   * Permission display label
+   */
+  label: string;
+
+  /**
+   * 权限类型
+   * Permission type
+   */
+  type: PermissionTypeEnum;
+
+  /**
+   * 路由地址
+   * Route path
+   */
+  route: string;
+
+  /**
+   * 权限状态
+   * Permission status
+   */
+  status?: BasicStatusEnum;
+
+  /**
+   * 排序值
+   * Sort order value
+   */
+  order?: number;
+
+  /**
+   * 菜单图标
+   * Menu icon
+   */
+  icon?: string;
+
+  /**
+   * 页面组件路径
+   * Page component path
+   */
+  component?: string;
+
+  /**
+   * 是否隐藏菜单
+   * Whether the menu is hidden
+   */
+  hide?: boolean;
+
+  /**
+   * 是否隐藏标签页
+   * Whether the tab is hidden
+   */
+  hideTab?: boolean;
+
+  /**
+   * 外链页面地址
+   * External iframe source URL
+   */
+  frameSrc?: URL;
+
+  /**
+   * 是否为新功能标识
+   * Whether this is marked as a new feature
+   */
+  newFeature?: boolean;
+
+  /**
+   * 子级权限列表
+   * Child permission list
+   */
+  children?: MenuTreeNode[];
+}
