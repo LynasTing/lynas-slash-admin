@@ -1,6 +1,41 @@
 {
   "pages": {
     "management": {
+      "system": {
+        "menu": {
+          "title": "菜单列表",
+          "columns": {
+            "name": "名称",
+            "type": "类型",
+            "icon": "图标",
+            "component": "组件",
+            "status": "状态",
+            "action": "操作"
+          },
+          "actions": {
+            "new": "新建",
+            "add": "新增子菜单",
+            "edit": "编辑菜单",
+            "delete": "删除菜单"
+          },
+          "status": {
+            "enable": "启用",
+            "disable": "禁用"
+          },
+          "types": {
+            "GROUP": "分组",
+            "CATALOGUE": "目录",
+            "MENU": "菜单",
+            "COMPONENT": "组件"
+          },
+          "mock": {
+            "dashboard": "仪表板",
+            "account": "账户",
+            "createMenu": "新建菜单",
+            "deleteMenu": "删除菜单"
+          }
+        }
+      },
       "user": {
         "account": {
           "tabs": {

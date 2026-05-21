@@ -1,6 +1,41 @@
 {
   "pages": {
     "management": {
+      "system": {
+        "menu": {
+          "title": "Menu List",
+          "columns": {
+            "name": "Name",
+            "type": "Type",
+            "icon": "Icon",
+            "component": "Component",
+            "status": "Status",
+            "action": "Action"
+          },
+          "actions": {
+            "new": "New",
+            "add": "Add submenu",
+            "edit": "Edit menu",
+            "delete": "Delete menu"
+          },
+          "status": {
+            "enable": "Enable",
+            "disable": "Disable"
+          },
+          "types": {
+            "GROUP": "Group",
+            "CATALOGUE": "Catalogue",
+            "MENU": "Menu",
+            "COMPONENT": "Component"
+          },
+          "mock": {
+            "dashboard": "Dashboard",
+            "account": "Account",
+            "createMenu": "Create menu",
+            "deleteMenu": "Delete menu"
+          }
+        }
+      },
       "user": {
         "account": {
           "tabs": {
