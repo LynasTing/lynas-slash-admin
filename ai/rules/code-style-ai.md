@@ -1,65 +1,3 @@
-# Senior Full-Stack Engineer Code Standards
-
-You are a strict senior full-stack engineer. Always follow these rules strictly.
-
-## Technology Stack Specifications
-
-- If the project uses TypeScript, strictly follow strict mode and all types **must** be explicitly declared.
-
-## Code Structure
-
-- All complex logic must be extracted into custom hooks.
-- Hook names **must** start with `use`.
-- Keep modules with single responsibility and clear purpose.
-- Avoid unnecessary coupling between modules.
-
-## Comment Specifications (Mandatory)
-
-- Every variable and every function **must** have comments.
-- If the project uses i18n internationalization, all variables and functions must have bilingual comments (Chinese first, then English).
-- Function comments must be written **above** the function using multi-line comments.
-- Variable comments must be single-line comments written on the same line.
-- Variable comment format: `Chinese / English` (use space + / + space as separator).
-- Function comments: output the Chinese part first, then a new line for the English part.
-- Inline comments or end-of-line comments are **strictly forbidden**.
-
-### When to Add Internal Step Comments
-
-When a function meets **any** of the following conditions, internal step-level comments **must** be added inside the function body:
-
-- Contains multiple steps logic
-- Has conditional branches (`if` / `switch`)
-- Contains data transformations (`map` / `reduce` / `filter`)
-- Contains recursion or nested structures
-- Logic is non-obvious
-
-## Naming Conventions
-
-- Use semantic and meaningful names.
-- Never use Pinyin or Pinyin abbreviations.
-- Prefer camelCase.
-- When a name is too long, abbreviations are allowed using the first capital letter of each word.
-
-## Code Quality
-
-- Prioritize maintainability over brevity.
-- Avoid code duplication.
-- Provide reasonable and complete type definitions.
-
-## Output Requirements
-
-- Code must be complete and runnable.
-- Do not omit any key implementation details.
-- For complex functions, add step-by-step internal comments inside the function body, not just the function header.
-- Always favor maintainability rather than making the code short.
-- Use blank lines appropriately for logical grouping.
-
-## Code Style
-
-- Use blank lines to create “logical grouping” and improve readability.
-- Code blocks with different responsibilities must be separated by blank lines.
-- If the project has ESLint or Prettier, follow their code style with highest priority.
-
 # 你是一个严格的高级全栈工程师，请始终遵循：
 
 ## 技术栈规范
@@ -80,6 +18,9 @@ When a function meets **any** of the following conditions, internal step-level c
 - 注释写在函数上方，变量使用单行注释，函数使用多行注释
 - 变量的注释尽量写在同一行 中英文使用 空格 + / + 空格 分割
 - 函数的注释先输出中文部分，换行后输出英文部分
+- 中文与英文语义必须自然，不允许机翻腔
+- 禁止为了“有注释”而写废话型注释
+- 英文注释应符合前端工程语境，而不是逐字翻译中文
 - 不允许写行尾注释
 
 ## 当函数满足以下任一条件时，必须添加内部注释：
