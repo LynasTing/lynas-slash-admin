@@ -44,6 +44,7 @@ export const useUserToken = () => useUserStore(s => s.userToken);
 export const useUserActions = () => useUserStore(s => s.actions);
 export const useUserInfo = () => useUserStore(s => s.userInfo);
 export const useUserPermissions = () => useUserStore(s => s.userInfo.permissions || []);
+export const useUserMenus = () => useUserStore(s => s.userInfo.menu || []);
 
 export const useSignIn = () => {
   const { setUserToken, setUserInfo } = useUserActions();
