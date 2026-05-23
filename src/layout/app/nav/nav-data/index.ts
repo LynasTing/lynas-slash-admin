@@ -81,7 +81,7 @@ const filterNavData = (permissions: string[]) => {
          * Why not return an empty array?
          * - The page will render blank titles, etc
          */
-        if (!filterItems.length) {
+        if (!filteredItems.length) {
           return null;
         }
 
