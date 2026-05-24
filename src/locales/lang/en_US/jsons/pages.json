@@ -18,15 +18,54 @@
             "edit": "Edit menu",
             "delete": "Delete menu"
           },
+          "modal": {
+            "createTitle": "Create Menu",
+            "editTitle": "Edit Menu"
+          },
+          "form": {
+            "fields": {
+              "type": "Type",
+              "name": "Name",
+              "label": "Label",
+              "parent": "Parent",
+              "route": "Route",
+              "component": "Component",
+              "icon": "Icon",
+              "visibility": "Visibility",
+              "order": "Order",
+              "status": "Status"
+            },
+            "actions": {
+              "cancel": "Cancel",
+              "confirm": "Confirm"
+            }
+          },
           "status": {
             "enable": "Enable",
             "disable": "Disable"
+          },
+          "visibility": {
+            "show": "Show",
+            "hide": "Hide"
+          },
+          "validation": {
+            "nameRequired": "Name is required",
+            "labelRequired": "Label is required",
+            "routeRequired": "Route is required",
+            "iconRequired": "Icon is required",
+            "orderRequired": "Order is required"
+          },
+          "toast": {
+            "loadFailed": "Failed to load menus",
+            "createSuccess": "Menu created successfully",
+            "updateSuccess": "Menu updated successfully",
+            "saveFailed": "Failed to save menu"
           },
           "types": {
             "GROUP": "Group",
             "CATALOGUE": "Catalogue",
             "MENU": "Menu",
-            "COMPONENT": "Component"
+            "ACTION": "Action"
           },
           "mock": {
             "dashboard": "Dashboard",

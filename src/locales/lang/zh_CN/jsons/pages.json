@@ -18,15 +18,54 @@
             "edit": "编辑菜单",
             "delete": "删除菜单"
           },
+          "modal": {
+            "createTitle": "新增菜单",
+            "editTitle": "修改菜单"
+          },
+          "form": {
+            "fields": {
+              "type": "类型",
+              "name": "名称",
+              "label": "标签",
+              "parent": "父级菜单",
+              "route": "路由",
+              "component": "组件",
+              "icon": "图标",
+              "visibility": "可见性",
+              "order": "排序",
+              "status": "状态"
+            },
+            "actions": {
+              "cancel": "取消",
+              "confirm": "确认"
+            }
+          },
           "status": {
             "enable": "启用",
             "disable": "禁用"
+          },
+          "visibility": {
+            "show": "显示",
+            "hide": "隐藏"
+          },
+          "validation": {
+            "nameRequired": "请输入名称",
+            "labelRequired": "请输入标签",
+            "routeRequired": "请输入路由",
+            "iconRequired": "请输入图标",
+            "orderRequired": "请输入排序"
+          },
+          "toast": {
+            "loadFailed": "菜单加载失败",
+            "createSuccess": "菜单新增成功",
+            "updateSuccess": "菜单修改成功",
+            "saveFailed": "菜单保存失败"
           },
           "types": {
             "GROUP": "分组",
             "CATALOGUE": "目录",
             "MENU": "菜单",
-            "COMPONENT": "组件"
+            "ACTION": "操作"
           },
           "mock": {
             "dashboard": "仪表板",
