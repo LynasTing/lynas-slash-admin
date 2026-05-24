@@ -44,7 +44,7 @@ export enum BasicStatusEnum {
  * 用于区分不同层级或类型的权限节点
  * Used to distinguish between different levels or types of permission nodes
  */
-export enum PermissionTypeEnum {
+export enum MenuTypeEnum {
   /**
    * 分组（最高层，用于逻辑分类）
    * Group (top-level logical category)
@@ -64,10 +64,10 @@ export enum PermissionTypeEnum {
   MENU = 2,
 
   /**
-   * 组件 / 功能点（页面内部的按钮或操作权限）
-   * Component / Action (button or operation permission within a page)
+   * 操作权限（页面内部的按钮或功能点权限）
+   * Action permission (button or feature permission within a page)
    */
-  COMPONENT = 3
+  ACTION = 3
 }
 
 /**

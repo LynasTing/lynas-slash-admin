@@ -1,5 +1,6 @@
-import type { BasicStatusEnum, PermissionTypeEnum } from './enum';
+import type { BasicStatusEnum, MenuTypeEnum } from './enum';
 import type { NavItemDataProps } from '@/components/nav/types';
+import type { ReactNode } from 'react';
 
 /**
  * 通用选项
@@ -173,10 +174,10 @@ export interface Menu extends CommonOptions, MenuMetaInfo {
   order?: number;
 
   /**
-   * 菜单类型（分组 / 目录 / 菜单 / 组件）
-   * Menu type (Group / Catalogue / Menu / Component)
+   * 菜单类型（分组 / 目录 / 菜单 / 操作）
+   * Menu type (Group / Catalogue / Menu / Action)
    */
-  type: PermissionTypeEnum;
+  type: MenuTypeEnum;
 }
 
 /**
@@ -204,9 +205,7 @@ export interface Permission extends CommonOptions {
   code: string;
 }
 
-export type MenuTree = Menu & {
-  children?: MenuTree[];
-};
+export type MenuTree = MenuTreeNode;
 
 /**
  * 用户信息
@@ -266,7 +265,7 @@ export interface UserInfo {
    * 菜单树
    * Menu tree
    */
-  menu?: MenuTree[];
+  menu?: MenuTreeNode[];
 }
 
 export interface MenuTreeNode {
@@ -289,6 +288,12 @@ export interface MenuTreeNode {
   name: string;
 
   /**
+   * 菜单编码
+   * Menu code
+   */
+  code?: string;
+
+  /**
    * 权限显示标题
    * Permission display label
    */
@@ -298,13 +303,49 @@ export interface MenuTreeNode {
    * 权限类型
    * Permission type
    */
-  type: PermissionTypeEnum;
+  type: MenuTypeEnum;
 
   /**
    * 路由地址
    * Route path
    */
   route: string;
+
+  /**
+   * 导航路径
+   * Navigation path
+   */
+  path?: string;
+
+  /**
+   * 附加信息
+   * Additional info
+   */
+  info?: ReactNode;
+
+  /**
+   * 副标题
+   * Caption
+   */
+  caption?: string;
+
+  /**
+   * 权限标识
+   * Authorization keys
+   */
+  auth?: string[];
+
+  /**
+   * 是否禁用
+   * Whether the menu is disabled
+   */
+  disabled?: boolean;
+
+  /**
+   * 外部链接
+   * External link
+   */
+  externalLink?: URL;
 
   /**
    * 权限状态
@@ -335,6 +376,12 @@ export interface MenuTreeNode {
    * Whether the menu is hidden
    */
   hide?: boolean;
+
+  /**
+   * 是否隐藏菜单
+   * Whether the menu is hidden
+   */
+  hidden?: boolean;
 
   /**
    * 是否隐藏标签页
