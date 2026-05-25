@@ -1,4 +1,4 @@
-import { UserToken, User } from '#/entity';
+import type { UserInfo, UserToken } from '#/entity';
 import { apiClient } from '@/utils';
 
 export enum UserApi {
@@ -15,7 +15,7 @@ export interface SignInRequest {
 /**
  * 登录-响应
  */
-export type SignInResponse = UserToken & { user: User };
+export type SignInResponse = UserToken & { user: UserInfo };
 
 /**
  * 注册参数
