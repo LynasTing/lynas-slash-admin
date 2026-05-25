@@ -1,8 +1,8 @@
-import type { User, Role, Permission, Menu } from '#/entity';
+import type { User, Role, Permission, MenuTreeNode } from '#/entity';
 import { faker } from '@faker-js/faker';
-import { PermissionTypeEnum } from '#/enum';
+import { BasicStatusEnum, MenuTypeEnum } from '#/enum';
 
-const { MENU } = PermissionTypeEnum;
+const { GROUP, CATALOGUE, MENU, ACTION } = MenuTypeEnum;
 
 /**
  * 用户表
@@ -57,15 +57,27 @@ export const DB_ROLE_PERMISSION = [
  * 菜单表
  * Menu
  */
-export const DB_MENU: Menu[] = [
+export const DB_MENU: MenuTreeNode[] = [
   /** group_dashboard */
+  {
+    id: 'group_dashboard',
+    parentId: '',
+    name: 'sys.nav.dashboard',
+    label: 'sys.nav.dashboard',
+    code: 'group_dashboard',
+    type: GROUP,
+    route: '/dashboard',
+    path: '/dashboard'
+  },
   {
     id: 'workbench',
     parentId: 'group_dashboard',
     name: 'sys.nav.workbench',
+    label: 'sys.nav.workbench',
     code: 'workbench',
     icon: 'local:ic-workbench',
     type: MENU,
+    route: '/workbench',
     path: '/workbench',
     component: '/pages/dashboard/workbench'
   },
@@ -73,10 +85,146 @@ export const DB_MENU: Menu[] = [
     id: 'analysis',
     parentId: 'group_dashboard',
     name: 'sys.nav.analysis',
+    label: 'sys.nav.analysis',
     code: 'analysis',
     icon: 'local:ic-analysis',
     type: MENU,
+    route: '/analysis',
     path: '/analysis',
     component: '/pages/dashboard/analysis'
+  }
+];
+
+/**
+ * 菜单管理表
+ * Menu management table
+ */
+export const DB_SYSTEM_MENU: MenuTreeNode[] = [
+  {
+    id: 'dashboard',
+    parentId: '',
+    name: 'Dashboard',
+    label: 'pages.management.system.menu.mock.dashboard',
+    type: CATALOGUE,
+    route: '/dashboard',
+    status: BasicStatusEnum.ENABLE,
+    icon: 'solar:home-2-bold-duotone',
+    component: '/layout/dashboard',
+    children: [
+      {
+        id: 'workbench',
+        parentId: 'dashboard',
+        name: 'Workbench',
+        label: 'sys.nav.workbench',
+        type: MENU,
+        route: '/workbench',
+        status: BasicStatusEnum.ENABLE,
+        icon: 'local:ic-workbench',
+        component: '/pages/dashboard/workbench'
+      },
+      {
+        id: 'analysis',
+        parentId: 'dashboard',
+        name: 'Analysis',
+        label: 'sys.nav.analysis',
+        type: MENU,
+        route: '/analysis',
+        status: BasicStatusEnum.DISABLE,
+        icon: 'local:ic-analysis',
+        component: '/pages/dashboard/analysis'
+      }
+    ]
+  },
+  {
+    id: 'management',
+    parentId: '',
+    name: 'Management',
+    label: 'sys.nav.pages.management',
+    type: CATALOGUE,
+    route: '/management',
+    status: BasicStatusEnum.ENABLE,
+    icon: 'solar:settings-bold-duotone',
+    component: '/layout/management',
+    children: [
+      {
+        id: 'user',
+        parentId: 'management',
+        name: 'User',
+        label: 'sys.nav.pages.user',
+        type: CATALOGUE,
+        route: '/management/user',
+        status: BasicStatusEnum.ENABLE,
+        icon: 'solar:user-rounded-bold-duotone',
+        component: '/layout/management/user',
+        children: [
+          {
+            id: 'user-profile',
+            parentId: 'user',
+            name: 'Profile',
+            label: 'sys.nav.pages.profile',
+            type: MENU,
+            route: '/management/user/profile',
+            status: BasicStatusEnum.ENABLE,
+            icon: 'solar:user-id-bold-duotone',
+            component: '/pages/management/user/profile'
+          },
+          {
+            id: 'user-account',
+            parentId: 'user',
+            name: 'Account',
+            label: 'pages.management.system.menu.mock.account',
+            type: MENU,
+            route: '/management/user/account',
+            status: BasicStatusEnum.ENABLE,
+            icon: 'solar:shield-user-bold-duotone',
+            component: '/pages/management/user/account'
+          }
+        ]
+      },
+      {
+        id: 'system',
+        parentId: 'management',
+        name: 'System',
+        label: 'sys.nav.pages.system',
+        type: CATALOGUE,
+        route: '/management/system',
+        status: BasicStatusEnum.ENABLE,
+        icon: 'solar:widget-5-bold-duotone',
+        component: '/layout/management/system',
+        children: [
+          {
+            id: 'system-menu',
+            parentId: 'system',
+            name: 'Menu',
+            label: 'sys.nav.pages.menu',
+            type: MENU,
+            route: '/management/system/menu',
+            status: BasicStatusEnum.ENABLE,
+            icon: 'solar:list-bold-duotone',
+            component: '/pages/management/system/menu',
+            children: [
+              {
+                id: 'system-menu-create',
+                parentId: 'system-menu',
+                name: 'Create menu',
+                label: 'pages.management.system.menu.mock.createMenu',
+                type: ACTION,
+                route: '/management/system/menu:create',
+                status: BasicStatusEnum.ENABLE
+              },
+              {
+                id: 'system-menu-delete',
+                parentId: 'system-menu',
+                name: 'Delete menu',
+                label: 'pages.management.system.menu.mock.deleteMenu',
+                type: ACTION,
+                route: '/management/system/menu:delete',
+                status: BasicStatusEnum.DISABLE
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
 ];
