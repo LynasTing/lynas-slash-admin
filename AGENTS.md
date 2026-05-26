@@ -5,6 +5,7 @@
 在开始修改代码前，先阅读并遵循以下文档：
 
 - `ai/rules/code-style-ai.md`
+- `ai/rules/git-commit-message.md`
 - `ai/workflow/pr-review-flow.md`
 
 ## 工作要求
