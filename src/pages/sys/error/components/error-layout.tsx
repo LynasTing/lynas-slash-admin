@@ -65,7 +65,7 @@ export default function ErrorLayout({
   svg,
   slots = {},
   homePath = GLOBAL_CONFIG.defaultRoute,
-  buttonText
+  buttonText = 'Back to Home'
 }: ErrorLayoutProps) {
   return (
     <>
@@ -74,8 +74,8 @@ export default function ErrorLayout({
           <title>{helmetTitle}</title>
         </Helmet>
       )}
-      <div className="flex justify-center items-center max-w-[400px] h-full m-auto">
-        <MotionContainer className="flex justify-center items-center flex-col gap-2 w-full px-2">
+      <div className="m-auto flex h-full max-w-[400px] items-center justify-center">
+        <MotionContainer className="flex w-full flex-col items-center justify-center gap-2 px-2">
           <m.div variants={varBounce().in}>
             <Title as="h2" className="text-center">
               {title}
@@ -92,7 +92,7 @@ export default function ErrorLayout({
           {slots.footer ? (
             slots.footer
           ) : (
-            <NavLink to={homePath} className="flex justify-center w-full mt-4">
+            <NavLink to={homePath} className="mt-4 flex w-full justify-center">
               <Button size="lg" variant="contrast">
                 {buttonText}
               </Button>
