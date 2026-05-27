@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router';
 const StyledMultiTabs = styled.div`
   height: 100%;
   margin-top: 2px;
-  .actiion {
+  .action {
     margin: 0px !important;
   }
   .ant-tabs {
@@ -162,7 +162,7 @@ export default function MultiTabs() {
         renderTabBar={() => (
           <div style={tabsStyle}>
             <SortableContainer items={tabs} onSortEnd={handleDragEnd} renderOverlay={handleRenderOverlay}>
-              <ul ref={scrollContainerRef} className="flex w-full h-[32px] px-2 overflow-x-auto hide-scroll-bar">
+              <ul ref={scrollContainerRef} className="hide-scroll-bar flex h-[32px] w-full overflow-x-auto px-2">
                 {tabs.map(i => (
                   <MultiTabSortableItem key={i.key} tab={i} onClick={() => handleSortableItemClick(i)} />
                 ))}
