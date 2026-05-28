@@ -4,6 +4,8 @@ import SimpleLayout from '@/layout/simple';
 import { LineLoading } from '@/components/loading';
 
 const Page403 = lazy(() => import('@/pages/sys/error/page-403'));
+const Page404 = lazy(() => import('@/pages/sys/error/page-404'));
+const Page500 = lazy(() => import('@/pages/sys/error/page-500'));
 
 export const errorRoutes: RouteObject[] = [
   {
@@ -19,6 +21,14 @@ export const errorRoutes: RouteObject[] = [
       {
         path: '403',
         element: <Page403 />
+      },
+      {
+        path: '404',
+        element: <Page404 />
+      },
+      {
+        path: '500',
+        element: <Page500 />
       }
     ]
   }
