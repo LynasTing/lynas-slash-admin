@@ -43,7 +43,7 @@ function HoverCardContent({ className, sideOffset = 4, align = 'center', ...prop
         data-slot="hover-card-content"
         align={align}
         sideOffset={sideOffset}
-        className={cn(contentVariants, className)}
+        className={cn(contentVariants(), className)}
         {...props}
       />
     </HoverCardPrimitive.Portal>

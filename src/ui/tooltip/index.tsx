@@ -95,7 +95,7 @@ function TooltipContent({ className, sideOffset = 0, children, ...props }: Compo
     <TooltipPrimitive.Portal>
       <TooltipPrimitive.Content data-slot="tooltip-content" sideOffset={sideOffset} className={cn(contentVariants, className)} {...props}>
         {children}
-        <TooltipPrimitive.Arrow className={cn(arrowVariants)} />
+        <TooltipPrimitive.Arrow className={cn(arrowVariants())} />
       </TooltipPrimitive.Content>
     </TooltipPrimitive.Portal>
   );
