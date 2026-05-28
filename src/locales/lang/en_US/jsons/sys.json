@@ -20,7 +20,16 @@
         "profile": "Profile",
         "account": "Account",
         "system": "System",
-        "menu": "Menu"
+        "menu": "Menu",
+        "menuLevel": {
+          "label": "Menu Levels",
+          "level1a": "Menu Level 1a",
+          "level1b": "Menu Level 1b",
+          "level2a": "Menu Level 2a",
+          "level2b": "Menu Level 2b",
+          "level3a": "Menu Level 3a",
+          "level3b": "Menu Level 3b"
+        }
       },
       "system": {
         "userDetail": "User Detail"

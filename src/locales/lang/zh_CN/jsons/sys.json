@@ -34,7 +34,16 @@
         "user": "用户",
         "profile": "个人资料",
         "system": "系统",
-        "menu": "菜单"
+        "menu": "菜单",
+        "menuLevel": {
+          "label": "多级菜单",
+          "level1a": "菜单层级 1a",
+          "level1b": "菜单层级 1b",
+          "level2a": "菜单层级 2a",
+          "level2b": "菜单层级 2b",
+          "level3a": "菜单层级 3a",
+          "level3b": "菜单层级 3b"
+        }
       },
       "workbench": "工作台"
     },
