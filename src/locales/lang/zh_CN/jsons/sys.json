@@ -19,6 +19,12 @@
         "tokenExpired": "Token 过期",
         "label": "功能"
       },
+      "components": {
+        "label": "组件",
+        "toast": "Toast 提示",
+        "icon": "图标",
+        "multiLanguage": "多语言"
+      },
       "system": {
         "userDetail": "用户详情"
       },

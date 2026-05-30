@@ -13,6 +13,12 @@
         "tokenExpired": "Token Expired",
         "label": "Functions"
       },
+      "components": {
+        "label": "Components",
+        "toast": "Toast",
+        "icon": "Icon",
+        "multiLanguage": "Multi-language"
+      },
       "pages": {
         "label": "Pages",
         "management": "Management",
