@@ -1,5 +1,63 @@
 {
   "pages": {
+    "components": {
+      "icon": {
+        "iconify": {
+          "title": "Iconify Icons",
+          "description": "Simply beautiful open source icons. For more info"
+        },
+        "local": {
+          "title": "Local Icons",
+          "description": "Use project SVG assets with the local prefix. For setup details"
+        }
+      },
+      "multiLanguage": {
+        "title": "Flexible",
+        "languages": {
+          "enUS": "English",
+          "zhCN": "Chinese"
+        }
+      },
+      "toast": {
+        "sections": {
+          "simple": "Simple",
+          "withAction": "With Action",
+          "position": "Position",
+          "withPromise": "With Promise"
+        },
+        "types": {
+          "default": "Default",
+          "info": "Info",
+          "success": "Success",
+          "warning": "Warning",
+          "error": "Error"
+        },
+        "descriptions": {
+          "info": "Toast Description Info"
+        },
+        "positions": {
+          "topLeft": "Top Left",
+          "topCenter": "Top Center",
+          "topRight": "Top Right",
+          "bottomLeft": "Bottom Left",
+          "bottomCenter": "Bottom Center",
+          "bottomRight": "Bottom Right"
+        },
+        "messages": {
+          "toast": "Toast {{label}}",
+          "info": "Toast Info: {{label}}"
+        },
+        "promise": {
+          "loading": "Loading...",
+          "success": "Success",
+          "error": "Error",
+          "result": "Done"
+        },
+        "actions": {
+          "submit": "On Submit"
+        }
+      }
+    },
     "management": {
       "system": {
         "menu": {

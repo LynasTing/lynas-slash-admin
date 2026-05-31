@@ -1,5 +1,63 @@
 {
   "pages": {
+    "components": {
+      "icon": {
+        "iconify": {
+          "title": "Iconify 图标",
+          "description": "简洁美观的开源图标。了解更多"
+        },
+        "local": {
+          "title": "本地图标",
+          "description": "使用带 local 前缀的项目 SVG 资源。查看配置说明"
+        }
+      },
+      "multiLanguage": {
+        "title": "灵活切换",
+        "languages": {
+          "enUS": "英文",
+          "zhCN": "中文"
+        }
+      },
+      "toast": {
+        "sections": {
+          "simple": "基础提示",
+          "withAction": "带操作",
+          "position": "位置",
+          "withPromise": "异步提示"
+        },
+        "types": {
+          "default": "默认",
+          "info": "信息",
+          "success": "成功",
+          "warning": "警告",
+          "error": "错误"
+        },
+        "descriptions": {
+          "info": "信息提示描述"
+        },
+        "positions": {
+          "topLeft": "左上",
+          "topCenter": "顶部居中",
+          "topRight": "右上",
+          "bottomLeft": "左下",
+          "bottomCenter": "底部居中",
+          "bottomRight": "右下"
+        },
+        "messages": {
+          "toast": "Toast {{label}}",
+          "info": "信息提示：{{label}}"
+        },
+        "promise": {
+          "loading": "加载中...",
+          "success": "成功",
+          "error": "错误",
+          "result": "处理完成"
+        },
+        "actions": {
+          "submit": "提交"
+        }
+      }
+    },
     "management": {
       "system": {
         "menu": {
