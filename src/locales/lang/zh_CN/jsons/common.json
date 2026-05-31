@@ -1,5 +1,8 @@
 {
   "common": {
+    "action": "操作",
+    "cancel": "取消",
+    "clickHere": "点击这里",
     "close": "关闭",
     "exportData": "导出数据",
     "upload": {

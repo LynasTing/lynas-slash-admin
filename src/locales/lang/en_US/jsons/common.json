@@ -1,5 +1,8 @@
 {
   "common": {
+    "action": "Action",
+    "cancel": "Cancel",
+    "clickHere": "Click here",
     "close": "Close",
     "exportData": "Export Data",
     "upload": {
