@@ -10,9 +10,9 @@ function RadioGroup({ className, ...props }: ComponentProps<typeof RadioGroupPri
 
 function RadioGroupItem({ className, ...props }: ComponentProps<typeof RadioGroupPrimitive.Item>) {
   return (
-    <RadioGroupPrimitive.Item data-slot="radio-group-item" className={cn(radioGroupItemVariants, className)} {...props}>
-      <RadioGroupPrimitive.Indicator data-slot="radio-group-indicator" className={cn(radioGroupIndicatorVariants)}>
-        <CircleIcon className={cn(radioGroupIconVariants)} />
+    <RadioGroupPrimitive.Item data-slot="radio-group-item" className={cn(radioGroupItemVariants(), className)} {...props}>
+      <RadioGroupPrimitive.Indicator data-slot="radio-group-indicator" className={cn(radioGroupIndicatorVariants())}>
+        <CircleIcon className={cn(radioGroupIconVariants())} />
       </RadioGroupPrimitive.Indicator>
     </RadioGroupPrimitive.Item>
   );
