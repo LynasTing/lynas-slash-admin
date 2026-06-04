@@ -3,7 +3,7 @@ import { Chart, useChart } from '@/components/chart';
 const series = [
   {
     name: 'Net Profit',
-    data: Array.from({ length: 9 }).map(() => Math.floor(Math.random() * 300) + 1)
+    data: Array.from({ length: 9 }, () => Math.floor(Math.random() * 300) + 1)
   }
 ];
 

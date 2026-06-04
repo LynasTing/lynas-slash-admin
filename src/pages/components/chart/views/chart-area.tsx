@@ -3,11 +3,11 @@ import { Chart, useChart } from '@/components/chart';
 const series = [
   {
     name: 'series1',
-    data: Array.from({ length: 7 }).map(() => Math.floor(Math.random() * 1000))
+    data: Array.from({ length: 7 }, () => Math.floor(Math.random() * 1000))
   },
   {
     name: 'series2',
-    data: Array.from({ length: 7 }).map(() => Math.floor(Math.random() * 1000))
+    data: Array.from({ length: 7 }, () => Math.floor(Math.random() * 1000))
   }
 ];
 
