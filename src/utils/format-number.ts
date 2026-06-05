@@ -28,3 +28,15 @@ export function removeTrailingZeros(value: string, target = '.00') {
 export function formatBytes(number: InputValue) {
   return removeTrailingZeros(number ? numeral(number).format('0.00 b') : '');
 }
+
+/**
+ * 格式化数字
+ * Format number
+ *
+ * @param number - 输入值
+ *
+ * @example 1000 -> 1,000
+ */
+export function formatNumber(number: InputValue) {
+  return numeral(number).format();
+}
