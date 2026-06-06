@@ -119,7 +119,7 @@ export const varBgKenburns = (props?: BackgroundType) => {
  * @returns 四个方向的动画配置对象 / Animate object for motion component
  */
 export const varBgPan = (props?: BackgroundType) => {
-  const { colors = [], duration = 5, ease = 'linear' } = props ?? {};
+  const { colors = ['#ee7752', '#e73c7e', '#23a6d5', '#23d5ab'], duration = 5, ease = 'linear' } = props ?? {};
 
   /** transition 配置 / Transition settings (duration + easing) */
   const transition = {
