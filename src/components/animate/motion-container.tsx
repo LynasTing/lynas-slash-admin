@@ -58,7 +58,7 @@ interface Props extends MotionProps {
  * - staggerOut: 子元素退出动画的延迟时间（默认：0.05s）
  *   Delay between child exit animations (default: 0.05s)
  */
-export default function MotionContainer({ className, children }: Props) {
+export default function MotionContainer({ className, children, variants }: Props) {
   return (
     <m.div
       /**
@@ -69,7 +69,7 @@ export default function MotionContainer({ className, children }: Props) {
       animate="animate"
       exit="exit"
       className={className}
-      variants={varContainer()}>
+      variants={variants ?? varContainer()}>
       {children}
     </m.div>
   );
