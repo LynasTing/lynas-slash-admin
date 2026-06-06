@@ -116,12 +116,14 @@ modify files
 
 ## 输出要求
 
-AI 最终只输出 commit message，不要解释。
+- AI 最终只输出 commit message，不要解释。
 
-输出多行 commit message 时，必须使用 `txt` 代码块包裹完整内容。禁止直接用普通 Markdown 列表输出多行 commit message，避免渲染结果吞掉或弱化空行。
+- 输出多行 commit message 时，必须使用 `txt` 代码块包裹完整内容。禁止直接用普通 Markdown 列表输出多行 commit message，避免渲染结果吞掉或弱化空行。
 
-如果用户明确要求只给一行 commit message，则只输出一行英文 header。
+- 如果用户明确要求只给一行 commit message，则只输出一行英文 header。
 
-如果用户没有明确限制输出一行，且改动内容不止一个细节，优先输出包含中英双语正文的 commit message。
+- 如果用户没有明确限制输出一行，且改动内容不止一个细节，优先输出包含中英双语正文的 commit message。
 
-输出多行 commit message 时，英文部分必须完整连续，中文部分必须完整连续，两部分之间必须有且只有一个空白行。该空白行必须出现在 `txt` 代码块的原始内容中，确保复制后仍然保留。
+- 输出多行 commit message 时，英文部分必须完整连续，中文部分必须完整连续，两部分之间必须有且只有一个空白行。该空白行必须出现在 `txt` 代码块的原始内容中，确保复制后仍然保留。
+
+- 读取最新的 staged 文件，不要沿用上次的 commit message。
