@@ -6,9 +6,9 @@ import { toast } from 'sonner';
 import { Text } from '@/ui/typography';
 import { MAX_AVATAR_SIZE } from '@/constants';
 import { Icon } from '@/components/icon';
-import { StyledUploadAvatar } from './styles';
+import { StyledAvatarUpload } from './styles';
 
-interface UploadAvatarProps extends Omit<UploadProps, 'beforeUpload' | 'onChange' | 'showUploadList' | 'listType'> {
+interface AvatarUploadProps extends Omit<UploadProps, 'beforeUpload' | 'onChange' | 'showUploadList' | 'listType'> {
   /**
    * 默认头像
    * Default avatar
@@ -32,7 +32,7 @@ interface UploadAvatarProps extends Omit<UploadProps, 'beforeUpload' | 'onChange
  *
  * @returns blob URL
  */
-export function UploadAvatar({ defaultAvatar, onAvatarChange, ...props }: UploadAvatarProps) {
+export function AvatarUpload({ defaultAvatar, onAvatarChange, ...props }: AvatarUploadProps) {
   // 默认头像 / 用户新上传的 blob 临时地址   default avatar / temporary address of the blob uploaded by the user
   const [previewUrl, setPreviewUrl] = useState(defaultAvatar);
   const [isHovering, setIsHovering] = useState(false);
@@ -115,13 +115,13 @@ export function UploadAvatar({ defaultAvatar, onAvatarChange, ...props }: Upload
   const shouldShowOverlay = !previewUrl || isHovering || isUploading;
 
   return (
-    <StyledUploadAvatar>
+    <StyledAvatarUpload>
       <Upload
         {...props}
         name="avatar"
         showUploadList={false}
         listType="picture-circle"
-        className="avatar-uploader flex! items-center justify-center"
+        className="avatar-upload flex! items-center justify-center"
         beforeUpload={handleBeforeUpload}
         onChange={handleChange}>
         <div
@@ -144,6 +144,6 @@ export function UploadAvatar({ defaultAvatar, onAvatarChange, ...props }: Upload
           max size of {formatBytes(MAX_AVATAR_SIZE)}
         </Text>{' '}
       </div>
-    </StyledUploadAvatar>
+    </StyledAvatarUpload>
   );
 }

@@ -1,6 +1,6 @@
 import { Card, CardContent, CardFooter } from '@/ui/card';
 import { useUserInfo } from '@/store/user';
-import { UploadAvatar } from '@/components/upload/avatar';
+import { AvatarUpload } from '@/components/upload/avatar-upload';
 import { Text } from '@/ui/typography';
 import { Switch } from '@/ui/switch';
 import Button from '@/ui/button';
@@ -83,7 +83,7 @@ export default function GeneralPanel() {
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
       <div className="col-span-1">
         <Card className="flex-col items-center px-6 pt-20 pb-10">
-          <UploadAvatar defaultAvatar={avatar} />
+          <AvatarUpload defaultAvatar={avatar} />
           <div className="flex w-40 items-center gap-2 py-6">
             <Text variant="body1">{t('pages.management.user.account.general.publicProfile')}</Text>
             <Switch />
