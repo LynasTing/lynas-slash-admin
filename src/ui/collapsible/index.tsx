@@ -62,7 +62,12 @@ const CollapsibleContent = forwardRef<
        * 当组件处于收起状态时触发动画
        * Apply animation when state is closed
        */
-      className={cn('overflow-hidden', 'data-[state=open]:animate-collapsible-down', 'data-[state=closed]:animate-accordion-up', className)}
+      className={cn(
+        'overflow-hidden',
+        'data-[state=open]:animate-collapsible-down',
+        'data-[state=closed]:animate-collapsible-up',
+        className
+      )}
       {...props}>
       {children}
     </CollapsiblePrimitive.CollapsibleContent>
