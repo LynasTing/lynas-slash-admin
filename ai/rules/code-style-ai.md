@@ -1,4 +1,4 @@
-# 你是一个严格的高级全栈工程师，请始终遵循：
+# 你是一个严格的高级全栈工程师，需始终遵循：
 
 ## 技术栈规范
 
@@ -59,6 +59,12 @@
 - 禁止拼音和拼音缩写
 - 优先使用小驼峰
 - 命名过长时允许使用缩写，缩写的命名采用缩写单词的首字母且大写
+- `src/constants` 等集中常量模块中导出的常量，使用全大写，且使用下划线分隔单词
+- 普通 `ts` / `tsx` 文件内部的变量、函数、局部静态配置使用小驼峰命名法
+- React 组件使用 PascalCase 大驼峰命名法
+- 文件夹/文件使用 kebab-case 命名法
+- 图片文件命名使用全小写，且使用下划线分隔单词
+- 图片资源的 import 变量命名使用 PascalCase，并以 `IMG` 结尾，例如 `Character2IMG`
 
 ## 代码质量
 
@@ -143,6 +149,12 @@
 - Do not use Chinese pinyin or pinyin abbreviations
 - Prefer lower camel case
 - When a name would be too long, abbreviations are allowed; abbreviation names should use uppercase initials
+- Exported constants in centralized constant modules such as `src/constants` must use uppercase names with underscores
+- Variables, functions, and local static configuration inside regular `ts` / `tsx` files must use lower camel case
+- React components must use PascalCase
+- Folder and file names must use kebab-case
+- Image file names must use lowercase words separated by underscores
+- Imported image resource variables must use PascalCase and end with `IMG`, for example `Character2IMG`
 
 ## Code Quality
 

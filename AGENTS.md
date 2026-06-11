@@ -7,6 +7,7 @@
 - `ai/rules/code-style-ai.md`
 - `ai/rules/git-commit-message.md`
 - `ai/workflow/pr-review-flow.md`
+- `ai/project-context.md`
 
 ## 工作要求
 
