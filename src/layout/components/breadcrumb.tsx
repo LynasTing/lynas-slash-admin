@@ -61,7 +61,7 @@ import {
   Breadcrumb,
   BreadcrumbList
 } from '@/ui/breadcrumb';
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@/ui/dropdowm-menu';
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@/ui/dropdown-menu';
 import { ChevronDown } from 'lucide-react';
 
 /**
@@ -191,7 +191,7 @@ export default function BreadCrumb({ maxItems = 3 }: BreadCrumbProps) {
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-1">
               {item.label}
-              <ChevronDown className="w-4 h-4" />
+              <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start">
               {item.items.map(sub => (

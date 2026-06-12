@@ -4,7 +4,7 @@ export const dropdownMenuContentVariants = cva([
   // 主题与颜色
   'bg-popover text-popover-foreground',
   // 动画状态（Radix data-state）
-  'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
+  'data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95',
   // 方向过渡（Radix data-side）
   'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
   // 布局与外观
@@ -13,9 +13,9 @@ export const dropdownMenuContentVariants = cva([
 
 export const dropdownMenuItemVariants = cva([
   //  交互与状态（focus、variant、disabled）
-  'focus:bg-accent focus:text-accent-foreground data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 dark:data-[variant=destructive]:focus:bg-destructive/20 data-[variant=destructive]:focus:text-destructive data-[variant=destructive]:*:[svg]:!text-destructive data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+  'focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 data-[variant=destructive]:focus:text-destructive dark:data-[variant=destructive]:focus:bg-destructive/20 data-[variant=destructive]:*:[svg]:!text-destructive',
   // SVG 与图标样式
-  "[&_svg:not([class*='text-'])]:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground",
   // 布局与外观
   'relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-[inset]:pl-8'
 ]);
@@ -55,17 +55,17 @@ export const dropdownMenuSubTriggerVariants = cva([
 
 export const dropdownMenuSubContentVariants = cva([
   // 外观（背景 / 文本 / 边框 / 阴影） Appearance (bg / text / border / shadow)
-  'bg-popover text-popover-foreground rounded-md border shadow-lg',
+  'rounded-md border bg-popover text-popover-foreground shadow-lg',
   // 层级与尺寸（z-index / 最小宽度） Layer & size (z-index / min width)
   'z-50 min-w-[8rem] overflow-hidden',
   // 动画状态（开 / 关） Animation state (open / closed)
-  'data-[state=open]:animate-in data-[state=closed]:animate-out',
+  'data-[state=closed]:animate-out data-[state=open]:animate-in',
   // 淡入淡出 Fade (in / out)
-  'data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0',
+  'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
   // 缩放 Zoom (in / out)
-  'data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95',
+  'data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
   // 方向位移 Slide (by side)
-  'data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2',
+  'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
   // 变换原点 Transform origin
   'origin-(--radix-dropdown-menu-content-transform-origin)',
   // 内边距 Padding

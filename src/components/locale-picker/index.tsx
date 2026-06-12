@@ -1,6 +1,6 @@
 import useLocale, { LANGUAGE_MAP } from '@/locales/use-locale';
 import { Icon } from '@/components/icon';
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@/ui/dropdowm-menu';
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@/ui/dropdown-menu';
 import Button from '@/ui/button';
 
 export default function LocalePicker() {

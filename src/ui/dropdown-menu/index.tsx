@@ -146,7 +146,7 @@ function DropdownMenuCheckboxItem({ className, checked, children, ...props }: Co
       className={cn(dropdownMenuCheckboxItemVariants(), className)}
       checked={checked}
       {...props}>
-      <span className="absolute left-2 flex justify-center items-center size-3.5 pointer-events-none">
+      <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
         <DropdownMenuPrimitive.ItemIndicator>
           <CheckIcon className="size-4" />
         </DropdownMenuPrimitive.ItemIndicator>
@@ -185,7 +185,7 @@ function DropdownMenuRadioItem({ className, children, ...props }: ComponentProps
       data-slot="dropdown-menu-radio-item"
       className={cn(dropdownMenuRadioItemVariants(), className)}
       {...props}>
-      <span className="absolute left-2 flex justify-center items-center size-3.5">
+      <span className="absolute left-2 flex size-3.5 items-center justify-center">
         <DropdownMenuPrimitive.ItemIndicator>
           <CircleIcon className="size-2 fill-current" />
         </DropdownMenuPrimitive.ItemIndicator>
@@ -230,7 +230,7 @@ function DropdownMenuSeparator({ className, ...props }: ComponentProps<typeof Dr
   return (
     <DropdownMenuPrimitive.Separator
       data-slot="dropdown-menu-separator"
-      className={cn('bg-border -mx-1 my-1 h-px', className)}
+      className={cn('-mx-1 my-1 h-px bg-border', className)}
       {...props}
     />
   );
@@ -249,7 +249,7 @@ function DropdownMenuShortcut({ className, ...props }: ComponentProps<'span'>) {
   return (
     <span
       data-slot="dropdown-menu-shortcut"
-      className={cn('text-muted-foreground ml-auto text-xs tracking-widest', className)}
+      className={cn('ml-auto text-xs tracking-widest text-muted-foreground', className)}
       {...props}
     />
   );
