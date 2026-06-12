@@ -1,8 +1,9 @@
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/ui/collapsible';
+import { Collapsible, CollapsibleTrigger } from '@/ui/collapsible';
 import { useLocation } from 'react-router';
 import { useState } from 'react';
 import type { NavListProps } from '../types';
 import { NavVerticalItem } from './nav-item';
+import { NavMotionCollapsibleContent } from './nav-motion-collapsible-content';
 
 export function NavVerticalList({ data, depth = 1 }: NavListProps) {
   const location = useLocation();
@@ -46,13 +47,13 @@ export function NavVerticalList({ data, depth = 1 }: NavListProps) {
         />
       </CollapsibleTrigger>
       {hasChild && (
-        <CollapsibleContent>
-          <div className="flex flex-col mt-1 ml-4 gap-1">
+        <NavMotionCollapsibleContent open={open}>
+          <div className="mt-1 ml-4 flex flex-col gap-1">
             {data.children?.map(i => (
               <NavVerticalList key={i.title} data={i} depth={depth + 1} />
             ))}
           </div>
-        </CollapsibleContent>
+        </NavMotionCollapsibleContent>
       )}
     </Collapsible>
   );
