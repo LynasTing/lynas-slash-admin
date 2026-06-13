@@ -21,10 +21,12 @@ export function DropzoneUpload({ children, ...args }: UploadProps) {
   return (
     <StyleDropzoneUpload>
       <Dragger showUploadList={false} {...args}>
-        <div className="opacity-60 hover:opacity-50">
+        <div className="transition-opacity hover:opacity-85">
           {children ?? (
-            <div className="mx-auto flex size-16 items-center justify-center">
-              <Icon icon="eva:cloud-upload-fill" size={28} />
+            <div className="opacity-60">
+              <div className="mx-auto flex size-16 items-center justify-center">
+                <Icon icon="eva:cloud-upload-fill" size={28} />
+              </div>
             </div>
           )}
         </div>
