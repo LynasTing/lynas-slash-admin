@@ -19,6 +19,7 @@
 - 禁止使用行尾注释
 - 注释语言必须自然、简洁、符合工程语境
 - TSX/JSX 片段变量必须使用多行块注释，说明该片段的职责和使用场景，不使用单行注释
+- `type` / `interface` 的属性必须逐个添加多行块注释，注释应放在属性声明上方，并说明属性含义；属性之间必须用空行隔开；属性注释内部不要为每一行说明都添加空行，只有中英文分段或语义分段时才保留空行
 
 ## 国际化项目注释规范（i18n 项目强制执行）
 
@@ -109,6 +110,7 @@
 - Do not use trailing comments
 - Comments must be natural, concise, and appropriate for engineering context
 - TSX/JSX fragment variables must use multi-line block comments that describe the fragment responsibility and usage context; do not use single-line comments
+- Properties in `type` / `interface` definitions must each have a multi-line block comment placed above the property declaration, explaining the property's meaning. Properties must be separated by blank lines. Do not add blank lines between every line inside a property comment; keep blank lines only between Chinese and English sections or clear semantic sections
 
 ## i18n Project Comment Rules (Required)
 
