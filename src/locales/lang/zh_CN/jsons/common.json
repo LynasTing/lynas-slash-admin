@@ -6,7 +6,7 @@
     "close": "关闭",
     "exportData": "导出数据",
     "upload": {
-      "avatarAcceptedTypes": "仅支持 JPEG、PNG 和 GIF 图片。",
+      "avatarAcceptedTypes": "仅支持 JPEG、JPG 和 PNG 图片。",
       "avatarMaxSize": "头像必须小于 {{size}}。"
     }
   }
