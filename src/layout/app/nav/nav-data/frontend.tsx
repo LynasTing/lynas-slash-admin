@@ -34,6 +34,41 @@ export const frontendNavData: NavProps['data'] = [
             path: '/functions/token-expired'
           }
         ]
+      },
+      {
+        title: 'sys.nav.components.label',
+        path: '/components',
+        icon: <Icon icon="solar:widget-5-bold-duotone" size="24" />,
+        children: [
+          {
+            title: 'sys.nav.components.toast',
+            path: '/components/toast'
+          },
+          {
+            title: 'sys.nav.components.icon',
+            path: '/components/icon'
+          },
+          {
+            title: 'sys.nav.components.multiLanguage',
+            path: '/components/multi-language'
+          },
+          {
+            title: 'scroll',
+            path: '/components/scroll'
+          },
+          {
+            title: 'chart',
+            path: '/components/chart'
+          },
+          {
+            title: 'animate',
+            path: '/components/animate'
+          },
+          {
+            title: 'upload',
+            path: '/components/upload'
+          }
+        ]
       }
     ]
   },
@@ -52,8 +87,76 @@ export const frontendNavData: NavProps['data'] = [
               {
                 title: 'sys.nav.pages.profile',
                 path: '/management/user/profile'
+              },
+              {
+                title: 'sys.nav.pages.account',
+                path: '/management/user/account'
               }
             ]
+          },
+          {
+            title: 'sys.nav.pages.system',
+            path: '/management/system',
+            children: [
+              {
+                title: 'sys.nav.pages.menu',
+                path: '/management/system/menu'
+              }
+            ]
+          }
+        ]
+      },
+      {
+        title: 'sys.nav.pages.menuLevel.label',
+        path: '/menu-level',
+        icon: <Icon icon="local:ic-menu-level" size="24" />,
+        children: [
+          {
+            title: 'sys.nav.pages.menuLevel.level1a',
+            path: '/menu-level/1a'
+          },
+          {
+            title: 'sys.nav.pages.menuLevel.level1b',
+            path: '/menu-level/1b',
+            children: [
+              {
+                title: 'sys.nav.pages.menuLevel.level2a',
+                path: '/menu-level/1b/2a'
+              },
+              {
+                title: 'sys.nav.pages.menuLevel.level2b',
+                path: '/menu-level/1b/2b',
+                children: [
+                  {
+                    title: 'sys.nav.pages.menuLevel.level3a',
+                    path: '/menu-level/1b/2b/3a'
+                  },
+                  {
+                    title: 'sys.nav.pages.menuLevel.level3b',
+                    path: '/menu-level/1b/2b/3b'
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        title: '异常页',
+        path: '/error',
+        icon: <Icon icon="bxs:error-alt" size="24" />,
+        children: [
+          {
+            title: '403',
+            path: '/error/403'
+          },
+          {
+            title: '404',
+            path: '/error/404'
+          },
+          {
+            title: '500',
+            path: '/error/500'
           }
         ]
       }
