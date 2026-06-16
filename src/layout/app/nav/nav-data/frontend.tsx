@@ -1,5 +1,6 @@
 import type { NavProps } from '@/components/nav/types';
 import { Icon } from '@/components/icon';
+import { Badge } from '@/ui/badge';
 
 export const frontendNavData: NavProps['data'] = [
   {
@@ -159,6 +160,17 @@ export const frontendNavData: NavProps['data'] = [
             path: '/error/500'
           }
         ]
+      }
+    ]
+  },
+  {
+    name: 'others',
+    items: [
+      {
+        title: 'calendar',
+        path: '/others/calendar',
+        icon: <Icon icon="solar:calendar-bold-duotone" size="24" />,
+        info: <Badge variant="warning">+12</Badge>
       }
     ]
   }

@@ -146,6 +146,15 @@ export function GetFrontendRoutes() {
           element: Component('/pages/components/upload')
         }
       ]
+    },
+    {
+      path: 'others',
+      children: [
+        {
+          path: 'calendar',
+          element: Component('/pages/others/calendar')
+        }
+      ]
     }
   ];
   return frontendRoutes;
