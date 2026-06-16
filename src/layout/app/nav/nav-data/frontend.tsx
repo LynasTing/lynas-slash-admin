@@ -54,7 +54,7 @@ export const frontendNavData: NavProps['data'] = [
             path: '/components/multi-language'
           },
           {
-            title: 'scroll',
+            title: 'sys.nav.components.scroll',
             path: '/components/scroll'
           },
           {

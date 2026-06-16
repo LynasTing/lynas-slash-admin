@@ -3,10 +3,13 @@ import { themeVars } from '@/theme/theme.css';
 import { Card, CardHeader, CardTitle, CardContent } from '@/ui/card';
 import { faker } from '@faker-js/faker';
 import { ScrollProgress, useScrollProgress } from '@/components/animate/scroll-progress';
+import useLocale from '@/locales/use-locale';
 
 const text = faker.lorem.paragraphs({ min: 20, max: 30 });
+const SCROLL_PAGE_I18N_PREFIX = 'pages.components.scroll';
 
 export default function ScrollProgressView() {
+  const { t } = useLocale();
   const { elementRef, scrollYProgress } = useScrollProgress('container');
 
   return (
@@ -23,7 +26,7 @@ export default function ScrollProgressView() {
       </Button>
       <Card>
         <CardHeader>
-          <CardTitle>ScrollProgress</CardTitle>
+          <CardTitle>{t(`${SCROLL_PAGE_I18N_PREFIX}.cards.scrollProgress`)}</CardTitle>
         </CardHeader>
         <CardContent>
           <ScrollProgress scrollYProgress={scrollYProgress} />

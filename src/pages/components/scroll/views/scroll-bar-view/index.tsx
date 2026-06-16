@@ -3,10 +3,14 @@ import { themeVars } from '@/theme/theme.css';
 import { Card, CardHeader, CardTitle, CardContent } from '@/ui/card';
 import { ScrollArea, ScrollBar } from '@/ui/scroll-area';
 import { faker } from '@faker-js/faker';
+import useLocale from '@/locales/use-locale';
 
 const text = faker.lorem.paragraphs({ min: 20, max: 30 });
+const SCROLL_PAGE_I18N_PREFIX = 'pages.components.scroll';
 
 export default function ScrollBarView() {
+  const { t } = useLocale();
+
   return (
     <>
       <Button variant="link" asChild>
@@ -22,7 +26,7 @@ export default function ScrollBarView() {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle>Vertical</CardTitle>
+            <CardTitle>{t(`${SCROLL_PAGE_I18N_PREFIX}.cards.vertical`)}</CardTitle>
           </CardHeader>
           <CardContent>
             <ScrollArea className="h-[420px]">{text}</ScrollArea>
@@ -30,7 +34,7 @@ export default function ScrollBarView() {
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle>horizontal</CardTitle>
+            <CardTitle>{t(`${SCROLL_PAGE_I18N_PREFIX}.cards.horizontal`)}</CardTitle>
           </CardHeader>
           <CardContent>
             <ScrollArea className="w-full pb-2">

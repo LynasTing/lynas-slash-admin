@@ -18,6 +18,17 @@
           "zhCN": "Chinese"
         }
       },
+      "scroll": {
+        "tabs": {
+          "scrollBar": "Scroll Bar",
+          "scrollProgress": "Scroll Progress"
+        },
+        "cards": {
+          "vertical": "Vertical",
+          "horizontal": "Horizontal",
+          "scrollProgress": "Scroll Progress"
+        }
+      },
       "toast": {
         "sections": {
           "simple": "Simple",

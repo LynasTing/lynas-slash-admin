@@ -23,7 +23,8 @@
         "label": "组件",
         "toast": "Toast 提示",
         "icon": "图标",
-        "multiLanguage": "多语言"
+        "multiLanguage": "多语言",
+        "scroll": "滚动"
       },
       "system": {
         "userDetail": "用户详情"

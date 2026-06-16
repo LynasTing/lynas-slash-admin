@@ -17,7 +17,8 @@
         "label": "Components",
         "toast": "Toast",
         "icon": "Icon",
-        "multiLanguage": "Multi-language"
+        "multiLanguage": "Multi-language",
+        "scroll": "Scroll"
       },
       "pages": {
         "label": "Pages",

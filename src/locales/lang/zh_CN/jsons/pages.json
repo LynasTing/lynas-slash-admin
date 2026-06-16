@@ -18,6 +18,17 @@
           "zhCN": "中文"
         }
       },
+      "scroll": {
+        "tabs": {
+          "scrollBar": "滚动条",
+          "scrollProgress": "滚动进度"
+        },
+        "cards": {
+          "vertical": "垂直滚动",
+          "horizontal": "水平滚动",
+          "scrollProgress": "滚动进度"
+        }
+      },
       "toast": {
         "sections": {
           "simple": "基础提示",
