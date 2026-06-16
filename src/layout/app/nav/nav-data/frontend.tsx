@@ -58,7 +58,7 @@ export const frontendNavData: NavProps['data'] = [
             path: '/components/scroll'
           },
           {
-            title: 'chart',
+            title: 'sys.nav.components.chart',
             path: '/components/chart'
           },
           {

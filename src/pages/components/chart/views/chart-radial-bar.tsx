@@ -1,11 +1,20 @@
 import { Chart, useChart } from '@/components/chart';
 import { formatNumber } from '@/utils';
+import useLocale from '@/locales/use-locale';
+import { CHART_PAGE_I18N_PREFIX } from '../constants';
 
 const series = Array.from({ length: 4 }, () => Math.floor(Math.random() * 100) + 1);
 
 export default function ChartRadialBar() {
+  const { t } = useLocale();
+
   const chartOptions = useChart({
-    labels: ['Apple', 'Microsoft', 'Oracle', 'Amazon'],
+    labels: [
+      t(`${CHART_PAGE_I18N_PREFIX}.companies.apple`),
+      t(`${CHART_PAGE_I18N_PREFIX}.companies.microsoft`),
+      t(`${CHART_PAGE_I18N_PREFIX}.companies.oracle`),
+      t(`${CHART_PAGE_I18N_PREFIX}.companies.amazon`)
+    ],
     chart: {
       sparkline: {
         enabled: true

@@ -1,17 +1,26 @@
 import { Chart, useChart } from '@/components/chart';
+import useLocale from '@/locales/use-locale';
+import { CHART_PAGE_I18N_PREFIX } from '../constants';
 
-const series = [
-  {
-    name: 'series1',
-    data: Array.from({ length: 7 }, () => Math.floor(Math.random() * 1000))
-  },
-  {
-    name: 'series2',
-    data: Array.from({ length: 7 }, () => Math.floor(Math.random() * 1000))
-  }
+const seriesData = [
+  Array.from({ length: 7 }, () => Math.floor(Math.random() * 1000)),
+  Array.from({ length: 7 }, () => Math.floor(Math.random() * 1000))
 ];
 
 export default function ChartArea() {
+  const { t } = useLocale();
+
+  const series = [
+    {
+      name: t(`${CHART_PAGE_I18N_PREFIX}.series.series1`),
+      data: seriesData[0]
+    },
+    {
+      name: t(`${CHART_PAGE_I18N_PREFIX}.series.series2`),
+      data: seriesData[1]
+    }
+  ];
+
   const chartOptions = useChart({
     xaxis: {
       type: 'datetime',
@@ -31,5 +40,6 @@ export default function ChartArea() {
       }
     }
   });
+
   return <Chart type="area" series={series} options={chartOptions} height={320} />;
 }

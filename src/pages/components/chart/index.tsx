@@ -12,8 +12,12 @@ import ChartPie from './views/chart-pie';
 import ChartDonut from './views/chart-donut';
 import ChartRadialBar from './views/chart-radial-bar';
 import ChartRadar from './views/chart-radar';
+import useLocale from '@/locales/use-locale';
+import { CHART_PAGE_I18N_PREFIX } from './constants';
 
 export default function ChartPage() {
+  const { t } = useLocale();
+
   return (
     <>
       <Button variant="link" asChild>
@@ -24,7 +28,7 @@ export default function ChartPage() {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle>Area</CardTitle>
+            <CardTitle>{t(`${CHART_PAGE_I18N_PREFIX}.cards.area`)}</CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             <ChartArea />
@@ -32,7 +36,7 @@ export default function ChartPage() {
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle>Line</CardTitle>
+            <CardTitle>{t(`${CHART_PAGE_I18N_PREFIX}.cards.line`)}</CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             <ChartLine />
@@ -40,7 +44,7 @@ export default function ChartPage() {
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle>Column Single</CardTitle>
+            <CardTitle>{t(`${CHART_PAGE_I18N_PREFIX}.cards.columnSingle`)}</CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             <ChartColumnSingle />
@@ -48,7 +52,7 @@ export default function ChartPage() {
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle>Column Multiple</CardTitle>
+            <CardTitle>{t(`${CHART_PAGE_I18N_PREFIX}.cards.columnMultiple`)}</CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             <ChartColumnMultiple />
@@ -56,7 +60,7 @@ export default function ChartPage() {
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle>Column Stacked</CardTitle>
+            <CardTitle>{t(`${CHART_PAGE_I18N_PREFIX}.cards.columnStacked`)}</CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             <ChartColumnStacked />
@@ -64,7 +68,7 @@ export default function ChartPage() {
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle>Column Negative</CardTitle>
+            <CardTitle>{t(`${CHART_PAGE_I18N_PREFIX}.cards.columnNegative`)}</CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             <ChartColumnNegative />
@@ -72,7 +76,7 @@ export default function ChartPage() {
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle>Bar</CardTitle>
+            <CardTitle>{t(`${CHART_PAGE_I18N_PREFIX}.cards.bar`)}</CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             <ChartBar />
@@ -80,7 +84,7 @@ export default function ChartPage() {
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle>Column Mixed</CardTitle>
+            <CardTitle>{t(`${CHART_PAGE_I18N_PREFIX}.cards.columnMixed`)}</CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             <ChartMixed />
@@ -88,7 +92,7 @@ export default function ChartPage() {
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle>Pie</CardTitle>
+            <CardTitle>{t(`${CHART_PAGE_I18N_PREFIX}.cards.pie`)}</CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             <ChartPie />
@@ -96,7 +100,7 @@ export default function ChartPage() {
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle>Donut</CardTitle>
+            <CardTitle>{t(`${CHART_PAGE_I18N_PREFIX}.cards.donut`)}</CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             <ChartDonut />
@@ -104,7 +108,7 @@ export default function ChartPage() {
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle>Radial Bar</CardTitle>
+            <CardTitle>{t(`${CHART_PAGE_I18N_PREFIX}.cards.radialBar`)}</CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             <ChartRadialBar />
@@ -112,7 +116,7 @@ export default function ChartPage() {
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle>Radar</CardTitle>
+            <CardTitle>{t(`${CHART_PAGE_I18N_PREFIX}.cards.radar`)}</CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             <ChartRadar />

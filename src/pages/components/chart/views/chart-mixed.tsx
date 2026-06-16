@@ -1,24 +1,34 @@
 import { Chart, useChart } from '@/components/chart';
+import useLocale from '@/locales/use-locale';
+import { CHART_PAGE_I18N_PREFIX } from '../constants';
 
-const series = [
-  {
-    name: 'Team A',
-    type: 'column',
-    data: Array.from({ length: 11 }, () => Math.floor(Math.random() * 100) + 1)
-  },
-  {
-    name: 'Team B',
-    type: 'area',
-    data: Array.from({ length: 11 }, () => Math.floor(Math.random() * 100) + 1)
-  },
-  {
-    name: 'Team C',
-    type: 'line',
-    data: Array.from({ length: 11 }, () => Math.floor(Math.random() * 100) + 1)
-  }
+const seriesData = [
+  Array.from({ length: 11 }, () => Math.floor(Math.random() * 100) + 1),
+  Array.from({ length: 11 }, () => Math.floor(Math.random() * 100) + 1),
+  Array.from({ length: 11 }, () => Math.floor(Math.random() * 100) + 1)
 ];
 
 export default function ChartMixed() {
+  const { t } = useLocale();
+
+  const series = [
+    {
+      name: t(`${CHART_PAGE_I18N_PREFIX}.series.teamA`),
+      type: 'column',
+      data: seriesData[0]
+    },
+    {
+      name: t(`${CHART_PAGE_I18N_PREFIX}.series.teamB`),
+      type: 'area',
+      data: seriesData[1]
+    },
+    {
+      name: t(`${CHART_PAGE_I18N_PREFIX}.series.teamC`),
+      type: 'line',
+      data: seriesData[2]
+    }
+  ];
+
   const chartOptions = useChart({
     stroke: {
       width: [0, 2, 3]
@@ -49,7 +59,7 @@ export default function ChartMixed() {
     },
     yaxis: {
       title: {
-        text: 'Points'
+        text: t(`${CHART_PAGE_I18N_PREFIX}.units.points`)
       },
       min: 0
     },
@@ -59,7 +69,7 @@ export default function ChartMixed() {
       y: {
         formatter: (value: number) => {
           if (typeof value !== 'undefined') {
-            return value.toFixed(0) + ' points';
+            return t(`${CHART_PAGE_I18N_PREFIX}.formatters.points`, { value: value.toFixed(0) });
           }
           return value;
         }

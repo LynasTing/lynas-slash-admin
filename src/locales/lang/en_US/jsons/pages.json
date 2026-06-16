@@ -29,6 +29,88 @@
           "scrollProgress": "Scroll Progress"
         }
       },
+      "chart": {
+        "cards": {
+          "area": "Area",
+          "line": "Line",
+          "columnSingle": "Column Single",
+          "columnMultiple": "Column Multiple",
+          "columnStacked": "Column Stacked",
+          "columnNegative": "Column Negative",
+          "bar": "Bar",
+          "columnMixed": "Column Mixed",
+          "pie": "Pie",
+          "donut": "Donut",
+          "radialBar": "Radial Bar",
+          "radar": "Radar"
+        },
+        "series": {
+          "series1": "Series 1",
+          "series2": "Series 2",
+          "series3": "Series 3",
+          "netProfit": "Net Profit",
+          "revenue": "Revenue",
+          "productA": "Product A",
+          "productB": "Product B",
+          "productC": "Product C",
+          "productD": "Product D",
+          "cashFlow": "Cash Flow",
+          "teamA": "Team A",
+          "teamB": "Team B",
+          "teamC": "Team C"
+        },
+        "months": {
+          "jan": "Jan",
+          "feb": "Feb",
+          "mar": "Mar",
+          "apr": "Apr",
+          "may": "May",
+          "jun": "Jun",
+          "jul": "Jul",
+          "aug": "Aug",
+          "sep": "Sep",
+          "oct": "Oct"
+        },
+        "countries": {
+          "italy": "Italy",
+          "japan": "Japan",
+          "china": "China",
+          "canada": "Canada",
+          "france": "France",
+          "germany": "Germany",
+          "southKorea": "South Korea",
+          "netherlands": "Netherlands",
+          "unitedStates": "United States",
+          "unitedKingdom": "United Kingdom"
+        },
+        "regions": {
+          "asia": "Asia",
+          "africa": "Africa",
+          "europe": "Europe",
+          "latinAmerica": "Latin America",
+          "northAmerica": "North America"
+        },
+        "fruits": {
+          "apple": "Apple",
+          "mango": "Mango",
+          "orange": "Orange",
+          "watermelon": "Watermelon",
+          "strawberry": "Strawberry"
+        },
+        "companies": {
+          "apple": "Apple",
+          "microsoft": "Microsoft",
+          "oracle": "Oracle",
+          "amazon": "Amazon"
+        },
+        "units": {
+          "points": "Points"
+        },
+        "formatters": {
+          "usdThousands": "${{value}} thousand",
+          "points": "{{value}} points"
+        }
+      },
       "toast": {
         "sections": {
           "simple": "Simple",

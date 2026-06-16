@@ -18,7 +18,8 @@
         "toast": "Toast",
         "icon": "Icon",
         "multiLanguage": "Multi-language",
-        "scroll": "Scroll"
+        "scroll": "Scroll",
+        "chart": "Chart"
       },
       "pages": {
         "label": "Pages",

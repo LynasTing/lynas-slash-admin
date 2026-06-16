@@ -29,6 +29,88 @@
           "scrollProgress": "滚动进度"
         }
       },
+      "chart": {
+        "cards": {
+          "area": "面积图",
+          "line": "折线图",
+          "columnSingle": "单柱图",
+          "columnMultiple": "多柱图",
+          "columnStacked": "堆叠柱图",
+          "columnNegative": "正负柱图",
+          "bar": "条形图",
+          "columnMixed": "混合柱图",
+          "pie": "饼图",
+          "donut": "环形图",
+          "radialBar": "径向条形图",
+          "radar": "雷达图"
+        },
+        "series": {
+          "series1": "系列 1",
+          "series2": "系列 2",
+          "series3": "系列 3",
+          "netProfit": "净利润",
+          "revenue": "营收",
+          "productA": "产品 A",
+          "productB": "产品 B",
+          "productC": "产品 C",
+          "productD": "产品 D",
+          "cashFlow": "现金流",
+          "teamA": "团队 A",
+          "teamB": "团队 B",
+          "teamC": "团队 C"
+        },
+        "months": {
+          "jan": "1月",
+          "feb": "2月",
+          "mar": "3月",
+          "apr": "4月",
+          "may": "5月",
+          "jun": "6月",
+          "jul": "7月",
+          "aug": "8月",
+          "sep": "9月",
+          "oct": "10月"
+        },
+        "countries": {
+          "italy": "意大利",
+          "japan": "日本",
+          "china": "中国",
+          "canada": "加拿大",
+          "france": "法国",
+          "germany": "德国",
+          "southKorea": "韩国",
+          "netherlands": "荷兰",
+          "unitedStates": "美国",
+          "unitedKingdom": "英国"
+        },
+        "regions": {
+          "asia": "亚洲",
+          "africa": "非洲",
+          "europe": "欧洲",
+          "latinAmerica": "拉丁美洲",
+          "northAmerica": "北美洲"
+        },
+        "fruits": {
+          "apple": "苹果",
+          "mango": "芒果",
+          "orange": "橙子",
+          "watermelon": "西瓜",
+          "strawberry": "草莓"
+        },
+        "companies": {
+          "apple": "Apple",
+          "microsoft": "Microsoft",
+          "oracle": "Oracle",
+          "amazon": "Amazon"
+        },
+        "units": {
+          "points": "点数"
+        },
+        "formatters": {
+          "usdThousands": "${{value}} 千美元",
+          "points": "{{value}} 点"
+        }
+      },
       "toast": {
         "sections": {
           "simple": "基础提示",

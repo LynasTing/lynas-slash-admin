@@ -1,22 +1,32 @@
 import { Chart, useChart } from '@/components/chart';
 import { themeVars } from '@/theme/theme.css';
+import useLocale from '@/locales/use-locale';
+import { CHART_PAGE_I18N_PREFIX } from '../constants';
 
-const series = [
-  {
-    name: 'series 1',
-    data: Array.from({ length: 6 }, () => Math.floor(Math.random() * 100) + 1)
-  },
-  {
-    name: 'series 2',
-    data: Array.from({ length: 6 }, () => Math.floor(Math.random() * 100) + 1)
-  },
-  {
-    name: 'series 3',
-    data: Array.from({ length: 6 }, () => Math.floor(Math.random() * 100) + 1)
-  }
+const seriesData = [
+  Array.from({ length: 6 }, () => Math.floor(Math.random() * 100) + 1),
+  Array.from({ length: 6 }, () => Math.floor(Math.random() * 100) + 1),
+  Array.from({ length: 6 }, () => Math.floor(Math.random() * 100) + 1)
 ];
 
 export default function ChartRadar() {
+  const { t } = useLocale();
+
+  const series = [
+    {
+      name: t(`${CHART_PAGE_I18N_PREFIX}.series.series1`),
+      data: seriesData[0]
+    },
+    {
+      name: t(`${CHART_PAGE_I18N_PREFIX}.series.series2`),
+      data: seriesData[1]
+    },
+    {
+      name: t(`${CHART_PAGE_I18N_PREFIX}.series.series3`),
+      data: seriesData[2]
+    }
+  ];
+
   const chartOptions = useChart({
     stroke: {
       width: 2

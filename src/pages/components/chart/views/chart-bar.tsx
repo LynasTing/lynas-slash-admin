@@ -1,8 +1,12 @@
 import { useChart, Chart } from '@/components/chart';
+import useLocale from '@/locales/use-locale';
+import { CHART_PAGE_I18N_PREFIX } from '../constants';
 
 const series = Array.from({ length: 10 }, () => Math.floor(Math.random() * 1000) + 1);
 
 export default function ChartBar() {
+  const { t } = useLocale();
+
   const chartOptions = useChart({
     stroke: {
       show: false
@@ -15,16 +19,16 @@ export default function ChartBar() {
     },
     xaxis: {
       categories: [
-        'Italy',
-        'Japan',
-        'China',
-        'Canada',
-        'France',
-        'Germany',
-        'South Korea',
-        'Netherlands',
-        'United States',
-        'United Kingdom'
+        t(`${CHART_PAGE_I18N_PREFIX}.countries.italy`),
+        t(`${CHART_PAGE_I18N_PREFIX}.countries.japan`),
+        t(`${CHART_PAGE_I18N_PREFIX}.countries.china`),
+        t(`${CHART_PAGE_I18N_PREFIX}.countries.canada`),
+        t(`${CHART_PAGE_I18N_PREFIX}.countries.france`),
+        t(`${CHART_PAGE_I18N_PREFIX}.countries.germany`),
+        t(`${CHART_PAGE_I18N_PREFIX}.countries.southKorea`),
+        t(`${CHART_PAGE_I18N_PREFIX}.countries.netherlands`),
+        t(`${CHART_PAGE_I18N_PREFIX}.countries.unitedStates`),
+        t(`${CHART_PAGE_I18N_PREFIX}.countries.unitedKingdom`)
       ]
     }
   });

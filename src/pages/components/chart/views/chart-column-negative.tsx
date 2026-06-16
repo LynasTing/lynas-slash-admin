@@ -1,14 +1,20 @@
 import { Chart, useChart } from '@/components/chart';
 import { themeVars } from '@/theme/theme.css';
+import useLocale from '@/locales/use-locale';
+import { CHART_PAGE_I18N_PREFIX } from '../constants';
 
-const series = [
-  {
-    name: 'Cash Flow',
-    data: Array.from({ length: 33 }, () => Math.floor(Math.random() * 80) - 50)
-  }
-];
+const seriesData = Array.from({ length: 33 }, () => Math.floor(Math.random() * 80) - 50);
 
 export default function ChartColumnStacked() {
+  const { t } = useLocale();
+
+  const series = [
+    {
+      name: t(`${CHART_PAGE_I18N_PREFIX}.series.cashFlow`),
+      data: seriesData
+    }
+  ];
+
   const chartOptions = useChart({
     stroke: {
       show: false

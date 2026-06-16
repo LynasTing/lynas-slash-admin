@@ -1,25 +1,36 @@
 import { Chart, useChart } from '@/components/chart';
+import useLocale from '@/locales/use-locale';
+import { CHART_PAGE_I18N_PREFIX } from '../constants';
 
-const series = [
-  {
-    name: 'Product A',
-    data: Array.from({ length: 6 }, () => Math.floor(Math.random() * 100) + 1)
-  },
-  {
-    name: 'Product B',
-    data: Array.from({ length: 6 }, () => Math.floor(Math.random() * 100) + 1)
-  },
-  {
-    name: 'Product C',
-    data: Array.from({ length: 6 }, () => Math.floor(Math.random() * 100) + 1)
-  },
-  {
-    name: 'Product D',
-    data: Array.from({ length: 6 }, () => Math.floor(Math.random() * 100) + 1)
-  }
+const seriesData = [
+  Array.from({ length: 6 }, () => Math.floor(Math.random() * 100) + 1),
+  Array.from({ length: 6 }, () => Math.floor(Math.random() * 100) + 1),
+  Array.from({ length: 6 }, () => Math.floor(Math.random() * 100) + 1),
+  Array.from({ length: 6 }, () => Math.floor(Math.random() * 100) + 1)
 ];
 
 export default function ChartColumnStacked() {
+  const { t } = useLocale();
+
+  const series = [
+    {
+      name: t(`${CHART_PAGE_I18N_PREFIX}.series.productA`),
+      data: seriesData[0]
+    },
+    {
+      name: t(`${CHART_PAGE_I18N_PREFIX}.series.productB`),
+      data: seriesData[1]
+    },
+    {
+      name: t(`${CHART_PAGE_I18N_PREFIX}.series.productC`),
+      data: seriesData[2]
+    },
+    {
+      name: t(`${CHART_PAGE_I18N_PREFIX}.series.productD`),
+      data: seriesData[3]
+    }
+  ];
+
   const chartOptions = useChart({
     chart: {
       stacked: true,
