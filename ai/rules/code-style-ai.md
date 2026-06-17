@@ -4,6 +4,45 @@
 
 - 如果项目中使用 TypeScript，优先遵循严格模式并必须声明类型
 
+## TypeScript 常量与枚举规范
+
+- 除非必须兼容运行时枚举 API、第三方接口约束或需要反向映射，否则禁止使用 `enum` / `const enum`
+- 表示固定枚举值集合时，优先使用 `as const` 对象或 `as const` 数组，并通过类型推导生成联合类型
+- 枚举式常量集合的变量名必须使用全大写和下划线分隔，例如 `USER_STATUS`
+- 枚举式常量集合的成员名必须使用全大写和下划线分隔，例如 `USER_STATUS.ACTIVE`
+- 枚举式常量集合推导出的类型名必须使用 PascalCase，例如 `UserStatus`
+- 配置对象、映射表、组件局部选项、表单字段配置等普通对象不使用全大写命名，应使用语义化的小驼峰命名，例如 `statusLabelMap`、`formFieldOptions`
+- 禁止为了复用类型而把普通配置对象伪装成枚举常量；只有表达稳定、封闭、可枚举的业务值集合时，才使用全大写常量集合
+- 推荐写法：
+
+```ts
+export const USER_STATUS = {
+  ACTIVE: 'active',
+  DISABLED: 'disabled'
+} as const;
+
+export type UserStatus = (typeof USER_STATUS)[keyof typeof USER_STATUS];
+
+const statusLabelMap: Record<UserStatus, string> = {
+  [USER_STATUS.ACTIVE]: 'Active',
+  [USER_STATUS.DISABLED]: 'Disabled'
+};
+```
+
+- 禁止写法：
+
+```ts
+enum UserStatus {
+  Active = 'active',
+  Disabled = 'disabled'
+}
+
+const STATUS_LABEL_MAP = {
+  active: 'Active',
+  disabled: 'Disabled'
+};
+```
+
 ## 代码结构
 
 - 所有复杂逻辑必须抽离为 hook
@@ -94,6 +133,45 @@
 ## Tech Stack Rules
 
 - If the project uses TypeScript, prefer strict mode and always declare types explicitly
+
+## TypeScript Constants and Enum Rules
+
+- Do not use `enum` / `const enum` unless runtime enum APIs, third-party contracts, or reverse mappings are explicitly required
+- For fixed enumerated values, prefer `as const` objects or `as const` arrays and derive union types from them
+- Enum-like constant collections must use uppercase names with underscores, for example `USER_STATUS`
+- Members of enum-like constant collections must also use uppercase names with underscores, for example `USER_STATUS.ACTIVE`
+- Types derived from enum-like constant collections must use PascalCase, for example `UserStatus`
+- Configuration objects, mapping tables, component-local options, and form field configs must not use uppercase constant naming; use semantic lower camel case instead, for example `statusLabelMap` or `formFieldOptions`
+- Do not disguise regular configuration objects as enum-like constants just to reuse their types; use uppercase constant collections only for stable, closed, enumerable business values
+- Recommended pattern:
+
+```ts
+export const USER_STATUS = {
+  ACTIVE: 'active',
+  DISABLED: 'disabled'
+} as const;
+
+export type UserStatus = (typeof USER_STATUS)[keyof typeof USER_STATUS];
+
+const statusLabelMap: Record<UserStatus, string> = {
+  [USER_STATUS.ACTIVE]: 'Active',
+  [USER_STATUS.DISABLED]: 'Disabled'
+};
+```
+
+- Disallowed pattern:
+
+```ts
+enum UserStatus {
+  Active = 'active',
+  Disabled = 'disabled'
+}
+
+const STATUS_LABEL_MAP = {
+  active: 'Active',
+  disabled: 'Disabled'
+};
+```
 
 ## Code Structure
 
