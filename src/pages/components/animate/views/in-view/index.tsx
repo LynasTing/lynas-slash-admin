@@ -4,6 +4,9 @@ import Toolbar from '../shared/toolbar';
 import { Switch } from '@/ui/switch';
 import InViewContainer, { type InViewContainerProps } from './container';
 import ControlPanel, { type VariantKeysType } from '../shared/control-panel';
+import useLocale from '@/locales/use-locale';
+
+const ANIMATE_PAGE_I18N_PREFIX = 'pages.components.animate';
 
 /**
  * 视口动画完整展示入场和离场 variant，便于对比同类动画的两个方向。
@@ -79,6 +82,7 @@ const defaultValue: InViewContainerProps = {
 };
 
 export default function InView() {
+  const { t } = useLocale();
   const [isText, setIsText] = useState(defaultValue.isText);
   const [isMulti, setIsMulti] = useState(defaultValue.isMulti);
   const [selectedVariant, setSelectedVariant] = useState(defaultValue.variant);
@@ -100,12 +104,12 @@ export default function InView() {
           <div className="flex flex-1 justify-between pr-4 whitespace-nowrap md:pr-96">
             <div className="flex items-center gap-x-2">
               <Switch checked={isText} onCheckedChange={() => setIsText(!isText)} />
-              <span>Text Object</span>
+              <span>{t(`${ANIMATE_PAGE_I18N_PREFIX}.toggles.textObject`)}</span>
             </div>
             {!isText ? (
               <div className="flex items-center gap-x-2">
                 <Switch checked={isMulti} onCheckedChange={() => setIsMulti(!isMulti)} />
-                <span>Multi Item</span>
+                <span>{t(`${ANIMATE_PAGE_I18N_PREFIX}.toggles.multiItem`)}</span>
               </div>
             ) : null}
           </div>
@@ -120,6 +124,8 @@ export default function InView() {
             <ControlPanel
               variantKeys={variantKeys}
               selectedVariant={selectedVariant}
+              getGroupLabel={type => t(`${ANIMATE_PAGE_I18N_PREFIX}.groups.${type}`)}
+              getVariantLabel={variant => t(`${ANIMATE_PAGE_I18N_PREFIX}.variants.${variant}`)}
               onChangeVariant={value => setSelectedVariant(value)}
             />
           </div>

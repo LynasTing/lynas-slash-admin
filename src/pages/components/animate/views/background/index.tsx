@@ -4,6 +4,9 @@ import type { VariantType } from '@/components/animate/variants';
 import { useState } from 'react';
 import ControlPanel, { type VariantKeysType } from '../shared/control-panel';
 import BackgroundContainer from './container';
+import useLocale from '@/locales/use-locale';
+
+const ANIMATE_PAGE_I18N_PREFIX = 'pages.components.animate';
 
 /**
  * 背景动画分为图片变换和背景色变换两类，渲染节点需要按类型区分。
@@ -27,6 +30,7 @@ const variantKeys = [
 const defaultVariant: VariantType = 'kenburnsTop';
 
 export default function Background() {
+  const { t } = useLocale();
   const [selectedVariant, setSelectedVariant] = useState<VariantType>(defaultVariant);
 
   return (
@@ -43,6 +47,8 @@ export default function Background() {
             <ControlPanel
               variantKeys={variantKeys}
               selectedVariant={selectedVariant}
+              getGroupLabel={type => t(`${ANIMATE_PAGE_I18N_PREFIX}.groups.${type}`)}
+              getVariantLabel={variant => t(`${ANIMATE_PAGE_I18N_PREFIX}.variants.${variant}`)}
               onChangeVariant={value => setSelectedVariant(value)}
             />
           </div>

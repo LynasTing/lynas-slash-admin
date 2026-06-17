@@ -4,6 +4,9 @@ import ControlPanel, { type VariantKeysType } from '../shared/control-panel';
 import { Card, CardHeader, CardContent } from '@/ui/card';
 import type { VariantType } from '@/components/animate/variants';
 import ScrollContainer from './container';
+import useLocale from '@/locales/use-locale';
+
+const ANIMATE_PAGE_I18N_PREFIX = 'pages.components.animate';
 
 /**
  * 滚动触发动画只展示入场类 variant，避免列表滚动时出现离场动画造成理解干扰。
@@ -43,6 +46,7 @@ const variantKeys = [
 const defaultVariant: VariantType = 'slideInUp';
 
 export default function Scroll() {
+  const { t } = useLocale();
   const [selectedVariant, setSelectedVariant] = useState<VariantType>(defaultVariant);
 
   return (
@@ -59,6 +63,8 @@ export default function Scroll() {
             <ControlPanel
               variantKeys={variantKeys}
               selectedVariant={selectedVariant}
+              getGroupLabel={type => t(`${ANIMATE_PAGE_I18N_PREFIX}.groups.${type}`)}
+              getVariantLabel={variant => t(`${ANIMATE_PAGE_I18N_PREFIX}.variants.${variant}`)}
               onChangeVariant={value => setSelectedVariant(value)}
             />
           </div>

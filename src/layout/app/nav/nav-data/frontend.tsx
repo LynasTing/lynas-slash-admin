@@ -62,7 +62,7 @@ export const frontendNavData: NavProps['data'] = [
             path: '/components/chart'
           },
           {
-            title: 'animate',
+            title: 'sys.nav.components.animate',
             path: '/components/animate'
           },
           {

@@ -2,6 +2,9 @@ import { getVariant, type VariantType } from '@/components/animate/variants';
 import MotionViewport from '@/components/animate/motion-viewport';
 import { themeVars } from '@/theme/theme.css';
 import { Card } from '@/ui/card';
+import useLocale from '@/locales/use-locale';
+
+const ANIMATE_PAGE_I18N_PREFIX = 'pages.components.animate';
 
 const scrollItemCount = 40;
 
@@ -14,6 +17,8 @@ type ScrollContainerProps = {
 };
 
 export default function ScrollContainer({ variant }: ScrollContainerProps) {
+  const { t } = useLocale();
+
   /**
    * selectedVariant 是注册表 key，MotionViewport 需要的是实际 Variants 对象。
    * selectedVariant is a registry key, while MotionViewport needs the resolved Variants object.
@@ -30,7 +35,7 @@ export default function ScrollContainer({ variant }: ScrollContainerProps) {
       {Array.from({ length: scrollItemCount }, (_, index) => (
         <MotionViewport key={index} variants={variantKey}>
           <Card>
-            <span className="text-center">Item {index + 1}</span>
+            <span className="text-center">{t(`${ANIMATE_PAGE_I18N_PREFIX}.preview.item`, { index: index + 1 })}</span>
           </Card>
         </MotionViewport>
       ))}

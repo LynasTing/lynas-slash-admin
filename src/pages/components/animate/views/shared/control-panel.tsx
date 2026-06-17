@@ -14,7 +14,7 @@ import { cn } from '@/utils';
 export type VariantKeysType = {
   /**
    * 分组名称
-   * Group label
+   * Group name
    */
   type: string;
 
@@ -39,13 +39,25 @@ type ControlPanelProps = {
   selectedVariant: VariantType;
 
   /**
+   * 获取分组展示文案
+   * Get the display label for a variant group
+   */
+  getGroupLabel: (type: string) => string;
+
+  /**
+   * 获取动画展示文案
+   * Get the display label for a variant
+   */
+  getVariantLabel: (variant: VariantType) => string;
+
+  /**
    * 切换动画时触发
    * Called when the selected animation changes
    */
   onChangeVariant: (v: VariantType) => void;
 };
 
-export default function ControlPanel({ variantKeys, selectedVariant, onChangeVariant }: ControlPanelProps) {
+export default function ControlPanel({ variantKeys, selectedVariant, getGroupLabel, getVariantLabel, onChangeVariant }: ControlPanelProps) {
   return (
     <Card className="max-h-[480px] py-2.5">
       <CardContent className="pr-2.5 pl-4">
@@ -53,7 +65,7 @@ export default function ControlPanel({ variantKeys, selectedVariant, onChangeVar
           {variantKeys.map((item, index) => (
             <div key={item.type} className={index ? 'mt-4' : 'mt-0'}>
               <Title as="h6" className="mb-2">
-                {item.type.toUpperCase()}
+                {getGroupLabel(item.type)}
               </Title>
               <ul className="flex flex-col gap-y-2">
                 {item.values.map(sub => (
@@ -61,7 +73,7 @@ export default function ControlPanel({ variantKeys, selectedVariant, onChangeVar
                     key={sub}
                     className={cn('cursor-pointer rounded-md p-2', selectedVariant === sub && 'bg-primary text-white')}
                     onClick={() => onChangeVariant(sub)}>
-                    {sub}
+                    {getVariantLabel(sub)}
                   </li>
                 ))}
               </ul>

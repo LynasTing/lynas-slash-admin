@@ -3,6 +3,9 @@ import Scroll from './views/scroll';
 import Background from './views/background';
 import Button from '@/ui/button';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/ui/tabs';
+import useLocale from '@/locales/use-locale';
+
+const ANIMATE_PAGE_I18N_PREFIX = 'pages.components.animate';
 
 /**
  * 动画示例页签配置
@@ -13,23 +16,25 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/ui/tabs';
  */
 const tabs = [
   {
-    label: 'InView',
+    labelKey: `${ANIMATE_PAGE_I18N_PREFIX}.tabs.inView`,
     value: 'inView',
     Component: InView
   },
   {
-    label: 'Scroll',
+    labelKey: `${ANIMATE_PAGE_I18N_PREFIX}.tabs.scroll`,
     value: 'scroll',
     Component: Scroll
   },
   {
-    label: 'Background',
+    labelKey: `${ANIMATE_PAGE_I18N_PREFIX}.tabs.background`,
     value: 'background',
     Component: Background
   }
 ];
 
 export default function AnimatePage() {
+  const { t } = useLocale();
+
   return (
     <>
       <Button variant="link" asChild className="mb-4 w-fit text-primary">
@@ -41,7 +46,7 @@ export default function AnimatePage() {
         <TabsList>
           {tabs.map(item => (
             <TabsTrigger key={item.value} value={item.value}>
-              {item.label}
+              {t(item.labelKey)}
             </TabsTrigger>
           ))}
         </TabsList>

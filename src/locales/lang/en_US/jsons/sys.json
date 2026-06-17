@@ -19,7 +19,8 @@
         "icon": "Icon",
         "multiLanguage": "Multi-language",
         "scroll": "Scroll",
-        "chart": "Chart"
+        "chart": "Chart",
+        "animate": "Animate"
       },
       "pages": {
         "label": "Pages",
