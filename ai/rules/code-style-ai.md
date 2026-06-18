@@ -8,24 +8,25 @@
 
 - 除非必须兼容运行时枚举 API、第三方接口约束或需要反向映射，否则禁止使用 `enum` / `const enum`
 - 表示固定枚举值集合时，优先使用 `as const` 对象或 `as const` 数组，并通过类型推导生成联合类型
-- 枚举式常量集合的变量名必须使用全大写和下划线分隔，例如 `USER_STATUS`
-- 枚举式常量集合的成员名必须使用全大写和下划线分隔，例如 `USER_STATUS.ACTIVE`
+- 枚举式常量集合的变量名必须使用全大写和下划线分隔，并以 `_MAP` 结尾，例如 `USER_STATUS_MAP`
+- 枚举式常量集合的成员名必须使用全大写和下划线分隔，例如 `USER_STATUS_MAP.ACTIVE`
 - 枚举式常量集合推导出的类型名必须使用 PascalCase，例如 `UserStatus`
+- `_MAP` 后缀只用于稳定、封闭、可枚举的常量值集合；普通映射表、标签文案映射、组件配置对象仍然使用语义化小驼峰命名
 - 配置对象、映射表、组件局部选项、表单字段配置等普通对象不使用全大写命名，应使用语义化的小驼峰命名，例如 `statusLabelMap`、`formFieldOptions`
 - 禁止为了复用类型而把普通配置对象伪装成枚举常量；只有表达稳定、封闭、可枚举的业务值集合时，才使用全大写常量集合
 - 推荐写法：
 
 ```ts
-export const USER_STATUS = {
+export const USER_STATUS_MAP = {
   ACTIVE: 'active',
   DISABLED: 'disabled'
 } as const;
 
-export type UserStatus = (typeof USER_STATUS)[keyof typeof USER_STATUS];
+export type UserStatus = (typeof USER_STATUS_MAP)[keyof typeof USER_STATUS_MAP];
 
 const statusLabelMap: Record<UserStatus, string> = {
-  [USER_STATUS.ACTIVE]: 'Active',
-  [USER_STATUS.DISABLED]: 'Disabled'
+  [USER_STATUS_MAP.ACTIVE]: 'Active',
+  [USER_STATUS_MAP.DISABLED]: 'Disabled'
 };
 ```
 
@@ -138,24 +139,25 @@ const STATUS_LABEL_MAP = {
 
 - Do not use `enum` / `const enum` unless runtime enum APIs, third-party contracts, or reverse mappings are explicitly required
 - For fixed enumerated values, prefer `as const` objects or `as const` arrays and derive union types from them
-- Enum-like constant collections must use uppercase names with underscores, for example `USER_STATUS`
-- Members of enum-like constant collections must also use uppercase names with underscores, for example `USER_STATUS.ACTIVE`
+- Enum-like constant collections must use uppercase names with underscores and end with `_MAP`, for example `USER_STATUS_MAP`
+- Members of enum-like constant collections must also use uppercase names with underscores, for example `USER_STATUS_MAP.ACTIVE`
 - Types derived from enum-like constant collections must use PascalCase, for example `UserStatus`
+- The `_MAP` suffix is only for stable, closed, enumerable value collections; regular mapping tables, label maps, and component config objects must still use semantic lower camel case names
 - Configuration objects, mapping tables, component-local options, and form field configs must not use uppercase constant naming; use semantic lower camel case instead, for example `statusLabelMap` or `formFieldOptions`
 - Do not disguise regular configuration objects as enum-like constants just to reuse their types; use uppercase constant collections only for stable, closed, enumerable business values
 - Recommended pattern:
 
 ```ts
-export const USER_STATUS = {
+export const USER_STATUS_MAP = {
   ACTIVE: 'active',
   DISABLED: 'disabled'
 } as const;
 
-export type UserStatus = (typeof USER_STATUS)[keyof typeof USER_STATUS];
+export type UserStatus = (typeof USER_STATUS_MAP)[keyof typeof USER_STATUS_MAP];
 
 const statusLabelMap: Record<UserStatus, string> = {
-  [USER_STATUS.ACTIVE]: 'Active',
-  [USER_STATUS.DISABLED]: 'Disabled'
+  [USER_STATUS_MAP.ACTIVE]: 'Active',
+  [USER_STATUS_MAP.DISABLED]: 'Disabled'
 };
 ```
 
