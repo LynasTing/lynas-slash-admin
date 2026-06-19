@@ -153,6 +153,14 @@ export function GetFrontendRoutes() {
         {
           path: 'calendar',
           element: Component('/pages/others/calendar')
+        },
+        {
+          path: 'link',
+          children: [
+            { index: true, element: <Navigate to="iframe" replace /> },
+            { path: 'iframe', element: Component('/pages/others/link/iframe', { src: 'https://ui.shadcn.com' }) },
+            { path: 'external', element: Component('/pages/others/link/external', { src: 'https://ui.shadcn.com' }) }
+          ]
         }
       ]
     }
