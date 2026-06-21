@@ -21,6 +21,7 @@
       },
       "components": {
         "label": "组件",
+        "description": "自定义 UI 组件",
         "toast": "Toast 提示",
         "icon": "图标",
         "multiLanguage": "多语言",

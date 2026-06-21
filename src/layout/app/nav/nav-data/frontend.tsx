@@ -40,6 +40,7 @@ export const frontendNavData: NavProps['data'] = [
         title: 'sys.nav.components.label',
         path: '/components',
         icon: <Icon icon="solar:widget-5-bold-duotone" size="24" />,
+        caption: 'sys.nav.components.description',
         children: [
           {
             title: 'sys.nav.components.toast',
@@ -171,6 +172,21 @@ export const frontendNavData: NavProps['data'] = [
         path: '/others/calendar',
         icon: <Icon icon="solar:calendar-bold-duotone" size="24" />,
         info: <Badge variant="warning">+12</Badge>
+      },
+      {
+        title: 'link',
+        path: '/others/link',
+        icon: <Icon icon="local:ic-external" size="24" />,
+        children: [
+          {
+            title: 'iframe',
+            path: '/others/link/iframe'
+          },
+          {
+            title: 'external',
+            path: '/others/link/external'
+          }
+        ]
       }
     ]
   }

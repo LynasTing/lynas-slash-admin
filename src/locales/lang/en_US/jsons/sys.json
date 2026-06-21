@@ -15,6 +15,7 @@
       },
       "components": {
         "label": "Components",
+        "description": "Custom UI components",
         "toast": "Toast",
         "icon": "Icon",
         "multiLanguage": "Multi-language",
