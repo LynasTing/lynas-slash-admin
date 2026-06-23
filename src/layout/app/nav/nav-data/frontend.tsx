@@ -187,6 +187,11 @@ export const frontendNavData: NavProps['data'] = [
             path: '/others/link/external'
           }
         ]
+      },
+      {
+        title: 'kanban',
+        path: '/others/kanban',
+        icon: <Icon icon="solar:clipboard-bold-duotone" size="24" />
       }
     ]
   }

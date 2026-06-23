@@ -161,6 +161,10 @@ export function GetFrontendRoutes() {
             { path: 'iframe', element: Component('/pages/others/link/iframe', { src: 'https://ui.shadcn.com' }) },
             { path: 'external', element: Component('/pages/others/link/external', { src: 'https://ui.shadcn.com' }) }
           ]
+        },
+        {
+          path: 'kanban',
+          element: Component('/pages/others/kanban')
         }
       ]
     }
