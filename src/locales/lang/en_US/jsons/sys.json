@@ -39,6 +39,12 @@
           "level2b": "Menu Level 2b",
           "level3a": "Menu Level 3a",
           "level3b": "Menu Level 3b"
+        },
+        "error": {
+          "label": "Error Pages",
+          "forbidden": "403 Forbidden",
+          "notFound": "404 Not Found",
+          "serverError": "500 Server Error"
         }
       },
       "system": {

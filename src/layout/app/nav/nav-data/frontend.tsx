@@ -144,20 +144,20 @@ export const frontendNavData: NavProps['data'] = [
         ]
       },
       {
-        title: '异常页',
+        title: 'sys.nav.pages.error.label',
         path: '/error',
         icon: <Icon icon="bxs:error-alt" size="24" />,
         children: [
           {
-            title: '403',
+            title: 'sys.nav.pages.error.forbidden',
             path: '/error/403'
           },
           {
-            title: '404',
+            title: 'sys.nav.pages.error.notFound',
             path: '/error/404'
           },
           {
-            title: '500',
+            title: 'sys.nav.pages.error.serverError',
             path: '/error/500'
           }
         ]

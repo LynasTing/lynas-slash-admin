@@ -53,6 +53,12 @@
           "level2b": "菜单层级 2b",
           "level3a": "菜单层级 3a",
           "level3b": "菜单层级 3b"
+        },
+        "error": {
+          "label": "异常页",
+          "forbidden": "403 无权限",
+          "notFound": "404 未找到",
+          "serverError": "500 服务器错误"
         }
       },
       "workbench": "工作台"
