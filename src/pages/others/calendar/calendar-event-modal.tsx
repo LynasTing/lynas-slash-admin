@@ -12,7 +12,11 @@ import { Switch } from '@/ui/switch';
 import Button from '@/ui/button';
 import { Icon } from '@/components/icon';
 import dayjs from 'dayjs';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
+import useLocale from '@/locales/use-locale';
+import type { TFunction } from 'i18next';
+
+const calendarI18nPrefix = 'pages.others.calendar';
 
 export type CalendarEventModalFormField = {
   /**
@@ -65,40 +69,41 @@ export type CalendarEventModalFormField = {
  * The form layer uses Date because native datetime-local inputs and Zod's z.date() both work directly with Date values.
  * The event layer exposes Dayjs to stay consistent with the calendar page's existing date handling, so submit converts Date to Dayjs.
  */
-const formSchema = z
-  .object({
-    title: z.string().min(1, 'Title is required'),
-    description: z.string().optional(),
-    allDay: z.boolean(),
-    start: z.date(),
-    end: z.date(),
-    color: z.string()
-  })
-  /**
-   * refine 是 Zod 提供的自定义校验入口，用于表达单个字段类型无法覆盖的业务规则。
-   * 这里 start / end 都已经通过 z.date() 保证是 Date，但“结束时间必须晚于开始时间”需要同时读取两个字段，所以放在 refine 里。
-   *
-   * 例如：
-   * - z.string().min(1) 只能校验 title 自己不能为空；
-   * - z.date() 只能校验 start / end 自己是 Date；
-   * - refine(values => values.end > values.start) 可以校验多个字段之间的关系。
-   *
-   * path: ['end'] 表示错误挂到 end 字段上，表单 UI 渲染 FormMessage 时会显示在 End 输入项附近。
-   *
-   * refine is Zod's custom validation hook for business rules that cannot be expressed by a single field type.
-   * start and end are already guaranteed to be Date values by z.date(), but "end must be later than start" depends on both fields.
-   *
-   * For example:
-   * - z.string().min(1) only validates that title itself is not empty;
-   * - z.date() only validates that start / end themselves are Date values;
-   * - refine(values => values.end > values.start) validates the relationship between multiple fields.
-   *
-   * path: ['end'] attaches the error to the end field, so FormMessage can render it near the End input.
-   */
-  .refine(values => values.end > values.start, {
-    message: 'End time must be after start time',
-    path: ['end']
-  });
+const createFormSchema = (t: TFunction) =>
+  z
+    .object({
+      title: z.string().min(1, t(`${calendarI18nPrefix}.validation.titleRequired`)),
+      description: z.string().optional(),
+      allDay: z.boolean(),
+      start: z.date(),
+      end: z.date(),
+      color: z.string()
+    })
+    /**
+     * refine 是 Zod 提供的自定义校验入口，用于表达单个字段类型无法覆盖的业务规则。
+     * 这里 start / end 都已经通过 z.date() 保证是 Date，但“结束时间必须晚于开始时间”需要同时读取两个字段，所以放在 refine 里。
+     *
+     * 例如：
+     * - z.string().min(1) 只能校验 title 自己不能为空；
+     * - z.date() 只能校验 start / end 自己是 Date；
+     * - refine(values => values.end > values.start) 可以校验多个字段之间的关系。
+     *
+     * path: ['end'] 表示错误挂到 end 字段上，表单 UI 渲染 FormMessage 时会显示在 End 输入项附近。
+     *
+     * refine is Zod's custom validation hook for business rules that cannot be expressed by a single field type.
+     * start and end are already guaranteed to be Date values by z.date(), but "end must be later than start" depends on both fields.
+     *
+     * For example:
+     * - z.string().min(1) only validates that title itself is not empty;
+     * - z.date() only validates that start / end themselves are Date values;
+     * - refine(values => values.end > values.start) validates the relationship between multiple fields.
+     *
+     * path: ['end'] attaches the error to the end field, so FormMessage can render it near the End input.
+     */
+    .refine(values => values.end > values.start, {
+      message: t(`${calendarI18nPrefix}.validation.endAfterStart`),
+      path: ['end']
+    });
 
 /**
  * z.infer 会从 Zod schema 反推出 TypeScript 类型，避免“校验规则一份、TS 类型又手写一份”导致两边不一致。
@@ -111,7 +116,7 @@ const formSchema = z
  * For example, because title is z.string(), FormValues['title'] becomes string;
  * because start is z.date(), FormValues['start'] becomes Date.
  */
-type FormValues = z.infer<typeof formSchema>;
+type FormValues = z.infer<ReturnType<typeof createFormSchema>>;
 
 /**
  * 将外部日历事件数据转换为表单默认值。
@@ -183,7 +188,9 @@ type CalendarEventModalProps = {
 };
 
 export default function CalendarEventModal({ type, visible, initValues, onCancel, onRemove, onCreate, onEdit }: CalendarEventModalProps) {
-  const title = type === 'add' ? 'Add Event' : 'Edit Event';
+  const { t } = useLocale();
+  const title = type === 'add' ? t(`${calendarI18nPrefix}.modal.addTitle`) : t(`${calendarI18nPrefix}.modal.editTitle`);
+  const formSchema = useMemo(() => createFormSchema(t), [t]);
 
   const formModal = useForm<FormValues>({
     /**
@@ -268,7 +275,7 @@ export default function CalendarEventModal({ type, visible, initValues, onCancel
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Title</FormLabel>
+                  <FormLabel>{t(`${calendarI18nPrefix}.form.title`)}</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -282,7 +289,7 @@ export default function CalendarEventModal({ type, visible, initValues, onCancel
               name="description"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Description</FormLabel>
+                  <FormLabel>{t(`${calendarI18nPrefix}.form.description`)}</FormLabel>
                   <FormControl>
                     <Textarea {...field} />
                   </FormControl>
@@ -295,7 +302,7 @@ export default function CalendarEventModal({ type, visible, initValues, onCancel
               name="allDay"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>All Day</FormLabel>
+                  <FormLabel>{t(`${calendarI18nPrefix}.form.allDay`)}</FormLabel>
                   <FormControl>
                     <Switch checked={field.value} onCheckedChange={field.onChange} />
                   </FormControl>
@@ -308,7 +315,7 @@ export default function CalendarEventModal({ type, visible, initValues, onCancel
               name="start"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Start</FormLabel>
+                  <FormLabel>{t(`${calendarI18nPrefix}.form.start`)}</FormLabel>
                   <FormControl>
                     <Input
                       type="datetime-local"
@@ -332,7 +339,7 @@ export default function CalendarEventModal({ type, visible, initValues, onCancel
               name="end"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>End</FormLabel>
+                  <FormLabel>{t(`${calendarI18nPrefix}.form.end`)}</FormLabel>
                   <FormControl>
                     <Input
                       type="datetime-local"
@@ -356,7 +363,7 @@ export default function CalendarEventModal({ type, visible, initValues, onCancel
               name="color"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Color</FormLabel>
+                  <FormLabel>{t(`${calendarI18nPrefix}.form.color`)}</FormLabel>
                   <FormControl>
                     <div className="flex gap-2">
                       <Input type="color" {...field} />
@@ -409,9 +416,9 @@ export default function CalendarEventModal({ type, visible, initValues, onCancel
 
               <div className="flex gap-2.5">
                 <Button variant="ghost" type="button" onClick={onCancel}>
-                  Cancel
+                  {t(`${calendarI18nPrefix}.actions.cancel`)}
                 </Button>
-                <Button type="submit">Save</Button>
+                <Button type="submit">{t(`${calendarI18nPrefix}.actions.save`)}</Button>
               </div>
             </DialogFooter>
           </form>

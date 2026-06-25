@@ -8,13 +8,15 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import listPlugin from '@fullcalendar/list';
+import zhCnLocale from '@fullcalendar/core/locales/zh-cn';
 import { useMediaQuery, down } from '@/hooks';
+import useLocale from '@/locales/use-locale';
 import { initialEvents } from './calendar-init-mock';
 import CalendarEventContent from './calendar-event-content';
 import CalendarEventModal, { type CalendarEventModalFormField } from './calendar-event-modal';
 import { faker } from '@faker-js/faker';
 import dayjs from 'dayjs';
-import type { EventInput, EventClickArg, DateSelectArg } from '@fullcalendar/core';
+import type { EventInput, EventClickArg, DateSelectArg, LocaleInput } from '@fullcalendar/core';
 
 /**
  * 事件表单的默认初始值。
@@ -37,6 +39,8 @@ export default function CalendarPage() {
   const fullCalendarRef = useRef<FullCalendar>(null);
 
   const { themeMode } = useSettingStoreState();
+  const { locale } = useLocale();
+  const fullCalendarLocale: LocaleInput | string = locale === 'zh_CN' ? zhCnLocale : 'en';
 
   const [date, setDate] = useState(new Date());
 
@@ -280,6 +284,7 @@ export default function CalendarPage() {
             <FullCalendar
               ref={fullCalendarRef}
               plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
+              locale={fullCalendarLocale}
               initialDate={date}
               initialView={xsBreakPoint ? 'listWeek' : viewType}
               initialEvents={initialEvents}

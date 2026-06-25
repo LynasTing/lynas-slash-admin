@@ -253,6 +253,38 @@
         }
       }
     },
+    "others": {
+      "calendar": {
+        "views": {
+          "month": "Month",
+          "week": "Week",
+          "day": "Day",
+          "list": "List"
+        },
+        "actions": {
+          "today": "Today",
+          "newEvent": "New Event",
+          "cancel": "Cancel",
+          "save": "Save"
+        },
+        "modal": {
+          "addTitle": "Add Event",
+          "editTitle": "Edit Event"
+        },
+        "form": {
+          "title": "Title",
+          "description": "Description",
+          "allDay": "All Day",
+          "start": "Start",
+          "end": "End",
+          "color": "Color"
+        },
+        "validation": {
+          "titleRequired": "Title is required",
+          "endAfterStart": "End time must be after start time"
+        }
+      }
+    },
     "management": {
       "system": {
         "menu": {

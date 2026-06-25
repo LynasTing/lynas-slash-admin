@@ -4,15 +4,18 @@ import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuIte
 import Button from '@/ui/button';
 import dayjs from 'dayjs';
 import { up, useMediaQuery } from '@/hooks';
+import useLocale from '@/locales/use-locale';
+
+const calendarI18nPrefix = 'pages.others.calendar';
 
 export type ViewType = 'dayGridMonth' | 'timeGridWeek' | 'timeGridDay' | 'listWeek';
 
 type ViewTypeMenu = {
   /**
-   * 菜单展示名称。
-   * Menu label displayed to users.
+   * 菜单展示文案的国际化 key。
+   * i18n key for the menu label displayed to users.
    */
-  label: string;
+  labelKey: string;
 
   /**
    * FullCalendar 视图类型，用于把菜单选项映射到日历视图。
@@ -33,22 +36,22 @@ type ViewTypeMenu = {
  */
 const calendarViewItems: ViewTypeMenu[] = [
   {
-    label: 'Month',
+    labelKey: `${calendarI18nPrefix}.views.month`,
     viewType: 'dayGridMonth',
     icon: <Icon icon="mdi:calendar-month-outline" size={18} />
   },
   {
-    label: 'Week',
+    labelKey: `${calendarI18nPrefix}.views.week`,
     viewType: 'timeGridWeek',
     icon: <Icon icon="mdi:calendar-weekend-outline" size={18} />
   },
   {
-    label: 'Day',
+    labelKey: `${calendarI18nPrefix}.views.day`,
     viewType: 'timeGridDay',
     icon: <Icon icon="mdi:calendar-today-outline" size={18} />
   },
   {
-    label: 'List',
+    labelKey: `${calendarI18nPrefix}.views.list`,
     viewType: 'listWeek',
     icon: <Icon icon="mdi:view-agenda-outline" size={18} />
   }
@@ -96,7 +99,9 @@ type CalendarHeaderProps = {
  * The header does not mutate the FullCalendar instance directly; it displays current state and delegates user actions to the parent.
  */
 export default function CalendarHeader({ now, viewType, onViewTypeChange, onNavigate, onCreate }: CalendarHeaderProps) {
+  const { t, locale } = useLocale();
   const isLgUp = useMediaQuery(up('lg'));
+  const dayjsLocale = locale === 'zh_CN' ? 'zh-cn' : 'en';
 
   /**
    * 当前选中菜单项由 viewType 派生，避免 header 内部状态与父组件日历状态不同步。
@@ -120,7 +125,7 @@ export default function CalendarHeader({ now, viewType, onViewTypeChange, onNavi
             <Button variant="ghost" size="sm">
               <div className="flex items-center">
                 {selectedViewTypeMenu.icon}
-                <span className="mx-1 text-sm! font-medium">{selectedViewTypeMenu.label}</span>
+                <span className="mx-1 text-sm! font-medium">{t(selectedViewTypeMenu.labelKey)}</span>
                 <Icon icon="solar:alt-arrow-down-outline" size={20} />
               </div>
             </Button>
@@ -128,7 +133,7 @@ export default function CalendarHeader({ now, viewType, onViewTypeChange, onNavi
           <DropdownMenuContent>
             {calendarViewItems.map(item => (
               <DropdownMenuItem key={item.viewType} onClick={() => handleViewTypeChange(item)}>
-                {item.label}
+                {t(item.labelKey)}
               </DropdownMenuItem>
             ))}
           </DropdownMenuContent>
@@ -139,16 +144,16 @@ export default function CalendarHeader({ now, viewType, onViewTypeChange, onNavi
           <Button variant="ghost" size="icon" onClick={() => onNavigate('prev')}>
             <Icon icon="solar:alt-arrow-left-outline" size={20} />
           </Button>
-          <span className="mx-2 text-base font-bold">{dayjs(now).format('DD MMM YYYY')}</span>
+          <span className="mx-2 text-base font-bold">{dayjs(now).locale(dayjsLocale).format('DD MMM YYYY')}</span>
           <Button variant="ghost" size="icon" onClick={() => onNavigate('next')}>
             <Icon icon="solar:alt-arrow-right-outline" size={20} />
           </Button>
         </div>
         <div className="flex items-center justify-end">
-          <Button onClick={() => onNavigate('today')}>Today</Button>
+          <Button onClick={() => onNavigate('today')}>{t(`${calendarI18nPrefix}.actions.today`)}</Button>
           <Button className="ml-2 flex items-center justify-center" onClick={() => onCreate()}>
             <Icon icon="material-symbols:add" size={24} />
-            New Event
+            {t(`${calendarI18nPrefix}.actions.newEvent`)}
           </Button>
         </div>
       </div>

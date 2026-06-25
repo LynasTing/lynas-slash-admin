@@ -253,6 +253,38 @@
         }
       }
     },
+    "others": {
+      "calendar": {
+        "views": {
+          "month": "月",
+          "week": "周",
+          "day": "日",
+          "list": "列表"
+        },
+        "actions": {
+          "today": "今天",
+          "newEvent": "新建事件",
+          "cancel": "取消",
+          "save": "保存"
+        },
+        "modal": {
+          "addTitle": "新增事件",
+          "editTitle": "编辑事件"
+        },
+        "form": {
+          "title": "标题",
+          "description": "描述",
+          "allDay": "全天",
+          "start": "开始时间",
+          "end": "结束时间",
+          "color": "颜色"
+        },
+        "validation": {
+          "titleRequired": "请输入标题",
+          "endAfterStart": "结束时间必须晚于开始时间"
+        }
+      }
+    },
     "management": {
       "system": {
         "menu": {
