@@ -61,6 +61,10 @@
           "serverError": "500 服务器错误"
         }
       },
+      "others": {
+        "label": "其他",
+        "calendar": "日历"
+      },
       "workbench": "工作台"
     },
     "settings": {

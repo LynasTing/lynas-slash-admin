@@ -47,6 +47,10 @@
           "serverError": "500 Server Error"
         }
       },
+      "others": {
+        "label": "Others",
+        "calendar": "Calendar"
+      },
       "system": {
         "userDetail": "User Detail"
       },

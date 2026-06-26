@@ -165,10 +165,10 @@ export const frontendNavData: NavProps['data'] = [
     ]
   },
   {
-    name: 'others',
+    name: 'sys.nav.others.label',
     items: [
       {
-        title: 'calendar',
+        title: 'sys.nav.others.calendar',
         path: '/others/calendar',
         icon: <Icon icon="solar:calendar-bold-duotone" size="24" />,
         info: <Badge variant="warning">+12</Badge>
