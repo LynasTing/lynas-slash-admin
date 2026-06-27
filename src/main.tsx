@@ -10,6 +10,7 @@ import { routersSections } from './router';
 import { registerLocalIcons } from '@/components/icon';
 import { urlJoin } from '@/utils';
 import { GLOBAL_CONFIG } from '@/config/global';
+import ErrorBoundary from '@/router/components/error-boundary';
 
 registerLocalIcons();
 
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
         <Outlet />
       </App>
     ),
+    errorElement: <ErrorBoundary />,
     children: routersSections
   }
 ]);
