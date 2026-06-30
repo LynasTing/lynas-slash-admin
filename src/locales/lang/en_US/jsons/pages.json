@@ -283,6 +283,34 @@
           "titleRequired": "Title is required",
           "endAfterStart": "End time must be after start time"
         }
+      },
+      "kanban": {
+        "columns": {
+          "todo": "To do",
+          "inProgress": "In progress",
+          "done": "Done"
+        },
+        "actions": {
+          "addColumn": "Add Column",
+          "addTask": "Add Task",
+          "rename": "Rename",
+          "clear": "Clear",
+          "delete": "Delete",
+          "pickDate": "Pick a date"
+        },
+        "placeholders": {
+          "columnName": "Column Name",
+          "taskName": "Task Name"
+        },
+        "fields": {
+          "reporter": "Reporter",
+          "assignee": "Assignee",
+          "tag": "Tag",
+          "dueDate": "Due Date",
+          "priority": "Priority",
+          "description": "Description",
+          "attachments": "Attachments"
+        }
       }
     },
     "management": {

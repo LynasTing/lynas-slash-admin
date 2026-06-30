@@ -6,11 +6,12 @@ import { themeVars } from '@/theme/theme.css';
 import { Avatar, AvatarImage } from '@/ui/avatar';
 import { Sheet, SheetContent, SheetHeader } from '@/ui/sheet';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/ui/select';
-import { initialData } from './task-mock';
+import useLocale from '@/locales/use-locale';
 import Button from '@/ui/button';
 import KanbanTaskDrawer from './kanban-task-drawer';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import { getDefaultKanbanColumnTitles } from './task-mock';
 
 type KanbanTaskProps = {
   /**
@@ -63,8 +64,6 @@ const priorityConfigMap = {
   }
 };
 
-const { columns } = initialData;
-
 /**
  * 看板任务卡片。
  * 卡片本身接入 dnd-kit 的 useSortable，负责参与任务排序；卡片内容区点击后打开右侧 Sheet，展示当前任务的完整详情。
@@ -77,7 +76,9 @@ const { columns } = initialData;
  * The card only previews task summary information. Data updates, column ownership, and full task fields still come from the outer board data structure.
  */
 function KanbanTask({ id, task, isDragging }: KanbanTaskProps) {
+  const { t } = useLocale();
   const { attachments = [], priority, title, comments = [], assignee } = task;
+  const defaultColumnTitles = getDefaultKanbanColumnTitles(t);
 
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
     id,
@@ -148,7 +149,7 @@ function KanbanTask({ id, task, isDragging }: KanbanTaskProps) {
           <SheetHeader>
             <div className="flex items-center justify-between">
               <div>
-                <Select defaultValue={Object.values(columns)[0].title}>
+                <Select defaultValue={defaultColumnTitles[0]}>
                   <SelectTrigger size="md">
                     <SelectValue />
                   </SelectTrigger>
@@ -160,9 +161,9 @@ function KanbanTask({ id, task, isDragging }: KanbanTaskProps) {
                      * Status options come from initial column data so the detail header matches the board's default workflow stages.
                      * The current selector is presentational and does not change task ownership.
                      */}
-                    {Object.values(columns).map(item => (
-                      <SelectItem key={item.id} value={item.title}>
-                        {item.title}
+                    {defaultColumnTitles.map(item => (
+                      <SelectItem key={item} value={item}>
+                        {item}
                       </SelectItem>
                     ))}
                   </SelectContent>

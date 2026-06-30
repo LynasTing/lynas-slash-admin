@@ -63,7 +63,8 @@
       },
       "others": {
         "label": "其他",
-        "calendar": "日历"
+        "calendar": "日历",
+        "kanban": "看板"
       },
       "workbench": "工作台"
     },

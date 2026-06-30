@@ -4,7 +4,8 @@ import { arrayMove } from '@dnd-kit/sortable';
 import { faker } from '@faker-js/faker';
 import { useRef, useState } from 'react';
 import { useEvent } from 'react-use';
-import { initialData } from './task-mock';
+import useLocale from '@/locales/use-locale';
+import { getInitialKanbanData } from './task-mock';
 import { DRAG_ITEM_TYPE_MAP, type Column, type ColumnMap, type DndDataType, type DragItemType, type Task, type TaskMap } from './types';
 
 type MoveItemParams = {
@@ -53,7 +54,8 @@ function isDragItemType(value: unknown): value is DragItemType {
  * The page only composes the view, while operations that change task ownership or column order stay here.
  */
 export function useKanbanBoard() {
-  const [kanbanData, setKanbanData] = useState<DndDataType>(initialData);
+  const { t } = useLocale();
+  const [kanbanData, setKanbanData] = useState<DndDataType>(() => getInitialKanbanData(t));
   const [activeDragId, setActiveDragId] = useState<string | null>(null);
   const [activeDragType, setActiveDragType] = useState<DragItemType | null>(null);
   const [isAddingColumn, setIsAddingColumn] = useState(false);

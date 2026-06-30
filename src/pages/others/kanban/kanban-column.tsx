@@ -12,6 +12,7 @@ import { Icon } from '@/components/icon';
 import KanbanTask from './kanban-task';
 import { faker } from '@faker-js/faker';
 import { useEvent } from 'react-use';
+import useLocale from '@/locales/use-locale';
 
 type KanbanColumnProps = {
   /**
@@ -92,6 +93,7 @@ export default function KanbanColumn({
   onRemoveColumn,
   onRenameColumn
 }: KanbanColumnProps) {
+  const { t } = useLocale();
   const { themeMode } = useSettingStoreState();
 
   /**
@@ -207,7 +209,11 @@ export default function KanbanColumn({
        * The menu button stays inside the header, while menu items stop propagation to avoid leaking column actions into drag logic.
        */}
       <header className="mb-4 flex items-center justify-between text-base font-semibold select-none" {...attributes} {...listeners}>
-        {renamingColumn ? <Input ref={renameColumnInputRef} autoFocus /> : column.title}
+        {renamingColumn ? (
+          <Input ref={renameColumnInputRef} placeholder={t('pages.others.kanban.placeholders.columnName')} autoFocus />
+        ) : (
+          column.title
+        )}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" size="icon">
@@ -228,7 +234,7 @@ export default function KanbanColumn({
                 setRenamingColumn(true);
               }}>
               <Icon icon="solar:pen-bold" />
-              <span>rename</span>
+              <span>{t('pages.others.kanban.actions.rename')}</span>
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={e => {
@@ -241,7 +247,7 @@ export default function KanbanColumn({
                 onClearColumn(column.id);
               }}>
               <Icon icon="solar:eraser-bold" />
-              <span>clear</span>
+              <span>{t('pages.others.kanban.actions.clear')}</span>
             </DropdownMenuItem>
             <DropdownMenuItem
               variant="destructive"
@@ -257,7 +263,7 @@ export default function KanbanColumn({
                 onRemoveColumn(column.id);
               }}>
               <Icon icon="solar:trash-bin-trash-bold" />
-              <span>delete</span>
+              <span>{t('pages.others.kanban.actions.delete')}</span>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -287,7 +293,7 @@ export default function KanbanColumn({
        */}
       <footer className="w-60">
         {addingTask ? (
-          <Input ref={addTaskInputRef} placeholder="Task name" autoFocus />
+          <Input ref={addTaskInputRef} placeholder={t('pages.others.kanban.placeholders.taskName')} autoFocus />
         ) : (
           <Button
             className="flex! w-full items-center justify-center text-xs! font-medium!"
@@ -303,7 +309,7 @@ export default function KanbanColumn({
               setAddingTask(true);
             }}>
             <Icon icon="carbon:add" size={20} />
-            <span>Add Task</span>
+            <span>{t('pages.others.kanban.actions.addTask')}</span>
           </Button>
         )}
       </footer>

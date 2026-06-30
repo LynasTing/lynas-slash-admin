@@ -4,6 +4,7 @@ import { Input } from '@/ui/input';
 import { ScrollArea, ScrollBar } from '@/ui/scroll-area';
 import { DndContext, DragOverlay } from '@dnd-kit/core';
 import { SortableContext, horizontalListSortingStrategy } from '@dnd-kit/sortable';
+import useLocale from '@/locales/use-locale';
 import KanbanColumn from './kanban-column';
 import KanbanTask from './kanban-task';
 import { DRAG_ITEM_TYPE_MAP } from './types';
@@ -17,6 +18,7 @@ import { useKanbanBoard } from './use-kanban-board';
  * The page only composes columns, task drag previews, and the new-column entry; useKanbanBoard owns data mutations and drag state transitions.
  */
 export default function KanbanPage() {
+  const { t } = useLocale();
   const {
     activeDragId,
     activeDragType,
@@ -98,7 +100,7 @@ export default function KanbanPage() {
            * Column creation uses an uncontrolled input, and the Hook reads and commits its title when the user clicks outside.
            */}
           {isAddingColumn ? (
-            <Input ref={addColumnInputRef} placeholder="Column Name" autoFocus />
+            <Input ref={addColumnInputRef} placeholder={t('pages.others.kanban.placeholders.columnName')} autoFocus />
           ) : (
             <Button
               variant="outline"
@@ -108,7 +110,7 @@ export default function KanbanPage() {
                 setIsAddingColumn(true);
               }}>
               <Icon icon="carbon:add" size={20} />
-              <div>Add Column</div>
+              <div>{t('pages.others.kanban.actions.addColumn')}</div>
             </Button>
           )}
         </div>

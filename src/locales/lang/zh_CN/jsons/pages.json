@@ -283,6 +283,34 @@
           "titleRequired": "请输入标题",
           "endAfterStart": "结束时间必须晚于开始时间"
         }
+      },
+      "kanban": {
+        "columns": {
+          "todo": "待处理",
+          "inProgress": "进行中",
+          "done": "已完成"
+        },
+        "actions": {
+          "addColumn": "新增列",
+          "addTask": "新增任务",
+          "rename": "重命名",
+          "clear": "清空",
+          "delete": "删除",
+          "pickDate": "选择日期"
+        },
+        "placeholders": {
+          "columnName": "列名称",
+          "taskName": "任务名称"
+        },
+        "fields": {
+          "reporter": "报告人",
+          "assignee": "负责人",
+          "tag": "标签",
+          "dueDate": "截止日期",
+          "priority": "优先级",
+          "description": "描述",
+          "attachments": "附件"
+        }
       }
     },
     "management": {

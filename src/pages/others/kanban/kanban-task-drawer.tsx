@@ -11,6 +11,7 @@ import { Calendar } from '@/ui/calendar';
 import { ToggleGroup, ToggleGroupItem } from '@/ui/toggle-group';
 import { Icon } from '@/components/icon';
 import { Textarea } from '@/ui/textarea';
+import useLocale from '@/locales/use-locale';
 
 type TaskDrawerFieldProps = {
   /**
@@ -98,6 +99,7 @@ type KanbanTaskDrawerProps = {
  * It only lays out the full task information inside the right-side Sheet; it does not persist changes from the date picker, priority toggle, or description field back to task data.
  */
 export default function KanbanTaskDrawer({ task }: KanbanTaskDrawerProps) {
+  const { t } = useLocale();
   const { title, reporter, assignee = [], tags = [], date, priority, description, attachments, comments = [] } = task;
 
   return (
@@ -106,12 +108,12 @@ export default function KanbanTaskDrawer({ task }: KanbanTaskDrawerProps) {
         <div className="flex items-center">
           <Title as="h4">{title}</Title>
         </div>
-        <TaskDrawerField label="Reporter">
+        <TaskDrawerField label={t('pages.others.kanban.fields.reporter')}>
           <Avatar>
             <AvatarImage src={reporter} alt="reporter" />
           </Avatar>
         </TaskDrawerField>
-        <TaskDrawerField label="Assignee">
+        <TaskDrawerField label={t('pages.others.kanban.fields.assignee')}>
           <div className="flex gap-2">
             {/**
              * 详情抽屉展示全部负责人，不复用任务卡片的前三位截断规则。
@@ -125,7 +127,7 @@ export default function KanbanTaskDrawer({ task }: KanbanTaskDrawerProps) {
             ))}
           </div>
         </TaskDrawerField>
-        <TaskDrawerField label="Tag">
+        <TaskDrawerField label={t('pages.others.kanban.fields.tag')}>
           <div className="flex flex-wrap gap-2">
             {/**
              * 每个任务标签转换为独立徽章，换行布局用于容纳数量不固定的分类。
@@ -139,17 +141,19 @@ export default function KanbanTaskDrawer({ task }: KanbanTaskDrawerProps) {
             ))}
           </div>
         </TaskDrawerField>
-        <TaskDrawerField label="Due Date">
+        <TaskDrawerField label={t('pages.others.kanban.fields.dueDate')}>
           <Popover>
             <PopoverTrigger asChild>
-              <Button variant="outline">{date ? dayjs(date).format('DD/MM/YYYY') : <span>Pick a date</span>}</Button>
+              <Button variant="outline">
+                {date ? dayjs(date).format('DD/MM/YYYY') : <span>{t('pages.others.kanban.actions.pickDate')}</span>}
+              </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0">
               <Calendar mode="single" selected={date} initialFocus />
             </PopoverContent>
           </Popover>
         </TaskDrawerField>
-        <TaskDrawerField label="Priority">
+        <TaskDrawerField label={t('pages.others.kanban.fields.priority')}>
           <ToggleGroup type="single" defaultValue={priority}>
             {/**
              * 配置数组统一生成三个优先级选项，避免图标颜色和旋转规则散落在 JSX 分支中。
@@ -165,10 +169,10 @@ export default function KanbanTaskDrawer({ task }: KanbanTaskDrawerProps) {
             ))}
           </ToggleGroup>
         </TaskDrawerField>
-        <TaskDrawerField label="Description">
+        <TaskDrawerField label={t('pages.others.kanban.fields.description')}>
           <Textarea defaultValue={description} />
         </TaskDrawerField>
-        <TaskDrawerField label="Attachments">
+        <TaskDrawerField label={t('pages.others.kanban.fields.attachments')}>
           <div className="flex flex-wrap gap-2">
             {/**
              * 详情抽屉展示全部附件，区别于任务卡片只使用第一张图片作为封面。

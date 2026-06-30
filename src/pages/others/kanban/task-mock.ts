@@ -1,5 +1,6 @@
 import { TASK_TAG_MAP, type TaskComment, type DndDataType, type TaskMap, TASK_PRIORITY_MAP } from './types';
 import { faker } from '@faker-js/faker';
+import type { TFunction } from 'i18next';
 
 /**
  * 生成任务评论数据。
@@ -170,43 +171,68 @@ const generateTask = (count: number): TaskMap => {
 };
 
 /**
- * 看板初始化数据。
+ * 生成看板默认列标题。
+ * 列标题需要跟随当前语言初始化，避免页面切到中文后仍然保留英文阶段名。
+ * @param t - 国际化翻译函数。
+ * @returns 默认列标题列表。
+ *
+ * Builds the default board column titles.
+ * Column titles are initialized from the current locale so the board does not keep English stage names after switching to Chinese.
+ * @param t - Translation function.
+ * @returns Default column title list.
+ */
+export const getDefaultKanbanColumnTitles = (t: TFunction): string[] => [
+  t('pages.others.kanban.columns.todo'),
+  t('pages.others.kanban.columns.inProgress'),
+  t('pages.others.kanban.columns.done')
+];
+
+/**
+ * 生成看板初始化数据。
  * tasks 保存任务详情，columns 保存每列包含哪些任务，columnOrder 保存列的横向展示顺序。
  * 这种拆分结构来自原始 kanban 模块：拖拽列时只改 columnOrder，拖拽任务时只改对应列的 taskIds。
+ * @param t - 国际化翻译函数。
+ * @returns 看板初始数据。
  *
- * Initial board data.
+ * Generates the initial board data.
  * tasks stores task details, columns stores which tasks each column contains, and columnOrder stores horizontal column order.
- * This normalized shape comes from the source kanban module: dragging columns updates columnOrder, while dragging tasks updates taskIds in affected columns.
+ * This normalized shape comes from the source kanban module: dragging columns updates columnOrder, while dragging tasks update taskIds in affected columns.
+ * @param t - Translation function.
+ * @returns Initial board data.
  */
-const initialData: DndDataType = {
-  /*
-   * 这里先放空对象，随后由 generateTask(6) 填充。
-   * 这样任务数量和 columns.taskIds 中引用的 task-1 到 task-6 保持一致。
-   *
-   * This starts as an empty object and is populated by generateTask(6) below.
-   * That keeps the generated task count aligned with task-1 through task-6 referenced by columns.taskIds.
-   */
-  tasks: {},
-  columns: {
-    'column-1': {
-      id: 'column-1',
-      title: 'To do',
-      taskIds: ['task-1', 'task-2', 'task-3']
+export const getInitialKanbanData = (t: TFunction): DndDataType => {
+  const [todoTitle, inProgressTitle, doneTitle] = getDefaultKanbanColumnTitles(t);
+
+  const initialData: DndDataType = {
+    /*
+     * 这里先放空对象，随后由 generateTask(6) 填充。
+     * 这样任务数量和 columns.taskIds 中引用的 task-1 到 task-6 保持一致。
+     *
+     * This starts as an empty object and is populated by generateTask(6) below.
+     * That keeps the generated task count aligned with task-1 through task-6 referenced by columns.taskIds.
+     */
+    tasks: {},
+    columns: {
+      'column-1': {
+        id: 'column-1',
+        title: todoTitle,
+        taskIds: ['task-1', 'task-2', 'task-3']
+      },
+      'column-2': {
+        id: 'column-2',
+        title: inProgressTitle,
+        taskIds: ['task-4', 'task-5']
+      },
+      'column-3': {
+        id: 'column-3',
+        title: doneTitle,
+        taskIds: ['task-6']
+      }
     },
-    'column-2': {
-      id: 'column-2',
-      title: 'In progress',
-      taskIds: ['task-4', 'task-5']
-    },
-    'column-3': {
-      id: 'column-3',
-      title: 'Done',
-      taskIds: ['task-6']
-    }
-  },
-  columnOrder: ['column-1', 'column-2', 'column-3']
+    columnOrder: ['column-1', 'column-2', 'column-3']
+  };
+
+  initialData.tasks = generateTask(6);
+
+  return initialData;
 };
-
-initialData.tasks = generateTask(6);
-
-export { initialData };
