@@ -62,6 +62,10 @@ export function GetFrontendRoutes() {
             {
               path: 'menu',
               element: Component('/pages/management/system/menu')
+            },
+            {
+              path: 'role',
+              element: Component('/pages/management/system/role')
             }
           ]
         }

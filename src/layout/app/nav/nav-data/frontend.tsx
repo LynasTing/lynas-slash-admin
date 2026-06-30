@@ -101,6 +101,10 @@ export const frontendNavData: NavProps['data'] = [
             path: '/management/system',
             children: [
               {
+                title: 'Role',
+                path: '/management/system/role'
+              },
+              {
                 title: 'sys.nav.pages.menu',
                 path: '/management/system/menu'
               }
