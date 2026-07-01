@@ -30,6 +30,7 @@
         "profile": "Profile",
         "account": "Account",
         "system": "System",
+        "role": "Role",
         "menu": "Menu",
         "menuLevel": {
           "label": "Menu Levels",

@@ -44,6 +44,7 @@
         "user": "用户",
         "profile": "个人资料",
         "system": "系统",
+        "role": "角色",
         "menu": "菜单",
         "menuLevel": {
           "label": "多级菜单",

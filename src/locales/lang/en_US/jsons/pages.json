@@ -315,6 +315,66 @@
     },
     "management": {
       "system": {
+        "role": {
+          "title": "Role List",
+          "description": "Manage role metadata and authorized menus in one place.",
+          "columns": {
+            "order": "Order",
+            "name": "Name",
+            "code": "Code",
+            "status": "Status",
+            "menus": "Menus",
+            "description": "Description",
+            "action": "Action"
+          },
+          "actions": {
+            "new": "New Role",
+            "edit": "Edit role",
+            "delete": "Delete role",
+            "cancel": "Cancel",
+            "save": "Save",
+            "saving": "Saving...",
+            "confirmDelete": "Confirm Delete"
+          },
+          "modal": {
+            "createTitle": "Create Role",
+            "editTitle": "Edit Role"
+          },
+          "deleteDialog": {
+            "title": "Delete Role",
+            "description": "This will permanently delete the role \"{{name}}\". This action cannot be undone."
+          },
+          "form": {
+            "fields": {
+              "order": "Order",
+              "name": "Name",
+              "code": "Code",
+              "status": "Status",
+              "description": "Description",
+              "authorizedMenus": "Authorized Menus"
+            },
+            "placeholders": {
+              "authorizedMenus": "Select authorized menus"
+            }
+          },
+          "status": {
+            "enable": "Enable",
+            "disable": "Disable"
+          },
+          "validation": {
+            "orderRequired": "Order is required",
+            "nameRequired": "Name is required",
+            "codeRequired": "Code is required"
+          },
+          "toast": {
+            "loadFailed": "Failed to load roles",
+            "createSuccess": "Role created successfully",
+            "updateSuccess": "Role updated successfully",
+            "saveFailed": "Failed to save role",
+            "deleteSuccess": "Role deleted successfully",
+            "deleteFailed": "Failed to delete role"
+          }
+        },
         "menu": {
           "title": "Menu List",
           "columns": {

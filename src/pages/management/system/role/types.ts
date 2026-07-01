@@ -41,13 +41,6 @@ export type RoleModalState = {
   type: RoleModalType;
 
   /**
-   * 弹窗标题。
-   *
-   * Modal title.
-   */
-  title: string;
-
-  /**
    * 表单初始值。
    * 新增时使用默认角色值，编辑时使用当前角色数据。
    *

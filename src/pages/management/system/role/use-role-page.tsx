@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { ColumnsType } from 'antd/es/table';
 import type { MenuTreeNode, Role } from '#/entity';
 import { BasicStatusEnum } from '#/enum';
+import useLocale from '@/locales/use-locale';
 import { Badge } from '@/ui/badge';
 import { Icon } from '@/components/icon';
 import Button from '@/ui/button';
@@ -10,6 +11,8 @@ import { flattenTree } from '@/utils';
 import { createRoleApi, deleteRoleApi, getRoleListApi, updateRoleApi } from '@/api/services/role';
 import { getMenuListApi } from '@/api/services/menu';
 import type { RoleFormValues, RoleModalState, SaveRolePayload } from './types';
+
+const ROLE_PAGE_I18N_PREFIX = 'pages.management.system.role';
 
 type UseRolePageResult = {
   /**
@@ -152,6 +155,7 @@ const getAuthorizedMenuCount = (menus: MenuTreeNode[] = []): number => flattenTr
  * @returns State and actions required by the role page.
  */
 export function useRolePage(): UseRolePageResult {
+  const { t } = useLocale();
   const [roleTableData, setRoleTableData] = useState<Role[]>([]);
   const [menuTreeData, setMenuTreeData] = useState<MenuTreeNode[]>([]);
   const [tableLoading, setTableLoading] = useState(false);
@@ -161,7 +165,6 @@ export function useRolePage(): UseRolePageResult {
   const [roleModalState, setRoleModalState] = useState<RoleModalState>({
     visible: false,
     type: 'create',
-    title: 'Create Role',
     formValue: defaultRoleValue
   });
 
@@ -180,12 +183,12 @@ export function useRolePage(): UseRolePageResult {
       setRoleTableData(roles);
       setMenuTreeData(menus);
     } catch (error) {
-      const message = error instanceof Error ? error.message : 'Failed to load roles';
+      const message = error instanceof Error ? error.message : t(`${ROLE_PAGE_I18N_PREFIX}.toast.loadFailed`);
       toast.error(message);
     } finally {
       setTableLoading(false);
     }
-  }, []);
+  }, [t]);
 
   useEffect(() => {
     void loadRolePageData();
@@ -195,7 +198,6 @@ export function useRolePage(): UseRolePageResult {
     setRoleModalState({
       visible: true,
       type: 'create',
-      title: 'Create Role',
       formValue: defaultRoleValue
     });
   }, []);
@@ -204,7 +206,6 @@ export function useRolePage(): UseRolePageResult {
     setRoleModalState({
       visible: true,
       type: 'edit',
-      title: 'Edit Role',
       formValue: {
         id: role.id,
         name: role.name,
@@ -246,15 +247,19 @@ export function useRolePage(): UseRolePageResult {
           ...previousState,
           visible: false
         }));
-        toast.success(roleModalState.type === 'create' ? 'Role created successfully' : 'Role updated successfully');
+        toast.success(
+          roleModalState.type === 'create'
+            ? t(`${ROLE_PAGE_I18N_PREFIX}.toast.createSuccess`)
+            : t(`${ROLE_PAGE_I18N_PREFIX}.toast.updateSuccess`)
+        );
       } catch (error) {
-        const message = error instanceof Error ? error.message : 'Failed to save role';
+        const message = error instanceof Error ? error.message : t(`${ROLE_PAGE_I18N_PREFIX}.toast.saveFailed`);
         toast.error(message);
       } finally {
         setConfirmLoading(false);
       }
     },
-    [roleModalState.type]
+    [roleModalState.type, t]
   );
 
   /**
@@ -293,70 +298,74 @@ export function useRolePage(): UseRolePageResult {
       const roles = await deleteRoleApi(deletingRole.id);
       setRoleTableData(roles);
       setDeletingRole(null);
-      toast.success('Role deleted successfully');
+      toast.success(t(`${ROLE_PAGE_I18N_PREFIX}.toast.deleteSuccess`));
     } catch (error) {
-      const message = error instanceof Error ? error.message : 'Failed to delete role';
+      const message = error instanceof Error ? error.message : t(`${ROLE_PAGE_I18N_PREFIX}.toast.deleteFailed`);
       toast.error(message);
     }
-  }, [deletingRole]);
+  }, [deletingRole, t]);
 
   const columns: ColumnsType<Role> = useMemo(
     () => [
       {
-        title: 'Order',
+        title: t(`${ROLE_PAGE_I18N_PREFIX}.columns.order`),
         dataIndex: 'order',
         width: 90
       },
       {
-        title: 'Name',
+        title: t(`${ROLE_PAGE_I18N_PREFIX}.columns.name`),
         dataIndex: 'name',
         width: 220
       },
       {
-        title: 'Code',
+        title: t(`${ROLE_PAGE_I18N_PREFIX}.columns.code`),
         dataIndex: 'code',
         width: 180
       },
       {
-        title: 'Status',
+        title: t(`${ROLE_PAGE_I18N_PREFIX}.columns.status`),
         dataIndex: 'status',
         align: 'center',
         width: 120,
         render: value => (
           <Badge variant={value === BasicStatusEnum.DISABLE ? 'error' : 'success'}>
-            {value === BasicStatusEnum.DISABLE ? 'Disable' : 'Enable'}
+            {value === BasicStatusEnum.DISABLE ? t(`${ROLE_PAGE_I18N_PREFIX}.status.disable`) : t(`${ROLE_PAGE_I18N_PREFIX}.status.enable`)}
           </Badge>
         )
       },
       {
-        title: 'Menus',
+        title: t(`${ROLE_PAGE_I18N_PREFIX}.columns.menus`),
         dataIndex: 'menus',
         align: 'center',
         width: 100,
         render: (_, record) => getAuthorizedMenuCount(record.menus ?? [])
       },
       {
-        title: 'Description',
+        title: t(`${ROLE_PAGE_I18N_PREFIX}.columns.description`),
         dataIndex: 'desc'
       },
       {
-        title: 'Action',
+        title: t(`${ROLE_PAGE_I18N_PREFIX}.columns.action`),
         key: 'operation',
         align: 'center',
         width: 120,
         render: (_, record) => (
           <div className="text-gray flex w-full justify-center">
-            <Button variant="ghost" size="icon" aria-label="Edit role" onClick={() => handleEdit(record)}>
+            <Button variant="ghost" size="icon" aria-label={t(`${ROLE_PAGE_I18N_PREFIX}.actions.edit`)} onClick={() => handleEdit(record)}>
               <Icon icon="solar:pen-bold-duotone" size={18} />
             </Button>
-            <Button variant="ghost" size="icon" aria-label="Delete role" onClick={() => handleDeleteRequest(record)}>
+            <Button
+              variant="ghost"
+              size="icon"
+              aria-label={t(`${ROLE_PAGE_I18N_PREFIX}.actions.delete`)}
+              onClick={() => handleDeleteRequest(record)}>
               <Icon icon="mingcute:delete-2-fill" size={18} className="text-error!" />
             </Button>
           </div>
         )
       }
     ],
-    [handleDeleteRequest, handleEdit]
+    [handleDeleteRequest, handleEdit, t]
   );
 
   return {

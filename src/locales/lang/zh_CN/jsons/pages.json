@@ -315,6 +315,66 @@
     },
     "management": {
       "system": {
+        "role": {
+          "title": "角色列表",
+          "description": "在一个地方统一管理角色元数据和授权菜单。",
+          "columns": {
+            "order": "排序",
+            "name": "名称",
+            "code": "编码",
+            "status": "状态",
+            "menus": "菜单数",
+            "description": "描述",
+            "action": "操作"
+          },
+          "actions": {
+            "new": "新建角色",
+            "edit": "编辑角色",
+            "delete": "删除角色",
+            "cancel": "取消",
+            "save": "保存",
+            "saving": "保存中...",
+            "confirmDelete": "确认删除"
+          },
+          "modal": {
+            "createTitle": "新建角色",
+            "editTitle": "编辑角色"
+          },
+          "deleteDialog": {
+            "title": "删除角色",
+            "description": "这会永久删除角色“{{name}}”，且该操作无法撤销。"
+          },
+          "form": {
+            "fields": {
+              "order": "排序",
+              "name": "名称",
+              "code": "编码",
+              "status": "状态",
+              "description": "描述",
+              "authorizedMenus": "授权菜单"
+            },
+            "placeholders": {
+              "authorizedMenus": "请选择授权菜单"
+            }
+          },
+          "status": {
+            "enable": "启用",
+            "disable": "禁用"
+          },
+          "validation": {
+            "orderRequired": "请输入排序",
+            "nameRequired": "请输入名称",
+            "codeRequired": "请输入编码"
+          },
+          "toast": {
+            "loadFailed": "角色加载失败",
+            "createSuccess": "角色新增成功",
+            "updateSuccess": "角色更新成功",
+            "saveFailed": "角色保存失败",
+            "deleteSuccess": "角色删除成功",
+            "deleteFailed": "角色删除失败"
+          }
+        },
         "menu": {
           "title": "菜单列表",
           "columns": {

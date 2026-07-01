@@ -1,6 +1,7 @@
 import type { MenuTreeNode } from '#/entity';
 import { BasicStatusEnum } from '#/enum';
 import { TreeSelect } from 'antd';
+import useLocale from '@/locales/use-locale';
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/ui/dialog';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/ui/form';
 import { Input } from '@/ui/input';
@@ -8,8 +9,10 @@ import { Label } from '@/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/ui/radio-group';
 import { Textarea } from '@/ui/textarea';
 import Button from '@/ui/button';
-import type { RoleFormValues } from './types';
+import type { RoleFormValues, RoleModalType } from './types';
 import { useRoleForm } from './use-role-form';
+
+const ROLE_PAGE_I18N_PREFIX = 'pages.management.system.role';
 
 export type RoleModalProps = {
   /**
@@ -20,11 +23,11 @@ export type RoleModalProps = {
   visible: boolean;
 
   /**
-   * 弹窗标题。
+   * 当前弹窗操作类型。
    *
-   * Modal title.
+   * Current modal action type.
    */
-  title: string;
+  type: RoleModalType;
 
   /**
    * 表单初始值。
@@ -75,27 +78,29 @@ export type RoleModalProps = {
  * @param props - Modal props.
  * @returns Role editing modal.
  */
-export default function RoleModal({ visible, title, formValue, menuTreeData, confirmLoading = false, onSave, onCancel }: RoleModalProps) {
+export default function RoleModal({ visible, type, formValue, menuTreeData, confirmLoading = false, onSave, onCancel }: RoleModalProps) {
+  const { t } = useLocale();
   const { form, checkedMenuIds, handleMenuChange } = useRoleForm({
     formValue,
     menuTreeData
   });
+  const modalTitle = t(type === 'create' ? `${ROLE_PAGE_I18N_PREFIX}.modal.createTitle` : `${ROLE_PAGE_I18N_PREFIX}.modal.editTitle`);
 
   return (
     <Dialog open={visible} onOpenChange={open => !open && onCancel()}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{title}</DialogTitle>
+          <DialogTitle>{modalTitle}</DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form className="space-y-4" onSubmit={form.handleSubmit(onSave)}>
             <FormField
               control={form.control}
               name="order"
-              rules={{ required: 'Order is required' }}
+              rules={{ required: t(`${ROLE_PAGE_I18N_PREFIX}.validation.orderRequired`) }}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Order</FormLabel>
+                  <FormLabel>{t(`${ROLE_PAGE_I18N_PREFIX}.form.fields.order`)}</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
@@ -114,10 +119,10 @@ export default function RoleModal({ visible, title, formValue, menuTreeData, con
             <FormField
               control={form.control}
               name="name"
-              rules={{ required: 'Name is required' }}
+              rules={{ required: t(`${ROLE_PAGE_I18N_PREFIX}.validation.nameRequired`) }}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>{t(`${ROLE_PAGE_I18N_PREFIX}.form.fields.name`)}</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -129,10 +134,10 @@ export default function RoleModal({ visible, title, formValue, menuTreeData, con
             <FormField
               control={form.control}
               name="code"
-              rules={{ required: 'Code is required' }}
+              rules={{ required: t(`${ROLE_PAGE_I18N_PREFIX}.validation.codeRequired`) }}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Code</FormLabel>
+                  <FormLabel>{t(`${ROLE_PAGE_I18N_PREFIX}.form.fields.code`)}</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -146,18 +151,18 @@ export default function RoleModal({ visible, title, formValue, menuTreeData, con
               name="status"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Status</FormLabel>
+                  <FormLabel>{t(`${ROLE_PAGE_I18N_PREFIX}.form.fields.status`)}</FormLabel>
                   <FormControl>
                     <RadioGroup
                       value={String(field.value ?? BasicStatusEnum.ENABLE)}
                       onValueChange={value => field.onChange(Number(value))}>
                       <div className="flex items-center space-x-2">
                         <RadioGroupItem value={String(BasicStatusEnum.ENABLE)} id="role-status-enable" />
-                        <Label htmlFor="role-status-enable">Enable</Label>
+                        <Label htmlFor="role-status-enable">{t(`${ROLE_PAGE_I18N_PREFIX}.status.enable`)}</Label>
                       </div>
                       <div className="flex items-center space-x-2">
                         <RadioGroupItem value={String(BasicStatusEnum.DISABLE)} id="role-status-disable" />
-                        <Label htmlFor="role-status-disable">Disable</Label>
+                        <Label htmlFor="role-status-disable">{t(`${ROLE_PAGE_I18N_PREFIX}.status.disable`)}</Label>
                       </div>
                     </RadioGroup>
                   </FormControl>
@@ -170,7 +175,7 @@ export default function RoleModal({ visible, title, formValue, menuTreeData, con
               name="desc"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Description</FormLabel>
+                  <FormLabel>{t(`${ROLE_PAGE_I18N_PREFIX}.form.fields.description`)}</FormLabel>
                   <FormControl>
                     <Textarea value={field.value ?? ''} onChange={field.onChange} />
                   </FormControl>
@@ -183,13 +188,13 @@ export default function RoleModal({ visible, title, formValue, menuTreeData, con
               name="menus"
               render={() => (
                 <FormItem>
-                  <FormLabel>Authorized Menus</FormLabel>
+                  <FormLabel>{t(`${ROLE_PAGE_I18N_PREFIX}.form.fields.authorizedMenus`)}</FormLabel>
                   <FormControl>
                     <TreeSelect
                       treeData={menuTreeData}
                       treeCheckable
                       allowClear
-                      placeholder="Select authorized menus"
+                      placeholder={t(`${ROLE_PAGE_I18N_PREFIX}.form.placeholders.authorizedMenus`)}
                       value={checkedMenuIds}
                       fieldNames={{ label: 'name', value: 'id', children: 'children' }}
                       getPopupContainer={node => node.parentElement ?? document.body}
@@ -205,10 +210,10 @@ export default function RoleModal({ visible, title, formValue, menuTreeData, con
 
             <DialogFooter>
               <Button type="button" variant="outline" onClick={onCancel}>
-                Cancel
+                {t(`${ROLE_PAGE_I18N_PREFIX}.actions.cancel`)}
               </Button>
               <Button type="submit" disabled={confirmLoading}>
-                {confirmLoading ? 'Saving...' : 'Save'}
+                {confirmLoading ? t(`${ROLE_PAGE_I18N_PREFIX}.actions.saving`) : t(`${ROLE_PAGE_I18N_PREFIX}.actions.save`)}
               </Button>
             </DialogFooter>
           </form>
