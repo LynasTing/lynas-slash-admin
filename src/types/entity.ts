@@ -106,6 +106,18 @@ export interface Role extends CommonOptions {
    * Code
    */
   code: string;
+
+  /**
+   * 排序
+   * Order
+   */
+  order?: number;
+
+  /**
+   * 授权菜单树
+   * Authorized menu tree
+   */
+  menus?: MenuTreeNode[];
 }
 
 /**
