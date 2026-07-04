@@ -70,7 +70,7 @@
 import { ComponentProps } from 'react';
 import { Command as CommandPrimitive } from 'cmdk';
 import { cn } from '@/utils';
-import { commandVriants, commandDialogVriants, commandInputVriants, commandGroupVriants, commandItemVriants } from './style';
+import { commandVariants, commandDialogVariants, commandInputVariants, commandGroupVariants, commandItemVariants } from './style';
 import { Dialog, DialogHeader, DialogTitle, DialogDescription, DialogContent } from '../dialog';
 import { SearchIcon } from 'lucide-react';
 
@@ -86,7 +86,7 @@ import { SearchIcon } from 'lucide-react';
  * - Wraps all Command subcomponents (Input / List / Item, etc.)
  */
 function Command({ className, ...props }: ComponentProps<typeof CommandPrimitive>) {
-  return <CommandPrimitive data-slot="command" className={cn(commandVriants(), className)} {...props} />;
+  return <CommandPrimitive data-slot="command" className={cn(commandVariants(), className)} {...props} />;
 }
 
 /**
@@ -116,7 +116,7 @@ function CommandDialog({
         <DialogDescription>{description}</DialogDescription>
       </DialogHeader>
       <DialogContent className="overflow-hidden p-0">
-        <Command className={cn(commandDialogVriants())}>{children}</Command>
+        <Command className={cn(commandDialogVariants())}>{children}</Command>
       </DialogContent>
     </Dialog>
   );
@@ -137,7 +137,7 @@ function CommandInput({ className, ...props }: ComponentProps<typeof CommandPrim
   return (
     <div data-slot="command-input-wrapper" className="flex h-9 items-center gap-2 border-b px-3">
       <SearchIcon className="size-4 shrink-0 opacity-50" />
-      <CommandPrimitive.Input data-slot="command-input" className={cn(commandInputVriants(), className)} {...props} />
+      <CommandPrimitive.Input data-slot="command-input" className={cn(commandInputVariants(), className)} {...props} />
     </div>
   );
 }
@@ -184,7 +184,7 @@ function CommandEmpty({ ...props }: ComponentProps<typeof CommandPrimitive.Empty
  * - Supports group headings
  */
 function CommandGroup({ className, ...props }: ComponentProps<typeof CommandPrimitive.Group>) {
-  return <CommandPrimitive.Group data-slot="command-group" className={cn(commandGroupVriants(), className)} {...props} />;
+  return <CommandPrimitive.Group data-slot="command-group" className={cn(commandGroupVariants(), className)} {...props} />;
 }
 
 /**
@@ -197,7 +197,7 @@ function CommandGroup({ className, ...props }: ComponentProps<typeof CommandPrim
  * - Improves readability of the command list
  */
 function CommandSeparator({ className, ...props }: ComponentProps<typeof CommandPrimitive.Separator>) {
-  return <CommandPrimitive.Separator data-slot="command-separator" className={cn('bg-border -mx-1 h-px', className)} {...props} />;
+  return <CommandPrimitive.Separator data-slot="command-separator" className={cn('-mx-1 h-px bg-border', className)} {...props} />;
 }
 
 /**
@@ -212,7 +212,7 @@ function CommandSeparator({ className, ...props }: ComponentProps<typeof Command
  * - Executes logic via onSelect handler
  */
 function CommandItem({ className, ...props }: ComponentProps<typeof CommandPrimitive.Item>) {
-  return <CommandPrimitive.Item data-slot="command-item" className={cn(commandItemVriants(), className)} {...props} />;
+  return <CommandPrimitive.Item data-slot="command-item" className={cn(commandItemVariants(), className)} {...props} />;
 }
 
 /**
@@ -226,7 +226,7 @@ function CommandItem({ className, ...props }: ComponentProps<typeof CommandPrimi
  */
 function CommandShortcut({ className, ...props }: ComponentProps<'span'>) {
   return (
-    <span data-slot="command-shortcut" className={cn('text-muted-foreground ml-auto text-xs tracking-widest', className)} {...props} />
+    <span data-slot="command-shortcut" className={cn('ml-auto text-xs tracking-widest text-muted-foreground', className)} {...props} />
   );
 }
 
