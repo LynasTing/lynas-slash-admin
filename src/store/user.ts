@@ -46,6 +46,10 @@ export const useUserInfo = () => useUserStore(s => s.userInfo);
 export const useUserPermissions = () => useUserStore(s => s.userInfo.permissions || []);
 export const useUserMenus = () => useUserStore(s => s.userInfo.menu || []);
 
+export const clearUserAuth = () => {
+  useUserStore.getState().actions.clearUserInfoAndToken();
+};
+
 export const useSignIn = () => {
   const { setUserToken, setUserInfo } = useUserActions();
 
