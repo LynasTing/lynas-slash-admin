@@ -3,6 +3,7 @@ import type { ColumnsType } from 'antd/es/table';
 import type { MenuTreeNode, Role } from '#/entity';
 import { BasicStatusEnum } from '#/enum';
 import useLocale from '@/locales/use-locale';
+import { BASIC_STATUS_LABEL_KEY_MAP } from '@/constants';
 import { Badge } from '@/ui/badge';
 import { Icon } from '@/components/icon';
 import Button from '@/ui/button';
@@ -327,10 +328,8 @@ export function useRolePage(): UseRolePageResult {
         dataIndex: 'status',
         align: 'center',
         width: 120,
-        render: value => (
-          <Badge variant={value === BasicStatusEnum.DISABLE ? 'error' : 'success'}>
-            {value === BasicStatusEnum.DISABLE ? t(`${ROLE_PAGE_I18N_PREFIX}.status.disable`) : t(`${ROLE_PAGE_I18N_PREFIX}.status.enable`)}
-          </Badge>
+        render: (status: BasicStatusEnum = BasicStatusEnum.ENABLE) => (
+          <Badge variant={status === BasicStatusEnum.DISABLE ? 'error' : 'success'}>{t(BASIC_STATUS_LABEL_KEY_MAP[status])}</Badge>
         )
       },
       {

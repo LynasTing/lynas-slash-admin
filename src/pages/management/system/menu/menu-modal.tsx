@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/ui/form';
 import { ToggleGroup, ToggleGroupItem } from '@/ui/toggle-group';
 import { BasicStatusEnum, MenuTypeEnum } from '#/enum';
+import { BASIC_STATUS_LABEL_KEY_MAP } from '@/constants';
 import { TreeSelect, AutoComplete, type AutoCompleteProps } from 'antd';
 import { Input } from '@/ui/input';
 import { useState, useCallback, useEffect, useMemo } from 'react';
@@ -390,10 +391,10 @@ export default function MenuModal({ visible, title, formValue, menuTreeData, con
                         field.onChange(Number(v));
                       }}>
                       <ToggleGroupItem value={String(BasicStatusEnum.ENABLE)}>
-                        {t(`${MENU_PAGE_I18N_PREFIX}.status.enable`)}
+                        {t(BASIC_STATUS_LABEL_KEY_MAP[BasicStatusEnum.ENABLE])}
                       </ToggleGroupItem>
                       <ToggleGroupItem value={String(BasicStatusEnum.DISABLE)}>
-                        {t(`${MENU_PAGE_I18N_PREFIX}.status.disable`)}
+                        {t(BASIC_STATUS_LABEL_KEY_MAP[BasicStatusEnum.DISABLE])}
                       </ToggleGroupItem>
                     </ToggleGroup>
                   </FormControl>

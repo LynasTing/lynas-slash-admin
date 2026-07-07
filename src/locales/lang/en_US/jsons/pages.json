@@ -357,10 +357,6 @@
               "authorizedMenus": "Select authorized menus"
             }
           },
-          "status": {
-            "enable": "Enable",
-            "disable": "Disable"
-          },
           "validation": {
             "orderRequired": "Order is required",
             "nameRequired": "Name is required",
@@ -412,10 +408,6 @@
               "cancel": "Cancel",
               "confirm": "Confirm"
             }
-          },
-          "status": {
-            "enable": "Enable",
-            "disable": "Disable"
           },
           "visibility": {
             "show": "Show",

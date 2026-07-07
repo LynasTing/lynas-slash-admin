@@ -3,6 +3,7 @@ import Table, { type ColumnsType } from 'antd/es/table';
 import type { MenuTreeNode } from '#/entity';
 import useLocale from '@/locales/use-locale';
 import { MenuTypeEnum, BasicStatusEnum } from '#/enum';
+import { BASIC_STATUS_LABEL_KEY_MAP } from '@/constants';
 import { Badge } from '@/ui/badge';
 import { Icon } from '@/components/icon';
 import Button from '@/ui/button';
@@ -228,12 +229,8 @@ export default function PermissionPage() {
         dataIndex: 'status',
         align: 'center',
         width: 120,
-        render: status => (
-          <Badge variant={status === BasicStatusEnum.DISABLE ? 'error' : 'success'}>
-            {status === BasicStatusEnum.DISABLE
-              ? t(`${MENU_PAGE_I18N_PREFIX}.status.disable`)
-              : t(`${MENU_PAGE_I18N_PREFIX}.status.enable`)}
-          </Badge>
+        render: (status: BasicStatusEnum = BasicStatusEnum.ENABLE) => (
+          <Badge variant={status === BasicStatusEnum.DISABLE ? 'error' : 'success'}>{t(BASIC_STATUS_LABEL_KEY_MAP[status])}</Badge>
         )
       },
       {

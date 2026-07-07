@@ -5,6 +5,10 @@
     "clickHere": "Click here",
     "close": "Close",
     "exportData": "Export Data",
+    "status": {
+      "enable": "Enable",
+      "disable": "Disable"
+    },
     "upload": {
       "avatarAcceptedTypes": "Only JPEG, JPG and PNG images are allowed.",
       "avatarMaxSize": "Avatar must be smaller than {{size}}."

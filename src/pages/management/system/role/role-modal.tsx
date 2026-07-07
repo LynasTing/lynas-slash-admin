@@ -1,5 +1,6 @@
 import type { MenuTreeNode } from '#/entity';
 import { BasicStatusEnum } from '#/enum';
+import { BASIC_STATUS_LABEL_KEY_MAP } from '@/constants';
 import { TreeSelect } from 'antd';
 import useLocale from '@/locales/use-locale';
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/ui/dialog';
@@ -158,11 +159,11 @@ export default function RoleModal({ visible, type, formValue, menuTreeData, conf
                       onValueChange={value => field.onChange(Number(value))}>
                       <div className="flex items-center space-x-2">
                         <RadioGroupItem value={String(BasicStatusEnum.ENABLE)} id="role-status-enable" />
-                        <Label htmlFor="role-status-enable">{t(`${ROLE_PAGE_I18N_PREFIX}.status.enable`)}</Label>
+                        <Label htmlFor="role-status-enable">{t(BASIC_STATUS_LABEL_KEY_MAP[BasicStatusEnum.ENABLE])}</Label>
                       </div>
                       <div className="flex items-center space-x-2">
                         <RadioGroupItem value={String(BasicStatusEnum.DISABLE)} id="role-status-disable" />
-                        <Label htmlFor="role-status-disable">{t(`${ROLE_PAGE_I18N_PREFIX}.status.disable`)}</Label>
+                        <Label htmlFor="role-status-disable">{t(BASIC_STATUS_LABEL_KEY_MAP[BasicStatusEnum.DISABLE])}</Label>
                       </div>
                     </RadioGroup>
                   </FormControl>
