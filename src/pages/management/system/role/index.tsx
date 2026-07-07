@@ -36,7 +36,7 @@ export default function RolePage() {
       <CardHeader>
         <div className="flex items-center justify-between gap-4">
           <div>
-            <Title as="h3">{t(`${ROLE_PAGE_I18N_PREFIX}.title`)}</Title>
+            <Title as="h4">{t(`${ROLE_PAGE_I18N_PREFIX}.title`)}</Title>
             <Text color="secondary">{t(`${ROLE_PAGE_I18N_PREFIX}.description`)}</Text>
           </div>
           <Button onClick={handleCreate}>{t(`${ROLE_PAGE_I18N_PREFIX}.actions.new`)}</Button>

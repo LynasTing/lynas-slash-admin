@@ -7,7 +7,7 @@ import { Badge } from '@/ui/badge';
 import { Icon } from '@/components/icon';
 import Button from '@/ui/button';
 import { Card, CardHeader, CardContent } from '@/ui/card';
-import { Text } from '@/ui/typography';
+import { Title } from '@/ui/typography';
 import MenuModal, { type MenuModalProps } from './menu-modal';
 import { toast } from 'sonner';
 import { createMenuApi, getMenuListApi, updateMenuApi } from '@/api/services/menu';
@@ -277,7 +277,8 @@ export default function PermissionPage() {
     <Card>
       <CardHeader>
         <div className="flex items-center justify-between">
-          <Text>{t(`${MENU_PAGE_I18N_PREFIX}.title`)}</Text>
+          {/* <Text>{t(`${MENU_PAGE_I18N_PREFIX}.title`)}</Text> */}
+          <Title as="h4">{t(`${MENU_PAGE_I18N_PREFIX}.title`)}</Title>
           <Button className="cursor-pointer" onClick={() => handleCreate()}>
             {t(`${MENU_PAGE_I18N_PREFIX}.actions.new`)}
           </Button>
