@@ -46,7 +46,8 @@ const STATUS_LABEL_MAP = {
 
 ## 代码结构
 
-- 所有复杂逻辑必须抽离为 hook
+- 只有同时满足“逻辑复杂”和“具备复用价值”的代码才应抽离为 hook
+- 仅服务于单个组件、逻辑规模较小、或抽离后只会增加跨文件跳转成本的状态逻辑，应优先保留在组件内部
 - hook 的命名必须以 use 开头
 - 保持模块职责单一及作用清晰
 - 避免耦合
@@ -177,7 +178,8 @@ const STATUS_LABEL_MAP = {
 
 ## Code Structure
 
-- Extract all complex logic into hooks
+- Extract code into hooks only when the logic is both complex and genuinely reusable
+- State logic that only serves one component, remains small in scope, or becomes harder to read after extraction should stay inside the component
 - Hook names must start with `use`
 - Keep each module focused with a single clear responsibility
 - Avoid coupling
