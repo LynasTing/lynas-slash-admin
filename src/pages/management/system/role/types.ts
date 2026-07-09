@@ -49,12 +49,3 @@ export type RoleModalState = {
    */
   formValue: RoleFormValues;
 };
-
-/**
- * 保存角色时提交的数据。
- * 当前与表单值保持一致；单独命名是为了以后接入接口时可以独立收敛提交 payload。
- *
- * Submitted data when saving a role.
- * It currently matches the form values; the separate name leaves room to narrow the API payload later.
- */
-export type SaveRolePayload = RoleFormValues;

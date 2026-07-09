@@ -16,7 +16,7 @@ import { flattenTree } from '@/utils';
 import { createRoleApi, deleteRoleApi, getRoleListApi, updateRoleApi } from '@/api/services/role';
 import { getMenuListApi } from '@/api/services/menu';
 import RoleModal from './role-modal';
-import type { RoleFormValues, RoleModalState, SaveRolePayload } from './types';
+import type { RoleFormValues, RoleModalState } from './types';
 
 const ROLE_PAGE_I18N_PREFIX = 'pages.management.system.role';
 
@@ -29,39 +29,6 @@ const defaultRoleValue: RoleFormValues = {
   desc: '',
   menus: []
 };
-
-/**
- * 规范化角色提交值。
- * 页面在提交前先做一次轻量收敛，保证空白字符、大小写和空描述不会把列表数据搅乱。
- * @param value - 原始表单值。
- * @returns 规范化后的提交数据。
- *
- * Normalize role values before submission.
- * The page performs a lightweight normalization pass so whitespace, code casing, and empty descriptions do not pollute stored role records.
- * @param value - Raw form value.
- * @returns Normalized payload.
- */
-const buildRolePayload = (value: RoleFormValues): SaveRolePayload => ({
-  ...value,
-  name: value.name.trim(),
-  code: value.code.trim().toUpperCase(),
-  order: value.order ?? 0,
-  desc: value.desc?.trim() ?? '',
-  menus: structuredClone(value.menus ?? [])
-});
-
-/**
- * 统计角色授权菜单数量。
- * 角色列表不直接铺出整棵授权树，而是给出数量摘要，避免表格列被菜单名称撑爆。
- * @param menus - 角色授权菜单树。
- * @returns 授权菜单数量。
- *
- * Count the number of authorized menus on a role.
- * The table shows a compact summary instead of rendering the full authorized tree in a column.
- * @param menus - Authorized menu tree.
- * @returns Authorized menu count.
- */
-const getAuthorizedMenuCount = (menus: MenuTreeNode[] = []): number => flattenTree(menus).length;
 
 /**
  * 角色管理页面。
@@ -153,8 +120,7 @@ export default function RolePage() {
       setConfirmLoading(true);
 
       try {
-        const payload = buildRolePayload(value);
-        const roles = roleModalState.type === 'create' ? await createRoleApi(payload as Role) : await updateRoleApi(payload as Role);
+        const roles = roleModalState.type === 'create' ? await createRoleApi(value) : await updateRoleApi(value);
 
         setRoleTableData(roles);
         setRoleModalState(previousState => ({
@@ -250,7 +216,7 @@ export default function RolePage() {
         dataIndex: 'menus',
         align: 'center',
         width: 100,
-        render: (_, record) => getAuthorizedMenuCount(record.menus ?? [])
+        render: (_, record) => flattenTree(record.menus ?? []).length
       },
       {
         title: t(`${ROLE_PAGE_I18N_PREFIX}.columns.description`),

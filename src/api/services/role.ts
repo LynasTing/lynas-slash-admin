@@ -1,6 +1,8 @@
 import type { Role } from '#/entity';
 import { apiClient } from '@/utils';
 
+type RoleSavePayload = Pick<Role, 'id' | 'name' | 'code' | 'order' | 'status' | 'desc' | 'menus'>;
+
 /**
  * 角色接口地址集合。
  *
@@ -34,7 +36,7 @@ const getRoleListApi = () =>
  * @param data - Role payload.
  * @returns Updated role list.
  */
-const createRoleApi = (data: Role) =>
+const createRoleApi = (data: RoleSavePayload) =>
   apiClient.post<Role[]>({
     url: ROLE_API_MAP.CREATE,
     data
@@ -49,7 +51,7 @@ const createRoleApi = (data: Role) =>
  * @param data - Role payload.
  * @returns Updated role list.
  */
-const updateRoleApi = (data: Role) =>
+const updateRoleApi = (data: RoleSavePayload) =>
   apiClient.post<Role[]>({
     url: ROLE_API_MAP.UPDATE,
     data

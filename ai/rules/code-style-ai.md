@@ -48,6 +48,8 @@ const STATUS_LABEL_MAP = {
 
 - 只有同时满足“逻辑复杂”和“具备复用价值”的代码才应抽离为 hook
 - 仅服务于单个组件、逻辑规模较小、或抽离后只会增加跨文件跳转成本的状态逻辑，应优先保留在组件内部
+- 仅使用一次、逻辑直白、表达式本身已经足够清晰的纯函数，不应为了“语义化命名”强行抽离；应优先直接写在使用处
+- 抽离纯函数必须具备明确收益，例如复用、隔离复杂业务规则、稳定测试边界、隐藏不稳定实现细节，或显著降低调用处认知负担
 - hook 的命名必须以 use 开头
 - 保持模块职责单一及作用清晰
 - 避免耦合
@@ -180,6 +182,8 @@ const STATUS_LABEL_MAP = {
 
 - Extract code into hooks only when the logic is both complex and genuinely reusable
 - State logic that only serves one component, remains small in scope, or becomes harder to read after extraction should stay inside the component
+- Do not extract a pure function only for semantic naming when it is used once, the logic is obvious, and the expression is already clear; prefer writing it directly at the call site
+- Extract pure functions only when there is a clear benefit, such as reuse, isolating complex business rules, creating a stable test boundary, hiding unstable implementation details, or significantly reducing cognitive load at the call site
 - Hook names must start with `use`
 - Keep each module focused with a single clear responsibility
 - Avoid coupling
