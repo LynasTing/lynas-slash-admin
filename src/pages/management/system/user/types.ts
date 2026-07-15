@@ -82,38 +82,6 @@ export type UserFormValues = Pick<UserTableRow, 'id' | 'username' | 'email' | 'a
 };
 
 /**
- * 用户弹窗状态。
- * 页面用单一状态对象集中管理弹窗开关、模式和表单初始值，避免多个独立 state 在切换编辑对象时互相打架。
- *
- * User modal state.
- * The page keeps modal visibility, mode, and initial form values in one state object so separate state slices do not drift when switching edited users.
- */
-export type UserModalState = {
-  /**
-   * 弹窗是否可见。
-   *
-   * Whether the modal is visible.
-   */
-  visible: boolean;
-
-  /**
-   * 当前弹窗操作类型。
-   *
-   * Current modal action type.
-   */
-  type: UserModalType;
-
-  /**
-   * 表单初始值。
-   * 新增时使用默认空值，编辑时使用当前用户数据回填后的表单值。
-   *
-   * Initial form values.
-   * Create mode uses empty defaults, while edit mode uses the current user data mapped into the form shape.
-   */
-  formValue: UserFormValues;
-};
-
-/**
  * 保存用户时提交的数据。
  * 当前与表单值一致；保留独立别名是为了后续接入接口时，可以单独约束提交载荷而不影响表单状态类型。
  *
