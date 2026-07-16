@@ -1,6 +1,6 @@
 import { ComponentProps } from 'react';
 import { Dialog as DialogPrimitive } from 'radix-ui';
-import { dialogContentVriants, dialogOverlayVriants, dialogCloseVriants } from './style';
+import { dialogContentVariants, dialogOverlayVariants, dialogCloseVariants } from './style';
 import { cn } from '@/utils';
 import { XIcon } from 'lucide-react';
 
@@ -82,7 +82,7 @@ function DialogClose({ ...props }: ComponentProps<typeof DialogPrimitive.Close>)
  * - Usually includes fade-in / fade-out animations
  */
 function DialogOverlay({ className, ...props }: ComponentProps<typeof DialogPrimitive.Overlay>) {
-  return <DialogPrimitive.Overlay data-slot="dialog-overlay" className={cn(dialogOverlayVriants(), className)} {...props} />;
+  return <DialogPrimitive.Overlay data-slot="dialog-overlay" className={cn(dialogOverlayVariants(), className)} {...props} />;
 }
 
 /**
@@ -104,11 +104,11 @@ function DialogContent({ className, children, ...props }: ComponentProps<typeof 
   return (
     <DialogPortal>
       <DialogOverlay />
-      <DialogPrimitive.Content data-slot="dialog-content" className={cn(dialogContentVriants(), className)} {...props}>
+      <DialogPrimitive.Content data-slot="dialog-content" className={cn(dialogContentVariants(), className)} {...props}>
         {children}
 
         {/* 内置关闭按钮，仅供 DialogContent 内部使用 */}
-        <DialogPrimitive.Close className={cn(dialogCloseVriants(), className)}>
+        <DialogPrimitive.Close className={cn(dialogCloseVariants(), className)}>
           <XIcon />
           <span className="sr-only">Close</span>
         </DialogPrimitive.Close>
