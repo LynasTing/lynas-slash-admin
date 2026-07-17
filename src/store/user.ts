@@ -1,16 +1,16 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import type { UserInfo, UserToken } from '#/entity';
+import type { User, UserToken } from '#/entity';
 import { StorageEnum } from '#/enum';
 import { useMutation } from '@tanstack/react-query';
 import { signInApi, type SignInRequest } from '@/api/services/auth';
 import { toast } from 'sonner';
 
 type UserStore = {
-  userInfo: Partial<UserInfo>;
+  userInfo: Partial<User>;
   userToken: UserToken;
   actions: {
-    setUserInfo: (userInfo: Partial<UserInfo>) => void;
+    setUserInfo: (userInfo: Partial<User>) => void;
     setUserToken: (userToken: UserToken) => void;
     clearUserInfoAndToken: () => void;
   };

@@ -65,9 +65,12 @@ export interface User extends CommonOptions {
 
   /**
    * 密码
-   * Password
+   * 接口通常不会返回该字段；仅在创建用户、修改密码等提交场景携带。
+   *
+   * Password.
+   * APIs normally do not return this field; it is only sent when creating a user or changing a password.
    */
-  password: string;
+  password?: string;
 
   /**
    * 邮箱
@@ -86,6 +89,33 @@ export interface User extends CommonOptions {
    * Avatar
    */
   avatar?: string;
+
+  /**
+   * 用户角色列表。
+   * 一个用户可以拥有多个角色，系统用户列表、认证状态和权限计算共享该字段。
+   *
+   * User roles.
+   * A user can have multiple roles; system user lists, authentication state, and permission calculations share this field.
+   */
+  roles?: Role[];
+
+  /**
+   * 用户权限列表。
+   * 认证接口可直接返回已计算的权限，供前端控制功能入口。
+   *
+   * User permissions.
+   * Authentication APIs can return resolved permissions for frontend feature gating.
+   */
+  permissions?: Permission[];
+
+  /**
+   * 用户菜单树。
+   * 登录后用于生成导航菜单，不与角色授权菜单的编辑数据混用。
+   *
+   * User menu tree.
+   * It builds navigation after sign-in and remains separate from role authorization data used for editing.
+   */
+  menu?: MenuTreeNode[];
 }
 
 export interface Role extends CommonOptions {
@@ -218,67 +248,6 @@ export interface Permission extends CommonOptions {
 }
 
 export type MenuTree = MenuTreeNode;
-
-/**
- * 用户信息
- * User information
- */
-export interface UserInfo {
-  /**
-   * 用户 ID
-   * User ID (uuid)
-   */
-  id: string;
-
-  /**
-   * 邮箱
-   * Email
-   */
-  email: string;
-
-  /**
-   * 用户名
-   * Username
-   */
-  username: string;
-
-  /**
-   * 密码
-   * Password
-   * - Optional, usually not returned by backend
-   */
-  password?: string;
-
-  /**
-   * 头像
-   * Avatar
-   */
-  avatar?: string;
-
-  /**
-   * 角色列表
-   * Roles
-   */
-  roles?: Role[];
-
-  /**
-   * 用户状态
-   * User status
-   */
-  status?: BasicStatusEnum;
-
-  /**
-   * 权限列表
-   * Permissions
-   */
-  permissions?: Permission[];
-
-  /**
-   * 菜单树
-   * Menu tree
-   */
-  menu?: MenuTreeNode[];
-}
 
 export interface MenuTreeNode {
   /**
