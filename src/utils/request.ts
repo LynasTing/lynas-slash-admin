@@ -65,6 +65,12 @@ class APIClient {
   post<T = unknown>(config: AxiosRequestConfig): Promise<T> {
     return this.request<T>({ ...config, method: 'POST' });
   }
+  delete<T = unknown>(config: AxiosRequestConfig): Promise<T> {
+    return this.request<T>({ ...config, method: 'DELETE' });
+  }
+  put<T = unknown>(config: AxiosRequestConfig): Promise<T> {
+    return this.request<T>({ ...config, method: 'PUT' });
+  }
 }
 
 export default new APIClient();
