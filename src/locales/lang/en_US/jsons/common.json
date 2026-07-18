@@ -1,7 +1,27 @@
 {
   "common": {
     "action": "Action",
+    "actions": {
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving...",
+      "confirm": "Confirm",
+      "confirmDelete": "Confirm Delete"
+    },
     "cancel": "Cancel",
+    "fields": {
+      "action": "Action",
+      "avatar": "Avatar",
+      "code": "Code",
+      "description": "Description",
+      "email": "Email",
+      "name": "Name",
+      "order": "Order",
+      "password": "Password",
+      "roles": "Roles",
+      "status": "Status",
+      "username": "Username"
+    },
     "clickHere": "Click here",
     "close": "Close",
     "exportData": "Export Data",

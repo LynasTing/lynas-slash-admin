@@ -319,22 +319,12 @@
           "title": "Role List",
           "description": "Manage role metadata and authorized menus in one place.",
           "columns": {
-            "order": "Order",
-            "name": "Name",
-            "code": "Code",
-            "status": "Status",
-            "menus": "Menus",
-            "description": "Description",
-            "action": "Action"
+            "menus": "Menus"
           },
           "actions": {
             "new": "New Role",
             "edit": "Edit role",
-            "delete": "Delete role",
-            "cancel": "Cancel",
-            "save": "Save",
-            "saving": "Saving...",
-            "confirmDelete": "Confirm Delete"
+            "delete": "Delete role"
           },
           "modal": {
             "createTitle": "Create Role",
@@ -346,11 +336,6 @@
           },
           "form": {
             "fields": {
-              "order": "Order",
-              "name": "Name",
-              "code": "Code",
-              "status": "Status",
-              "description": "Description",
               "authorizedMenus": "Authorized Menus"
             },
             "placeholders": {
@@ -371,15 +356,49 @@
             "deleteFailed": "Failed to delete role"
           }
         },
+        "user": {
+          "title": "User List",
+          "actions": {
+            "new": "New User",
+            "edit": "Edit User",
+            "delete": "Delete User"
+          },
+          "modal": {
+            "createTitle": "Create User",
+            "editTitle": "Edit User",
+            "newPassword": "New Password"
+          },
+          "deleteDialog": {
+            "title": "Delete User",
+            "description": "Are you sure you want to delete \"{{name}}\"? This action cannot be undone."
+          },
+          "placeholders": {
+            "username": "Enter username",
+            "email": "Enter email address",
+            "roles": "Select roles",
+            "password": "Enter password",
+            "newPassword": "Leave blank to keep the current password"
+          },
+          "validation": {
+            "usernameMinLength": "Username must contain at least 2 characters",
+            "emailInvalid": "Enter a valid email address",
+            "rolesRequired": "Select at least one role",
+            "passwordMinLength": "Password must contain at least 8 characters"
+          },
+          "toast": {
+            "createSuccess": "User created successfully",
+            "updateSuccess": "User updated successfully",
+            "saveFailed": "Failed to save user. Please try again.",
+            "deleteSuccess": "User deleted successfully",
+            "deleteFailed": "Failed to delete user. Please try again."
+          }
+        },
         "menu": {
           "title": "Menu List",
           "columns": {
-            "name": "Name",
             "type": "Type",
             "icon": "Icon",
-            "component": "Component",
-            "status": "Status",
-            "action": "Action"
+            "component": "Component"
           },
           "actions": {
             "new": "New",
@@ -394,19 +413,12 @@
           "form": {
             "fields": {
               "type": "Type",
-              "name": "Name",
               "label": "Label",
               "parent": "Parent",
               "route": "Route",
               "component": "Component",
               "icon": "Icon",
-              "visibility": "Visibility",
-              "order": "Order",
-              "status": "Status"
-            },
-            "actions": {
-              "cancel": "Cancel",
-              "confirm": "Confirm"
+              "visibility": "Visibility"
             }
           },
           "visibility": {

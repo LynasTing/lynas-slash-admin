@@ -1,7 +1,27 @@
 {
   "common": {
     "action": "操作",
+    "actions": {
+      "cancel": "取消",
+      "save": "保存",
+      "saving": "保存中...",
+      "confirm": "确认",
+      "confirmDelete": "确认删除"
+    },
     "cancel": "取消",
+    "fields": {
+      "action": "操作",
+      "avatar": "头像",
+      "code": "编码",
+      "description": "描述",
+      "email": "邮箱",
+      "name": "名称",
+      "order": "排序",
+      "password": "密码",
+      "roles": "角色",
+      "status": "状态",
+      "username": "用户名"
+    },
     "clickHere": "点击这里",
     "close": "关闭",
     "exportData": "导出数据",
