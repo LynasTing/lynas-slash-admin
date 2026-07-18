@@ -31,5 +31,9 @@ export const errorRoutes: RouteObject[] = [
         element: <Page500 />
       }
     ]
+  },
+  {
+    path: '*',
+    element: <Page404 />
   }
 ];
