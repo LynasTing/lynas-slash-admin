@@ -107,6 +107,10 @@ export const frontendNavData: NavProps['data'] = [
               {
                 title: 'sys.nav.pages.menu',
                 path: '/management/system/menu'
+              },
+              {
+                title: 'sys.nav.pages.user',
+                path: '/management/system/user'
               }
             ]
           }

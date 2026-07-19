@@ -66,6 +66,10 @@ export function GetFrontendRoutes() {
             {
               path: 'role',
               element: Component('/pages/management/system/role')
+            },
+            {
+              path: 'user',
+              element: Component('/pages/management/system/user')
             }
           ]
         }
