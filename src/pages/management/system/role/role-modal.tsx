@@ -176,7 +176,7 @@ export default function RoleModal({ visible, type, formValue, menuTreeData, conf
               rules={{ required: t(`${ROLE_PAGE_I18N_PREFIX}.validation.orderRequired`) }}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t(`${ROLE_PAGE_I18N_PREFIX}.form.fields.order`)}</FormLabel>
+                  <FormLabel>{t('common.fields.order')}</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
@@ -198,7 +198,7 @@ export default function RoleModal({ visible, type, formValue, menuTreeData, conf
               rules={{ required: t(`${ROLE_PAGE_I18N_PREFIX}.validation.nameRequired`) }}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t(`${ROLE_PAGE_I18N_PREFIX}.form.fields.name`)}</FormLabel>
+                  <FormLabel>{t('common.fields.name')}</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -213,7 +213,7 @@ export default function RoleModal({ visible, type, formValue, menuTreeData, conf
               rules={{ required: t(`${ROLE_PAGE_I18N_PREFIX}.validation.codeRequired`) }}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t(`${ROLE_PAGE_I18N_PREFIX}.form.fields.code`)}</FormLabel>
+                  <FormLabel>{t('common.fields.code')}</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -227,7 +227,7 @@ export default function RoleModal({ visible, type, formValue, menuTreeData, conf
               name="status"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t(`${ROLE_PAGE_I18N_PREFIX}.form.fields.status`)}</FormLabel>
+                  <FormLabel>{t('common.fields.status')}</FormLabel>
                   <FormControl>
                     <RadioGroup
                       value={String(field.value ?? BasicStatusEnum.ENABLE)}
@@ -251,7 +251,7 @@ export default function RoleModal({ visible, type, formValue, menuTreeData, conf
               name="desc"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t(`${ROLE_PAGE_I18N_PREFIX}.form.fields.description`)}</FormLabel>
+                  <FormLabel>{t('common.fields.description')}</FormLabel>
                   <FormControl>
                     <Textarea value={field.value ?? ''} onChange={field.onChange} />
                   </FormControl>
@@ -286,10 +286,10 @@ export default function RoleModal({ visible, type, formValue, menuTreeData, conf
 
             <DialogFooter>
               <Button type="button" variant="outline" onClick={onCancel}>
-                {t(`${ROLE_PAGE_I18N_PREFIX}.actions.cancel`)}
+                {t('common.actions.cancel')}
               </Button>
               <Button type="submit" disabled={confirmLoading}>
-                {confirmLoading ? t(`${ROLE_PAGE_I18N_PREFIX}.actions.saving`) : t(`${ROLE_PAGE_I18N_PREFIX}.actions.save`)}
+                {confirmLoading ? t('common.actions.saving') : t('common.actions.save')}
               </Button>
             </DialogFooter>
           </form>

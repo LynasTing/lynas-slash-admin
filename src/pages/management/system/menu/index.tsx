@@ -200,7 +200,7 @@ export default function PermissionPage() {
   const columns: ColumnsType<MenuTreeNode> = useMemo(
     () => [
       {
-        title: t(`${MENU_PAGE_I18N_PREFIX}.columns.name`),
+        title: t('common.fields.name'),
         dataIndex: 'name',
         width: 300,
         render: (_, item) => <div>{t(item.label)}</div>
@@ -225,7 +225,7 @@ export default function PermissionPage() {
         dataIndex: 'component'
       },
       {
-        title: t(`${MENU_PAGE_I18N_PREFIX}.columns.status`),
+        title: t('common.fields.status'),
         dataIndex: 'status',
         align: 'center',
         width: 120,
@@ -234,7 +234,7 @@ export default function PermissionPage() {
         )
       },
       {
-        title: t(`${MENU_PAGE_I18N_PREFIX}.columns.action`),
+        title: t('common.fields.action'),
         key: 'operation',
         align: 'center',
         width: 100,

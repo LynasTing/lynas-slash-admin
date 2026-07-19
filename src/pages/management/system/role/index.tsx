@@ -75,13 +75,13 @@ export default function RolePage() {
     void loadRolePageData();
   }, [loadRolePageData]);
 
-  const handleCreate = useCallback(() => {
+  const handleCreate = () => {
     setRoleModalState({
       visible: true,
       type: 'create',
       formValue: defaultRoleValue
     });
-  }, []);
+  };
 
   const handleEdit = useCallback((role: Role) => {
     setRoleModalState({
@@ -188,22 +188,22 @@ export default function RolePage() {
   const columns: ColumnsType<Role> = useMemo(
     () => [
       {
-        title: t(`${ROLE_PAGE_I18N_PREFIX}.columns.order`),
+        title: t('common.fields.order'),
         dataIndex: 'order',
         width: 90
       },
       {
-        title: t(`${ROLE_PAGE_I18N_PREFIX}.columns.name`),
+        title: t('common.fields.name'),
         dataIndex: 'name',
         width: 220
       },
       {
-        title: t(`${ROLE_PAGE_I18N_PREFIX}.columns.code`),
+        title: t('common.fields.code'),
         dataIndex: 'code',
         width: 180
       },
       {
-        title: t(`${ROLE_PAGE_I18N_PREFIX}.columns.status`),
+        title: t('common.fields.status'),
         dataIndex: 'status',
         align: 'center',
         width: 120,
@@ -219,11 +219,11 @@ export default function RolePage() {
         render: (_, record) => flattenTree(record.menus ?? []).length
       },
       {
-        title: t(`${ROLE_PAGE_I18N_PREFIX}.columns.description`),
+        title: t('common.fields.description'),
         dataIndex: 'desc'
       },
       {
-        title: t(`${ROLE_PAGE_I18N_PREFIX}.columns.action`),
+        title: t('common.fields.action'),
         key: 'operation',
         align: 'center',
         width: 120,
@@ -279,10 +279,10 @@ export default function RolePage() {
           </DialogHeader>
           <DialogFooter>
             <Button type="button" variant="outline" onClick={handleDeleteCancel}>
-              {t(`${ROLE_PAGE_I18N_PREFIX}.actions.cancel`)}
+              {t('common.actions.cancel')}
             </Button>
             <Button type="button" variant="destructive" onClick={() => void handleDeleteConfirm()}>
-              {t(`${ROLE_PAGE_I18N_PREFIX}.actions.confirmDelete`)}
+              {t('common.actions.confirmDelete')}
             </Button>
           </DialogFooter>
         </DialogContent>

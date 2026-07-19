@@ -235,7 +235,7 @@ export default function MenuModal({ visible, title, formValue, menuTreeData, con
               rules={{ required: t(`${MENU_PAGE_I18N_PREFIX}.validation.nameRequired`) }}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t(`${MENU_PAGE_I18N_PREFIX}.form.fields.name`)}</FormLabel>
+                  <FormLabel>{t('common.fields.name')}</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -359,7 +359,7 @@ export default function MenuModal({ visible, title, formValue, menuTreeData, con
               rules={{ required: t(`${MENU_PAGE_I18N_PREFIX}.validation.orderRequired`) }}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t(`${MENU_PAGE_I18N_PREFIX}.form.fields.order`)}</FormLabel>
+                  <FormLabel>{t('common.fields.order')}</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
@@ -380,7 +380,7 @@ export default function MenuModal({ visible, title, formValue, menuTreeData, con
               name="status"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t(`${MENU_PAGE_I18N_PREFIX}.form.fields.status`)}</FormLabel>
+                  <FormLabel>{t('common.fields.status')}</FormLabel>
                   <FormControl>
                     <ToggleGroup
                       type="single"
@@ -403,10 +403,10 @@ export default function MenuModal({ visible, title, formValue, menuTreeData, con
             />
             <DialogFooter>
               <Button variant="outline" onClick={onCancel} disabled={confirmLoading}>
-                {t(`${MENU_PAGE_I18N_PREFIX}.form.actions.cancel`)}
+                {t('common.actions.cancel')}
               </Button>
               <Button variant="default" type="submit" disabled={confirmLoading}>
-                {t(`${MENU_PAGE_I18N_PREFIX}.form.actions.confirm`)}
+                {t('common.actions.confirm')}
               </Button>
             </DialogFooter>
           </form>
