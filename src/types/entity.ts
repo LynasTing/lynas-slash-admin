@@ -70,13 +70,13 @@ export interface User extends CommonOptions {
    * Password.
    * APIs normally do not return this field; it is only sent when creating a user or changing a password.
    */
-  password?: string;
+  password: string;
 
   /**
    * 邮箱
    * Email
    */
-  email?: string;
+  email: string;
 
   /**
    * 手机
@@ -97,7 +97,7 @@ export interface User extends CommonOptions {
    * User roles.
    * A user can have multiple roles; system user lists, authentication state, and permission calculations share this field.
    */
-  roles?: Role[];
+  roles: Role[];
 
   /**
    * 用户权限列表。

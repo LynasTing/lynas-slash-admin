@@ -5,6 +5,7 @@ import { DB_ROLE, DB_USER, DB_USER_ROLE, DB_ROLE_PERMISSION, DB_MENU, DB_PERMISS
 import { convertFlatToTree } from '@/utils';
 import { ResultStatusEnum, HttpStatusEnum } from '#/enum';
 import { faker } from '@faker-js/faker';
+import type { User } from '#/entity';
 
 /**
  * Mock 登录接口
@@ -50,7 +51,7 @@ const signIn = http.post(GLOBAL_CONFIG.apiBaseUrl + UserApi.SignIn, async ({ req
    * 查询用户角色（通过 userId → roleId）
    * Find all roles associated with the user (via userId → roleId)
    */
-  const roles = DB_USER_ROLE.filter(i => i.userId === user.id).map(i => DB_ROLE.find(j => j.id === i.roleId));
+  const roles = user.roles;
 
   /**
    * 根据角色获取对应的权限（roleId → permissionId）
@@ -61,7 +62,9 @@ const signIn = http.post(GLOBAL_CONFIG.apiBaseUrl + UserApi.SignIn, async ({ req
    * 根据 permissionId 获取实际的权限对象
    * Map permission IDs to actual permission objects
    */
-  const permissions = rolePermissions.map(i => DB_PERMISSION.find(j => j.id === i.permissionId));
+  const permissions = rolePermissions
+    .map(i => DB_PERMISSION.find(j => j.id === i.permissionId))
+    .filter((permission): permission is NonNullable<typeof permission> => Boolean(permission));
 
   /**
    * 将扁平菜单数据转换为树形结构
@@ -110,12 +113,14 @@ const signUp = http.post(GLOBAL_CONFIG.apiBaseUrl + UserApi.SignUp, async ({ req
    * Generate new user
    */
   const userId = faker.string.uuid();
-  const user = {
+  const defaultRole = DB_ROLE.find(i => i.id === 'role_test_id');
+  const user: User = {
     id: userId,
     username,
     password,
     email,
-    avatar: faker.image.avatarGitHub()
+    avatar: faker.image.avatarGitHub(),
+    roles: defaultRole ? [defaultRole] : []
   };
 
   /**
@@ -128,7 +133,7 @@ const signUp = http.post(GLOBAL_CONFIG.apiBaseUrl + UserApi.SignUp, async ({ req
    * 给新用户分配默认角色
    * Assign default role to new user
    */
-  const roleId = DB_ROLE.find(i => i.id === 'role_test_id')?.id;
+  const roleId = defaultRole?.id;
   if (roleId) {
     DB_USER_ROLE.push({
       id: userId,
