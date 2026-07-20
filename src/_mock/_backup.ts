@@ -1,6 +1,7 @@
 import type { User, Role, Permission, MenuTreeNode } from '#/entity';
 import { faker } from '@faker-js/faker';
 import { BasicStatusEnum, MenuTypeEnum } from '#/enum';
+import { mockRoles } from '@/pages/management/system/role/role-mock';
 
 const { GROUP, CATALOGUE, MENU, ACTION } = MenuTypeEnum;
 
@@ -9,9 +10,78 @@ const { GROUP, CATALOGUE, MENU, ACTION } = MenuTypeEnum;
  * User
  */
 export const DB_USER: User[] = [
-  { id: 'user_admin_id', username: 'admin', password: 'demo1234', avatar: faker.image.avatarGitHub(), email: 'admin@slash.com' },
-  { id: 'user_test_id', username: 'test', password: 'demo1234', avatar: faker.image.avatarGitHub(), email: 'test@slash.com' },
-  { id: 'user_guest_id', username: 'guest', password: 'demo1234', avatar: faker.image.avatarGitHub(), email: 'guest@slash.com' }
+  {
+    id: faker.string.uuid(),
+    username: 'Lynas Ting',
+    email: 'lynas.ting@slash.com',
+    password: faker.internet.password(),
+    avatar: faker.image.avatarGitHub(),
+    roles: [mockRoles[0]],
+    status: BasicStatusEnum.ENABLE
+  },
+  {
+    id: faker.string.uuid(),
+    username: 'Ava Chen',
+    email: 'ava.chen@slash.com',
+    password: faker.internet.password(),
+    avatar: faker.image.avatarGitHub(),
+    roles: [mockRoles[1]],
+    status: BasicStatusEnum.ENABLE
+  },
+  {
+    id: faker.string.uuid(),
+    username: 'Noah Williams',
+    email: 'noah.williams@slash.com',
+    password: faker.internet.password(),
+    avatar: faker.image.avatarGitHub(),
+    roles: [mockRoles[2], mockRoles[3]],
+    status: BasicStatusEnum.ENABLE
+  },
+  {
+    id: faker.string.uuid(),
+    username: 'Mia Rodriguez',
+    email: 'mia.rodriguez@slash.com',
+    password: faker.internet.password(),
+    avatar: faker.image.avatarGitHub(),
+    roles: [mockRoles[3]],
+    status: BasicStatusEnum.ENABLE
+  },
+  {
+    id: faker.string.uuid(),
+    username: 'Ethan Kim',
+    email: 'ethan.kim@slash.com',
+    password: faker.internet.password(),
+    avatar: faker.image.avatarGitHub(),
+    roles: [mockRoles[4]],
+    status: BasicStatusEnum.ENABLE
+  },
+  {
+    id: faker.string.uuid(),
+    username: 'Sophia Patel',
+    email: 'sophia.patel@slash.com',
+    password: faker.internet.password(),
+    avatar: faker.image.avatarGitHub(),
+    roles: [mockRoles[2]],
+    status: BasicStatusEnum.DISABLE
+  },
+  {
+    id: faker.string.uuid(),
+    username: 'Liam Johnson',
+    email: 'liam.johnson@slash.com',
+    password: faker.internet.password(),
+    avatar: faker.image.avatarGitHub(),
+    roles: [mockRoles[5]],
+    status: BasicStatusEnum.DISABLE
+  },
+  {
+    id: faker.string.uuid(),
+    username: 'Emma Brown',
+    email: 'emma.brown@slash.com',
+    password: faker.internet.password(),
+    avatar: faker.image.avatarGitHub(),
+    roles: [mockRoles[1], mockRoles[4]],
+    status: BasicStatusEnum.ENABLE
+  }
 ];
 
 /**
