@@ -108,7 +108,7 @@ function LoginForm({ className, ...props }: ComponentPropsWithoutRef<'form'>) {
         <form className="space-y-4" onSubmit={form.handleSubmit(finish)}>
           <div className="flex flex-col items-center gap-2 text-center">
             <h1 className="text-2xl font-bold">{t('auth.signInFormTitle')}</h1>
-            <p className="text-balance text-sm text-muted-foreground">{t('auth.signInFormDescription')}</p>
+            <p className="text-sm text-balance text-muted-foreground">{t('auth.signInFormDescription')}</p>
           </div>
 
           <FormField
@@ -151,7 +151,7 @@ function LoginForm({ className, ...props }: ComponentPropsWithoutRef<'form'>) {
               />
               <label
                 htmlFor="remember"
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                className="text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                 {t('auth.rememberMe')}
               </label>
             </div>
@@ -180,22 +180,22 @@ function LoginForm({ className, ...props }: ComponentPropsWithoutRef<'form'>) {
 
           {/* 其它登录方式 */}
           <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
-            <span className="relative bg-background text-muted-foreground px-2 z-10">{t('auth.otherSignIn')}</span>
+            <span className="relative z-10 bg-background px-2 text-muted-foreground">{t('auth.otherSignIn')}</span>
           </div>
-          <div className="flex justify-around cursor-pointer text-2xl">
-            <Button variant="ghost" size="icon">
+          <div className="flex cursor-pointer justify-around text-2xl">
+            <Button type="button" variant="ghost" size="icon">
               <Icon icon="mdi:github" size={24} />
             </Button>
-            <Button variant="ghost" size="icon">
+            <Button type="button" variant="ghost" size="icon">
               <Icon icon="mdi:wechat" size={24} />
             </Button>
-            <Button variant="ghost" size="icon">
+            <Button type="button" variant="ghost" size="icon">
               <Icon icon="ant-design:google-circle-filled" size={24} />
             </Button>
           </div>
 
           {/* 注册 */}
-          <div className="text-sm text-center">
+          <div className="text-center text-sm">
             {t('auth.noAccount')}
             <Button variant="link" className="px-1" onClick={register}>
               {t('auth.signUpFormTitle')}
