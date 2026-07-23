@@ -1,10 +1,9 @@
 import type { Role } from '#/entity';
-import { faker } from '@faker-js/faker';
 import { BasicStatusEnum } from '#/enum';
 
 export const mockRoles: Role[] = [
   {
-    id: faker.string.uuid(),
+    id: 'role-super-admin',
     name: 'Super Admin',
     code: 'SUPER_ADMIN',
     status: BasicStatusEnum.ENABLE,
@@ -13,7 +12,7 @@ export const mockRoles: Role[] = [
     menus: []
   },
   {
-    id: faker.string.uuid(),
+    id: 'role-system-admin',
     name: 'System Admin',
     code: 'SYSTEM_ADMIN',
     status: BasicStatusEnum.ENABLE,
@@ -22,7 +21,7 @@ export const mockRoles: Role[] = [
     menus: []
   },
   {
-    id: faker.string.uuid(),
+    id: 'role-content-operator',
     name: 'Content Operator',
     code: 'CONTENT_OPERATOR',
     status: BasicStatusEnum.ENABLE,
@@ -31,7 +30,7 @@ export const mockRoles: Role[] = [
     menus: []
   },
   {
-    id: faker.string.uuid(),
+    id: 'role-data-analyst',
     name: 'Data Analyst',
     code: 'DATA_ANALYST',
     status: BasicStatusEnum.ENABLE,
@@ -40,7 +39,7 @@ export const mockRoles: Role[] = [
     menus: []
   },
   {
-    id: faker.string.uuid(),
+    id: 'role-support-agent',
     name: 'Support Agent',
     code: 'SUPPORT_AGENT',
     status: BasicStatusEnum.ENABLE,
@@ -49,7 +48,7 @@ export const mockRoles: Role[] = [
     menus: []
   },
   {
-    id: faker.string.uuid(),
+    id: 'role-read-only',
     name: 'Read Only',
     code: 'READ_ONLY',
     status: BasicStatusEnum.DISABLE,
@@ -58,7 +57,7 @@ export const mockRoles: Role[] = [
     menus: []
   },
   {
-    id: faker.string.uuid(),
+    id: 'role-guest-reviewer',
     name: 'Guest Reviewer',
     code: 'GUEST_REVIEWER',
     status: BasicStatusEnum.DISABLE,
