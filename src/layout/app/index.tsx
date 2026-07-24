@@ -2,7 +2,7 @@ import Main from './main';
 import { useFilteredNavData, NavMobileLayout } from './nav';
 import Header from '../app/header';
 import Logo from '@/components/logo';
-import { NavHorizaontalLayout, NavVerticalLayout } from './nav';
+import { NavHorizontalLayout, NavVerticalLayout } from './nav';
 import { useSettingStoreState } from '@/store/setting';
 import { ThemeLayoutEnum } from '#/enum';
 import { down, useMediaQuery } from '@/hooks';
@@ -19,7 +19,7 @@ function PCHorizontalLayout() {
       {/* 粘性 Header，左侧显示 Logo / Sticky Header, Logo displayed on the left */}
       <Header leftSlot={<Logo />} />
       {/* 粘性顶部导航条 / Sticky horizontal navigation bar */}
-      <NavHorizaontalLayout data={navData} />
+      <NavHorizontalLayout data={navData} />
       {/* 内容区域 / Content area */}
       <Main />
     </>
@@ -52,7 +52,7 @@ function PCVerticalLayout() {
 
       {/* 右侧主内容区域 / Right-side main content area */}
       <div
-        className="relative flex flex-col w-full min-h-screen transition-[padding] duration-300 ease-in-out"
+        className="relative flex min-h-screen w-full flex-col transition-[padding] duration-300 ease-in-out"
         style={{
           paddingLeft: mainPaddingLeft
         }}>
@@ -97,7 +97,7 @@ export default function AppLayout() {
   const isMobile = useMediaQuery(down('md'));
 
   return (
-    <div data-slot="lynas-slash-layout-root" className="w-full min-h-screen bg-background">
+    <div data-slot="lynas-slash-layout-root" className="min-h-screen w-full bg-background">
       {isMobile ? <MobileLayout /> : <PCLayout />}
     </div>
   );

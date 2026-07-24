@@ -9,11 +9,11 @@ import { NavHorizontal } from '@/components/nav/horizontal';
  * Horizontal navigation layout component
  * Wraps NavHorizontal and provides horizontal scroll
  */
-export function NavHorizaontalLayout({ data }: NavProps) {
+export function NavHorizontalLayout({ data }: NavProps) {
   return (
     <nav
       data-slot="lynas-slash-nav-layout-vertical"
-      className="sticky left-0 right-0 grow-0 shrink-0 top-(--layout-header-height) w-full z-app-bar bg-background">
+      className="sticky top-(--layout-header-height) right-0 left-0 z-app-bar w-full shrink-0 grow-0 bg-background">
       <ScrollArea>
         <NavHorizontal data={data} />
         <ScrollBar orientation="horizontal" />
