@@ -110,7 +110,7 @@ export default function SettingPanel() {
   return (
     <Sheet modal={false}>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="rounded-full animate-slow-spin">
+        <Button variant="ghost" size="icon" className="animate-slow-spin rounded-full">
           <Icon icon="local:ic-setting" size={24} />
         </Button>
       </SheetTrigger>
@@ -126,7 +126,7 @@ export default function SettingPanel() {
               <Text>{t('sys.settings.mode')}</Text>
               <div className="flex gap-4">
                 <Card
-                  className="flex-1 h-20 flex justify-center items-center cursor-pointer"
+                  className="flex h-20 flex-1 cursor-pointer items-center justify-center"
                   onClick={() =>
                     updateSettings({
                       themeMode: ThemeMode.Light
@@ -139,7 +139,7 @@ export default function SettingPanel() {
                   />
                 </Card>
                 <Card
-                  className="flex-1 h-20 flex justify-center items-center cursor-pointer"
+                  className="flex h-20 flex-1 cursor-pointer items-center justify-center"
                   onClick={() =>
                     updateSettings({
                       themeMode: ThemeMode.Dark
@@ -160,34 +160,34 @@ export default function SettingPanel() {
               <div className="grid grid-cols-3 gap-4">
                 {/* vertical */}
                 <Card
-                  className="flex-1 h-16 flex flex-row p-0 gap-1 cursor-pointer"
+                  className="flex h-16 flex-1 cursor-pointer flex-row gap-1 p-0"
                   onClick={() => updateSettings({ themeLayout: ThemeLayoutEnum.Vertical })}>
-                  <div className="flex flex-col w-5 h-full gap-1 p-1">
+                  <div className="flex h-full w-5 flex-col gap-1 p-1">
                     <div
-                      className="w-2 h-2 shrink-0 rounded"
+                      className="h-2 w-2 shrink-0 rounded"
                       style={{
                         backgroundColor: layoutBackground(ThemeLayoutEnum.Vertical)
                       }}
                     />
                     <div
-                      className="w-full h-1 shrink-0 rounded opacity-50"
+                      className="h-1 w-full shrink-0 rounded opacity-50"
                       style={{
                         backgroundColor: layoutBackground(ThemeLayoutEnum.Vertical)
                       }}
                     />
                     <div
-                      className="max-w-[12px] h-1 shrink-0 rounded opacity-20"
+                      className="h-1 max-w-[12px] shrink-0 rounded opacity-20"
                       style={{ backgroundColor: layoutBackground(ThemeLayoutEnum.Vertical) }}
                     />
                   </div>
-                  <div className="flex-1 flex flex-col w-full h-full grow gap-1 p-1">
+                  <div className="flex h-full w-full flex-1 grow flex-col gap-1 p-1">
                     <div
-                      className="w-full h-1.5 rounded opacity-20"
+                      className="h-1.5 w-full rounded opacity-20"
                       style={{ backgroundColor: layoutBackground(ThemeLayoutEnum.Vertical) }}
                     />
                     <div
                       className={cn(
-                        'flex-1 w-full rounded mx-auto opacity-20 transition-all duration-300 ease-in-out',
+                        'mx-auto w-full flex-1 rounded opacity-20 transition-all duration-300 ease-in-out',
                         !themeStretch && 'w-10'
                       )}
                       style={{ backgroundColor: layoutBackground(ThemeLayoutEnum.Vertical) }}
@@ -196,26 +196,26 @@ export default function SettingPanel() {
                 </Card>
                 {/* mini */}
                 <Card
-                  className="flex-1 flex-row h-16 gap-0 p-0 cursor-pointer"
+                  className="h-16 flex-1 cursor-pointer flex-row gap-0 p-0"
                   onClick={() => updateSettings({ themeLayout: ThemeLayoutEnum.Mini })}>
                   <div
-                    className="flex-0 flex flex-col items-center w-3 h-full gap-1 p-1"
+                    className="flex h-full w-3 flex-0 flex-col items-center gap-1 p-1"
                     style={{ backgroundColor: layoutBackground(ThemeLayoutEnum.Mini) }}>
-                    <div className="shrink-0 w-2 h-2 rounded" style={{ backgroundColor: layoutBackground(ThemeLayoutEnum.Mini) }} />
+                    <div className="h-2 w-2 shrink-0 rounded" style={{ backgroundColor: layoutBackground(ThemeLayoutEnum.Mini) }} />
                     <div
-                      className="shrink-0 w-full h-1 rounded opacity-50"
+                      className="h-1 w-full shrink-0 rounded opacity-50"
                       style={{ backgroundColor: layoutBackground(ThemeLayoutEnum.Mini) }}
                     />
                     <div
-                      className="shrink-0 w-full h-1 rounded opacity-20"
+                      className="h-1 w-full shrink-0 rounded opacity-20"
                       style={{ backgroundColor: layoutBackground(ThemeLayoutEnum.Mini) }}
                     />
                   </div>
-                  <div className="flex-1 flex flex-col grow w-full h-full gap-1 p-1">
-                    <div className="w-full h-1.5 rounded opacity-20" style={{ backgroundColor: layoutBackground(ThemeLayoutEnum.Mini) }} />
+                  <div className="flex h-full w-full flex-1 grow flex-col gap-1 p-1">
+                    <div className="h-1.5 w-full rounded opacity-20" style={{ backgroundColor: layoutBackground(ThemeLayoutEnum.Mini) }} />
                     <div
                       className={cn(
-                        'flex-1 w-full mx-auto rounded opacity-20 transition-all duration-300 ease-in-out',
+                        'mx-auto w-full flex-1 rounded opacity-20 transition-all duration-300 ease-in-out',
                         !themeStretch && 'w-10'
                       )}
                       style={{ backgroundColor: layoutBackground(ThemeLayoutEnum.Mini) }}
@@ -224,42 +224,42 @@ export default function SettingPanel() {
                 </Card>
                 {/* horizontal */}
                 <Card
-                  className="flex-1 flex h-16 gap-0 p-0 cursor-pointer"
+                  className="flex h-16 flex-1 cursor-pointer gap-0 p-0"
                   onClick={() =>
                     updateSettings({
                       themeLayout: ThemeLayoutEnum.Horizontal
                     })
                   }>
-                  <div className="flex-0 flex items-center w-full h-full gap-1 p-1">
+                  <div className="flex h-full w-full flex-0 items-center gap-1 p-1">
                     <div
-                      className="w-2 h-2 shrink-0 rounded"
+                      className="h-2 w-2 shrink-0 rounded"
                       style={{
                         backgroundColor: layoutBackground(ThemeLayoutEnum.Horizontal)
                       }}
                     />
                     <div
-                      className="shrink-0 w-4 h-1 rounded opacity-50"
+                      className="h-1 w-4 shrink-0 rounded opacity-50"
                       style={{
                         backgroundColor: layoutBackground(ThemeLayoutEnum.Horizontal)
                       }}
                     />
                     <div
-                      className="shrink-0 w-3 h-1 rounded opacity-20"
+                      className="h-1 w-3 shrink-0 rounded opacity-20"
                       style={{
                         backgroundColor: layoutBackground(ThemeLayoutEnum.Horizontal)
                       }}
                     />
                   </div>
                   <div
-                    className="h-1.5 mx-1 rounded opacity-20"
+                    className="mx-1 h-1.5 rounded opacity-20"
                     style={{
                       backgroundColor: layoutBackground(ThemeLayoutEnum.Horizontal)
                     }}
                   />
-                  <div className="flex-1 flex flex-col grow w-full h-full gap-1 p-1">
+                  <div className="flex h-full w-full flex-1 grow flex-col gap-1 p-1">
                     <div
                       className={cn(
-                        'w-full h-full mx-auto rounded opacity-20 transition-all duration-300 ease-in-out',
+                        'mx-auto h-full w-full rounded opacity-20 transition-all duration-300 ease-in-out',
                         !themeStretch && 'w-10'
                       )}
                       style={{
@@ -271,7 +271,7 @@ export default function SettingPanel() {
               </div>
 
               {/* stretch */}
-              <div className="flex justify-between items-center">
+              <div className="flex items-center justify-between">
                 <Tooltip delayDuration={700} defaultOpen={false} disableHoverableContent>
                   <TooltipTrigger>
                     <Text variant="subTitle2">{t('sys.settings.stretch')}</Text>
@@ -291,7 +291,7 @@ export default function SettingPanel() {
                   <div
                     key={preset}
                     className={cn(
-                      'relative flex justify-center itemc w-5 h-13 rounded p-1 cursor-pointer transition-all duration-300 ease-in-out',
+                      'relative flex h-13 w-5 cursor-pointer items-center justify-center rounded p-1 transition-all duration-300 ease-in-out',
                       themeColorPresets === preset && 'w-13'
                     )}
                     style={{ backgroundColor: color.default }}
@@ -302,7 +302,7 @@ export default function SettingPanel() {
                     }>
                     <div
                       className={cn(
-                        'flex justify-center items-center w-full h-full rounded hover:bg-white/30 transition-all duration-300 ease-in-out'
+                        'flex h-full w-full items-center justify-center rounded transition-all duration-300 ease-in-out hover:bg-white/30'
                       )}>
                       {themeColorPresets === preset && <Icon icon="bi:check-all" size={24} color="white" />}
                     </div>
@@ -320,8 +320,8 @@ export default function SettingPanel() {
                   <Card
                     key={font}
                     className={cn(
-                      'flex justify-center items-center w-full h-20 text-text-disabled cursor-pointer',
-                      family === fontFamily && 'text-primary font-medium',
+                      'flex h-20 w-full cursor-pointer items-center justify-center text-text-disabled',
+                      family === fontFamily && 'font-medium text-primary',
                       family === fontFamilyPreset.inter && 'font-inter',
                       family === fontFamilyPreset.openSans && 'font-open-sans'
                     )}
@@ -347,24 +347,24 @@ export default function SettingPanel() {
             {/* page config */}
             <div className="flex flex-col gap-2">
               <Text variant="subTitle1">{t('sys.settings.page')}</Text>
-              <div className="flex justify-between items-center">
+              <div className="flex items-center justify-between">
                 <Text variant="subTitle2">{t('sys.settings.breadcrumb')}</Text>
                 <Switch checked={breadcrumb} onCheckedChange={checked => updateSettings({ breadcrumb: checked })} />
               </div>
             </div>
           </div>
         </ScrollArea>
-        <SheetFooter className="shrink-0 px-6 py-4 border border-t">
+        <SheetFooter className="shrink-0 border border-t px-6 py-4">
           <Button
             variant="outline"
-            className="w-full text-text-primary border-dashed hover:border-primary hover:text-primary"
+            className="w-full border-dashed text-text-primary hover:border-primary hover:text-primary"
             onClick={handleFullScreenToggle}>
             <div
-              className="flex justify-center items-center"
+              className="flex items-center justify-center"
               aria-label={isFullScreen ? t('sys.settings.exitFullScreen') : t('sys.settings.fullScreen')}>
               {isFullScreen ? (
                 <>
-                  <Icon icon="local:ic-settings-exit-fullScreen" />
+                  <Icon icon="local:ic-settings-exit-fullscreen" />
                   <span>{t('sys.settings.exitFullScreen')}</span>
                 </>
               ) : (
