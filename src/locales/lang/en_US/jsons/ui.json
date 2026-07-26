@@ -11,6 +11,119 @@
         "desc": "Click the button to simulate token expiration scenario.",
         "action": "Simulate token expiration"
       }
+    },
+    "button": {
+      "title": "Button",
+      "description": "Triggers actions, submits forms, or navigates between pages.",
+      "usage": "Use variant, size, and disabled to control visual hierarchy and availability.",
+      "variants": {
+        "title": "Variants",
+        "description": "Visual weight distinguishes action hierarchy.",
+        "default": "Default",
+        "secondary": "Secondary",
+        "outline": "Outline",
+        "ghost": "Ghost",
+        "link": "Link",
+        "contrast": "Contrast",
+        "destructive": "Destructive"
+      },
+      "sizes": {
+        "title": "Sizes",
+        "description": "The default size suits standard forms and action areas.",
+        "small": "Small",
+        "default": "Default",
+        "large": "Large"
+      },
+      "states": {
+        "title": "States",
+        "description": "Disabled prevents repeated or currently unavailable actions.",
+        "disabled": "Disabled",
+        "loading": "Loading",
+        "startLoading": "Start loading",
+        "stopLoading": "Stop loading"
+      }
+    },
+    "badge": {
+      "title": "Badge",
+      "description": "Displays a short status, category, or count.",
+      "usage": "Use variant for status meaning and shape for the content format.",
+      "variants": {
+        "title": "Variants",
+        "description": "Semantic color variants for status labels.",
+        "default": "Default",
+        "secondary": "Secondary",
+        "success": "Success",
+        "warning": "Warning",
+        "error": "Error"
+      },
+      "shapes": {
+        "title": "Shapes",
+        "description": "Choose the shape based on the kind of information shown.",
+        "label": "Label",
+        "available": "Available"
+      },
+      "outline": { "title": "Outline", "description": "Use an outline badge when the status needs lower emphasis." }
+    },
+    "checkbox": {
+      "title": "Checkbox",
+      "description": "Lets users select one or more independent options.",
+      "usage": "Use checked and onCheckedChange when the selection state is controlled.",
+      "controlled": {
+        "title": "Controlled",
+        "description": "The label and checkbox share one controlled selection state.",
+        "label": "Selected"
+      },
+      "defaultValue": {
+        "title": "Default value",
+        "description": "Use defaultChecked when the initial value does not need external control.",
+        "label": "Selected by default"
+      },
+      "disabled": {
+        "title": "Disabled",
+        "description": "Disabled blocks a selection that is temporarily unavailable.",
+        "label": "Unavailable"
+      }
+    },
+    "input": {
+      "title": "Input",
+      "description": "Collects a single line of text or a value with a specific input type.",
+      "usage": "Use the native type attribute to convey expected input and browser behavior.",
+      "label": "Value",
+      "defaultValue": {
+        "title": "Default",
+        "description": "A standard text input with an associated label.",
+        "placeholder": "Enter a value"
+      },
+      "types": {
+        "title": "Types",
+        "description": "Native input types provide the appropriate keyboard and validation behavior.",
+        "email": "Email",
+        "password": "Password"
+      },
+      "disabled": { "title": "Disabled", "description": "Disabled preserves the value while preventing changes.", "value": "Unavailable" }
+    },
+    "select": {
+      "title": "Select",
+      "description": "Lets users choose one option from a defined set.",
+      "usage": "Use value and onValueChange when the selected option is controlled by page state.",
+      "label": "Size",
+      "placeholder": "Select a size",
+      "controlled": { "title": "Controlled", "description": "The selected option is held in page state." },
+      "sizes": { "title": "Sizes", "description": "Trigger size adapts the control to its surrounding layout." },
+      "disabled": { "title": "Disabled", "description": "Disabled prevents opening or changing the current option." },
+      "options": { "small": "Small", "medium": "Medium", "large": "Large" }
+    },
+    "switch": {
+      "title": "Switch",
+      "description": "Toggles a setting between enabled and disabled.",
+      "usage": "Use checked and onCheckedChange when the setting is controlled by page state.",
+      "controlled": { "title": "Controlled", "description": "The switch state is controlled by the current page.", "label": "Enabled" },
+      "defaultValue": {
+        "title": "Default value",
+        "description": "Use defaultChecked for an initial value without external state.",
+        "label": "Enabled by default"
+      },
+      "disabled": { "title": "Disabled", "description": "Disabled prevents a setting from being changed.", "label": "Unavailable" }
     }
   }
 }

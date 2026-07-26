@@ -19,6 +19,16 @@
         "tokenExpired": "Token 过期",
         "label": "功能"
       },
+      "uiComponents": {
+        "label": "UI 组件",
+        "description": "UI 组件样式与状态展示",
+        "button": "按钮",
+        "badge": "徽标",
+        "checkbox": "复选框",
+        "input": "输入框",
+        "select": "选择器",
+        "switch": "开关"
+      },
       "components": {
         "label": "组件",
         "description": "自定义 UI 组件",

@@ -11,6 +11,89 @@
         "desc": "点击按钮模拟 token 过期场景。",
         "action": "模拟 Token 过期"
       }
+    },
+    "button": {
+      "title": "按钮",
+      "description": "用于触发操作、提交表单或在页面间导航。",
+      "usage": "通过 variant、size 和 disabled 属性控制按钮的视觉层级与可用状态。",
+      "variants": {
+        "title": "样式变体",
+        "description": "同一操作层级可通过不同视觉权重表达。",
+        "default": "默认",
+        "secondary": "次要",
+        "outline": "描边",
+        "ghost": "幽灵",
+        "link": "链接",
+        "contrast": "黑白对比",
+        "destructive": "危险"
+      },
+      "sizes": {
+        "title": "尺寸",
+        "description": "默认尺寸适用于常规表单和操作区域。",
+        "small": "小",
+        "default": "默认",
+        "large": "大"
+      },
+      "states": {
+        "title": "状态",
+        "description": "禁用状态阻止重复或当前不可用的操作。",
+        "disabled": "禁用",
+        "loading": "加载中",
+        "startLoading": "开始加载",
+        "stopLoading": "停止加载"
+      }
+    },
+    "badge": {
+      "title": "徽标",
+      "description": "展示简短的状态、分类或数量。",
+      "usage": "使用 variant 表达状态语义，使用 shape 匹配内容格式。",
+      "variants": {
+        "title": "样式变体",
+        "description": "状态标签使用的语义颜色变体。",
+        "default": "默认",
+        "secondary": "次要",
+        "success": "成功",
+        "warning": "警告",
+        "error": "错误"
+      },
+      "shapes": { "title": "形状", "description": "根据展示的信息类型选择形状。", "label": "标签", "available": "可用" },
+      "outline": { "title": "描边", "description": "状态需要较低强调时使用描边徽标。" }
+    },
+    "checkbox": {
+      "title": "复选框",
+      "description": "允许用户选择一个或多个相互独立的选项。",
+      "usage": "选中状态由页面控制时，使用 checked 和 onCheckedChange。",
+      "controlled": { "title": "受控状态", "description": "标签和复选框共享同一个受控选中状态。", "label": "已选择" },
+      "defaultValue": { "title": "默认值", "description": "初始值不需要外部控制时使用 defaultChecked。", "label": "默认已选择" },
+      "disabled": { "title": "禁用", "description": "禁用状态会阻止暂时不可用的选项被选择。", "label": "不可用" }
+    },
+    "input": {
+      "title": "输入框",
+      "description": "收集单行文本，或具有特定输入类型的值。",
+      "usage": "使用原生 type 属性传达预期输入及浏览器行为。",
+      "label": "值",
+      "defaultValue": { "title": "默认", "description": "带关联标签的标准文本输入框。", "placeholder": "请输入内容" },
+      "types": { "title": "输入类型", "description": "原生输入类型提供合适的键盘与校验行为。", "email": "邮箱", "password": "密码" },
+      "disabled": { "title": "禁用", "description": "禁用状态保留值，同时阻止修改。", "value": "不可用" }
+    },
+    "select": {
+      "title": "选择器",
+      "description": "让用户从固定选项中选择一项。",
+      "usage": "选项由页面状态控制时，使用 value 和 onValueChange。",
+      "label": "尺寸",
+      "placeholder": "请选择尺寸",
+      "controlled": { "title": "受控状态", "description": "选中的选项由当前页面状态维护。" },
+      "sizes": { "title": "尺寸", "description": "触发器尺寸用于适应所在布局。" },
+      "disabled": { "title": "禁用", "description": "禁用状态会阻止打开或修改当前选项。" },
+      "options": { "small": "小", "medium": "中", "large": "大" }
+    },
+    "switch": {
+      "title": "开关",
+      "description": "在启用与禁用之间切换一项设置。",
+      "usage": "设置由页面状态控制时，使用 checked 和 onCheckedChange。",
+      "controlled": { "title": "受控状态", "description": "开关状态由当前页面控制。", "label": "已启用" },
+      "defaultValue": { "title": "默认值", "description": "初始值不需要外部状态时使用 defaultChecked。", "label": "默认已启用" },
+      "disabled": { "title": "禁用", "description": "禁用状态会阻止设置被修改。", "label": "不可用" }
     }
   }
 }

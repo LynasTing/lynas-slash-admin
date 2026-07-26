@@ -13,6 +13,16 @@
         "tokenExpired": "Token Expired",
         "label": "Functions"
       },
+      "uiComponents": {
+        "label": "UI Components",
+        "description": "UI component styles and states",
+        "button": "Button",
+        "badge": "Badge",
+        "checkbox": "Checkbox",
+        "input": "Input",
+        "select": "Select",
+        "switch": "Switch"
+      },
       "components": {
         "label": "Components",
         "description": "Custom UI components",
