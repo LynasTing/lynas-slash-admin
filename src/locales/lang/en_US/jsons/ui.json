@@ -124,6 +124,340 @@
         "label": "Enabled by default"
       },
       "disabled": { "title": "Disabled", "description": "Disabled prevents a setting from being changed.", "label": "Unavailable" }
+    },
+    "avatar": {
+      "title": "Avatar",
+      "description": "Displays a compact visual identity for a user, member, or entity.",
+      "images": {
+        "title": "Images",
+        "description": "When an image loads, Avatar crops and displays the portrait.",
+        "alt": "Avatar {{index}}"
+      },
+      "fallback": { "title": "Fallback", "description": "Use short text to preserve recognition when no image is available." },
+      "sizes": {
+        "title": "Sizes",
+        "description": "Size should match the information density and hierarchy around an avatar.",
+        "small": "Small avatar",
+        "medium": "Medium avatar",
+        "large": "Large avatar"
+      }
+    },
+    "breadcrumb": {
+      "title": "Breadcrumb",
+      "description": "Shows the current page's place in a hierarchy and provides a path back to parent levels.",
+      "defaultValue": { "title": "Basic path", "description": "The final item represents the current page and should not be a link." },
+      "ellipsis": {
+        "title": "Collapsed path",
+        "description": "Collapse intermediate levels for deep hierarchies while keeping the start and current position.",
+        "more": "More paths"
+      },
+      "items": { "home": "Home", "components": "UI Components", "current": "Breadcrumb" }
+    },
+    "calendar": {
+      "title": "Calendar",
+      "description": "Selects a single day or a continuous date range from a monthly view.",
+      "single": {
+        "title": "Single date",
+        "description": "After a date is selected, page state keeps the current value.",
+        "empty": "No date selected"
+      },
+      "range": {
+        "title": "Date range",
+        "description": "Use when start and end dates need to be selected as a pair.",
+        "empty": "No date range selected"
+      }
+    },
+    "card": {
+      "title": "Card",
+      "description": "Organizes related content, actions, and status into an independent information area.",
+      "anatomy": {
+        "title": "Anatomy",
+        "description": "Header, Content, and Footer keep a stable hierarchy between information and actions.",
+        "sampleTitle": "Project summary",
+        "sampleDescription": "Keep title, supporting detail, and status together in the card header.",
+        "status": "In progress",
+        "content": "The content area holds information directly related to the current topic and keeps it separate from page-level actions.",
+        "secondaryAction": "Cancel",
+        "primaryAction": "Save"
+      },
+      "grid": {
+        "title": "Responsive grid",
+        "description": "Use one column on small screens, then compare related information side by side when space allows.",
+        "first": { "title": "Content card", "description": "Suitable for a related group of explanation or data." },
+        "second": { "title": "Action card", "description": "Keeps local actions within a clear context." }
+      }
+    },
+    "collapsible": {
+      "title": "Collapsible",
+      "description": "Reveals secondary content on demand to reduce the initial information density.",
+      "controlled": {
+        "title": "Controlled",
+        "description": "Page state owns the open state and can synchronize it with other interactions.",
+        "trigger": "Show details",
+        "content": "Controlled mode suits content whose open state depends on other page state."
+      },
+      "defaultValue": {
+        "title": "Default open",
+        "description": "Use defaultOpen when only the initial expanded state matters.",
+        "trigger": "Details shown by default",
+        "content": "The content is expanded on first render; later toggles are handled internally."
+      },
+      "disabled": {
+        "title": "Disabled",
+        "description": "Disable the trigger while content is unavailable to avoid an invalid interaction.",
+        "trigger": "Currently unavailable"
+      }
+    },
+    "command": {
+      "title": "Command",
+      "description": "Quickly locate pages and actions through keyboard-first filtering.",
+      "search": {
+        "title": "Local filtering",
+        "description": "After entering a keyword, the command list retains matching items.",
+        "placeholder": "Search commands",
+        "empty": "No matching commands."
+      },
+      "groups": { "navigation": "Navigation", "settings": "Settings" },
+      "items": { "search": "Search", "pages": "Go to page", "settings": "Open settings" }
+    },
+    "dialog": {
+      "title": "Dialog",
+      "description": "Displays content and actions that need an explicit response above the current page.",
+      "defaultValue": {
+        "title": "Basic dialog",
+        "description": "The trigger opens a modal with a title, description, and actions.",
+        "trigger": "Open dialog"
+      },
+      "content": {
+        "title": "Confirm action",
+        "description": "Confirming continues the current action.",
+        "cancel": "Cancel",
+        "confirm": "Confirm"
+      }
+    },
+    "dropdownMenu": {
+      "title": "Dropdown Menu",
+      "description": "Keeps actions and options related to the current object close to their trigger.",
+      "actions": {
+        "title": "Action menu",
+        "description": "Place infrequent actions in one menu instead of taking up the primary interface.",
+        "trigger": "Open action menu",
+        "label": "Actions",
+        "edit": "Edit",
+        "duplicate": "Duplicate",
+        "delete": "Delete"
+      },
+      "selection": {
+        "title": "Selection items",
+        "description": "A menu can hold independent toggles and mutually exclusive options together.",
+        "trigger": "Open options",
+        "enabled": "Enable feature",
+        "alignment": "Alignment",
+        "start": "Start",
+        "center": "Center"
+      }
+    },
+    "form": {
+      "title": "Form",
+      "description": "Organizes field state, guidance, and validation feedback into an accessible input flow.",
+      "validation": {
+        "title": "Field validation",
+        "description": "Submitting an empty value shows its associated validation feedback.",
+        "label": "Email",
+        "placeholder": "Enter your email",
+        "help": "Used to receive notifications related to this action.",
+        "required": "Enter an email.",
+        "submit": "Submit"
+      }
+    },
+    "hoverCard": {
+      "title": "Hover Card",
+      "description": "Shows supplemental detail without leaving the current context.",
+      "defaultValue": {
+        "title": "Hover trigger",
+        "description": "The panel appears when the trigger is hovered or receives keyboard focus.",
+        "trigger": "View additional information"
+      },
+      "content": { "title": "Additional information", "description": "A hover card suits short contextual detail." }
+    },
+    "inputOtp": {
+      "title": "Input OTP",
+      "description": "Collects a fixed-length verification code through separate input slots.",
+      "controlled": {
+        "title": "Controlled input",
+        "description": "The page stores the value and supports individual typing or paste.",
+        "empty": "No verification code entered",
+        "value": "Current code: {{value}}"
+      }
+    },
+    "label": {
+      "title": "Label",
+      "description": "Provides accessible text for a form control.",
+      "defaultValue": {
+        "title": "Associated control",
+        "description": "Label connects to the input id through htmlFor.",
+        "label": "Name",
+        "placeholder": "Enter a name"
+      },
+      "disabled": {
+        "title": "Disabled control",
+        "description": "A disabled input still keeps its label and current value.",
+        "label": "Unavailable",
+        "value": "Currently unavailable"
+      }
+    },
+    "popover": {
+      "title": "Popover",
+      "description": "Shows supporting content or local actions next to a trigger after a click.",
+      "defaultValue": {
+        "title": "Click trigger",
+        "description": "A popover suits short content directly related to the trigger.",
+        "trigger": "Open popover"
+      },
+      "content": { "title": "Popover content", "description": "Click elsewhere on the page or the trigger again to close it." }
+    },
+    "progress": {
+      "title": "Progress",
+      "description": "Uses visual proportion to show task or flow completion.",
+      "defaultValue": {
+        "title": "Static progress",
+        "description": "Use for a known value that the current page does not modify.",
+        "label": "Completion progress"
+      },
+      "controlled": {
+        "title": "Controlled progress",
+        "description": "The indicator updates when page state changes.",
+        "label": "Current progress {{value}}%",
+        "action": "Advance progress"
+      }
+    },
+    "radioGroup": {
+      "title": "Radio Group",
+      "description": "Lets users select one option from a mutually exclusive group.",
+      "controlled": { "title": "Controlled selection", "description": "Page state maintains the selected value." },
+      "options": { "small": "Small", "medium": "Medium", "large": "Large" },
+      "disabled": {
+        "title": "Disabled",
+        "description": "An unavailable value should be explicitly disabled rather than merely hidden.",
+        "label": "Currently unavailable"
+      }
+    },
+    "scrollArea": {
+      "title": "Scroll Area",
+      "description": "Holds content that exceeds a fixed visible region.",
+      "vertical": {
+        "title": "Vertical scrolling",
+        "description": "A vertical scrollbar appears when content exceeds the container height.",
+        "item": "Scrollable item {{item}}"
+      },
+      "horizontal": { "title": "Horizontal scrolling", "description": "Wide content keeps its original width and scrolls horizontally." }
+    },
+    "separator": {
+      "title": "Separator",
+      "description": "Provides a lightweight visual boundary between related content.",
+      "horizontal": {
+        "title": "Horizontal separator",
+        "description": "Use between vertically stacked content.",
+        "first": "Content above",
+        "second": "Content below"
+      },
+      "vertical": {
+        "title": "Vertical separator",
+        "description": "Use between adjacent content in a row.",
+        "first": "Left content",
+        "second": "Right content"
+      }
+    },
+    "sheet": {
+      "title": "Sheet",
+      "description": "Shows supporting content that needs focused attention from a page edge.",
+      "defaultValue": {
+        "title": "Basic sheet",
+        "description": "The trigger opens a panel from the right with a title, description, and action.",
+        "trigger": "Open sheet"
+      },
+      "content": { "title": "Sheet title", "description": "Keep content related to the current action in this panel.", "action": "Done" }
+    },
+    "slider": {
+      "title": "Slider",
+      "description": "Selects a value or range by dragging a thumb.",
+      "controlled": {
+        "title": "Controlled value",
+        "description": "The page state owns the current value.",
+        "label": "Current value",
+        "value": "Current value: {{value}}"
+      },
+      "range": { "title": "Range value", "description": "Two thumbs select a start and end value.", "label": "Range value" }
+    },
+    "tabs": {
+      "title": "Tabs",
+      "description": "Switches between parallel groups of information in one content area.",
+      "defaultValue": { "title": "Basic tabs", "description": "The active item and its corresponding panel share one value." },
+      "items": { "account": "Account", "settings": "Settings" },
+      "content": {
+        "account": "Account information appears in this content panel.",
+        "settings": "Settings options appear in this content panel."
+      }
+    },
+    "textarea": {
+      "title": "Textarea",
+      "description": "Collects text content with an unrestricted number of lines.",
+      "defaultValue": {
+        "title": "Basic input",
+        "description": "Use an associated label to explain the requested content.",
+        "label": "Message",
+        "placeholder": "Write a message"
+      },
+      "disabled": {
+        "title": "Disabled",
+        "description": "Disabled preserves content while preventing edits.",
+        "value": "Currently unavailable"
+      }
+    },
+    "toggle": {
+      "title": "Toggle",
+      "description": "Switches an independent format or setting between pressed and unpressed.",
+      "controlled": { "title": "Controlled state", "description": "The page owns the pressed state.", "label": "Bold" },
+      "variants": {
+        "title": "Variants and sizes",
+        "description": "Variants and sizes adapt the control to different action densities.",
+        "italic": "Italic",
+        "large": "Large"
+      }
+    },
+    "toggleGroup": {
+      "title": "Toggle Group",
+      "description": "Organizes related toggle actions as a single- or multiple-selection group.",
+      "controlled": { "title": "Single selection", "description": "Single mode keeps only one active option.", "label": "Text alignment" },
+      "items": { "left": "Align left", "center": "Align center", "right": "Align right" }
+    },
+    "tooltip": {
+      "title": "Tooltip",
+      "description": "Shows brief contextual information on hover or focus.",
+      "defaultValue": {
+        "title": "Basic tooltip",
+        "description": "Tooltip content should clarify a control, not hold a critical action.",
+        "trigger": "View help"
+      },
+      "content": "This is additional information related to the current control."
+    },
+    "typography": {
+      "title": "Typography",
+      "description": "Uses heading and text hierarchy to organize the reading order of page information.",
+      "headings": {
+        "title": "Heading hierarchy",
+        "description": "Heading levels should reflect content hierarchy rather than merely changing font size.",
+        "h2": "Heading level two",
+        "h3": "Heading level three",
+        "h4": "Heading level four"
+      },
+      "text": {
+        "title": "Text variants",
+        "description": "Body, supporting copy, and code use styles that match their semantics.",
+        "body": "Body text presents the primary explanatory content.",
+        "caption": "Supporting text adds context.",
+        "code": "const value = 1;"
+      }
     }
   }
 }
