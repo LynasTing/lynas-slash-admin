@@ -94,6 +94,251 @@
       "controlled": { "title": "受控状态", "description": "开关状态由当前页面控制。", "label": "已启用" },
       "defaultValue": { "title": "默认值", "description": "初始值不需要外部状态时使用 defaultChecked。", "label": "默认已启用" },
       "disabled": { "title": "禁用", "description": "禁用状态会阻止设置被修改。", "label": "不可用" }
+    },
+    "avatar": {
+      "title": "头像",
+      "description": "展示用户、成员或实体的紧凑视觉标识。",
+      "images": { "title": "图片", "description": "图片加载成功时，Avatar 会裁剪并展示头像内容。", "alt": "头像 {{index}}" },
+      "fallback": { "title": "后备内容", "description": "没有可用图片时，使用简短文本保持识别性。" },
+      "sizes": {
+        "title": "尺寸",
+        "description": "尺寸应匹配头像所在的信息密度与层级。",
+        "small": "小头像",
+        "medium": "中头像",
+        "large": "大头像"
+      }
+    },
+    "breadcrumb": {
+      "title": "面包屑",
+      "description": "展示当前页面在层级结构中的位置，并提供返回上层的路径。",
+      "defaultValue": { "title": "基础路径", "description": "最后一项表示当前页面，因此不应作为链接使用。" },
+      "ellipsis": { "title": "省略路径", "description": "层级较深时可折叠中间路径，保留起点与当前位置。", "more": "更多路径" },
+      "items": { "home": "首页", "components": "UI 组件", "current": "面包屑" }
+    },
+    "calendar": {
+      "title": "日历",
+      "description": "用于在月份视图中选择单日或连续日期范围。",
+      "single": { "title": "单日选择", "description": "选择一个日期后，页面状态会保留当前值。", "empty": "尚未选择日期" },
+      "range": { "title": "范围选择", "description": "适用于开始和结束日期需要成对选择的场景。", "empty": "尚未选择日期范围" }
+    },
+    "card": {
+      "title": "卡片",
+      "description": "将相关内容、操作和状态组织为独立的信息区块。",
+      "anatomy": {
+        "title": "结构",
+        "description": "Header、Content 和 Footer 用于维持内容与操作的固定层级。",
+        "sampleTitle": "项目摘要",
+        "sampleDescription": "将标题、辅助说明和状态集中在卡片头部。",
+        "status": "进行中",
+        "content": "内容区域承载与当前主题直接相关的信息，避免与页面级操作混杂。",
+        "secondaryAction": "取消",
+        "primaryAction": "保存"
+      },
+      "grid": {
+        "title": "响应式网格",
+        "description": "小屏单列展示，空间足够时再并排比较相关信息。",
+        "first": { "title": "内容卡片", "description": "适合承载一组相关说明或数据。" },
+        "second": { "title": "操作卡片", "description": "适合将局部操作限制在明确的上下文中。" }
+      }
+    },
+    "collapsible": {
+      "title": "折叠面板",
+      "description": "按需显示次要内容，减少页面初始信息密度。",
+      "controlled": {
+        "title": "受控状态",
+        "description": "展开状态由页面维护，可与外部交互同步。",
+        "trigger": "显示详情",
+        "content": "受控模式适合需要根据其他页面状态决定展开与收起的内容。"
+      },
+      "defaultValue": {
+        "title": "默认展开",
+        "description": "仅需初始展开时，使用 defaultOpen 保留内部状态。",
+        "trigger": "默认显示详情",
+        "content": "组件首次渲染时内容已展开，后续切换由组件内部处理。"
+      },
+      "disabled": { "title": "禁用", "description": "内容暂不可访问时，禁用触发器可避免产生无效交互。", "trigger": "当前不可用" }
+    },
+    "command": {
+      "title": "命令面板",
+      "description": "通过键盘优先的筛选快速定位页面和操作。",
+      "search": {
+        "title": "本地筛选",
+        "description": "输入关键词后，命令列表会保留匹配项。",
+        "placeholder": "搜索命令",
+        "empty": "没有匹配的命令。"
+      },
+      "groups": { "navigation": "导航", "settings": "设置" },
+      "items": { "search": "搜索", "pages": "前往页面", "settings": "打开设置" }
+    },
+    "dialog": {
+      "title": "对话框",
+      "description": "在当前页面之上展示需要明确处理的内容与操作。",
+      "defaultValue": { "title": "基础对话框", "description": "触发器打开包含标题、说明和操作的模态窗口。", "trigger": "打开对话框" },
+      "content": { "title": "确认操作", "description": "确认后将继续执行当前操作。", "cancel": "取消", "confirm": "确认" }
+    },
+    "dropdownMenu": {
+      "title": "下拉菜单",
+      "description": "将与当前对象相关的操作和选项收纳在触发器附近。",
+      "actions": {
+        "title": "操作菜单",
+        "description": "将低频操作置于同一菜单中，避免占用主界面。",
+        "trigger": "打开操作菜单",
+        "label": "操作",
+        "edit": "编辑",
+        "duplicate": "复制",
+        "delete": "删除"
+      },
+      "selection": {
+        "title": "选择项",
+        "description": "菜单可同时承载独立开关与互斥选项。",
+        "trigger": "打开选项",
+        "enabled": "启用功能",
+        "alignment": "对齐方式",
+        "start": "左对齐",
+        "center": "居中"
+      }
+    },
+    "form": {
+      "title": "表单",
+      "description": "将字段状态、说明和校验反馈组织为可访问的输入流程。",
+      "validation": {
+        "title": "字段校验",
+        "description": "提交空值时显示关联的校验提示。",
+        "label": "邮箱",
+        "placeholder": "请输入邮箱",
+        "help": "用于接收与此操作相关的通知。",
+        "required": "请输入邮箱。",
+        "submit": "提交"
+      }
+    },
+    "hoverCard": {
+      "title": "悬停卡片",
+      "description": "在不离开当前上下文的前提下展示补充说明。",
+      "defaultValue": { "title": "悬停触发", "description": "鼠标悬停或键盘聚焦触发器时显示浮层。", "trigger": "查看补充信息" },
+      "content": { "title": "补充信息", "description": "悬停卡片适合展示简短的上下文说明。" }
+    },
+    "inputOtp": {
+      "title": "验证码输入",
+      "description": "以分格输入方式收集固定长度的验证码。",
+      "controlled": {
+        "title": "受控输入",
+        "description": "输入值由页面保存，支持逐位输入和粘贴。",
+        "empty": "尚未输入验证码",
+        "value": "当前验证码：{{value}}"
+      }
+    },
+    "label": {
+      "title": "标签",
+      "description": "为表单控件提供可访问的文字说明。",
+      "defaultValue": {
+        "title": "关联控件",
+        "description": "Label 通过 htmlFor 与输入框 id 关联。",
+        "label": "名称",
+        "placeholder": "请输入名称"
+      },
+      "disabled": { "title": "禁用控件", "description": "禁用的输入框仍保留标签与当前值。", "label": "不可修改", "value": "当前不可用" }
+    },
+    "popover": {
+      "title": "浮层",
+      "description": "通过点击在触发器附近显示补充内容或局部操作。",
+      "defaultValue": { "title": "点击触发", "description": "浮层适合承载与触发器直接相关的短内容。", "trigger": "打开浮层" },
+      "content": { "title": "浮层内容", "description": "点击页面其他位置或再次点击触发器即可关闭。" }
+    },
+    "progress": {
+      "title": "进度条",
+      "description": "以视觉比例表达任务或流程的完成程度。",
+      "defaultValue": { "title": "静态进度", "description": "适用于已知且不由当前页面修改的进度值。", "label": "完成进度" },
+      "controlled": {
+        "title": "受控进度",
+        "description": "页面状态变化时，进度条同步更新。",
+        "label": "当前进度 {{value}}%",
+        "action": "推进进度"
+      }
+    },
+    "radioGroup": {
+      "title": "单选组",
+      "description": "让用户在一组互斥选项中选择其中一项。",
+      "controlled": { "title": "受控选择", "description": "选中的值由页面状态维护。" },
+      "options": { "small": "小", "medium": "中", "large": "大" },
+      "disabled": { "title": "禁用", "description": "不可选的值应明确禁用，而不是只隐藏。", "label": "当前不可用" }
+    },
+    "scrollArea": {
+      "title": "滚动区域",
+      "description": "在固定可视区域内承载超出范围的内容。",
+      "vertical": { "title": "垂直滚动", "description": "内容高度超过容器时显示纵向滚动条。", "item": "滚动内容 {{item}}" },
+      "horizontal": { "title": "水平滚动", "description": "宽内容可保留原始宽度并在水平方向滚动。" }
+    },
+    "separator": {
+      "title": "分隔线",
+      "description": "在相关内容之间提供轻量的视觉边界。",
+      "horizontal": { "title": "水平分隔", "description": "用于垂直堆叠内容之间。", "first": "上方内容", "second": "下方内容" },
+      "vertical": { "title": "垂直分隔", "description": "用于一行内的相邻内容之间。", "first": "左侧内容", "second": "右侧内容" }
+    },
+    "sheet": {
+      "title": "侧边面板",
+      "description": "从页面边缘显示需要集中处理的补充内容。",
+      "defaultValue": { "title": "基础面板", "description": "触发器从右侧打开包含标题、说明和操作的面板。", "trigger": "打开面板" },
+      "content": { "title": "面板标题", "description": "将与当前操作相关的内容收纳在这个面板中。", "action": "完成" }
+    },
+    "slider": {
+      "title": "滑块",
+      "description": "通过拖动滑块选择一个值或数值范围。",
+      "controlled": { "title": "受控值", "description": "当前值由页面状态维护。", "label": "当前值", "value": "当前值：{{value}}" },
+      "range": { "title": "范围值", "description": "两个滑块用于选择开始和结束值。", "label": "范围值" }
+    },
+    "tabs": {
+      "title": "选项卡",
+      "description": "在同一内容区域内切换并列的信息分组。",
+      "defaultValue": { "title": "基础选项卡", "description": "激活项与对应内容面板共享同一个值。" },
+      "items": { "account": "账户", "settings": "设置" },
+      "content": { "account": "账户信息显示在这个内容面板中。", "settings": "设置选项显示在这个内容面板中。" }
+    },
+    "textarea": {
+      "title": "多行输入框",
+      "description": "收集长度不固定的多行文本内容。",
+      "defaultValue": {
+        "title": "基础输入",
+        "description": "使用关联标签说明需要填写的内容。",
+        "label": "消息",
+        "placeholder": "请输入消息"
+      },
+      "disabled": { "title": "禁用", "description": "禁用状态保留内容，同时阻止修改。", "value": "当前不可用" }
+    },
+    "toggle": {
+      "title": "切换按钮",
+      "description": "在按下与未按下之间切换一项独立格式或设置。",
+      "controlled": { "title": "受控状态", "description": "按下状态由页面维护。", "label": "加粗" },
+      "variants": { "title": "样式与尺寸", "description": "变体和尺寸用于适应不同的操作密度。", "italic": "斜体", "large": "大尺寸" }
+    },
+    "toggleGroup": {
+      "title": "切换按钮组",
+      "description": "将相关切换操作组织为可互斥或多选的按钮组。",
+      "controlled": { "title": "单选状态", "description": "单选模式只保留当前激活的一个选项。", "label": "文本对齐" },
+      "items": { "left": "左对齐", "center": "居中", "right": "右对齐" }
+    },
+    "tooltip": {
+      "title": "文字提示",
+      "description": "在悬停或聚焦时显示简短的上下文说明。",
+      "defaultValue": { "title": "基础提示", "description": "提示内容应补充控件含义，不承载关键操作。", "trigger": "查看帮助" },
+      "content": "这是与当前控件相关的补充说明。"
+    },
+    "typography": {
+      "title": "排版",
+      "description": "通过标题和正文层级组织页面信息的阅读顺序。",
+      "headings": {
+        "title": "标题层级",
+        "description": "标题级别应反映内容层级，而不是只为改变字号。",
+        "h2": "二级标题",
+        "h3": "三级标题",
+        "h4": "四级标题"
+      },
+      "text": {
+        "title": "文本变体",
+        "description": "正文、说明和代码使用与语义匹配的文本样式。",
+        "body": "正文用于呈现主要说明内容。",
+        "caption": "说明文字用于补充上下文。",
+        "code": "const value = 1;"
+      }
     }
   }
 }
