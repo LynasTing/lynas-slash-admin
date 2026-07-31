@@ -1,6 +1,48 @@
+import { type ComponentProps } from 'react';
 import useLocale from '@/locales/use-locale';
 import { Badge } from '@/ui/badge';
 import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from '@/ui/card';
+import CodeExample from '../components/code-example';
+
+type BadgeVariant = NonNullable<ComponentProps<typeof Badge>['variant']>;
+
+interface BadgeVariantDemoItem {
+  /**
+   * 变体名称对应的国际化键名，用于渲染实际视觉语义。
+   *
+   * Translation key for the variant name. It renders the actual visual meaning.
+   */
+  labelKey: string;
+
+  /**
+   * 传递给 Badge 的视觉变体，受组件公开 API 约束。
+   *
+   * Visual variant passed to Badge. It is constrained by the component's public API.
+   */
+  variant: BadgeVariant;
+
+  /**
+   * 与当前变体一一对应的 JSX 源码。
+   *
+   * JSX source that maps one-to-one with the current variant.
+   */
+  code: string;
+}
+
+/**
+ * Badge 的公开视觉变体及其对应代码。
+ * 每个项目单独渲染，避免多种视觉结果共用一段无法准确对照的代码。
+ *
+ * Public Badge variants and their corresponding source code.
+ * Each item renders independently so multiple visual results do not share ambiguous source code.
+ */
+const variantItems = [
+  { labelKey: 'default', variant: 'default', code: '<Badge>Default</Badge>' },
+  { labelKey: 'secondary', variant: 'secondary', code: '<Badge variant="secondary">Secondary</Badge>' },
+  { labelKey: 'success', variant: 'success', code: '<Badge variant="success">Success</Badge>' },
+  { labelKey: 'warning', variant: 'warning', code: '<Badge variant="warning">Warning</Badge>' },
+  { labelKey: 'error', variant: 'error', code: '<Badge variant="error">Error</Badge>' }
+] as const satisfies ReadonlyArray<BadgeVariantDemoItem>;
 
 /**
  * 展示 Badge 的颜色语义、形状及轮廓样式。
@@ -34,12 +76,13 @@ export default function BadgePage() {
             <CardDescription className="mt-2 leading-6">{t(`${prefix}.variants.description`)}</CardDescription>
           </div>
         </CardHeader>
-        <CardContent className="flex flex-wrap gap-3 px-4 py-4 sm:px-5">
-          <Badge>{t(`${prefix}.variants.default`)}</Badge>
-          <Badge variant="secondary">{t(`${prefix}.variants.secondary`)}</Badge>
-          <Badge variant="success">{t(`${prefix}.variants.success`)}</Badge>
-          <Badge variant="warning">{t(`${prefix}.variants.warning`)}</Badge>
-          <Badge variant="error">{t(`${prefix}.variants.error`)}</Badge>
+        <CardContent className="space-y-3 px-4 py-4 sm:px-5">
+          {variantItems.map(item => (
+            <div key={item.variant} className="grid items-center gap-3 border border-border p-3 sm:grid-cols-[minmax(9rem,auto)_1fr]">
+              <Badge variant={item.variant}>{t(`${prefix}.variants.${item.labelKey}`)}</Badge>
+              <CodeExample code={item.code} />
+            </div>
+          ))}
         </CardContent>
       </Card>
 
@@ -50,10 +93,19 @@ export default function BadgePage() {
             <CardDescription className="mt-2 leading-6">{t(`${prefix}.shapes.description`)}</CardDescription>
           </div>
         </CardHeader>
-        <CardContent className="flex items-center gap-3 px-4 py-4 sm:px-5">
-          <Badge shape="square">{t(`${prefix}.shapes.label`)}</Badge>
-          <Badge shape="circle">12</Badge>
-          <Badge variant="success" shape="dot" aria-label={t(`${prefix}.shapes.available`)} />
+        <CardContent className="space-y-3 px-4 py-4 sm:px-5">
+          <div className="grid items-center gap-3 border border-border p-3 sm:grid-cols-[minmax(9rem,auto)_1fr]">
+            <Badge shape="square">{t(`${prefix}.shapes.label`)}</Badge>
+            <CodeExample code={'<Badge shape="square">New</Badge>'} />
+          </div>
+          <div className="grid items-center gap-3 border border-border p-3 sm:grid-cols-[minmax(9rem,auto)_1fr]">
+            <Badge shape="circle">12</Badge>
+            <CodeExample code={'<Badge shape="circle">12</Badge>'} />
+          </div>
+          <div className="grid items-center gap-3 border border-border p-3 sm:grid-cols-[minmax(9rem,auto)_1fr]">
+            <Badge variant="success" shape="dot" aria-label={t(`${prefix}.shapes.available`)} />
+            <CodeExample code={'<Badge variant="success" shape="dot" aria-label="Available" />'} />
+          </div>
         </CardContent>
       </Card>
 
@@ -64,8 +116,9 @@ export default function BadgePage() {
             <CardDescription className="mt-2 leading-6">{t(`${prefix}.outline.description`)}</CardDescription>
           </div>
         </CardHeader>
-        <CardContent className="px-4 py-4 sm:px-5">
+        <CardContent className="space-y-3 px-4 py-4 sm:px-5">
           <Badge variant="outline">{t(`${prefix}.outline.title`)}</Badge>
+          <CodeExample code={'<Badge variant="outline">Outline</Badge>'} />
         </CardContent>
       </Card>
     </div>
