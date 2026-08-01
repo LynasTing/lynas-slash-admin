@@ -4,7 +4,7 @@ import useLocale from '@/locales/use-locale';
 import { Badge } from '@/ui/badge';
 import Button, { type ButtonProps } from '@/ui/button';
 import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from '@/ui/card';
-import Separator from '@/ui/separator';
+import CodeExample from '../components/code-example';
 
 const BUTTON_PAGE_I18N_PREFIX = 'ui.button';
 
@@ -25,6 +25,13 @@ interface ButtonVariantDemoItem {
    * Visual variant passed to Button. The value is constrained by Button's public API.
    */
   variant: ButtonVariant;
+
+  /**
+   * 与当前示例完全对应的 JSX 代码，用于紧邻演示结果展示。
+   *
+   * JSX source that exactly matches the current example and is displayed next to it.
+   */
+  code: string;
 }
 
 interface ButtonSizeDemoItem {
@@ -41,6 +48,13 @@ interface ButtonSizeDemoItem {
    * Size variant passed to Button. It represents the component's supported fixed size set.
    */
   size: ButtonSize;
+
+  /**
+   * 与当前尺寸示例完全对应的 JSX 代码。
+   *
+   * JSX source that exactly matches the current size example.
+   */
+  code: string;
 }
 
 /**
@@ -51,13 +65,13 @@ interface ButtonSizeDemoItem {
  * This configuration is tied to ButtonProps so type checking exposes any mismatch when variants change.
  */
 const variantItems = [
-  { labelKey: 'default', variant: 'default' },
-  { labelKey: 'secondary', variant: 'secondary' },
-  { labelKey: 'outline', variant: 'outline' },
-  { labelKey: 'ghost', variant: 'ghost' },
-  { labelKey: 'link', variant: 'link' },
-  { labelKey: 'contrast', variant: 'contrast' },
-  { labelKey: 'destructive', variant: 'destructive' }
+  { labelKey: 'default', variant: 'default', code: '<Button>Default</Button>' },
+  { labelKey: 'secondary', variant: 'secondary', code: '<Button variant="secondary">Secondary</Button>' },
+  { labelKey: 'outline', variant: 'outline', code: '<Button variant="outline">Outline</Button>' },
+  { labelKey: 'ghost', variant: 'ghost', code: '<Button variant="ghost">Ghost</Button>' },
+  { labelKey: 'link', variant: 'link', code: '<Button variant="link">Link</Button>' },
+  { labelKey: 'contrast', variant: 'contrast', code: '<Button variant="contrast">Contrast</Button>' },
+  { labelKey: 'destructive', variant: 'destructive', code: '<Button variant="destructive">Delete</Button>' }
 ] as const satisfies ReadonlyArray<ButtonVariantDemoItem>;
 
 /**
@@ -68,9 +82,9 @@ const variantItems = [
  * Icon size requires icon content, so it is intentionally not mixed into the text-only examples.
  */
 const sizeItems = [
-  { labelKey: 'small', size: 'sm' },
-  { labelKey: 'default', size: 'default' },
-  { labelKey: 'large', size: 'lg' }
+  { labelKey: 'small', size: 'sm', code: '<Button size="sm">Small</Button>' },
+  { labelKey: 'default', size: 'default', code: '<Button>Default</Button>' },
+  { labelKey: 'large', size: 'lg', code: '<Button size="lg">Large</Button>' }
 ] as const satisfies ReadonlyArray<ButtonSizeDemoItem>;
 
 /**
@@ -123,16 +137,17 @@ export default function ButtonPage() {
             </CardAction>
           </CardHeader>
           <CardContent className="space-y-3 px-4 py-4 sm:px-5">
-            <div className="flex flex-wrap gap-3">
+            <div className="grid gap-3">
               {/*
                * 逐项渲染 Button 已公开的 variant，便于直接对照不同操作层级。
                *
                * Render each public Button variant so action hierarchy can be compared directly.
                */}
               {variantItems.map(item => (
-                <Button key={item.variant} variant={item.variant}>
-                  {t(`${BUTTON_PAGE_I18N_PREFIX}.variants.${item.labelKey}`)}
-                </Button>
+                <div key={item.variant} className="grid items-center gap-3 border border-border p-3 sm:grid-cols-[minmax(9rem,auto)_1fr]">
+                  <Button variant={item.variant}>{t(`${BUTTON_PAGE_I18N_PREFIX}.variants.${item.labelKey}`)}</Button>
+                  <CodeExample code={item.code} />
+                </div>
               ))}
             </div>
           </CardContent>
@@ -151,16 +166,17 @@ export default function ButtonPage() {
             </CardAction>
           </CardHeader>
           <CardContent className="space-y-3 px-4 py-4 sm:px-5">
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="grid gap-3">
               {/*
                * 只在此处展示文本按钮尺寸，避免图标按钮的内容结构干扰尺寸对比。
                *
                * Only text button sizes appear here, keeping icon content from distorting size comparison.
                */}
               {sizeItems.map(item => (
-                <Button key={item.size} size={item.size}>
-                  {t(`${BUTTON_PAGE_I18N_PREFIX}.sizes.${item.labelKey}`)}
-                </Button>
+                <div key={item.size} className="grid items-center gap-3 border border-border p-3 sm:grid-cols-[minmax(9rem,auto)_1fr]">
+                  <Button size={item.size}>{t(`${BUTTON_PAGE_I18N_PREFIX}.sizes.${item.labelKey}`)}</Button>
+                  <CodeExample code={item.code} />
+                </div>
               ))}
             </div>
           </CardContent>
@@ -179,21 +195,32 @@ export default function ButtonPage() {
             </CardAction>
           </CardHeader>
           <CardContent className="space-y-3 px-4 py-4 sm:px-5">
-            <div className="flex flex-wrap items-center gap-3">
-              <Button disabled>{t(`${BUTTON_PAGE_I18N_PREFIX}.states.disabled`)}</Button>
-              <Button aria-pressed={isLoading} onClick={handleLoadingToggle}>
-                {isLoading && <LoaderCircle className="animate-spin" />}
-                {t(`${BUTTON_PAGE_I18N_PREFIX}.states.${isLoading ? 'stopLoading' : 'startLoading'}`)}
-              </Button>
+            <div className="grid gap-3">
+              <div className="grid items-center gap-3 border border-border p-3 sm:grid-cols-[minmax(9rem,auto)_1fr]">
+                <Button disabled>{t(`${BUTTON_PAGE_I18N_PREFIX}.states.disabled`)}</Button>
+                <CodeExample code={'<Button disabled>Disabled</Button>'} />
+              </div>
+              <div className="grid items-center gap-3 border border-border p-3 sm:grid-cols-[minmax(9rem,auto)_1fr]">
+                <Button aria-pressed={isLoading} onClick={handleLoadingToggle}>
+                  {isLoading && <LoaderCircle className="animate-spin" />}
+                  {t(`${BUTTON_PAGE_I18N_PREFIX}.states.${isLoading ? 'stopLoading' : 'startLoading'}`)}
+                </Button>
+                <CodeExample
+                  code={`<Button onClick={handleLoadingToggle}>
+  {isLoading && <LoaderCircle className="animate-spin" />}
+  {isLoading ? 'Stop loading' : 'Start loading'}
+</Button>`}
+                />
+              </div>
             </div>
             {isLoading && (
-              <>
-                <Separator orientation="horizontal" />
+              <div className="grid items-center gap-3 border border-border p-3 sm:grid-cols-[minmax(9rem,auto)_1fr]">
                 <Button variant="outline" disabled>
                   <LoaderCircle className="animate-spin" />
                   {t(`${BUTTON_PAGE_I18N_PREFIX}.states.loading`)}
                 </Button>
-              </>
+                <CodeExample code={'<Button variant="outline" disabled><LoaderCircle className="animate-spin" />Loading</Button>'} />
+              </div>
             )}
           </CardContent>
         </Card>
