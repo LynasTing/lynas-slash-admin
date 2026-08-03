@@ -3,6 +3,7 @@ import { Badge } from '@/ui/badge';
 import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from '@/ui/card';
 import { Input } from '@/ui/input';
 import { Label } from '@/ui/label';
+import CodeExample from '../components/code-example';
 
 /**
  * 展示 Input 的文本、原生类型和禁用状态。
@@ -35,11 +36,12 @@ export default function InputPage() {
             <CardDescription className="mt-2 leading-6">{t(`${prefix}.defaultValue.description`)}</CardDescription>
           </div>
         </CardHeader>
-        <CardContent className="px-4 py-4 sm:px-5">
+        <CardContent className="space-y-3 px-4 py-4 sm:px-5">
           <div className="max-w-xl space-y-2">
             <Label htmlFor="input-default">{t(`${prefix}.label`)}</Label>
             <Input id="input-default" placeholder={t(`${prefix}.defaultValue.placeholder`)} />
           </div>
+          <CodeExample code={'<Label htmlFor="input-default">Name</Label>\n<Input id="input-default" placeholder="Enter a value" />'} />
         </CardContent>
       </Card>
       <Card className="rounded-none border-border shadow-none">
@@ -49,11 +51,12 @@ export default function InputPage() {
             <CardDescription className="mt-2 leading-6">{t(`${prefix}.types.description`)}</CardDescription>
           </div>
         </CardHeader>
-        <CardContent className="px-4 py-4 sm:px-5">
+        <CardContent className="space-y-3 px-4 py-4 sm:px-5">
           <div className="max-w-xl space-y-3">
             <Input type="email" placeholder={t(`${prefix}.types.email`)} />
             <Input type="password" placeholder={t(`${prefix}.types.password`)} />
           </div>
+          <CodeExample code={'<Input type="email" placeholder="name@example.com" />\n<Input type="password" placeholder="Password" />'} />
         </CardContent>
       </Card>
       <Card className="rounded-none border-border shadow-none">
@@ -68,6 +71,7 @@ export default function InputPage() {
             <Label htmlFor="input-disabled">{t(`${prefix}.label`)}</Label>
             <Input id="input-disabled" value={t(`${prefix}.disabled.value`)} disabled readOnly />
           </div>
+          <CodeExample code={`<Input value="Unavailable" disabled readOnly />`} />
         </CardContent>
       </Card>
     </div>
