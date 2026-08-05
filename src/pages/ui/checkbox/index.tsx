@@ -4,6 +4,7 @@ import { Badge } from '@/ui/badge';
 import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from '@/ui/card';
 import { Checkbox } from '@/ui/checkbox';
 import { Label } from '@/ui/label';
+import CodeExample from '../components/code-example';
 
 /**
  * 展示 Checkbox 的选中、未选中与不可用状态。
@@ -44,11 +45,12 @@ export default function CheckboxPage() {
             <CardDescription className="mt-2 leading-6">{t(`${prefix}.controlled.description`)}</CardDescription>
           </div>
         </CardHeader>
-        <CardContent className="px-4 py-4 sm:px-5">
+        <CardContent className="space-y-3 px-4 py-4 sm:px-5">
           <div className="flex items-center gap-3">
             <Checkbox id="checkbox-controlled" checked={isChecked} onCheckedChange={handleCheckedChange} />
             <Label htmlFor="checkbox-controlled">{t(`${prefix}.controlled.label`)}</Label>
           </div>
+          <CodeExample code={'<Checkbox checked={isChecked} onCheckedChange={setIsChecked} />'} />
         </CardContent>
       </Card>
       <Card className="rounded-none border-border shadow-none">
@@ -58,11 +60,12 @@ export default function CheckboxPage() {
             <CardDescription className="mt-2 leading-6">{t(`${prefix}.defaultValue.description`)}</CardDescription>
           </div>
         </CardHeader>
-        <CardContent className="px-4 py-4 sm:px-5">
+        <CardContent className="space-y-3 px-4 py-4 sm:px-5">
           <div className="flex items-center gap-3">
             <Checkbox id="checkbox-default" defaultChecked />
             <Label htmlFor="checkbox-default">{t(`${prefix}.defaultValue.label`)}</Label>
           </div>
+          <CodeExample code={'<Checkbox defaultChecked />'} />
         </CardContent>
       </Card>
       <Card className="rounded-none border-border shadow-none">
@@ -72,11 +75,12 @@ export default function CheckboxPage() {
             <CardDescription className="mt-2 leading-6">{t(`${prefix}.disabled.description`)}</CardDescription>
           </div>
         </CardHeader>
-        <CardContent className="px-4 py-4 sm:px-5">
+        <CardContent className="space-y-3 px-4 py-4 sm:px-5">
           <div className="flex items-center gap-3">
             <Checkbox id="checkbox-disabled" disabled />
             <Label htmlFor="checkbox-disabled">{t(`${prefix}.disabled.label`)}</Label>
           </div>
+          <CodeExample code={'<Checkbox disabled />'} />
         </CardContent>
       </Card>
     </div>
