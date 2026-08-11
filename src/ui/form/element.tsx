@@ -2,18 +2,8 @@ import React from 'react';
 import type { ComponentProps } from 'react';
 import { Label as LabelPrimitive, Slot as SlotPrimitive } from 'radix-ui';
 import { cn } from '@/utils';
-import { useFormField } from './context';
+import { FormItemContext, useFormField } from './context';
 import { Label } from '@/ui/label';
-
-type FormItemContextValue = {
-  id: string;
-};
-
-/**
- * React.createContext()
- * - 创建上下文
- */
-const FormItemContext = React.createContext<FormItemContextValue>({} as FormItemContextValue);
 
 /**
  * @description 表单元素
@@ -70,7 +60,7 @@ export function FormControl({ ...props }: React.ComponentProps<typeof SlotPrimit
 export function FormDescription({ className, ...props }: React.ComponentProps<'p'>) {
   const { formDescriptionId } = useFormField();
 
-  return <p data-slot="form-description" id={formDescriptionId} className={cn('text-muted-foreground text-sm', className)} {...props} />;
+  return <p data-slot="form-description" id={formDescriptionId} className={cn('text-sm text-muted-foreground', className)} {...props} />;
 }
 
 /**
@@ -85,7 +75,7 @@ export function FormMessage({ className, ...props }: React.ComponentProps<'p'>) 
   }
 
   return (
-    <p data-slot="form-message" id={formMessageId} className={cn('text-destructive text-sm', className)} {...props}>
+    <p data-slot="form-message" id={formMessageId} className={cn('text-sm text-destructive', className)} {...props}>
       {body}
     </p>
   );
