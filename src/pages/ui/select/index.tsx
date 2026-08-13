@@ -4,6 +4,7 @@ import { Badge } from '@/ui/badge';
 import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from '@/ui/card';
 import { Label } from '@/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/ui/select';
+import CodeExample from '../components/code-example';
 
 const optionItems = ['small', 'medium', 'large'] as const;
 
@@ -39,7 +40,7 @@ export default function SelectPage() {
             <CardDescription className="mt-2 leading-6">{t(`${prefix}.controlled.description`)}</CardDescription>
           </div>
         </CardHeader>
-        <CardContent className="px-4 py-4 sm:px-5">
+        <CardContent className="space-y-3 px-4 py-4 sm:px-5">
           <div className="max-w-xl space-y-2">
             <Label htmlFor="select-controlled">{t(`${prefix}.label`)}</Label>
             <Select value={value} onValueChange={setValue}>
@@ -56,6 +57,11 @@ export default function SelectPage() {
               </SelectContent>
             </Select>
           </div>
+          <CodeExample
+            code={
+              '<Select value={value} onValueChange={setValue}><SelectTrigger><SelectValue /></SelectTrigger><SelectContent><SelectItem value="small">Small</SelectItem></SelectContent></Select>'
+            }
+          />
         </CardContent>
       </Card>
       <Card className="rounded-none border-border shadow-none">
@@ -65,7 +71,7 @@ export default function SelectPage() {
             <CardDescription className="mt-2 leading-6">{t(`${prefix}.sizes.description`)}</CardDescription>
           </div>
         </CardHeader>
-        <CardContent className="px-4 py-4 sm:px-5">
+        <CardContent className="space-y-3 px-4 py-4 sm:px-5">
           <div className="max-w-xl space-y-3">
             <Select defaultValue="small">
               <SelectTrigger size="sm" className="w-full">
@@ -84,6 +90,11 @@ export default function SelectPage() {
               </SelectContent>
             </Select>
           </div>
+          <CodeExample
+            code={
+              '<Select defaultValue="large"><SelectTrigger size="lg"><SelectValue /></SelectTrigger><SelectContent><SelectItem value="large">Large</SelectItem></SelectContent></Select>'
+            }
+          />
         </CardContent>
       </Card>
       <Card className="rounded-none border-border shadow-none">
@@ -93,7 +104,7 @@ export default function SelectPage() {
             <CardDescription className="mt-2 leading-6">{t(`${prefix}.disabled.description`)}</CardDescription>
           </div>
         </CardHeader>
-        <CardContent className="px-4 py-4 sm:px-5">
+        <CardContent className="space-y-3 px-4 py-4 sm:px-5">
           <Select defaultValue="medium" disabled>
             <SelectTrigger className="w-full max-w-xl">
               <SelectValue />
@@ -102,6 +113,7 @@ export default function SelectPage() {
               <SelectItem value="medium">{t(`${prefix}.options.medium`)}</SelectItem>
             </SelectContent>
           </Select>
+          <CodeExample code={'<Select defaultValue="medium" disabled><SelectTrigger><SelectValue /></SelectTrigger></Select>'} />
         </CardContent>
       </Card>
     </div>
