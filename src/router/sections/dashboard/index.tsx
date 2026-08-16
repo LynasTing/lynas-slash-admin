@@ -3,6 +3,7 @@ import AppLayout from '@/layout/app';
 import AuthGuard from '../../components/auth-guard';
 import { GLOBAL_CONFIG } from '@/config/global';
 import { GetFrontendRoutes } from './frontend';
+import { uiRoutes } from '../ui';
 
 const getRoutes = () => {
   return GetFrontendRoutes();
@@ -21,7 +22,8 @@ export const appRoutes: RouteObject[] = [
         index: true,
         element: <Navigate to={GLOBAL_CONFIG.defaultRoute} replace />
       },
-      ...getRoutes()
+      ...getRoutes(),
+      ...uiRoutes
     ]
   }
 ];
