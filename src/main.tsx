@@ -1,7 +1,6 @@
 import '@/assets/style/global.css';
 import '@/theme/theme.css';
 import '@/locales/i18n';
-import { worker } from './_mock';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router';
@@ -15,12 +14,16 @@ import { NavigationRegister } from '@/router/navigation/navigation-register';
 
 registerLocalIcons();
 
-await worker.start({
-  onUnhandledRequest: 'bypass',
-  serviceWorker: {
-    url: urlJoin(GLOBAL_CONFIG.publicPath, 'mockServiceWorker.js')
-  }
-});
+if (import.meta.env.VITE_APP_USE_MOCK !== 'false') {
+  const { worker } = await import('./_mock');
+
+  await worker.start({
+    onUnhandledRequest: 'bypass',
+    serviceWorker: {
+      url: urlJoin(GLOBAL_CONFIG.publicPath, 'mockServiceWorker.js')
+    }
+  });
+}
 
 const router = createBrowserRouter([
   {
