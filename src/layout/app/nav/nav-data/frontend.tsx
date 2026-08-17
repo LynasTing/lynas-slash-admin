@@ -22,6 +22,138 @@ export const frontendNavData: NavProps['data'] = [
     name: 'sys.nav.ui',
     items: [
       {
+        title: 'sys.nav.uiComponents.label',
+        path: '/ui',
+        icon: <Icon icon="solar:palette-round-bold-duotone" size="24" />,
+        caption: 'sys.nav.uiComponents.description',
+        children: [
+          {
+            title: 'sys.nav.uiComponents.button',
+            path: '/ui/button'
+          },
+          {
+            title: 'sys.nav.uiComponents.badge',
+            path: '/ui/badge'
+          },
+          {
+            title: 'sys.nav.uiComponents.checkbox',
+            path: '/ui/checkbox'
+          },
+          {
+            title: 'sys.nav.uiComponents.input',
+            path: '/ui/input'
+          },
+          {
+            title: 'sys.nav.uiComponents.select',
+            path: '/ui/select'
+          },
+          {
+            title: 'sys.nav.uiComponents.switch',
+            path: '/ui/switch'
+          },
+          {
+            title: 'sys.nav.uiComponents.avatar',
+            path: '/ui/avatar'
+          },
+          {
+            title: 'sys.nav.uiComponents.breadcrumb',
+            path: '/ui/breadcrumb'
+          },
+          {
+            title: 'sys.nav.uiComponents.calendar',
+            path: '/ui/calendar'
+          },
+          {
+            title: 'sys.nav.uiComponents.card',
+            path: '/ui/card'
+          },
+          {
+            title: 'sys.nav.uiComponents.collapsible',
+            path: '/ui/collapsible'
+          },
+          {
+            title: 'sys.nav.uiComponents.command',
+            path: '/ui/command'
+          },
+          {
+            title: 'sys.nav.uiComponents.dialog',
+            path: '/ui/dialog'
+          },
+          {
+            title: 'sys.nav.uiComponents.dropdownMenu',
+            path: '/ui/dropdown-menu'
+          },
+          {
+            title: 'sys.nav.uiComponents.form',
+            path: '/ui/form'
+          },
+          {
+            title: 'sys.nav.uiComponents.hoverCard',
+            path: '/ui/hover-card'
+          },
+          {
+            title: 'sys.nav.uiComponents.inputOtp',
+            path: '/ui/input-otp'
+          },
+          {
+            title: 'sys.nav.uiComponents.label',
+            path: '/ui/label'
+          },
+          {
+            title: 'sys.nav.uiComponents.popover',
+            path: '/ui/popover'
+          },
+          {
+            title: 'sys.nav.uiComponents.progress',
+            path: '/ui/progress'
+          },
+          {
+            title: 'sys.nav.uiComponents.radioGroup',
+            path: '/ui/radio-group'
+          },
+          {
+            title: 'sys.nav.uiComponents.scrollArea',
+            path: '/ui/scroll-area'
+          },
+          {
+            title: 'sys.nav.uiComponents.separator',
+            path: '/ui/separator'
+          },
+          {
+            title: 'sys.nav.uiComponents.sheet',
+            path: '/ui/sheet'
+          },
+          {
+            title: 'sys.nav.uiComponents.slider',
+            path: '/ui/slider'
+          },
+          {
+            title: 'sys.nav.uiComponents.tabs',
+            path: '/ui/tabs'
+          },
+          {
+            title: 'sys.nav.uiComponents.textarea',
+            path: '/ui/textarea'
+          },
+          {
+            title: 'sys.nav.uiComponents.toggle',
+            path: '/ui/toggle'
+          },
+          {
+            title: 'sys.nav.uiComponents.toggleGroup',
+            path: '/ui/toggle-group'
+          },
+          {
+            title: 'sys.nav.uiComponents.tooltip',
+            path: '/ui/tooltip'
+          },
+          {
+            title: 'sys.nav.uiComponents.typography',
+            path: '/ui/typography'
+          }
+        ]
+      },
+      {
         title: 'sys.nav.functions.label',
         path: '/functions',
         icon: <Icon icon="solar:plain-2-bold-duotone" size="24" />,
