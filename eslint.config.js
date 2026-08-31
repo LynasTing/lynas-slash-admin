@@ -15,6 +15,8 @@ export default tseslint.config([
     },
     extends: [js.configs.recommended, tseslint.configs.recommended, reactHooks.configs['recommended-latest'], reactRefresh.configs.vite],
     rules: {
+      'no-console': ['error', { allow: ['warn', 'error'] }],
+      'no-debugger': 'error',
       'react/self-closing-comp': [
         'error',
         {
