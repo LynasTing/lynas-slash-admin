@@ -185,3 +185,4 @@ yarn.lock
 # AI Chat
 # =============================
 ai-chat.md
+ai/local-backend-integration.md

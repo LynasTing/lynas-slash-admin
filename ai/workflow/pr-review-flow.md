@@ -21,14 +21,6 @@
 4. 如果必须执行 `build`，需要能说明它验证的是类型检查之外的构建链路、资源处理、代码分割或生产产物行为；
 5. 验证命令应与改动风险匹配，避免为了小改动生成不必要的构建产物和输出噪音。
 
-### Verification Command Strategy
-
-1. Small changes must not use the `build` command as the default verification step. Prefer narrower checks such as Prettier, ESLint, TypeScript type checking, or targeted tests;
-2. Small changes include local component refactors, type adjustments, copy changes, minor style updates, and single-file logic cleanup that do not affect build configuration or output structure;
-3. Run the `build` command only for large changes, cross-module changes, build configuration changes, asset loading changes, route lazy-loading changes, dependency upgrades, or changes that may affect production output;
-4. When `build` is necessary, the reason must be tied to something beyond type checking, such as the build pipeline, asset processing, code splitting, or production output behavior;
-5. Verification commands should match the risk of the change and avoid unnecessary build artifacts or noisy output for small changes.
-
 预检执行流程：
 
 1. 本地提交阶段：
