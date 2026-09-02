@@ -17,7 +17,7 @@ export default function Header({ leftSlot }: { leftSlot?: ReactNode }) {
     <header
       data-slot="lynas-slash-layout-header"
       className={cn(
-        'sticky top-0 right-0 left-0 z-app-bar',
+        'sticky top-0 right-0 left-0 z-10',
         'flex shrink-0 grow-0 items-center justify-between px-2',
         'bg-background/60 text-foreground backdrop-blur-xl',
         'h-(--layout-header-height)'

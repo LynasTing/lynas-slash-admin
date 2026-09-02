@@ -67,7 +67,7 @@ export function TopChannels({ topChannels }: { topChannels: TopChannelProps }) {
         </CardAction>
       </AnalysisTitle>
       <CardContent>
-        <div className="flex items-center gap-4 mb-2">
+        <div className="mb-2 flex items-center gap-4">
           <Title as="h3" className="text-xl">
             {total.toLocaleString()}
           </Title>
@@ -81,9 +81,9 @@ export function TopChannels({ topChannels }: { topChannels: TopChannelProps }) {
         <table className="w-full text-sm">
           <thead>
             <tr>
-              <th className="text-left py-1">{t('dashboard.topChannels.channel')}</th>
-              <th className="text-right py-1">{t('dashboard.topChannels.views')}</th>
-              <th className="text-right py-1">{t('dashboard.topChannels.percent')}</th>
+              <th className="py-1 text-left">{t('dashboard.topChannels.channel')}</th>
+              <th className="py-1 text-right">{t('dashboard.topChannels.views')}</th>
+              <th className="py-1 text-right">{t('dashboard.topChannels.percent')}</th>
             </tr>
           </thead>
           <tbody>

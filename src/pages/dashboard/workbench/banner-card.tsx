@@ -34,16 +34,16 @@ export default function BannerCard() {
   return (
     <div className="relative bg-primary/90">
       {/* 1. 内容区域（文本和按钮） / Content Area(Text and Button) */}
-      <div className="relative p-6 z-2">
+      <div className="relative z-2 p-6">
         <div className="grid grid-cols-2 gap-4">
           <div className="col-span-2 md:col-span-1">
             {/* 标题和描述 / Title and Description */}
-            <div className="flex flex-col justify-between gap-4 h-full">
+            <div className="flex h-full flex-col justify-between gap-4">
               <Title as="h2" className="text-white">
                 {t('dashboard.bannerTitle', { appName: GLOBAL_CONFIG.appName })}
               </Title>
               <Text className="text-white">{t('dashboard.bannerDescription', { appName: GLOBAL_CONFIG.appName })}</Text>
-              <Button className="hover:bg-white hover:text-primary cursor-pointer">
+              <Button className="cursor-pointer hover:bg-white hover:text-primary">
                 <Icon icon="carbon:logo-discord" size={24} />
                 <span className="ml-2 font-black">{t('dashboard.joinDiscord')}</span>
               </Button>
@@ -51,8 +51,8 @@ export default function BannerCard() {
           </div>
           {/* 右侧图片 / Character */}
           <div className="col-span-2 md:col-span-1">
-            <div className="flex md:justify-end justify-center items-center w-full h-full">
-              <img src={Character3IMG} className="w-56 h-56" alt={t('dashboard.characterAlt')} />
+            <div className="flex h-full w-full items-center justify-center md:justify-end">
+              <img src={Character3IMG} className="h-56 w-56" alt={t('dashboard.characterAlt')} />
             </div>
           </div>
         </div>

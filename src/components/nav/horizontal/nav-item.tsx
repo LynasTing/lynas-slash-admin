@@ -69,10 +69,10 @@ export const NavHorizontalItem = (item: NavItemProps) => {
   const content = (
     <>
       {/* Icon */}
-      <span style={navItemStyles.icon}>{item.icon && typeof item.icon === 'string' ? <Icon icon={item.icon} /> : item.icon}</span>
+      <span style={navItemStyles.icon}>{item.icon && typeof item.icon === 'string' ? <Icon icon={item.icon} size={24} /> : item.icon}</span>
 
       {/* Title */}
-      <span style={navItemStyles.title} className="block! flex-auto! ml-2">
+      <span style={navItemStyles.title} className="ml-2 block! flex-auto!">
         {t(item.title)}
       </span>
 

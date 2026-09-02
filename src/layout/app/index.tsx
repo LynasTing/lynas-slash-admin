@@ -52,7 +52,7 @@ function PCVerticalLayout() {
 
       {/* 右侧主内容区域 / Right-side main content area */}
       <div
-        className="relative flex min-h-screen w-full flex-col transition-[padding] duration-300 ease-in-out"
+        className="relative flex h-screen w-full flex-col overflow-y-hidden transition-[padding] duration-300 ease-in-out"
         style={{
           paddingLeft: mainPaddingLeft
         }}>

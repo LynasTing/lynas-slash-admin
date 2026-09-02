@@ -1,11 +1,38 @@
-import { ReactNode, useState, useMemo, useEffect } from 'react';
+import { type ReactNode, useEffect, useMemo, useState } from 'react';
 import type { KeepAliveTab } from '../types';
-import type { RouteMeta } from '@/router/types';
 import { useTabOperations } from '../hooks/use-tab-operatoins';
 import { MultiTabsContext } from './multi-tabs.hook';
 
 /**
- * MultitabsProvider
+ * 多标签页状态提供者属性
+ *
+ * Multi-tabs state provider props
+ */
+type MultiTabsProviderProps = {
+  /**
+   * 需要访问多标签页状态的子组件
+   *
+   * Child components that need access to the multi-tabs state
+   */
+  children: ReactNode;
+
+  /**
+   * 由上游路由层解析出的当前页面标签
+   *
+   * Current page tab resolved by the upstream routing layer
+   */
+  currentTab: KeepAliveTab | null;
+
+  /**
+   * 由上游路由层确定的当前激活标签唯一标识
+   *
+   * Unique key of the active tab determined by the upstream routing layer
+   */
+  activeTabKey: string;
+};
+
+/**
+ * MultiTabsProvider
  * 多标签页的状态提供者
  *
  * 本组件是整个 Tabs 系统的“状态源头”，
@@ -14,7 +41,7 @@ import { MultiTabsContext } from './multi-tabs.hook';
  * This provider is the single source of truth
  * for all tab-related state.
  */
-export function MultitabsProvider({ children }: { children: ReactNode }) {
+export function MultiTabsProvider({ children, currentTab, activeTabKey }: MultiTabsProviderProps): ReactNode {
   /**
    * tabs
    * 当前已经打开的标签页集合
@@ -24,100 +51,31 @@ export function MultitabsProvider({ children }: { children: ReactNode }) {
   const [tabs, setTabs] = useState<KeepAliveTab[]>([]);
 
   /**
-   * currentRouteMeta
-   * 当前路由对应的元信息
-   *
-   * 目前是一个“静态 mock 值”，
-   * 用 useMemo 固定引用，避免每次 render 生成新对象。
-   *
-   * This is currently a static route meta.
-   * useMemo ensures the reference stays stable.
-   */
-  const currentRouteMeta = useMemo<RouteMeta>(
-    () => ({
-      key: '/',
-      label: 'home',
-      hideTab: false,
-      outlet: null,
-      params: {}
-    }),
-    []
-  );
-
-  /**
-   * activeTabRoutePath
-   * 当前激活 Tab 的唯一标识
-   *
-   * 本质上是 currentRouteMeta.key 的一个派生值。
-   *
-   * Derived value representing the active tab key.
-   */
-  const activeTabRoutePath = useMemo(() => currentRouteMeta.key, [currentRouteMeta]);
-
-  /**
-   * useEffect: 同步当前路由到 tabs 列表
+   * useEffect: 同步当前页面标签到 tabs 列表
    *
    * 核心职责：
    * - 当当前路由首次出现时
-   * - 将其转换为一个 tab 并加入 tabs
+   * - 将其加入 tabs
    *
-   * This effect ensures the current route
-   * is registered as a tab if it doesn't exist.
+   * This effect ensures the current page tab
+   * is registered if it doesn't exist.
    */
   useEffect(() => {
-    setTabs(prev => {
-      /**
-       * filtered
-       * 过滤掉 hideTab === true 的 tab
-       *
-       * NOTE:
-       * 这里的语义是“只保留需要显示的 tab”
-       *
-       * Filters out tabs that should not be displayed.
-       */
-      const filtered = prev.filter(i => i.hideTab);
+    if (!currentTab || currentTab.isTabHidden) {
+      return;
+    }
 
+    setTabs((previousTabs: KeepAliveTab[]) => {
       /**
-       * 从当前路由中提取关键信息
+       * 按稳定 key 判断当前标签是否已经注册，避免路由重渲染造成重复标签
        *
-       * key: 用作 tab 的唯一标识
-       * children: 实际来自 outlet，用于渲染内容
+       * Check the stable key to prevent duplicate tabs during route re-renders
        */
-      const { key, outlet: children } = currentRouteMeta;
+      const hasCurrentTab: boolean = previousTabs.some((tab: KeepAliveTab) => tab.key === currentTab.key);
 
-      /**
-       * 判断当前 route 是否已经存在于 tabs 中
-       *
-       * Tabs are deduplicated by route key.
-       */
-      const isExisted = filtered.find(i => i.key === key);
-
-      /**
-       * 如果不存在，则追加一个新的 tab
-       *
-       * timeStamp:
-       * 用于区分 tab 实例或作为强制刷新标识
-       */
-      if (!isExisted) {
-        return [
-          ...filtered,
-          {
-            ...currentRouteMeta,
-            key,
-            children,
-            timeStamp: new Date().getTime().toString()
-          }
-        ];
-      }
-
-      /**
-       * 如果已经存在，直接返回原 tabs
-       *
-       * No-op when tab already exists.
-       */
-      return filtered;
+      return hasCurrentTab ? previousTabs : [...previousTabs, currentTab];
     });
-  }, [currentRouteMeta]);
+  }, [currentTab]);
 
   /**
    * operations
@@ -130,7 +88,7 @@ export function MultitabsProvider({ children }: { children: ReactNode }) {
    *
    * Encapsulates all tab mutation logic.
    */
-  const operations = useTabOperations(tabs, setTabs, activeTabRoutePath);
+  const operations = useTabOperations(tabs, setTabs, activeTabKey);
 
   /**
    * contextValue
@@ -143,11 +101,11 @@ export function MultitabsProvider({ children }: { children: ReactNode }) {
   const contextValue = useMemo(
     () => ({
       tabs,
-      activeTabRoutePath,
+      activeTabRoutePath: activeTabKey,
       setTabs,
       ...operations
     }),
-    [tabs, activeTabRoutePath, operations]
+    [tabs, activeTabKey, operations]
   );
 
   /**

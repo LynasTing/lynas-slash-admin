@@ -69,7 +69,7 @@ export function SessionDevices({ sessionDevices }: { sessionDevices: DeviceStatP
             <Chart type="donut" height={320} options={chartOptions} series={sessionDevices.map(i => i.value)} />
           </div>
         </div>
-        <div className="flex justify-center gap-4 mt-2">
+        <div className="mt-2 flex justify-center gap-4">
           {sessionDevices.map(item => (
             <div key={item.label} className="flex flex-col items-center gap-y-1">
               <Icon icon={item.icon} size={20} color={item.color} />

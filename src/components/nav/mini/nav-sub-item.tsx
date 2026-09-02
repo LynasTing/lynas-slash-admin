@@ -31,12 +31,12 @@ export const NavMiniSubItem = (item: NavItemProps) => {
       </span>
 
       {/* Icon */}
-      <span className="justify-center items-center mr-1" style={navItemStyles.icon}>
-        {item.icon && typeof item.icon === 'string' ? <Icon icon={item.icon} /> : item.icon}
+      <span className="mr-1 items-center justify-center" style={navItemStyles.icon}>
+        {item.icon && typeof item.icon === 'string' ? <Icon icon={item.icon} size={24} /> : item.icon}
       </span>
 
       {/* Arrow */}
-      {item.hasChild && <Icon icon="eva:arrow-ios-forward-fill" className="absolute right-1 top-2" style={navItemStyles.arrow} />}
+      {item.hasChild && <Icon icon="eva:arrow-ios-forward-fill" className="absolute top-2 right-1" style={navItemStyles.arrow} />}
 
       {/* Info */}
       {item.info && <span style={navItemStyles.info}>{item.info}</span>}

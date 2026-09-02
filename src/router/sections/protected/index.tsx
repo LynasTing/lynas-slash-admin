@@ -1,15 +1,11 @@
-import { type RouteObject, Navigate } from 'react-router';
+import { Navigate } from 'react-router';
+import type { AppRouteObject } from '../../types';
 import AppLayout from '@/layout/app';
 import AuthGuard from '../../components/auth-guard';
 import { GLOBAL_CONFIG } from '@/config/global';
-import { GetFrontendRoutes } from './frontend';
-import { uiRoutes } from '../ui';
+import { protectedRoutes } from './routes';
 
-const getRoutes = () => {
-  return GetFrontendRoutes();
-};
-
-export const appRoutes: RouteObject[] = [
+export const appRoutes: AppRouteObject[] = [
   {
     element: (
       <AuthGuard>
@@ -22,8 +18,7 @@ export const appRoutes: RouteObject[] = [
         index: true,
         element: <Navigate to={GLOBAL_CONFIG.defaultRoute} replace />
       },
-      ...getRoutes(),
-      ...uiRoutes
+      ...protectedRoutes
     ]
   }
 ];

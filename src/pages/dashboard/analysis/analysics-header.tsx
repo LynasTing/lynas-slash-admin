@@ -23,9 +23,9 @@ const options = timeOptions;
 export default function AnalyticsHeader({ timeType, setTimeType }: AnalysisHeaderProps) {
   const { t } = useLocale();
   return (
-    <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 border-none shadow-none">
+    <div className="flex flex-col gap-4 border-none shadow-none md:flex-row md:items-center md:justify-between">
       <div>
-        <Title as="h4" className="text-xl mb-1">
+        <Title as="h4" className="mb-1 text-xl">
           {t('dashboard.analyticsOverview')}
         </Title>
         <Text variant="body2" className="text-muted-foreground">
@@ -37,7 +37,7 @@ export default function AnalyticsHeader({ timeType, setTimeType }: AnalysisHeade
           {t('dashboard.showBy')}
         </Text>
         <Select value={timeType} onValueChange={(v: TimeRange) => setTimeType(v)}>
-          <SelectTrigger className="w-32 h-9">
+          <SelectTrigger className="h-9 w-32">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>

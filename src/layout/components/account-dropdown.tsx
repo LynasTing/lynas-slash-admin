@@ -17,12 +17,17 @@ export default function AccountDropdown() {
    * 退出登录
    * Logout
    */
-  const logout = () => {
+  const logout: () => void = () => {
     try {
       clearUserInfoAndToken();
       setLoginState(LoginStateEnum.LOGIN);
-    } catch (error) {
-      console.log(`error + ::>>`, error);
+    } catch (error: unknown) {
+      /**
+       * 清理会话失败不应阻止用户回到登录页，避免保留在失效的受保护页面。
+       *
+       * A session cleanup failure must not keep the user on an invalid protected page, so navigation to login still continues.
+       */
+      console.error('Failed to clear the user session', error);
     } finally {
       navigate('/auth/login', {
         replace: true

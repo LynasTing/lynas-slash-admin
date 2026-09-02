@@ -64,7 +64,7 @@ export function NavVerticalLayout({ data, className }: Props) {
     <nav
       data-slot="lynas-slash-nav-layout-horizontal"
       className={cn(
-        'fixed left-0 inset-y-0 flex-col h-full bg-background border-r border-dashed z-nav transition-[width] duration-300 ease-in-out',
+        'fixed inset-y-0 left-0 z-nav flex h-dvh min-h-0 flex-col border-r border-dashed bg-background transition-[width] duration-300 ease-in-out',
         className
       )}
       style={{ width: navWidth }}>
@@ -73,10 +73,10 @@ export function NavVerticalLayout({ data, className }: Props) {
         Header section: contains Logo, app name, toggle button
       */}
       <div
-        className={cn('relative flex items-center px-2 py-4 h-[--layout-header-height]', {
+        className={cn('relative flex h-[--layout-header-height] items-center px-2 py-4', {
           'justify-center': themeLayout === ThemeLayoutEnum.Mini
         })}>
-        <div className="flex justify-center items-center">
+        <div className="flex items-center justify-center">
           <Logo />
           {/* 
             应用名称 - Mini 模式下完全隐藏（opacity + maxWidth 双重控制）
@@ -91,7 +91,7 @@ export function NavVerticalLayout({ data, className }: Props) {
           模式切换按钮 - 永远半露在右侧边缘外，点击切换布局
           Mode toggle button - always half-exposed outside right edge, click to switch layout
         */}
-        <Button variant="outline" size="icon" className="absolute right-0 w-7 h-7 translate-x-1/2" onClick={handleToggle}>
+        <Button variant="outline" size="icon" className="absolute right-0 h-7 w-7 translate-x-1/2" onClick={handleToggle}>
           {themeLayout === ThemeLayoutEnum.Mini ? (
             <Icon icon="lucide:arrow-right-to-line" size={12} />
           ) : (
@@ -104,7 +104,7 @@ export function NavVerticalLayout({ data, className }: Props) {
         可滚动导航内容区 - 高度占满剩余视口
         Scrollable navigation content area - fills remaining viewport height
       */}
-      <ScrollArea className={cn('h-[calc(100vh-var(--layout-header-height))] px-2 bg-background')}>
+      <ScrollArea className={cn('min-h-0 flex-1 bg-background px-2')}>
         {/* 
           根据当前模式渲染对应导航组件
           Render corresponding nav component based on current mode

@@ -28,8 +28,8 @@ export function NavVerticalItem(item: NavItemProps) {
   return (
     <NavItemRenderer item={item} className={navItemRenderClassName}>
       {/* Icon */}
-      <span style={navItemStyles.icon} className="justify-center items-center mr-3">
-        {icon && typeof icon === 'string' ? <Icon icon={icon} /> : icon}
+      <span style={navItemStyles.icon} className="mr-3 items-center justify-center">
+        {icon && typeof icon === 'string' ? <Icon icon={icon} size={24} /> : icon}
       </span>
 
       <span className="min-h-[24px]" style={navItemStyles.texts}>

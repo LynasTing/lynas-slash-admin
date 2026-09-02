@@ -16,27 +16,37 @@ export function useTabOperations(tabs: KeepAliveTab[], setTabs: Dispatch<SetStat
    */
   const closeTab = useCallback(
     (path = activeTabRoutePath) => {
-      // 复制数组避免直接修改 / clone array to avoid mutation
-      const tempTabs = [...tabs];
+      /**
+       * 找到要关闭的标签；不存在的 key 不应改变标签状态
+       *
+       * Find the tab to close; an unknown key must not change the tabs state
+       */
+      const tabIndex: number = tabs.findIndex((tab: KeepAliveTab) => tab.key === path);
+      if (tabIndex === -1 || tabs.length === 1) {
+        return;
+      }
 
-      // 保证至少保留一个 tab / ensure at least one tab remains
-      if (tempTabs.length === 1) return;
+      /**
+       * 基于原列表生成剩余标签，避免直接修改 React 状态
+       *
+       * Create remaining tabs from the original list to avoid mutating React state
+       */
+      const remainingTabs: KeepAliveTab[] = tabs.filter((tab: KeepAliveTab) => tab.key !== path);
 
-      // 找到要关闭的 tab / find tab index
-      const deleteTabIndex = tempTabs.findIndex(i => i.key === path);
-      if (deleteTabIndex === -1) return;
+      if (path !== activeTabRoutePath) {
+        setTabs(remainingTabs);
+        return;
+      }
 
-      // 决定导航到哪个 tab：前一个优先，没有就后一个 / decide next tab to navigate
-      const routerPath = deleteTabIndex > 0 ? tempTabs[deleteTabIndex - 1].key : tempTabs[deleteTabIndex + 1].key;
+      /**
+       * 仅关闭当前标签时切换路由，优先回到左侧标签
+       *
+       * Navigate only when closing the active tab, preferring the tab on the left
+       */
+      const nextTabKey: string = tabIndex > 0 ? tabs[tabIndex - 1].key : tabs[tabIndex + 1].key;
 
-      // 切换路由 / navigate to next tab
-      navigate(routerPath);
-
-      // 从数组中移除 tab / remove tab from array
-      tempTabs.splice(deleteTabIndex, 1);
-
-      // 更新状态 / update tabs state
-      setTabs(tempTabs);
+      navigate(nextTabKey);
+      setTabs(remainingTabs);
     },
     [tabs, setTabs, activeTabRoutePath, navigate]
   );
@@ -76,9 +86,13 @@ export function useTabOperations(tabs: KeepAliveTab[], setTabs: Dispatch<SetStat
   const closeLeft = useCallback(
     (path: string) => {
       // 找到目标 tab 索引 / find index of target tab
-      const idx = tabs.findIndex(i => i.key === path);
+      const idx: number = tabs.findIndex((tab: KeepAliveTab) => tab.key === path);
+      if (idx === -1) {
+        return;
+      }
+
       // 保留目标 tab 及其右侧 / keep target and right tabs
-      const newTabs = tabs.slice(idx);
+      const newTabs: KeepAliveTab[] = tabs.slice(idx);
       // 更新状态 / update tabs state
       setTabs(newTabs);
       // 确保路由跳转到目标 tab / navigate to target tab
@@ -94,9 +108,13 @@ export function useTabOperations(tabs: KeepAliveTab[], setTabs: Dispatch<SetStat
   const closeRight = useCallback(
     (path: string) => {
       // 找到目标 tab 索引 / find index of target tab
-      const idx = tabs.findIndex(i => i.key === path);
+      const idx: number = tabs.findIndex((tab: KeepAliveTab) => tab.key === path);
+      if (idx === -1) {
+        return;
+      }
+
       // 保留目标 tab 及其左侧 / keep target and left tabs
-      const newTabs = tabs.slice(0, idx + 1);
+      const newTabs: KeepAliveTab[] = tabs.slice(0, idx + 1);
       // 更新状态 / update tabs state
       setTabs(newTabs);
       // 确保路由跳转到目标 tab / navigate to target tab
@@ -106,27 +124,23 @@ export function useTabOperations(tabs: KeepAliveTab[], setTabs: Dispatch<SetStat
   );
 
   /**
-   * Refresh the specified tab by updating its timestamp
-   * 刷新指定 tab，通过更新时间戳实现
+   * Refresh the active tab by reloading the current route
+   * 刷新当前激活 tab，通过重新加载当前路由实现
    */
   const refreshTab = useCallback(
     (path = activeTabRoutePath) => {
-      // 更新 tabs 状态 / update tabs state
-      setTabs(prev => {
-        const newTabs = [...prev];
-        // 找到目标 tab 索引 / find index of target tab
-        const idx = newTabs.findIndex(i => i.key === path);
-        if (idx > 0) {
-          // 更新时间戳 / update timestamp
-          newTabs[idx] = {
-            ...newTabs[idx],
-            timeStamp: new Date().getTime().toString()
-          };
-        }
-        return newTabs;
-      });
+      /**
+       * 无缓存页面不能后台刷新非当前标签，避免错误地重载当前页面
+       *
+       * Cached pages are unavailable, so do not reload the active page for a background tab refresh
+       */
+      if (path !== activeTabRoutePath) {
+        return;
+      }
+
+      navigate(0);
     },
-    [activeTabRoutePath, setTabs]
+    [activeTabRoutePath, navigate]
   );
 
   return {

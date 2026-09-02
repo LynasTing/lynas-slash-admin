@@ -1,6 +1,6 @@
 import '@/assets/style/global.css';
 import '@/theme/theme.css';
-import '@/locales/i18n';
+import '@/locales/i18n.ts';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router';

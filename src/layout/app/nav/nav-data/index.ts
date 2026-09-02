@@ -2,7 +2,10 @@ import { checkAny } from '@/utils';
 import type { NavItemDataProps } from '@/components/nav/types';
 import { GLOBAL_CONFIG } from '@/config/global';
 import { backendNavData } from './backend';
-import { frontendNavData } from './frontend';
+import { createFrontendNavData } from '@/router/navigation/create-frontend-nav-data';
+import { protectedRoutes } from '@/router/sections/protected/routes';
+import { createNavBadgeInfo } from '../nav-badges';
+import { useNavBadgeValues } from '../nav-badge-values';
 import { useUserPermissions } from '@/store/user';
 import { useMemo } from 'react';
 
@@ -17,8 +20,8 @@ import { useMemo } from 'react';
  * @param permissions Permission list
  * @returns Filtered navigation item array
  */
-const filterItems = (items: NavItemDataProps[], permissions: string[]) => {
-  return items.filter(item => {
+export const filterNavItems = (items: NavItemDataProps[], permissions: string[]): NavItemDataProps[] => {
+  return items.flatMap(item => {
     /**
      * 检查当前项目是否有权限
      * Check if the current item has permission
@@ -30,28 +33,32 @@ const filterItems = (items: NavItemDataProps[], permissions: string[]) => {
      * If there are child items, recursively process
      */
     if (item.children?.length) {
-      const found = filterItems(item.children, permissions);
+      const children = filterNavItems(item.children, permissions);
 
       /**
        * 如果整个子项目都被过滤掉了，则过滤掉当前项目
        * If all child items are filtered out, filter out the current item
        */
-      if (!found.length) {
-        return false;
+      if (!children.length) {
+        return [];
       }
 
-      /**
-       * 更新子项目
-       * Update child items
-       */
-      item.children = found;
+      return hasPermission ? [{ ...item, children }] : [];
     }
 
-    return hasPermission;
+    return hasPermission ? [item] : [];
   });
 };
 
-const navData = GLOBAL_CONFIG.routerMode === 'backend' ? backendNavData : frontendNavData;
+/**
+ * 按当前路由模式返回导航数据源。
+ * @returns 当前模式下未经权限筛选的导航树。
+ *
+ * Returns the navigation data source for the active router mode.
+ * @returns Navigation tree before permission filtering for the active mode.
+ */
+export const getNavDataByRouterMode = () =>
+  GLOBAL_CONFIG.routerMode === 'backend' ? backendNavData : createFrontendNavData(protectedRoutes);
 
 /**
  * 根据权限过滤导航数据
@@ -62,7 +69,8 @@ const navData = GLOBAL_CONFIG.routerMode === 'backend' ? backendNavData : fronte
  * @param permissions Permission list
  * @returns Filtered navigation data
  */
-const filterNavData = (permissions: string[]) => {
+export const filterNavData = (permissions: string[]) => {
+  const navData = getNavDataByRouterMode();
   return (
     navData
       .map(group => {
@@ -70,7 +78,7 @@ const filterNavData = (permissions: string[]) => {
          * 过滤组内每项
          * Filter each item in the group
          */
-        const filteredItems = filterItems(group.items, permissions);
+        const filteredItems = filterNavItems(group.items, permissions);
 
         /**
          * 如果组内没有项目了，返回 null
@@ -123,11 +131,24 @@ export const useFilteredNavData = () => {
    * Extract the code from the permission array
    */
   const permissionCodes = useMemo(() => permissions.map(i => i.code), [permissions]);
+  const badgeValues = useNavBadgeValues();
   /**
    * 使用 code 拿到菜单数据
    * Get menu data using code
    */
-  const filteredNavData = useMemo(() => filterNavData(permissionCodes), [permissionCodes]);
+  const filteredNavData = useMemo(() => {
+    const addBadgeInfo = (items: NavItemDataProps[]): NavItemDataProps[] =>
+      items.map(item => ({
+        ...item,
+        info: item.badge ? createNavBadgeInfo(item.badge, badgeValues) : item.info,
+        children: item.children ? addBadgeInfo(item.children) : undefined
+      }));
+
+    return filterNavData(permissionCodes).map(group => ({
+      ...group,
+      items: addBadgeInfo(group.items)
+    }));
+  }, [badgeValues, permissionCodes]);
   /**
    * 返回过滤后的菜单数据
    * Return the filtered menu data

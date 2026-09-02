@@ -70,15 +70,15 @@ export function TopPages({ topPages }: { topPages: TopPagesProps[] }) {
             <tbody>
               {topPages.map(item => (
                 <tr key={item.url} className="border-t">
-                  <td className="text-left py-2">{item.url}</td>
+                  <td className="py-2 text-left">{item.url}</td>
                   <td className="py-2">
-                    <div className="flex justify-end items-center gap-2">
+                    <div className="flex items-center justify-end gap-2">
                       {item.views.toLocaleString()}
                       <Trend value={item.viewsChange} />
                     </div>
                   </td>
                   <td className="py-2">
-                    <div className="flex justify-end items-center gap-2">
+                    <div className="flex items-center justify-end gap-2">
                       {item.unique} <Trend value={item.uniqueChange} />
                     </div>
                   </td>

@@ -1,9 +1,9 @@
 {
   "sys": {
+    "docs": "Documentation",
     "api": {
       "apiRequestFailed": "The interface request failed, please try again later!",
-      "errorMessage": "The operation failed, the system is abnormal!",
-      "docs": "Document"
+      "errorMessage": "The operation failed, the system is abnormal!"
     },
     "nav": {
       "analysis": "Analysis",
@@ -92,6 +92,10 @@
         "userDetail": "User Detail"
       },
       "ui": "UI",
+      "shadcn": {
+        "label": "Shadcn/ui Components",
+        "description": "Foundational component examples built with Shadcn/ui"
+      },
       "user": {
         "account": "Account",
         "index": "User",

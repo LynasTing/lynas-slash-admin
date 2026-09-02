@@ -1,9 +1,9 @@
 {
   "sys": {
+    "docs": "文档",
     "api": {
       "apiRequestFailed": "请求出错，请稍候重试",
       "errorMessage": "操作失败,系统异常!",
-      "docs": "文档",
       "user": {
         "index": "用户",
         "profile": "个人资料",
@@ -67,7 +67,11 @@
       "system": {
         "userDetail": "用户详情"
       },
-      "ui": "页面",
+      "ui": "UI",
+      "shadcn": {
+        "label": "Shadcn/ui 组件",
+        "description": "基于 Shadcn/ui 的基础组件示例"
+      },
       "user": {
         "account": "账户",
         "index": "用户",

@@ -1,11 +1,45 @@
-import type { RouteMeta } from '@/router/types';
 import type { ReactNode, CSSProperties } from 'react';
 import type { MenuProps } from 'antd';
+import type { RouteMeta } from '@/router/types';
 
 /**
  * KeepAlive 标签页数据结构
  */
-export type KeepAliveTab = RouteMeta & {
+export type KeepAliveTab = {
+  /**
+   * 标签页和路由跳转共用的稳定唯一标识
+   *
+   * Stable unique identifier shared by the tab and route navigation
+   */
+  key: string;
+
+  /**
+   * 标签页展示的国际化标题键或静态文本
+   *
+   * I18n title key or static text displayed by the tab
+   */
+  label: string;
+
+  /**
+   * 当前页面是否不创建标签页
+   *
+   * Whether the current page should not create a tab
+   */
+  isTabHidden: boolean;
+
+  /**
+   * 用户是否可以关闭当前标签页
+   *
+   * Whether the user can close the current tab
+   */
+  isClosable: boolean;
+
+  /**
+   * 用于生成动态标签标题的当前路由参数
+   *
+   * Current route parameters used to generate dynamic tab titles
+   */
+  params?: Record<string, string | undefined>;
   /**
    * 标签页渲染的 React 节点
    * tab content react node
@@ -17,6 +51,13 @@ export type KeepAliveTab = RouteMeta & {
    * timestamp for refreshing tab
    */
   timeStamp?: string;
+
+  /**
+   * 与标签页关联的菜单路由元数据
+   *
+   * Menu route metadata associated with the tab
+   */
+  routeMeta?: RouteMeta;
 };
 
 /**
@@ -33,7 +74,7 @@ export type MultiTabsContextType = {
    * 当前激活标签页的路由路径
    * active tab route path
    */
-  activeTabRoutePath?: string;
+  activeTabRoutePath: string;
 
   /**
    * 设置标签页列表
@@ -170,23 +211,23 @@ export enum MultiTabOperation {
    * 关闭除当前标签外的其他标签
    * Close all tabs except the current one
    */
-  CLOSEOTHERS = 'closeOthers',
+  CLOSE_OTHERS = 'closeOthers',
 
   /**
    * 关闭所有标签页
    * Close all tabs
    */
-  CLOSEALL = 'closeAll',
+  CLOSE_ALL = 'closeAll',
 
   /**
    * 关闭当前标签左侧的所有标签
    * Close all tabs to the left of the current tab
    */
-  CLOSELEFT = 'closeLeft',
+  CLOSE_LEFT = 'closeLeft',
 
   /**
    * 关闭当前标签右侧的所有标签
    * Close all tabs to the right of the current tab
    */
-  CLOSERIGHT = 'closeRight'
+  CLOSE_RIGHT = 'closeRight'
 }

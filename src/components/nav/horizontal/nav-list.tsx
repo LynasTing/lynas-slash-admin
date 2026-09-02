@@ -28,7 +28,7 @@ export function NavHorizontalList({ data, depth = 0 }: NavListProps) {
    */
   const isActive = location.pathname.includes(data.path);
 
-  if (!data.hidden) return null;
+  if (data.hidden) return null;
 
   /**
    * 渲染单个导航项
@@ -43,6 +43,7 @@ export function NavHorizontalList({ data, depth = 0 }: NavListProps) {
       info={data.info} // 右侧信息（徽标等）/ Extra info (badge, count)
       icon={data.icon} // 图标 / Icon
       auth={data.auth} // 权限控制 / Auth control
+      link={data.link} // 外部链接行为 / External link behavior
       disabled={data.disabled} // 是否禁用 / Disabled state
       active={isActive} // 是否激活 / Active state
       hasChild={hasChild} // 是否有子菜单 / Has children

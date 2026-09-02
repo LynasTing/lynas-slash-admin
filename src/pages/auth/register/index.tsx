@@ -105,13 +105,13 @@ function Register() {
         <Button type="submit" className="w-full">
           {t('auth.registerButton')}
         </Button>
-        <div className="text-xs text-gray mb-2">
+        <div className="text-gray mb-2 text-xs">
           <span>{t('auth.registerAndAgree')}</span>
-          <a href="javascript:void(0)" className="text-sm underline! text-primary!">
+          <a href="javascript:void(0)" className="text-sm text-primary! underline!">
             {t('auth.termsOfService')}
           </a>
           {' & '}
-          <a href="javascript:void(0)" className="text-sm underline! text-primary!">
+          <a href="javascript:void(0)" className="text-sm text-primary! underline!">
             {t('auth.privacyPolicy')}
           </a>
         </div>

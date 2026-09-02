@@ -90,7 +90,7 @@ export function WebAnalysis({ webAnalytic }: { webAnalytic: WebAnalyticsProps })
     <Card className="col-span-4 xl:col-span-3">
       <AnalysisTitle title={t('dashboard.webAnalysis.title')} />
       <CardContent className="flex flex-col gap-2">
-        <div className="flex items-center flex-wrap gap-6">
+        <div className="flex flex-wrap items-center gap-6">
           <div>
             <Text variant="subTitle2" className="text-muted-foreground">
               {t('dashboard.webAnalysis.pageViews')}
@@ -114,7 +114,7 @@ export function WebAnalysis({ webAnalytic }: { webAnalytic: WebAnalyticsProps })
             </div>
           </div>
         </div>
-        <div className="w-full min-h-[200px] mt-2">
+        <div className="mt-2 min-h-[200px] w-full">
           <Chart type="line" height={320} options={chartOptions} series={webAnalytic.chart.series} />
         </div>
       </CardContent>

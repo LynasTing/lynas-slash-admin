@@ -118,26 +118,26 @@ function Workbench() {
   };
 
   return (
-    <div className="flex flex-col gap-4 w-full">
+    <div className="flex w-full flex-col gap-4">
       <BannerCard />
       {/* 顶部四个统计卡片 / Top four statistics cards */}
       <QuickStats data={quickStats} />
 
-      <section className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <section className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         {/* 月度收入 / Monthly income */}
         <MonthlyRevenue monthlyRevenue={monthlyRevenue} />
         {/* 项目进度 / project progress */}
         <ProjectProgres projectTasks={projectTasks} />
       </section>
 
-      <section className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <section className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         {/* 项目概览 / Project overview */}
         <ProjectOverview />
         {/* 项目成员 / Project members */}
         <ProjectMembers projectUsers={projectUsers} />
       </section>
 
-      <section className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <section className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         {/* 交易表格 / Transaction table */}
         <TransactionTable transactions={transactions} />
         {/* 收入明细 / Income breakdown */}
