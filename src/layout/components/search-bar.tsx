@@ -111,11 +111,11 @@ const SearchBar = () => {
 
   return (
     <>
-      <Button variant="ghost" className="px-2 bg-action-selected rounded-lg" size="sm" onClick={() => setOpen(true)}>
-        <div className="flex justify-center items-center gap-4">
+      <Button variant="ghost" className="rounded-lg bg-action-selected px-2" size="sm" onClick={() => setOpen(true)}>
+        <div className="flex items-center justify-center gap-4">
           <Icon icon="local:ic-search" size="20" />
           {/* 快捷键提示 / Shortcut hint */}
-          <kbd className="flex justify-center items-center rounded-md bg-primary/80 text-common-white px-1.5 py-0.5 text-sm font-semibold">
+          <kbd className="flex items-center justify-center rounded-md bg-primary/80 px-1.5 py-0.5 text-sm font-semibold text-common-white">
             <Icon icon="qlementine-icons:key-cmd-16" />
             <span>K</span>
           </kbd>
@@ -143,7 +143,7 @@ const SearchBar = () => {
         <CommandSeparator />
 
         {/* 底部快捷键说明 / Footer shortcuts */}
-        <div className="flex flex-wrap justify-end p-2 text-text-primary gap-2">
+        <div className="flex flex-wrap justify-end gap-2 p-2 text-text-primary">
           <div className="flex items-center gap-1">
             <Badge variant="info">↑</Badge>
             <Badge variant="info">↓</Badge>

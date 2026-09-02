@@ -72,7 +72,7 @@ function PhoneNumberPage() {
     setSecond(60);
   };
 
-  const onFinish = async (value: MobileFormValues) => {
+  const onFinish: () => Promise<void> = async () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -81,7 +81,6 @@ function PhoneNumberPage() {
         closeButton: true
       });
     }, 1500);
-    console.log(`MobileFormValues + ::>>`, value);
   };
 
   return (
@@ -111,7 +110,7 @@ function PhoneNumberPage() {
           rules={{ required: t('auth.smsPlaceholder') }}
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="flex justify-between items-center">
+              <FormLabel className="flex items-center justify-between">
                 <span className="text-sm">{t('auth.smsCode')}</span>
                 <span className="text-sm text-muted-foreground" onClick={start}>
                   {!countdown ? (
@@ -119,7 +118,7 @@ function PhoneNumberPage() {
                       {t('auth.sendSmsButton')}
                     </Button>
                   ) : (
-                    <div className="flex justify-center items-center">
+                    <div className="flex items-center justify-center">
                       <Countdown
                         value={countdown}
                         onChange={time => {

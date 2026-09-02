@@ -58,35 +58,35 @@ export default function MultiTabItem({ tab, style, onClose }: TabItemProps) {
       label: t(`sys.tab.${MultiTabOperation.CLOSE}`),
       key: MultiTabOperation.CLOSE,
       icon: <Icon icon="material-symbols:close" size={18} />,
-      // 当只剩一个标签时禁用关闭 / Disable when only one tab remains
-      disabled: tabs.length === 1
+      // 不可关闭或只剩一个标签时禁用关闭 / Disable when the tab is not closable or only one tab remains
+      disabled: !tab.isClosable || tabs.length === 1
     },
     { type: 'divider' },
     {
-      label: t(`sys.tab.${MultiTabOperation.CLOSELEFT}`),
-      key: MultiTabOperation.CLOSELEFT,
+      label: t(`sys.tab.${MultiTabOperation.CLOSE_LEFT}`),
+      key: MultiTabOperation.CLOSE_LEFT,
       icon: <Icon icon="material-symbols:tab-close-right-outline" size={18} className="rotate-180" />,
       // 当前标签为第一个时禁用 / Disable if current tab is the first one
       disabled: tabs.findIndex(i => i.key === tab.key) === 0
     },
     {
-      label: t(`sys.tab.${MultiTabOperation.CLOSERIGHT}`),
-      key: MultiTabOperation.CLOSERIGHT,
+      label: t(`sys.tab.${MultiTabOperation.CLOSE_RIGHT}`),
+      key: MultiTabOperation.CLOSE_RIGHT,
       icon: <Icon icon="material-symbols:tab-close-right-outline" size={18} />,
       // 当前标签为最后一个时禁用 / Disable if current tab is the last one
       disabled: tabs.findIndex(i => i.key === tab.key) === tabs.length - 1
     },
     { type: 'divider' },
     {
-      label: t(`sys.tab.${MultiTabOperation.CLOSEOTHERS}`),
-      key: MultiTabOperation.CLOSEOTHERS,
+      label: t(`sys.tab.${MultiTabOperation.CLOSE_OTHERS}`),
+      key: MultiTabOperation.CLOSE_OTHERS,
       icon: <Icon icon="material-symbols:tab-close-outline" size={18} />,
       // 只有一个标签时禁用 / Disable when only one tab exists
       disabled: tabs.length <= 1
     },
     {
-      label: t(`sys.tab.${MultiTabOperation.CLOSEALL}`),
-      key: MultiTabOperation.CLOSEALL,
+      label: t(`sys.tab.${MultiTabOperation.CLOSE_ALL}`),
+      key: MultiTabOperation.CLOSE_ALL,
       icon: <Icon icon="mdi:collapse-all-outline" size={18} />
     }
   ];
@@ -115,10 +115,10 @@ export default function MultiTabItem({ tab, style, onClose }: TabItemProps) {
     () => ({
       [MultiTabOperation.REFRESH]: () => refreshTab(tab.key),
       [MultiTabOperation.CLOSE]: () => closeTab(tab.key),
-      [MultiTabOperation.CLOSEOTHERS]: () => closeOthersTab(tab.key),
-      [MultiTabOperation.CLOSELEFT]: () => closeLeft(tab.key),
-      [MultiTabOperation.CLOSERIGHT]: () => closeRight(tab.key),
-      [MultiTabOperation.CLOSEALL]: () => closeAll()
+      [MultiTabOperation.CLOSE_OTHERS]: () => closeOthersTab(tab.key),
+      [MultiTabOperation.CLOSE_LEFT]: () => closeLeft(tab.key),
+      [MultiTabOperation.CLOSE_RIGHT]: () => closeRight(tab.key),
+      [MultiTabOperation.CLOSE_ALL]: () => closeAll()
     }),
     [tab.key, refreshTab, closeTab, closeOthersTab, closeLeft, closeRight, closeAll]
   );
@@ -153,14 +153,14 @@ export default function MultiTabItem({ tab, style, onClose }: TabItemProps) {
         items: menuItems,
         onClick: handleMenuClick
       }}>
-      <div className="relative flex items-center px-4 py-1 select-none" style={style}>
-        <div>{renderLabel(tab)}</div>
+      <div className="relative flex items-center px-3 py-1 select-none" style={style}>
+        <div className="cursor-pointer hover:font-medium">{renderLabel(tab)}</div>
         {/* 显示关闭按钮（可选） / Render close button if allowed */}
-        {!tab.hideTab && (
+        {tab.isClosable && (
           <Icon
             icon="ion:close-outline"
             size={18}
-            className="ml-2 opacity-50 cursor-pointer"
+            className="ml-2 cursor-pointer opacity-50 hover:opacity-100"
             onClick={e => {
               e.stopPropagation();
               onClose?.();

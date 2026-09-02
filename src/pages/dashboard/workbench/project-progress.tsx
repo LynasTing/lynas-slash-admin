@@ -32,23 +32,23 @@ export function ProjectProgres({ projectTasks }: { projectTasks: ProjectTaskData
 
   return (
     <Card className="flex flex-col gap-4 p-6">
-      <Text variant="body2" className="font-semibold mb-2">
+      <Text variant="body2" className="mb-2 font-semibold">
         {t('dashboard.projectTitle', { appName: GLOBAL_CONFIG.appName })}
       </Text>
-      <div className="flex justify-between items-center mb-2">
+      <div className="mb-2 flex items-center justify-between">
         <Text variant="body2">{t('dashboard.releaseVersion', { version: GLOBAL_CONFIG.appVersion })}</Text>
         <span className="text-xs font-bold text-blue-500">70%</span>
       </div>
       <Progress value={70} />
-      <ul className="flex flex-col gap-2 mt-2 mb-4">
+      <ul className="mt-2 mb-4 flex flex-col gap-2">
         {projectTasks.map(item => (
           <li key={item.label} className="flex items-center gap-2">
-            <span className="inline-block w-2 h-2 rounded-full" style={{ backgroundColor: item.color }} />
+            <span className="inline-block h-2 w-2 rounded-full" style={{ backgroundColor: item.color }} />
             <Text variant="body2">{item.label}</Text>
           </li>
         ))}
       </ul>
-      <Button className="w-full mt-auto" size="sm">
+      <Button className="mt-auto w-full" size="sm">
         <Icon icon="mdi:plus" size={18} />
         {t('dashboard.addTask')}
       </Button>

@@ -23,10 +23,10 @@ export function ProjectOverview() {
 
   return (
     <Card className="flex flex-col gap-4 p-6 lg:col-span-2">
-      <Text variant="body2" className="font-semibold mb-2">
+      <Text variant="body2" className="mb-2 font-semibold">
         {t('dashboard.projectOverview')}
       </Text>
-      <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
+      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
           <Text variant="body2">{t('dashboard.totalTasks')}</Text>
           <Title as="h3" className="text-xl font-bold">
@@ -39,14 +39,14 @@ export function ProjectOverview() {
             3,786
           </Title>
         </div>
-        <div className="flex-1 flex justify-end items-center">
+        <div className="flex flex-1 items-center justify-end">
           <Button className="w-48" size="sm" variant="default">
             <Icon icon="mid:plus" size={18} />
             {t('dashboard.addProject')}
           </Button>
         </div>
       </div>
-      <div className="w-full h-16 mt-4">
+      <div className="mt-4 h-16 w-full">
         <Chart
           type="line"
           height={60}

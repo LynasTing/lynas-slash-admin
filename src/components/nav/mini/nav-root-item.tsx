@@ -15,7 +15,7 @@ export const NavMiniRootItem = (item: NavItemProps) => {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger>
-              <Icon icon="solar:info-circle-linear" size={16} className="absolute left-1 top-2" />
+              <Icon icon="solar:info-circle-linear" size={16} className="absolute top-2 left-1" />
             </TooltipTrigger>
             <TooltipContent side="right">{t(item.caption)}</TooltipContent>
           </Tooltip>
@@ -23,13 +23,13 @@ export const NavMiniRootItem = (item: NavItemProps) => {
       )}
 
       {/* Icon */}
-      <span style={navItemStyles.icon}>{item.icon && typeof item.icon === 'string' ? <Icon icon={item.icon} /> : item.icon}</span>
+      <span style={navItemStyles.icon}>{item.icon && typeof item.icon === 'string' ? <Icon icon={item.icon} size={24} /> : item.icon}</span>
 
       {/* Arrow */}
-      {item.hasChild && <Icon icon="eva:arrow-ios-forward-fill" className="absolute right-1 top-2" style={navItemStyles.arrow} />}
+      {item.hasChild && <Icon icon="eva:arrow-ios-forward-fill" className="absolute top-2 right-1" style={navItemStyles.arrow} />}
 
       {/* Title */}
-      <span style={navItemStyles.title} className="text-center! text-xs! mt-1">
+      <span style={navItemStyles.title} className="mt-1 text-center! text-xs!">
         {t(item.title)}
       </span>
     </>
@@ -38,7 +38,7 @@ export const NavMiniRootItem = (item: NavItemProps) => {
   const itemClassName = cn(
     navItemClasses.base,
     navItemClasses.hover,
-    'relative flex-col min-h-12 px-1 pt-2 pb-1.5',
+    'relative min-h-12 flex-col px-1 pt-2 pb-1.5',
     item.active && item.depth === 1 && navItemClasses.active,
     item.active && item.depth !== 1 && 'bg-action-hover!',
     item.disabled && navItemClasses.disabled

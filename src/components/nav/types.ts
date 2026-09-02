@@ -1,4 +1,5 @@
 import * as React from 'react';
+import type { RouteLink, RouteNavBadge } from '@/router/types';
 
 /**
  * 导航项状态属性
@@ -60,6 +61,13 @@ export type NavItemDataProps = {
   info?: React.ReactNode;
 
   /**
+   * 由运行时数据源驱动的导航徽标配置
+   *
+   * Navigation badge configuration driven by a runtime data source
+   */
+  badge?: RouteNavBadge;
+
+  /**
    * 副标题或描述文字
    * Caption or description text
    */
@@ -70,6 +78,13 @@ export type NavItemDataProps = {
    * Array of authorization keys for access control
    */
   auth?: string[];
+
+  /**
+   * 外部链接的目标地址与导航行为
+   *
+   * Target URL and navigation behavior for an external link
+   */
+  link?: RouteLink;
 
   /**
    * 子导航项，形成树状菜单结构

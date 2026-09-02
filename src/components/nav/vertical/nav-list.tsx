@@ -35,6 +35,7 @@ export function NavVerticalList({ data, depth = 1 }: NavListProps) {
           info={data.info}
           caption={data.caption}
           auth={data.auth}
+          link={data.link}
           // state
           open={open}
           active={isActive}

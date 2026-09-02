@@ -91,7 +91,7 @@ export function TrafficData({ trafficData }: { trafficData: TrafficDataProps[] }
                 <td className="p-2 text-right">{item.visits.toLocaleString()}</td>
                 <td className="p-2 text-right">{item.unique.toLocaleString()}</td>
                 <td className="p-2 text-right">
-                  <div className="flex items-center gap-2 justify-end">
+                  <div className="flex items-center justify-end gap-2">
                     <Trend value={item.bounce} />
                   </div>
                 </td>
@@ -99,7 +99,7 @@ export function TrafficData({ trafficData }: { trafficData: TrafficDataProps[] }
                 <td className="p-2">
                   <div className="flex items-center gap-2">
                     <Progress value={item.progress} />
-                    <span className="text-xs ml-2 align-middle">{item.progress}%</span>
+                    <span className="ml-2 align-middle text-xs">{item.progress}%</span>
                   </div>
                 </td>
               </tr>

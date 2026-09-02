@@ -12,8 +12,12 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
    * 为什么用 useCallback ?
    * - 保证 check 的引用稳定，不会因为每次组件渲染而重新创建函数
    */
-  const check = useCallback(() => {
-    console.log(`accessToken + ::>>`, accessToken);
+  const check: () => void = useCallback(() => {
+    /**
+     * 未登录时必须立即离开受保护区域，避免页面继续展示受权限保护的数据。
+     *
+     * Unauthenticated users must leave the protected area immediately to prevent protected data from remaining visible.
+     */
     if (!accessToken) {
       navigate('/auth/login', { replace: true });
     }

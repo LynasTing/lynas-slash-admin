@@ -1,59 +1,12 @@
-import styled from 'styled-components';
-import { Tabs } from 'antd';
 import { useMultiTabsContext } from './providers/multi-tabs.hook';
 import SortableContainer from './components/sortable-container';
-import { CSSProperties, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { rgbAlpha } from '@/utils';
 import { themeVars } from '@/theme/theme.css';
 import MultiTabItem from './components/tab-item';
 import MultiTabSortableItem from './components/sortable-items';
 import { KeepAliveTab } from './types';
 import { useNavigate } from 'react-router';
-
-/**
- * Styled 组件，限制 MultiTabs 的样式作用域
- * limit the scope of MultiTabs styles
- */
-const StyledMultiTabs = styled.div`
-  height: 100%;
-  margin-top: 2px;
-  .action {
-    margin: 0px !important;
-  }
-  .ant-tabs {
-    height: 100%;
-    .ant-tabs-content {
-      height: 100%;
-    }
-    .ant-tabs-tabpane {
-      height: 100%;
-      & > div {
-        height: 100%;
-      }
-    }
-  }
-  .hide-scrollbar {
-    overflow: scroll;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    will-change: transform;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-`;
-
-/**
- * Tabs 外层样式，用 JS 动态计算背景和固定定位
- * calculate the background and fixed position of Tabs using JS
- */
-const tabsStyle: CSSProperties = {
-  position: 'fixed',
-  right: 0,
-  width: '100%',
-  backgroundColor: rgbAlpha(themeVars.colors.background.default, 0.9),
-  transition: 'all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms'
-};
 
 export default function MultiTabs() {
   const { tabs, activeTabRoutePath, setTabs } = useMultiTabsContext();
@@ -149,28 +102,22 @@ export default function MultiTabs() {
   };
 
   return (
-    <StyledMultiTabs>
-      <Tabs
-        size="small"
-        type="card"
-        tabBarGutter={4}
-        activeKey={activeTabRoutePath}
-        items={tabs.map(i => ({
-          ...i,
-          children: <div key={i.timeStamp}>{i.children}</div>
-        }))}
-        renderTabBar={() => (
-          <div style={tabsStyle}>
-            <SortableContainer items={tabs} onSortEnd={handleDragEnd} renderOverlay={handleRenderOverlay}>
-              <ul ref={scrollContainerRef} className="hide-scroll-bar flex h-[32px] w-full overflow-x-auto px-2">
-                {tabs.map(i => (
-                  <MultiTabSortableItem key={i.key} tab={i} onClick={() => handleSortableItemClick(i)} />
-                ))}
-              </ul>
-            </SortableContainer>
-          </div>
-        )}
-      />
-    </StyledMultiTabs>
+    <div className="z-10 [&_.action]:m-0!">
+      <div
+        className="w-full transition-all duration-200 ease-in-out"
+        style={{
+          backgroundColor: rgbAlpha(themeVars.colors.background.default, 0.9)
+        }}>
+        <SortableContainer items={tabs} onSortEnd={handleDragEnd} renderOverlay={handleRenderOverlay}>
+          <ul
+            ref={scrollContainerRef}
+            className="hide-scroll-bar flex h-8 w-full overflow-x-auto will-change-transform [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {tabs.map(i => (
+              <MultiTabSortableItem key={i.key} tab={i} onClick={() => handleSortableItemClick(i)} />
+            ))}
+          </ul>
+        </SortableContainer>
+      </div>
+    </div>
   );
 }

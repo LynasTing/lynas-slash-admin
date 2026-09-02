@@ -47,7 +47,7 @@ function Group({ name, open, onClick }: GroupProps) {
             }
           )}
         />
-        <span className={cn('text-xs font-medium text-text-disabled transition-all duration-300 ease-in-out', 'hover:text-text-primary')}>
+        <span className={cn('text-sm font-medium text-text-disabled transition-all duration-300 ease-in-out', 'hover:text-text-primary')}>
           {t(name)}
         </span>
       </div>

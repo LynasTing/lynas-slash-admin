@@ -16,7 +16,7 @@ function AuthPage() {
     <div className="relative grid min-h-svh lg:grid-cols-2">
       <div className="flex flex-col gap-4 p-6 md:p-10">
         <div className="flex justify-center gap-2 md:justify-start">
-          <div className="flex items-center gap-2 font-medium cursor-pointer">
+          <div className="flex cursor-pointer items-center gap-2 font-medium">
             <Logo size={28} />
             <h1>{GLOBAL_CONFIG.appName}</h1>
           </div>
@@ -26,9 +26,9 @@ function AuthPage() {
         </LoginProvider>
       </div>
       <div className="relative hidden lg:block">
-        <img src={PlaceholderImg} alt="placeholder img" className="absolute inset-0 w-full h-full object-cover" />
+        <img src={PlaceholderImg} alt="placeholder img" className="absolute inset-0 h-full w-full object-cover" />
       </div>
-      <div className="absolute right-2 top-0 flex flex-row">
+      <div className="absolute top-0 right-2 flex flex-row">
         <LocalePicker />
       </div>
     </div>
@@ -49,7 +49,7 @@ function InnerAuthLayout() {
   };
 
   return (
-    <div className="flex-1 flex justify-center items-center">
+    <div className="flex flex-1 items-center justify-center">
       <div className="w-full max-w-xs">
         <Outlet />
         {loginState !== LoginStateEnum.LOGIN && (

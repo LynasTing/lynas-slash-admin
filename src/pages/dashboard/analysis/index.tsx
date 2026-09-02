@@ -305,9 +305,9 @@ export default function Analysis() {
   return (
     <div className="flex flex-col gap-4">
       <AnalyticsHeader timeType={timeType} setTimeType={setTimeType} />
-      <div className="flex flex-col xl:grid grid-cols-4 gap-4">
+      <div className="flex grid-cols-4 flex-col gap-4 xl:grid">
         <WebAnalysis webAnalytic={webAnalytic} />
-        <div className="flex flex-col xl:flex-col md:flex-row gap-4 h-full">
+        <div className="flex h-full flex-col gap-4 md:flex-row xl:flex-col">
           {metricCards.map(item => (
             <MetricCard metricCard={item} />
           ))}

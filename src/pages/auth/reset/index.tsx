@@ -29,9 +29,9 @@ function ResetPage() {
       </div>
       <Form {...form}>
         <form className="space-y-4" onSubmit={form.handleSubmit(onFinish)}>
-          <div className="flex flex-col items-center text-center gap-2">
+          <div className="flex flex-col items-center gap-2 text-center">
             <h1 className="text-2xl font-bold">{t('auth.forgetFormTitle')}</h1>
-            <p className="text-balance text-sm text-muted-foreground">{t('auth.forgetFormSecondTitle')}</p>
+            <p className="text-sm text-balance text-muted-foreground">{t('auth.forgetFormSecondTitle')}</p>
           </div>
 
           <FormField

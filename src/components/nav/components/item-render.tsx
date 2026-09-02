@@ -1,6 +1,25 @@
 import React from 'react';
 import type { NavItemProps } from '../types';
 import { RouterLink } from '@/router/components/router-link';
+import { ROUTE_LINK_MODE_MAP } from '@/router/types';
+
+/**
+ * 判断外部链接是否使用浏览器允许的安全协议。
+ * @param url - 待打开的外部地址。
+ * @returns 地址是否可安全交给浏览器打开。
+ *
+ * Determines whether an external link uses a browser-safe protocol.
+ * @param url - External address to open.
+ * @returns Whether the address can be safely opened by the browser.
+ */
+const isSafeExternalUrl = (url: string): boolean => {
+  try {
+    const protocol = new URL(url).protocol;
+    return protocol === 'http:' || protocol === 'https:';
+  } catch {
+    return false;
+  }
+};
 
 /**
  * NavItemRenderer 的 Props 定义
@@ -44,7 +63,7 @@ type NavItemRendererProps = {
  * - whether it navigates
  */
 export const NavItemRenderer: React.FC<NavItemRendererProps> = ({ item, className, children }) => {
-  const { disabled, hasChild, path, onClick } = item;
+  const { disabled, hasChild, path, onClick, link } = item;
 
   /**
    * 禁用状态
@@ -74,6 +93,18 @@ export const NavItemRenderer: React.FC<NavItemRendererProps> = ({ item, classNam
       <div className={className} onClick={onClick}>
         {children}
       </div>
+    );
+  }
+
+  /**
+   * 新窗口链接由导航层直接处理，避免中转页污染当前应用的浏览器历史记录。
+   * New-window links are handled by navigation directly so intermediary pages do not pollute the application's browser history.
+   */
+  if (link?.mode === ROUTE_LINK_MODE_MAP.NEW_WINDOW && isSafeExternalUrl(link.url)) {
+    return (
+      <a href={link.url} target="_blank" rel="noopener noreferrer" className={className}>
+        {children}
+      </a>
     );
   }
 

@@ -29,18 +29,18 @@ export interface ProjectUser {
  */
 export function ProjectMembers({ projectUsers }: { projectUsers: ProjectUser[] }) {
   return (
-    <Card className="flex flex-col justify-center items-center gap-4 p-6">
-      <Text variant="body2" className="font-semibold mb-2">
+    <Card className="flex flex-col items-center justify-center gap-4 p-6">
+      <Text variant="body2" className="mb-2 font-semibold">
         {GLOBAL_CONFIG.appName}
       </Text>
-      <div className="flex -space-x-2 mb-2">
+      <div className="mb-2 flex -space-x-2">
         {projectUsers.map(item => (
-          <Avatar key={item.name} className="inline-block w-8 h-8 rounded-full">
+          <Avatar key={item.name} className="inline-block h-8 w-8 rounded-full">
             <AvatarImage src={item.avatar} />
           </Avatar>
         ))}
       </div>
-      <Button className="flex justify-center items-center w-10 h-10 rounded-full" size="icon" variant="secondary">
+      <Button className="flex h-10 w-10 items-center justify-center rounded-full" size="icon" variant="secondary">
         <Icon icon="mdi:plus" size={20} />
       </Button>
     </Card>

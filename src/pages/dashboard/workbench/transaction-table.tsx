@@ -72,7 +72,7 @@ export function TransactionTable({ transactions }: { transactions: Transaction[]
 
   return (
     <Card className="flex flex-col p-6 lg:col-span-2">
-      <div className="flex items-center gap-4 mb-4">
+      <div className="mb-4 flex items-center gap-4">
         <Text variant="body2" className="font-semibold">
           {t('dashboard.transactions')}
         </Text>
@@ -95,7 +95,7 @@ export function TransactionTable({ transactions }: { transactions: Transaction[]
             {visibleTransactions.map(item => (
               <tr key={item.id} className="border-b last:border-0">
                 <td className="w-12 py-2">
-                  <span className="inline-flex justify-center items-center w-10 h-10 rounde-full">
+                  <span className="rounde-full inline-flex h-10 w-10 items-center justify-center">
                     <Icon icon={item.icon} size={20} />
                   </span>
                 </td>

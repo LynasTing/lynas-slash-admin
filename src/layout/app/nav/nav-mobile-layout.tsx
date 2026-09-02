@@ -15,12 +15,12 @@ export function NavMobileLayout({ data }: NavProps) {
           <Icon icon="local:ic-menu" size={24} />
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="[&>button]:hidden px-2 w-[280px]">
-        <div className="flex items-center gap-2 px-2 h-[var-(--layout-header-height)]">
+      <SheetContent side="left" className="flex h-dvh min-h-0 w-[280px] flex-col px-2 [&>button]:hidden">
+        <div className="flex h-[var(--layout-header-height)] shrink-0 items-center gap-2 px-2">
           <Logo />
           <span className="text-xl font-bold">{GLOBAL_CONFIG.appName}</span>
         </div>
-        <ScrollArea className="h-full">
+        <ScrollArea className="min-h-0 flex-1">
           <NavVertical data={data} />
         </ScrollArea>
       </SheetContent>
