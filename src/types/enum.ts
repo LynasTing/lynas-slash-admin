@@ -149,7 +149,7 @@ export enum ThemeColorPresets {
  */
 export enum ResultStatusEnum {
   /** 成功 / Success */
-  SUCCESS = 0,
+  SUCCESS = 200,
   /** 失败 / Failure */
   ERROR = -1
 }

@@ -2,7 +2,7 @@ import axios, { AxiosError, AxiosRequestConfig, type AxiosResponse } from 'axios
 import { GLOBAL_CONFIG } from '@/config/global';
 import { t } from '@/locales/i18n';
 import { ResultStatusEnum, HttpStatusEnum } from '#/enum';
-import type { Api } from '#/api';
+import type { Api } from '#/public/api';
 import { toast } from 'sonner';
 import { clearUserAuth } from '@/store/user';
 import { redirectToLogin } from '@/router/navigation';
