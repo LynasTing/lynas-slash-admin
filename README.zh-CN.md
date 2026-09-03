@@ -220,16 +220,16 @@ config / constants / types / theme / assets
 
 ### 页面领域
 
-| 目录               | 主要内容                                                       |
-| ------------------ | -------------------------------------------------------------- |
-| `pages/auth`       | 登录、注册、重置、手机号和二维码认证界面，以及认证页局部状态。 |
-| `pages/dashboard`  | Workbench 和 Analysis 两个仪表盘页面及其拆分组件。             |
-| `pages/management` | 用户资料、账号设置、系统菜单、角色和用户管理。                 |
-| `pages/components` | Toast、图标、语言、滚动、图表、动画和上传的演示页。            |
-| `pages/functions`  | 剪贴板与 Token 过期等功能示例。                                |
-| `pages/others`     | 日历、看板、iframe 与外链示例。                                |
-| `pages/menu-level` | 多层嵌套菜单和路由示例。                                       |
-| `pages/sys/error`  | 403、404、500 页面与通用错误布局。                             |
+| 目录                     | 主要内容                                                       |
+| ------------------------ | -------------------------------------------------------------- |
+| `pages/auth`             | 登录、注册、重置、手机号和二维码认证界面，以及认证页局部状态。 |
+| `pages/dashboard`        | Workbench 和 Analysis 两个仪表盘页面及其拆分组件。             |
+| `pages/views/management` | 用户资料、账号设置、系统菜单、角色和用户管理。                 |
+| `pages/components`       | Toast、图标、语言、滚动、图表、动画和上传的演示页。            |
+| `pages/functions`        | 剪贴板与 Token 过期等功能示例。                                |
+| `pages/views/others`     | 日历、看板、iframe 与外链示例。                                |
+| `pages/menu-level`       | 多层嵌套菜单和路由示例。                                       |
+| `pages/sys/error`        | 403、404、500 页面与通用错误布局。                             |
 
 ## 核心模块说明
 

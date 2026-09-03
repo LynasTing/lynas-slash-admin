@@ -3,9 +3,9 @@ import { GLOBAL_CONFIG } from '@/config/global';
 import { USER_API_MAP, type DeleteUserPayload } from '@/api/services/user';
 import { ResultStatusEnum } from '#/enum';
 import { DB_USER } from '@/_mock/_backup';
-import type { UserFormValues } from '@/pages/management/system/user/types';
+import type { UserFormValues } from '@/pages/views/management/system/user/types';
 import type { Role, User } from '#/entity';
-import { mockRoles } from '@/pages/management/system/role/role-mock';
+import { mockRoles } from '@/pages/views/management/system/role/role-mock';
 import { faker } from '@faker-js/faker';
 
 /**

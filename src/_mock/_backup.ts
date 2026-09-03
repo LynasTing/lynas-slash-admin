@@ -1,7 +1,7 @@
 import type { User, Role, Permission, MenuTreeNode } from '#/entity';
 import { faker } from '@faker-js/faker';
 import { BasicStatusEnum, MenuTypeEnum } from '#/enum';
-import { mockRoles } from '@/pages/management/system/role/role-mock';
+import { mockRoles } from '@/pages/views/management/system/role/role-mock';
 
 const { GROUP, CATALOGUE, MENU, ACTION } = MenuTypeEnum;
 
@@ -236,7 +236,7 @@ export const DB_SYSTEM_MENU: MenuTreeNode[] = [
             route: '/management/user/profile',
             status: BasicStatusEnum.ENABLE,
             icon: 'solar:user-id-bold-duotone',
-            component: '/pages/management/user/profile'
+            component: '/pages/views/management/user/profile'
           },
           {
             id: 'user-account',
@@ -247,7 +247,7 @@ export const DB_SYSTEM_MENU: MenuTreeNode[] = [
             route: '/management/user/account',
             status: BasicStatusEnum.ENABLE,
             icon: 'solar:shield-user-bold-duotone',
-            component: '/pages/management/user/account'
+            component: '/pages/views/management/user/account'
           }
         ]
       },
@@ -271,7 +271,7 @@ export const DB_SYSTEM_MENU: MenuTreeNode[] = [
             route: '/management/system/menu',
             status: BasicStatusEnum.ENABLE,
             icon: 'solar:list-bold-duotone',
-            component: '/pages/management/system/menu',
+            component: '/pages/views/management/system/menu',
             children: [
               {
                 id: 'system-menu-create',
