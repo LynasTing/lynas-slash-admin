@@ -3,7 +3,7 @@ import type { Role } from '#/entity';
 import { GLOBAL_CONFIG } from '@/config/global';
 import { ResultStatusEnum } from '#/enum';
 import { ROLE_API_MAP } from '@/api/services/role';
-import { mockRoles } from '@/pages/management/system/role/role-mock';
+import { mockRoles } from '@/pages/views/management/system/role/role-mock';
 
 const roleStore: Role[] = structuredClone(mockRoles);
 

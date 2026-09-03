@@ -1,6 +1,6 @@
 import type { User } from '#/entity';
 import { apiClient } from '@/utils';
-import type { UserFormValues } from '@/pages/management/system/user/types';
+import type { UserFormValues } from '@/pages/views/management/system/user/types';
 
 /**
  * 用户管理接口地址。

@@ -61,7 +61,7 @@ export const viewRoutes: AppRouteObject[] = [
               { index: true, element: <Navigate to="profile" replace /> },
               {
                 path: 'profile',
-                element: Component('/pages/management/user/profile'),
+                element: Component('/pages/views/management/user/profile'),
                 meta: {
                   name: 'sys.nav.pages.profile',
                   code: 'management-user-profile',
@@ -74,7 +74,7 @@ export const viewRoutes: AppRouteObject[] = [
               },
               {
                 path: 'account',
-                element: Component('/pages/management/user/account'),
+                element: Component('/pages/views/management/user/account'),
                 meta: {
                   name: 'sys.nav.pages.account',
                   code: 'management-user-account',
@@ -102,7 +102,7 @@ export const viewRoutes: AppRouteObject[] = [
               { index: true, element: <Navigate to="role" replace /> },
               {
                 path: 'role',
-                element: Component('/pages/management/system/role'),
+                element: Component('/pages/views/management/system/role'),
                 meta: {
                   name: 'sys.nav.pages.role',
                   code: 'management-system-role',
@@ -115,7 +115,7 @@ export const viewRoutes: AppRouteObject[] = [
               },
               {
                 path: 'menu',
-                element: Component('/pages/management/system/menu'),
+                element: Component('/pages/views/management/system/menu'),
                 meta: {
                   name: 'sys.nav.pages.menu',
                   code: 'management-system-menu',
@@ -128,7 +128,7 @@ export const viewRoutes: AppRouteObject[] = [
               },
               {
                 path: 'user',
-                element: Component('/pages/management/system/user'),
+                element: Component('/pages/views/management/system/user'),
                 meta: {
                   name: 'sys.nav.pages.user',
                   code: 'management-system-user',
@@ -156,7 +156,7 @@ export const viewRoutes: AppRouteObject[] = [
               { index: true, element: <Navigate to="menu-level-1a" replace /> },
               {
                 path: 'menu-level-1a',
-                element: Component('/pages/management/menu-level/menu-level-1a'),
+                element: Component('/pages/views/management/menu-level/menu-level-1a'),
                 meta: {
                   name: 'sys.nav.pages.menuLevel.level1a',
                   code: 'menu-level-1a',
@@ -182,7 +182,7 @@ export const viewRoutes: AppRouteObject[] = [
                   { index: true, element: <Navigate to="menu-level-2a" replace /> },
                   {
                     path: 'menu-level-2a',
-                    element: Component('/pages/management/menu-level/menu-level-1b/menu-level-2a'),
+                    element: Component('/pages/views/management/menu-level/menu-level-1b/menu-level-2a'),
                     meta: {
                       name: 'sys.nav.pages.menuLevel.level2a',
                       code: 'menu-level-1b-2a',
@@ -208,7 +208,7 @@ export const viewRoutes: AppRouteObject[] = [
                       { index: true, element: <Navigate to="menu-level-3a" replace /> },
                       {
                         path: 'menu-level-3a',
-                        element: Component('/pages/management/menu-level/menu-level-1b/menu-level-2b/menu-level-3a'),
+                        element: Component('/pages/views/management/menu-level/menu-level-1b/menu-level-2b/menu-level-3a'),
                         meta: {
                           name: 'sys.nav.pages.menuLevel.level3a',
                           code: 'menu-level-1b-2b-3a',
@@ -221,7 +221,7 @@ export const viewRoutes: AppRouteObject[] = [
                       },
                       {
                         path: 'menu-level-3b',
-                        element: Component('/pages/management/menu-level/menu-level-1b/menu-level-2b/menu-level-3b'),
+                        element: Component('/pages/views/management/menu-level/menu-level-1b/menu-level-2b/menu-level-3b'),
                         meta: {
                           name: 'sys.nav.pages.menuLevel.level3b',
                           code: 'menu-level-1b-2b-3b',
@@ -255,7 +255,7 @@ export const viewRoutes: AppRouteObject[] = [
           { index: true, element: <Navigate to="calendar" replace /> },
           {
             path: 'calendar',
-            element: Component('/pages/others/calendar'),
+            element: Component('/pages/views/others/calendar'),
             meta: {
               name: 'sys.nav.others.calendar',
               code: 'others-calendar',
@@ -285,7 +285,7 @@ export const viewRoutes: AppRouteObject[] = [
               { index: true, element: <Navigate to="clipboard" replace /> },
               {
                 path: 'clipboard',
-                element: Component('/pages/others/functions/clipboard'),
+                element: Component('/pages/views/others/functions/clipboard'),
                 meta: {
                   name: 'sys.nav.functions.clipboard',
                   code: 'functions-clipboard',
@@ -298,7 +298,7 @@ export const viewRoutes: AppRouteObject[] = [
               },
               {
                 path: 'token-expired',
-                element: Component('/pages/others/functions/token-expired'),
+                element: Component('/pages/views/others/functions/token-expired'),
                 meta: {
                   name: 'sys.nav.functions.tokenExpired',
                   code: 'functions-token-expired',
@@ -326,7 +326,7 @@ export const viewRoutes: AppRouteObject[] = [
               { index: true, element: <Navigate to="iframe" replace /> },
               {
                 path: 'iframe',
-                element: Component('/pages/others/link/iframe', { src: iframeLink.url }),
+                element: Component('/pages/views/others/link/iframe', { src: iframeLink.url }),
                 meta: {
                   name: 'iframe',
                   code: 'others-link-iframe',
@@ -340,7 +340,7 @@ export const viewRoutes: AppRouteObject[] = [
               },
               {
                 path: 'external',
-                element: Component('/pages/others/link/external', { src: externalLink.url }),
+                element: Component('/pages/views/others/link/external', { src: externalLink.url }),
                 meta: {
                   name: 'external',
                   code: 'others-link-external',
@@ -356,7 +356,7 @@ export const viewRoutes: AppRouteObject[] = [
           },
           {
             path: 'kanban',
-            element: Component('/pages/others/kanban'),
+            element: Component('/pages/views/others/kanban'),
             meta: {
               name: 'sys.nav.others.kanban',
               code: 'others-kanban',
