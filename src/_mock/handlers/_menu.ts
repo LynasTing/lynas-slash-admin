@@ -98,7 +98,7 @@ const getMenuList = http.get(GLOBAL_CONFIG.apiBaseUrl + MenuApi.List, async () =
   await delay(300);
 
   return HttpResponse.json({
-    status: ResultStatusEnum.SUCCESS,
+    code: ResultStatusEnum.SUCCESS,
     message: '',
     data: cloneMenuTree()
   });
@@ -117,7 +117,7 @@ const createMenu = http.post(GLOBAL_CONFIG.apiBaseUrl + MenuApi.Create, async ({
   appendMenuNode(DB_SYSTEM_MENU, createdNode);
 
   return HttpResponse.json({
-    status: ResultStatusEnum.SUCCESS,
+    code: ResultStatusEnum.SUCCESS,
     message: '',
     data: cloneMenuTree()
   });
@@ -134,7 +134,7 @@ const updateMenu = http.post(GLOBAL_CONFIG.apiBaseUrl + MenuApi.Update, async ({
   updateMenuNode(DB_SYSTEM_MENU, value);
 
   return HttpResponse.json({
-    status: ResultStatusEnum.SUCCESS,
+    code: ResultStatusEnum.SUCCESS,
     message: '',
     data: cloneMenuTree()
   });

@@ -147,8 +147,8 @@ export const DB_MENU: MenuTreeNode[] = [
     code: 'workbench',
     icon: 'local:ic-workbench',
     type: MENU,
-    route: '/workbench',
-    path: '/workbench',
+    route: '/dashboard/workbench',
+    path: '/dashboard/workbench',
     component: '/pages/dashboard/workbench'
   },
   {
@@ -159,8 +159,8 @@ export const DB_MENU: MenuTreeNode[] = [
     code: 'analysis',
     icon: 'local:ic-analysis',
     type: MENU,
-    route: '/analysis',
-    path: '/analysis',
+    route: '/dashboard/analysis',
+    path: '/dashboard/analysis',
     component: '/pages/dashboard/analysis'
   }
 ];
@@ -187,7 +187,7 @@ export const DB_SYSTEM_MENU: MenuTreeNode[] = [
         name: 'Workbench',
         label: 'sys.nav.workbench',
         type: MENU,
-        route: '/workbench',
+        route: '/dashboard/workbench',
         status: BasicStatusEnum.ENABLE,
         icon: 'local:ic-workbench',
         component: '/pages/dashboard/workbench'
@@ -198,7 +198,7 @@ export const DB_SYSTEM_MENU: MenuTreeNode[] = [
         name: 'Analysis',
         label: 'sys.nav.analysis',
         type: MENU,
-        route: '/analysis',
+        route: '/dashboard/analysis',
         status: BasicStatusEnum.DISABLE,
         icon: 'local:ic-analysis',
         component: '/pages/dashboard/analysis'

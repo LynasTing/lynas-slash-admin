@@ -104,14 +104,14 @@ pnpm preview
 
 环境变量文件为开发环境的 [`.env.development`](.env.development) 和生产环境的 [`.env.production`](.env.production)，应用配置集中在 [`src/config/global.ts`](src/config/global.ts)。业务代码应优先读取 `GLOBAL_CONFIG`，不应在各处直接读取 `import.meta.env`。
 
-| 变量                     | 当前值       | 含义                                                                              |
-| ------------------------ | ------------ | --------------------------------------------------------------------------------- |
-| `VITE_APP_DEFAULT_ROUTE` | `/workbench` | 访问根路径或登录成功后的默认跳转地址。                                            |
-| `VITE_APP_PUBLIC_PATH`   | `/`          | 静态资源和 MSW Service Worker 的公共路径。                                        |
-| `VITE_APP_API_BASE_URL`  | `/api`       | Axios 与 MSW Handler 使用的 API 前缀。                                            |
-| `VITE_APP_ROUTER_MODE`   | `frontend`   | 选择导航数据来源：`frontend` 使用静态导航，`backend` 使用 Mock 菜单树转换的导航。 |
+| 变量                     | 当前值                 | 含义                                                                              |
+| ------------------------ | ---------------------- | --------------------------------------------------------------------------------- |
+| `VITE_APP_DEFAULT_ROUTE` | `/dashboard/workbench` | 访问根路径或登录成功后的默认跳转地址。                                            |
+| `VITE_APP_PUBLIC_PATH`   | `/`                    | 静态资源和 MSW Service Worker 的公共路径。                                        |
+| `VITE_APP_API_BASE_URL`  | `/api`                 | Axios 与 MSW Handler 使用的 API 前缀。                                            |
+| `VITE_APP_ROUTER_MODE`   | `frontend`             | 选择导航数据来源：`frontend` 使用静态导航，`backend` 使用 Mock 菜单树转换的导航。 |
 
-开发服务器将 `/api` 代理到 `http://localhost:5678` 并移除 `/api` 前缀。默认情况下，请求会先被 MSW 拦截，因此不需要真实 API 服务。关闭或移除 MSW 后，才会进入该代理链路；届时必须把代理目标改为真实后端地址。
+开发服务器将 `/api` 代理到 `http://localhost:1982` 并移除 `/api` 前缀。默认关闭 MSW；仅在需要使用 Mock Handler 时，将 `VITE_APP_USE_MOCK` 设置为非 `false` 的值。
 
 ### 接入真实后端前的最小改造清单
 

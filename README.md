@@ -92,14 +92,14 @@ pnpm preview
 
 Use [`.env.development`](.env.development) for development and [`.env.production`](.env.production) for production. Application configuration is centralized in [`src/config/global.ts`](src/config/global.ts); business code should use `GLOBAL_CONFIG` instead of accessing `import.meta.env` directly.
 
-| Variable                 | Value        | Meaning                                                                     |
-| ------------------------ | ------------ | --------------------------------------------------------------------------- |
-| `VITE_APP_DEFAULT_ROUTE` | `/workbench` | Destination after visiting `/` or completing login.                         |
-| `VITE_APP_PUBLIC_PATH`   | `/`          | Public path for static assets and the MSW service worker.                   |
-| `VITE_APP_API_BASE_URL`  | `/api`       | API prefix for Axios and MSW handlers.                                      |
-| `VITE_APP_ROUTER_MODE`   | `frontend`   | `frontend` uses static navigation; `backend` transforms the mock menu tree. |
+| Variable                 | Value                  | Meaning                                                                     |
+| ------------------------ | ---------------------- | --------------------------------------------------------------------------- |
+| `VITE_APP_DEFAULT_ROUTE` | `/dashboard/workbench` | Destination after visiting `/` or completing login.                         |
+| `VITE_APP_PUBLIC_PATH`   | `/`                    | Public path for static assets and the MSW service worker.                   |
+| `VITE_APP_API_BASE_URL`  | `/api`                 | API prefix for Axios and MSW handlers.                                      |
+| `VITE_APP_ROUTER_MODE`   | `frontend`             | `frontend` uses static navigation; `backend` transforms the mock menu tree. |
 
-The development server proxies `/api` to `http://localhost:5678` after removing the prefix. MSW intercepts those requests by default, so no real API is needed. If MSW is disabled, change the proxy target to the real backend.
+The development server proxies `/api` to `http://localhost:1982` after removing the prefix. MSW is disabled by default; set `VITE_APP_USE_MOCK` to a value other than `false` only when using the mock handlers.
 
 Before using a real backend: make MSW an explicit development switch; read access tokens from state and implement refresh/expiry/concurrency handling; replace mock contracts; enforce authorization on the server; and review CORS, token/cookie storage, HTTPS, CSP, log redaction, upload validation, and error reporting.
 

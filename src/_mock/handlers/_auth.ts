@@ -73,7 +73,7 @@ const signIn = http.post(GLOBAL_CONFIG.apiBaseUrl + UserApi.SignIn, async ({ req
   const menu = convertFlatToTree(DB_MENU);
 
   return HttpResponse.json({
-    status: ResultStatusEnum.SUCCESS,
+    code: ResultStatusEnum.SUCCESS,
     message: '',
     data: {
       user: {
@@ -143,7 +143,7 @@ const signUp = http.post(GLOBAL_CONFIG.apiBaseUrl + UserApi.SignUp, async ({ req
   }
 
   return HttpResponse.json({
-    status: ResultStatusEnum.SUCCESS,
+    code: ResultStatusEnum.SUCCESS,
     message: 'Register success',
     data: {}
   });
