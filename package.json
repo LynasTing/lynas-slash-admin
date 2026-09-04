@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc -b --pretty false",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
