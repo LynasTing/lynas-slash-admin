@@ -17,7 +17,7 @@ export default defineConfig({
     port: 5678,
     proxy: {
       '/api': {
-        target: 'http://localhost:5678',
+        target: 'http://localhost:1982',
         changeOrigin: true,
         rewrite: path => path.replace(/^\/api/, ''),
         // 忽略 https 证书

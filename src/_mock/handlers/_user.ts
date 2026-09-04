@@ -50,7 +50,7 @@ const getUserList = http.get(GLOBAL_CONFIG.apiBaseUrl + USER_API_MAP.LIST, async
   await delay(300);
 
   return HttpResponse.json({
-    status: ResultStatusEnum.SUCCESS,
+    code: ResultStatusEnum.SUCCESS,
     message: '',
     data: userStore
   });
@@ -106,7 +106,7 @@ const createUser = http.post(GLOBAL_CONFIG.apiBaseUrl + USER_API_MAP.CREATE, asy
   });
 
   return HttpResponse.json({
-    status: ResultStatusEnum.SUCCESS,
+    code: ResultStatusEnum.SUCCESS,
     message: '操作成功',
     data: null
   });
@@ -134,7 +134,7 @@ const deleteUser = http.delete(GLOBAL_CONFIG.apiBaseUrl + USER_API_MAP.DELETE, a
 
   userStore.splice(targetIndex, 1);
   return HttpResponse.json({
-    status: ResultStatusEnum.SUCCESS,
+    code: ResultStatusEnum.SUCCESS,
     message: '操作成功',
     data: null
   });
@@ -224,7 +224,7 @@ const updateUser = http.put(GLOBAL_CONFIG.apiBaseUrl + USER_API_MAP.UPDATE, asyn
   };
 
   return HttpResponse.json({
-    status: ResultStatusEnum.SUCCESS,
+    code: ResultStatusEnum.SUCCESS,
     message: '操作成功',
     data: null
   });

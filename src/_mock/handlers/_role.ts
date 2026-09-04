@@ -78,7 +78,7 @@ const getRoleList = http.get(GLOBAL_CONFIG.apiBaseUrl + ROLE_API_MAP.LIST, async
   await delay(300);
 
   return HttpResponse.json({
-    status: ResultStatusEnum.SUCCESS,
+    code: ResultStatusEnum.SUCCESS,
     message: '',
     data: sortRoles(cloneRoleList())
   });
@@ -107,7 +107,7 @@ const createRole = http.post(GLOBAL_CONFIG.apiBaseUrl + ROLE_API_MAP.CREATE, asy
   });
 
   return HttpResponse.json({
-    status: ResultStatusEnum.SUCCESS,
+    code: ResultStatusEnum.SUCCESS,
     message: '',
     data: sortRoles(cloneRoleList())
   });
@@ -152,7 +152,7 @@ const updateRole = http.post(GLOBAL_CONFIG.apiBaseUrl + ROLE_API_MAP.UPDATE, asy
   };
 
   return HttpResponse.json({
-    status: ResultStatusEnum.SUCCESS,
+    code: ResultStatusEnum.SUCCESS,
     message: '',
     data: sortRoles(cloneRoleList())
   });
@@ -186,7 +186,7 @@ const deleteRole = http.post(GLOBAL_CONFIG.apiBaseUrl + ROLE_API_MAP.DELETE, asy
   roleStore.splice(targetIndex, 1);
 
   return HttpResponse.json({
-    status: ResultStatusEnum.SUCCESS,
+    code: ResultStatusEnum.SUCCESS,
     message: '',
     data: sortRoles(cloneRoleList())
   });
