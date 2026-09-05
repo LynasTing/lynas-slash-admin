@@ -23,7 +23,7 @@ import screenfull from 'screenfull';
 export default function SettingPanel() {
   const { t } = useTranslation();
   const settingsState = useSettingStoreState();
-  const { themeMode, themeLayout, themeStretch, themeColorPresets, fontFamily, fontSize, breadcrumb } = settingsState;
+  const { themeMode, themeLayout, themeStretch, themeColorPresets, fontFamily, fontSize, breadcrumb, multiTab = false } = settingsState;
   const { setSettings } = useSettingStoreActions();
 
   const updateSettings = (partialSettings: Partial<SettingStateType>) => {
@@ -349,7 +349,17 @@ export default function SettingPanel() {
               <Text variant="subTitle1">{t('sys.settings.page')}</Text>
               <div className="flex items-center justify-between">
                 <Text variant="subTitle2">{t('sys.settings.breadcrumb')}</Text>
-                <Switch checked={breadcrumb} onCheckedChange={checked => updateSettings({ breadcrumb: checked })} />
+                <Switch
+                  checked={breadcrumb}
+                  onCheckedChange={checked => updateSettings({ breadcrumb: checked, multiTab: checked ? false : multiTab })}
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <Text variant="subTitle2">{t('sys.settings.multiTab')}</Text>
+                <Switch
+                  checked={multiTab}
+                  onCheckedChange={checked => updateSettings({ multiTab: checked, breadcrumb: checked ? false : breadcrumb })}
+                />
               </div>
             </div>
           </div>
