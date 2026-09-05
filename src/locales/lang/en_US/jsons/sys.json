@@ -106,6 +106,7 @@
     "settings": {
       "archiveAll": "Archive all",
       "breadcrumb": "Breadcrumb",
+      "multiTab": "Multi-tabs",
       "exitFullScreen": "Exit FullScreen",
       "family": "Family",
       "font": "Font",

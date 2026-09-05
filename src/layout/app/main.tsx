@@ -24,7 +24,7 @@ const allItems = navData.flatMap(i => flattenTree(i.items));
 const findAuthByPath = (path: string): string[] => allItems.find(i => i.path === path)?.auth || [];
 
 const Main = () => {
-  const { themeStretch } = useSettingStoreState();
+  const { themeStretch, multiTab = false } = useSettingStoreState();
   const location: Location = useLocation();
   const params: Readonly<Params<string>> = useParams();
   const outlet: ReactNode = useOutlet();
@@ -77,51 +77,53 @@ const Main = () => {
           <div>error</div>
         </>
       }>
-      <MultiTabsProvider currentTab={currentTab} activeTabKey={activeTabKey}>
-        <MultiTabs />
-        <main
-          data-slot="lynas-slash-layout-main"
-          className={cn('flex w-full flex-1 flex-col overflow-y-auto', 'mx-auto p-4', 'transition-[max-width] duration-300 ease-in-out', {
-            'max-w-full': themeStretch,
-            'xl:max-w-screen-xl': !themeStretch
-          })}
-          style={{
-            /**
-             * 提示浏览器这个元素的 max-width 可能会变化
-             * 用于优化动画性能
-             */
-            willChange: 'max-width'
-          }}>
-          <Suspense fallback={<LineLoading />}>
-            {outlet}
-            {/*
-             * ScrollRestoration 是 React Router 内置组件
-             * 用于管理浏览器滚动位置的恢复
-             *
-             * 功能：
-             * 1. 用户前进/后退页面时，自动恢复上次的滚动条位置
-             * 2. 在多层嵌套路由中，每个路由的滚动位置会独立保存
-             * 3. 与浏览器原生 history 结合，不破坏默认滚动行为
-             *
-             * 可选配置：
-             * getKey={(location, matches) => location.key}
-             *   可以自定义每个路由滚动位置的 key，默认按浏览器 history state 自动管理
-             *
-             * * ScrollRestoration is a built-in component in React Router
-             *
-             * Features:
-             * 1. Automatically restores the previous scroll position when the user navigates forward/backward
-             * 2. Saves scroll position independently for each route in nested routes
-             * 3. Works with native browser history without breaking default scroll behavior
-             *
-             * Optional configuration:
-             * getKey={(location, matches) => location.key}
-             *   Allows customizing the key for each route's scroll position; by default it is managed using browser history state
-             */}
-            <ScrollRestoration />
-          </Suspense>
-        </main>
-      </MultiTabsProvider>
+      {multiTab && (
+        <MultiTabsProvider currentTab={currentTab} activeTabKey={activeTabKey}>
+          <MultiTabs />
+        </MultiTabsProvider>
+      )}
+      <main
+        data-slot="lynas-slash-layout-main"
+        className={cn('flex w-full flex-1 flex-col overflow-y-auto', 'mx-auto p-4', 'transition-[max-width] duration-300 ease-in-out', {
+          'max-w-full': themeStretch,
+          'xl:max-w-screen-xl': !themeStretch
+        })}
+        style={{
+          /**
+           * 提示浏览器这个元素的 max-width 可能会变化
+           * 用于优化动画性能
+           */
+          willChange: 'max-width'
+        }}>
+        <Suspense fallback={<LineLoading />}>
+          {outlet}
+          {/*
+           * ScrollRestoration 是 React Router 内置组件
+           * 用于管理浏览器滚动位置的恢复
+           *
+           * 功能：
+           * 1. 用户前进/后退页面时，自动恢复上次的滚动条位置
+           * 2. 在多层嵌套路由中，每个路由的滚动位置会独立保存
+           * 3. 与浏览器原生 history 结合，不破坏默认滚动行为
+           *
+           * 可选配置：
+           * getKey={(location, matches) => location.key}
+           *   可以自定义每个路由滚动位置的 key，默认按浏览器 history state 自动管理
+           *
+           * * ScrollRestoration is a built-in component in React Router
+           *
+           * Features:
+           * 1. Automatically restores the previous scroll position when the user navigates forward/backward
+           * 2. Saves scroll position independently for each route in nested routes
+           * 3. Works with native browser history without breaking default scroll behavior
+           *
+           * Optional configuration:
+           * getKey={(location, matches) => location.key}
+           *   Allows customizing the key for each route's scroll position; by default it is managed using browser history state
+           */}
+          <ScrollRestoration />
+        </Suspense>
+      </main>
     </AuthGuard>
   );
 };
