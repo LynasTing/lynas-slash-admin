@@ -108,7 +108,7 @@ function DialogContent({ className, children, ...props }: ComponentProps<typeof 
         {children}
 
         {/* 内置关闭按钮，仅供 DialogContent 内部使用 */}
-        <DialogPrimitive.Close className={cn(dialogCloseVariants(), className)}>
+        <DialogPrimitive.Close className={cn(dialogCloseVariants())}>
           <XIcon />
           <span className="sr-only">Close</span>
         </DialogPrimitive.Close>
@@ -173,7 +173,7 @@ function DialogTitle({ className, ...props }: ComponentProps<typeof DialogPrimit
  */
 function DialogDescription({ className, ...props }: ComponentProps<typeof DialogPrimitive.Description>) {
   return (
-    <DialogPrimitive.Description data-slot="dialog-descrition" className={cn('text-sm text-muted-foreground', className)} {...props} />
+    <DialogPrimitive.Description data-slot="dialog-description" className={cn('text-sm text-muted-foreground', className)} {...props} />
   );
 }
 
