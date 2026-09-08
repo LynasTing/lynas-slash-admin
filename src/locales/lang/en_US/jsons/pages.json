@@ -408,39 +408,68 @@
           },
           "modal": {
             "createTitle": "Create Menu",
+            "createDescription": "Configure the menu's basic information, route, and display behavior.",
             "editTitle": "Edit Menu"
           },
           "form": {
             "fields": {
-              "type": "Type",
-              "label": "Label",
+              "category": "Type",
               "parent": "Parent",
-              "route": "Route",
+              "i18nKey": "i18n Key (optional)",
+              "path": "Route Path",
               "component": "Component",
               "icon": "Icon",
-              "visibility": "Visibility"
-            }
+              "visibility": "Visibility",
+              "externalLink": "External Link"
+            },
+            "placeholders": {
+              "parent": "Select a parent menu",
+              "name": "Enter a menu name",
+              "i18nKey": "Optional, for example: sys.nav.pages.menu",
+              "code": "Enter a unique code",
+              "sort": "Enter the display order",
+              "path": "Enter a frontend route path",
+              "component": "Enter a component identifier or path",
+              "icon": "Enter an icon identifier",
+              "externalLink": "Enter a complete HTTP or HTTPS URL",
+              "description": "Enter a menu description"
+            },
+            "rootMenu": "Root menu"
           },
           "visibility": {
             "show": "Show",
             "hide": "Hide"
           },
           "validation": {
-            "nameRequired": "Name is required",
-            "labelRequired": "Label is required",
-            "routeRequired": "Route is required",
-            "iconRequired": "Icon is required",
-            "orderRequired": "Order is required"
+            "nameRequired": "Enter a menu name",
+            "nameMaxLength": "Menu name cannot exceed 64 characters",
+            "i18nKeyMaxLength": "i18n key cannot exceed 255 characters",
+            "codeRequired": "Enter a unique code",
+            "codeMaxLength": "Unique code cannot exceed 128 characters",
+            "sortRequired": "Enter the display order",
+            "sortMin": "Display order cannot be less than 0",
+            "sortInteger": "Display order must be an integer",
+            "pathMaxLength": "Route path cannot exceed 255 characters",
+            "componentMaxLength": "Component identifier or path cannot exceed 255 characters",
+            "iconMaxLength": "Icon identifier cannot exceed 128 characters",
+            "externalLinkMaxLength": "External link cannot exceed 500 characters",
+            "externalLinkInvalid": "Enter a complete HTTP or HTTPS URL",
+            "descriptionMaxLength": "Menu description cannot exceed 500 characters"
           },
           "toast": {
             "loadFailed": "Failed to load menus",
             "createSuccess": "Menu created successfully",
             "updateSuccess": "Menu updated successfully",
-            "saveFailed": "Failed to save menu"
+            "saveFailed": "Failed to save menu",
+            "deleteSuccess": "Menu deleted successfully"
+          },
+          "deleteDialog": {
+            "title": "Delete menu",
+            "description": "Are you sure you want to delete \"{{name}}\"? This action cannot be undone."
           },
           "types": {
             "GROUP": "Group",
-            "CATALOGUE": "Catalogue",
+            "DIRECTORY": "Directory",
             "MENU": "Menu",
             "ACTION": "Action"
           },

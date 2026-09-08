@@ -408,39 +408,68 @@
           },
           "modal": {
             "createTitle": "新增菜单",
+            "createDescription": "配置菜单的基础信息、路由与显示方式。",
             "editTitle": "修改菜单"
           },
           "form": {
             "fields": {
-              "type": "类型",
-              "label": "标签",
+              "category": "类型",
               "parent": "父级菜单",
-              "route": "路由",
+              "i18nKey": "国际化键（可选）",
+              "path": "路由路径",
               "component": "组件",
               "icon": "图标",
-              "visibility": "可见性"
-            }
+              "visibility": "可见性",
+              "externalLink": "外链地址"
+            },
+            "placeholders": {
+              "parent": "请选择父级菜单",
+              "name": "请输入菜单名称",
+              "i18nKey": "可选，例如：sys.nav.pages.menu",
+              "code": "请输入唯一编码",
+              "sort": "请输入显示顺序",
+              "path": "请输入前端路由路径",
+              "component": "请输入组件标识或路径",
+              "icon": "请输入图标标识",
+              "externalLink": "请输入完整 HTTP 或 HTTPS 地址",
+              "description": "请输入菜单描述"
+            },
+            "rootMenu": "根菜单"
           },
           "visibility": {
             "show": "显示",
             "hide": "隐藏"
           },
           "validation": {
-            "nameRequired": "请输入名称",
-            "labelRequired": "请输入标签",
-            "routeRequired": "请输入路由",
-            "iconRequired": "请输入图标",
-            "orderRequired": "请输入排序"
+            "nameRequired": "请输入菜单名称",
+            "nameMaxLength": "菜单名称不能超过 64 个字符",
+            "i18nKeyMaxLength": "国际化键不能超过 255 个字符",
+            "codeRequired": "请输入唯一编码",
+            "codeMaxLength": "唯一编码不能超过 128 个字符",
+            "sortRequired": "请输入显示顺序",
+            "sortMin": "显示顺序不能小于 0",
+            "sortInteger": "显示顺序必须是整数",
+            "pathMaxLength": "路由路径不能超过 255 个字符",
+            "componentMaxLength": "组件标识或路径不能超过 255 个字符",
+            "iconMaxLength": "图标标识不能超过 128 个字符",
+            "externalLinkMaxLength": "外链地址不能超过 500 个字符",
+            "externalLinkInvalid": "请输入完整的 HTTP 或 HTTPS 地址",
+            "descriptionMaxLength": "菜单描述不能超过 500 个字符"
           },
           "toast": {
             "loadFailed": "菜单加载失败",
             "createSuccess": "菜单新增成功",
             "updateSuccess": "菜单修改成功",
-            "saveFailed": "菜单保存失败"
+            "saveFailed": "菜单保存失败",
+            "deleteSuccess": "菜单删除成功"
+          },
+          "deleteDialog": {
+            "title": "删除菜单",
+            "description": "确定要删除菜单“{{name}}”吗？此操作无法撤销。"
           },
           "types": {
             "GROUP": "分组",
-            "CATALOGUE": "目录",
+            "DIRECTORY": "目录",
             "MENU": "菜单",
             "ACTION": "操作"
           },
