@@ -152,10 +152,10 @@ export interface SysMenuSaveRequest {
   name: string;
 
   /**
-   * 前端国际化资源键，最大 255 个字符；为空时由前端决定展示文案。
-   * Frontend internationalization resource key, up to 255 characters; the frontend decides the display text when it is empty.
+   * 前端国际化资源键，最大 255 个字符；未提供时由前端决定展示文案。
+   * Frontend internationalization resource key, up to 255 characters; the frontend decides the display text when it is not provided.
    */
-  i18nKey: string;
+  i18nKey?: string;
 
   /**
    * 菜单唯一编码，最大 128 个字符。
