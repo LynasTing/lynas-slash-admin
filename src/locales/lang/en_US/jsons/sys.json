@@ -117,6 +117,7 @@
       "notifications": "Notifications",
       "page": "Page",
       "presetThemes": "Preset Themes",
+      "size": "Size",
       "stretch": "Stretch",
       "stretchTip": "Only available when the screen width is greater than 1280px (xl)",
       "title": "Settings"
