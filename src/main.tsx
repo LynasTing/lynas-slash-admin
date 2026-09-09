@@ -14,7 +14,7 @@ import { NavigationRegister } from '@/router/navigation/navigation-register';
 
 registerLocalIcons();
 
-if (import.meta.env.VITE_APP_USE_MOCK !== 'false') {
+if (import.meta.env.VITE_APP_USE_MOCK === 'true') {
   const { worker } = await import('./_mock');
 
   await worker.start({
