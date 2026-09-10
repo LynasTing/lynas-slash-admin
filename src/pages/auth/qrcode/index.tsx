@@ -8,7 +8,7 @@ function QRCodePage() {
       <div className="flex flex-col items-center gap-2">
         <h1 className="text-2xl font-bold">{t('auth.qrSignInFormTitle')}</h1>
       </div>
-      <div className="flex flex-col justify-center items-center w-full p-4">
+      <div className="flex w-full flex-col items-center justify-center p-4">
         <QRCodeSVG value="https://github.com/LynasTing/lynas-slash-admin" size={200} />
       </div>
     </>

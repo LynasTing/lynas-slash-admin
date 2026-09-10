@@ -107,27 +107,27 @@ export default function Toast() {
         }}
         icons={{
           success: (
-            <div className="p-2 bg-success/10 rounded-lg">
+            <div className="rounded-lg bg-success/10 p-2">
               <Icon icon="carbon:checkmark-filled" size={24} color={themeVars.colors.palette.success.default} />
             </div>
           ),
           error: (
-            <div className="p-2 bg-error/10 rounded-lg">
+            <div className="rounded-lg bg-error/10 p-2">
               <Icon icon="carbon:warning-hex-filled" size={24} color={themeVars.colors.palette.error.default} />
             </div>
           ),
           warning: (
-            <div className="p-2 bg-warning/10 rounded-lg">
+            <div className="rounded-lg bg-warning/10 p-2">
               <Icon icon="carbon:warning-alt-filled" size={24} color={themeVars.colors.palette.warning.default} />
             </div>
           ),
           info: (
-            <div className="p-2 bg-info/10 rounded-lg">
+            <div className="rounded-lg bg-info/10 p-2">
               <Icon icon="carbon:information-filled" size={24} color={themeVars.colors.palette.info.default} />
             </div>
           ),
           loading: (
-            <div className="p-2 bg-gray-400/10 text-gray-400 rounded-lg">
+            <div className="rounded-lg bg-gray-400/10 p-2 text-gray-400">
               <Icon icon="svg-spinners:6-dots-scale-middle" size={24} speed={3} />
             </div>
           )

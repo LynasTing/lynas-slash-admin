@@ -92,7 +92,7 @@ function SelectScrollUpButton({ className, ...props }: ComponentProps<typeof Sel
   return (
     <SelectPrimitive.ScrollUpButton
       data-slot="select-scroll-up-button"
-      className={cn('flex justify-center items-center cursor-default py-1', className)}
+      className={cn('flex cursor-default items-center justify-center py-1', className)}
       {...props}>
       <ChevronUpIcon className="size-4" />
     </SelectPrimitive.ScrollUpButton>
@@ -112,7 +112,7 @@ function SelectScrollDownButton({ className, ...props }: ComponentProps<typeof S
   return (
     <SelectPrimitive.ScrollDownButton
       data-slot="select-scroll-down-button"
-      className={cn('flex justify-center items-center cursor-default py-1', className)}
+      className={cn('flex cursor-default items-center justify-center py-1', className)}
       {...props}>
       <ChevronDownIcon className="size-4" />
     </SelectPrimitive.ScrollDownButton>
@@ -174,7 +174,7 @@ function SelectLabel({ className, ...props }: ComponentProps<typeof SelectPrimit
 function SelectItem({ className, children, ...props }: ComponentProps<typeof SelectPrimitive.Item>) {
   return (
     <SelectPrimitive.Item data-slot="select-item" className={cn(selectItemVariants(), className)} {...props}>
-      <span className="absolute left-2 flex justify-center items-center size-3.5">
+      <span className="absolute left-2 flex size-3.5 items-center justify-center">
         <SelectPrimitive.ItemIndicator>
           <CheckIcon className="size-2 fill-current" />
         </SelectPrimitive.ItemIndicator>
@@ -197,7 +197,7 @@ function SelectSeparator({ className, ...props }: ComponentProps<typeof SelectPr
   return (
     <SelectPrimitive.Separator
       data-slot="select-separator"
-      className={cn('bg-border pointer-events-none -mx-1 my-1 h-px', className)}
+      className={cn('pointer-events-none -mx-1 my-1 h-px bg-border', className)}
       {...props}
     />
   );

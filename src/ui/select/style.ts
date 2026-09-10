@@ -3,7 +3,7 @@ import { cva } from 'class-variance-authority';
 export const selectTriggerVariants = cva(
   [
     /** 基础外观 / Base appearance */
-    'border border-input bg-transparent shadow-xs rounded-md',
+    'rounded-md border border-input bg-transparent shadow-xs',
 
     /** 布局 / Layout */
     'flex w-fit items-center justify-between gap-2 whitespace-nowrap',
@@ -19,8 +19,8 @@ export const selectTriggerVariants = cva(
     'disabled:cursor-not-allowed disabled:opacity-50',
 
     /** focus / invalid 状态 / Focus & invalid */
-    'outline-none transition-[color,box-shadow]',
-    'focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]',
+    'transition-[color,box-shadow] outline-none',
+    'focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50',
     'aria-invalid:border-destructive',
     'aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40',
 
@@ -71,7 +71,7 @@ const selectVariants = {
 export const selectContentVariants = cva(
   [
     /** 基础外观 / Base appearance */
-    'bg-popover text-popover-foreground rounded-md border shadow-md',
+    'rounded-md border bg-popover text-popover-foreground shadow-md',
 
     /** 布局与定位 / Layout & positioning */
     'relative z-50 min-w-[8rem] overflow-x-hidden overflow-y-auto',
@@ -79,9 +79,9 @@ export const selectContentVariants = cva(
     'origin-(--radix-select-content-transform-origin)',
 
     /** 状态动画 / State-based animations */
-    'data-[state=open]:animate-in data-[state=closed]:animate-out',
-    'data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0',
-    'data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95',
+    'data-[state=closed]:animate-out data-[state=open]:animate-in',
+    'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+    'data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
 
     /** 方向动画 / Directional slide animations */
     'data-[side=bottom]:slide-in-from-top-2',
@@ -119,10 +119,10 @@ export const selectItemVariants = cva([
   'focus:bg-accent focus:text-accent-foreground',
 
   /** SVG 图标 / Icons */
-  "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='text-'])]:text-muted-foreground [&_svg:not([class*='size-'])]:size-4",
+  "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground",
 
   /** 布局与基础 / Layout & base */
-  'relative flex w-full cursor-default items-center gap-2 rounded-sm py-1.5 pr-8 pl-2 text-sm select-none outline-hidden',
+  'relative flex w-full cursor-default items-center gap-2 rounded-sm py-1.5 pr-8 pl-2 text-sm outline-hidden select-none',
 
   /** 禁用状态 / Disabled state */
   'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',

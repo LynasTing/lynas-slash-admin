@@ -12,11 +12,11 @@ export const contentVariants = cva([
   /** 动画原点 / Transform origin（Radix 计算） */
   'origin-(--radix-hover-card-content-transform-origin)',
   /** 动画开关 / Animation lifecycle（进入 / 退出） */
-  'data-[state=open]:animate-in data-[state=closed]:animate-out',
+  'data-[state=closed]:animate-out data-[state=open]:animate-in',
   /** 淡入淡出 / Fade in & out */
-  'data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0',
+  'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
   /** 缩放 / Scale */
-  'data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95',
+  'data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
   /** 位移方向 / Slide direction（根据 side） */
   'data-[side=top]:slide-in-from-bottom-2',
   'data-[side=bottom]:slide-in-from-top-2',

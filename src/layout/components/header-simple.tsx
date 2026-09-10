@@ -3,7 +3,7 @@ import SettingPanel from './setting-panel';
 
 export default function HeaderSimple() {
   return (
-    <header className="flex justify-between items-center w-full h-16 px-6">
+    <header className="flex h-16 w-full items-center justify-between px-6">
       <Logo size={30} />
       <SettingPanel />
     </header>

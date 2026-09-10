@@ -63,16 +63,16 @@ export function IncomeBreakdown({ totalIncome }: { totalIncome: TotalIncome }) {
 
   return (
     <Card className="flex flex-col p-6">
-      <Text variant="body2" className="font-semibold mb-2">
+      <Text variant="body2" className="mb-2 font-semibold">
         {t('dashboard.totalIncome')}
       </Text>
-      <div className="flex-1 flex flex-col justify-center items-center">
+      <div className="flex flex-1 flex-col items-center justify-center">
         <Chart type="donut" height={180} options={dountOptions} series={totalIncome.series} />
-        <div className="w-full mt-4">
+        <div className="mt-4 w-full">
           {totalIncome.details.map((item, index) => (
-            <div className="flex justify-between items-center mb-2" key={item.label}>
+            <div className="mb-2 flex items-center justify-between" key={item.label}>
               <div className="flex items-center gap-2">
-                <span className="inline-block w-3 h-3 rounded-full" style={{ backgroundColor: dotColors[index] }} />
+                <span className="inline-block h-3 w-3 rounded-full" style={{ backgroundColor: dotColors[index] }} />
                 <Text variant="body2">{item.label}</Text>
               </div>
               <span className="font-bold">{item.value.toLocaleString()}</span>

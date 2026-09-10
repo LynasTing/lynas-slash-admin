@@ -85,19 +85,19 @@ export function QuickStats({ data }: { data: QuickStatProps[] }) {
   );
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {data.map((item, index) => (
-        <Card key={item.label} className="flex flex-col justify-between h-full">
+        <Card key={item.label} className="flex h-full flex-col justify-between">
           <CardContent className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
-              <div className="p-2 rounded-lg" style={{ backgroundColor: rgbAlpha(item.color, 0.1) }}>
+              <div className="rounded-lg p-2" style={{ backgroundColor: rgbAlpha(item.color, 0.1) }}>
                 <Icon icon={item.icon} size={24} color={item.color} />
               </div>
               <Text variant="body2" className="font-semibold">
                 {item.label}
               </Text>
             </div>
-            <div className="flex items-center gap-2 mt-2">
+            <div className="mt-2 flex items-center gap-2">
               <Title as="h3" className="text-2xl font-bold">
                 {item.value}
               </Title>
@@ -116,7 +116,7 @@ export function QuickStats({ data }: { data: QuickStatProps[] }) {
                 {item.percent === 0 && item.label === t('dashboard.quickStats.totalTask') && t('dashboard.new')}
               </span>
             </div>
-            <div className="w-full h-10 mt-2">
+            <div className="mt-2 h-10 w-full">
               <Chart type="bar" height={40} options={options[index]} series={[{ data: item.chart, color: item.color }]} />
             </div>
           </CardContent>
