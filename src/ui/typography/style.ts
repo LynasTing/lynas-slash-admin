@@ -52,7 +52,7 @@ export const textVariants = cva('', {
       caption: 'text-xs font-normal',
 
       /** 代码 / Code */
-      code: 'text-sm font-normal font-mono bg-muted relative rounded px-[0.3rem] py-[0.2rem]'
+      code: 'font-mono relative rounded bg-muted px-[0.3rem] py-[0.2rem] text-sm font-normal'
     },
     color: colorVariants,
     align: alignVariants

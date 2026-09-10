@@ -58,11 +58,11 @@ export function MonthlyRevenue({ monthlyRevenue }: { monthlyRevenue: MonthlyReve
   return (
     <Card className="lg:col-span-2">
       <CardContent className="p-6">
-        <div className="flex justify-between items-center mb-2">
+        <div className="mb-2 flex items-center justify-between">
           <Text variant="body2" className="font-semibold">
             {t('dashboard.monthlyRevenue')}
           </Text>
-          <span className="items-center gap-1 text-green-500 font-bold text-sm">
+          <span className="items-center gap-1 text-sm font-bold text-green-500">
             <Icon icon="mdi:arrow-up" size={16} />
             {monthlyRevenue.percent}%
           </span>

@@ -242,8 +242,8 @@ const tabsData: TabItem[] = [
 
 export default function NoticeTabs() {
   return (
-    <Tabs className="flex flex-col w-full h-full">
-      <TabsList defaultValue={tabsData[0].key} className="flex justify-between items-center shrink-0 gap-2 w-full">
+    <Tabs className="flex h-full w-full flex-col">
+      <TabsList defaultValue={tabsData[0].key} className="flex w-full shrink-0 items-center justify-between gap-2">
         {tabsData.map(item => (
           <TabsTrigger key={item.key} value={item.key} className="flex items-center gap-1">
             <span>{item.label}</span>

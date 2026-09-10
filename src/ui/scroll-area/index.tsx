@@ -10,7 +10,7 @@ const ScrollBar = forwardRef<
     ref={ref}
     orientation={orientation}
     className={cn(
-      'flex touch-none select-none transition-colors',
+      'flex touch-none transition-colors select-none',
       orientation === 'vertical' && 'h-full w-2.5 p-px',
       orientation === 'horizontal' && 'h-2.5 flex-col p-px',
       className
@@ -35,7 +35,7 @@ const ScrollArea = forwardRef<ComponentRef<typeof ScrollAreaPrimitive.Root>, Com
        * Viewport 内容可以滚动的区域
        * The content that can be scrolled.
        */}
-      <ScrollAreaPrimitive.Viewport className="w-full h-full rounded-[inherit] block!" asChild>
+      <ScrollAreaPrimitive.Viewport className="block! h-full w-full rounded-[inherit]" asChild>
         {children}
       </ScrollAreaPrimitive.Viewport>
       <ScrollBar className="z-scrollbar" />

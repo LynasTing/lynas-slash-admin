@@ -62,7 +62,7 @@ export function MetricCard({ metricCard }: { metricCard: MetricCardProps }) {
   return (
     <Card className="flex-1">
       <AnalysisTitle title={metricCard.title}>
-        <CardAction className={cn('flex justify-center items-center w-10 h-10 rounded-full', metricCard.bgColor)}>
+        <CardAction className={cn('flex h-10 w-10 items-center justify-center rounded-full', metricCard.bgColor)}>
           <Icon icon={metricCard.icon} size={20} color="black" />
         </CardAction>
       </AnalysisTitle>
