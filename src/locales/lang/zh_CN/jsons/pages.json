@@ -344,8 +344,11 @@
           },
           "validation": {
             "orderRequired": "请输入排序",
+            "orderInvalid": "排序必须为 0 到 2147483647 之间的整数",
             "nameRequired": "请输入名称",
-            "codeRequired": "请输入编码"
+            "nameMaxLength": "名称不能超过 64 个字符",
+            "codeRequired": "请输入编码",
+            "codeMaxLength": "编码不能超过 64 个字符"
           },
           "toast": {
             "loadFailed": "角色加载失败",

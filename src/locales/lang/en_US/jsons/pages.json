@@ -344,8 +344,11 @@
           },
           "validation": {
             "orderRequired": "Order is required",
+            "orderInvalid": "Order must be an integer from 0 to 2147483647",
             "nameRequired": "Name is required",
-            "codeRequired": "Code is required"
+            "nameMaxLength": "Name cannot exceed 64 characters",
+            "codeRequired": "Code is required",
+            "codeMaxLength": "Code cannot exceed 64 characters"
           },
           "toast": {
             "loadFailed": "Failed to load roles",
