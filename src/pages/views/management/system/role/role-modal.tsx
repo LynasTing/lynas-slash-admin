@@ -1,9 +1,10 @@
-import type { MenuTreeNode } from '#/entity';
-import { BasicStatusEnum } from '#/enum';
-import { BASIC_STATUS_LABEL_KEY_MAP } from '@/constants';
 import { TreeSelect } from 'antd';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import type { SysMenuTreeNode } from '#/system/menu';
+import type { SysRoleSaveRequest } from '#/system/role';
+import { BOOLEAN_VALUE_MAP } from '#/public/common';
+import { BASIC_STATUS_LABEL_KEY_MAP } from '@/constants';
 import useLocale from '@/locales/use-locale';
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/ui/dialog';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/ui/form';
@@ -12,159 +13,100 @@ import { Label } from '@/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/ui/radio-group';
 import { Textarea } from '@/ui/textarea';
 import Button from '@/ui/button';
-import { flattenTree } from '@/utils';
-import type { RoleFormValues, RoleModalType } from './types';
-
 const ROLE_PAGE_I18N_PREFIX = 'pages.management.system.role';
-
-/**
- * 从菜单树里提取已勾选节点 ID。
- * 编辑角色时表单保存的是菜单子树，而 TreeSelect 需要的是一维 ID 列表。
- * @param menus - 已授权的菜单树。
- * @returns 勾选菜单 ID 列表。
- *
- * Extract checked menu ids from a menu tree.
- * The form stores an authorized menu subtree, while TreeSelect expects a flat id list.
- * @param menus - Authorized menu tree.
- * @returns Checked menu id list.
- */
-const getCheckedMenuIds = (menus: MenuTreeNode[] = []): string[] => flattenTree(menus).map(item => item.id);
-
-/**
- * 根据选中的菜单 ID 过滤菜单树。
- * 只保留被选中的节点和命中的祖先节点，避免把整棵菜单树写回角色数据。
- * @param data - 原始菜单树。
- * @param selectedIds - 选中的菜单 ID 集合。
- * @returns 过滤后的菜单树。
- *
- * Filter the menu tree by selected ids.
- * Only selected nodes and matched ancestors are kept so the full menu tree is not written back into the role payload.
- * @param data - Source menu tree.
- * @param selectedIds - Selected menu id set.
- * @returns Filtered menu tree.
- */
-const buildSelectedMenuTree = (data: MenuTreeNode[], selectedIds: Set<string>): MenuTreeNode[] => {
-  const result: MenuTreeNode[] = [];
-
-  for (const item of data) {
-    const children = item.children?.length ? buildSelectedMenuTree(item.children, selectedIds) : [];
-    const isSelected = selectedIds.has(item.id);
-
-    /*
-     * 只有当前节点命中，或者子树里存在命中节点时才保留。
-     * 这样角色数据里既不会丢掉祖先链路，也不会把无关节点整棵抄进去。
-     *
-     * Keep a node only when it is selected itself or when its subtree contains a selected node.
-     * This preserves the ancestor chain without copying unrelated branches into the role payload.
-     */
-    if (!isSelected && children.length === 0) continue;
-
-    result.push({
-      ...item,
-      children
-    });
-  }
-
-  return result;
-};
 
 export type RoleModalProps = {
   /**
-   * 弹窗是否可见。
-   *
-   * Whether the modal is visible.
+   * 弹窗是否可见
+   * Whether the dialog is open
    */
   visible: boolean;
 
   /**
-   * 当前弹窗操作类型。
-   *
-   * Current modal action type.
+   * 是否处于编辑状态
+   * Whether an existing role is being edited
    */
-  type: RoleModalType;
+  isEditing: boolean;
 
   /**
-   * 表单初始值。
-   *
-   * Initial form value.
+   * 表单初始值
+   * Initial form values
    */
-  formValue: RoleFormValues;
+  formValue: SysRoleSaveRequest;
 
   /**
-   * 菜单树候选项。
-   *
-   * Menu tree options.
+   * 授权候选菜单树
+   * Available menus for authorization
    */
-  menuTreeData: MenuTreeNode[];
+  menuTreeData: SysMenuTreeNode[];
 
   /**
-   * 确认按钮是否处于提交状态。
-   *
-   * Whether the confirm button is submitting.
+   * 确认按钮是否提交中
+   * Whether saving is in progress
    */
   confirmLoading?: boolean;
 
   /**
-   * 保存角色。
-   * @param value - 当前表单值。
-   *
-   * Save the role.
-   * @param value - Current form values.
+   * 保存角色
+   * Save the role
    */
-  onSave(value: RoleFormValues): void | Promise<void>;
+  onSave(value: SysRoleSaveRequest): void | Promise<void>;
 
   /**
-   * 关闭弹窗。
-   *
-   * Close the modal.
+   * 关闭弹窗
+   * Close the dialog
    */
   onCancel: VoidFunction;
 };
 
 /**
- * 角色编辑弹窗。
- * 表单状态只服务于当前弹窗，直接放在组件里可以减少无意义的跨文件跳转。
- * @param props - 弹窗属性。
- * @returns 角色编辑弹窗。
+ * 角色新增和编辑弹窗。
+ * 表单直接维护后端需要的 menuIds，避免把菜单树对象序列化到角色请求中。
  *
- * Role editing modal.
- * The form state only serves this modal, so keeping it in the component avoids unnecessary file hopping.
- * @param props - Modal props.
- * @returns Role editing modal.
+ * Role creation and editing dialog.
+ * The form stores the menuIds required by the backend instead of serializing menu tree objects into the role request.
  */
-export default function RoleModal({ visible, type, formValue, menuTreeData, confirmLoading = false, onSave, onCancel }: RoleModalProps) {
+export default function RoleModal({
+  visible,
+  isEditing,
+  formValue,
+  menuTreeData,
+  confirmLoading = false,
+  onSave,
+  onCancel
+}: RoleModalProps): React.ReactElement {
   const { t } = useLocale();
-  const form = useForm<RoleFormValues>({
-    defaultValues: formValue
-  });
+  const form = useForm<SysRoleSaveRequest>({ defaultValues: formValue });
   const { reset, setValue } = form;
-  const [checkedMenuIds, setCheckedMenuIds] = useState<string[]>([]);
-  const modalTitle = t(type === 'create' ? `${ROLE_PAGE_I18N_PREFIX}.modal.createTitle` : `${ROLE_PAGE_I18N_PREFIX}.modal.editTitle`);
+  const [checkedMenuIds, setCheckedMenuIds] = useState<number[]>([]);
+  const localizedMenuTree = useMemo(() => {
+    const translateNodes = (nodes: SysMenuTreeNode[]): SysMenuTreeNode[] => {
+      // 使用稳定翻译键展示菜单，保留服务端 ID 和授权层级
+      // Translate menu labels while preserving server IDs and authorization hierarchy
+      return nodes.map(node => ({ ...node, name: t(node.i18nKey), children: translateNodes(node.children ?? []) }));
+    };
+    return translateNodes(menuTreeData);
+  }, [menuTreeData, t]);
+  const modalTitle = t(`${ROLE_PAGE_I18N_PREFIX}.modal.${isEditing ? 'editTitle' : 'createTitle'}`);
 
   useEffect(() => {
     reset(formValue);
-    setCheckedMenuIds(getCheckedMenuIds(formValue.menus ?? []));
+    setCheckedMenuIds(formValue.menuIds);
   }, [formValue, reset]);
 
   /**
-   * 同步 TreeSelect 的一维勾选值到表单里的菜单子树。
-   * TreeSelect 只关心 ID 列表，但角色提交需要的是裁剪后的菜单树，因此这里要做一次结构重建。
-   * @param value - TreeSelect 返回的选中值。
+   * 同步菜单树勾选结果到后端要求的一维菜单 ID 列表。
    *
-   * Sync TreeSelect's flat checked values back into the menu subtree stored in the form.
-   * TreeSelect only works with ids, but role submission needs a filtered menu tree, so the structure is rebuilt here.
-   * @param value - Selected values returned by TreeSelect.
+   * Sync the tree selection into the flat menu ID list required by the backend.
    */
-  const handleMenuChange = (value: string[]) => {
-    const selectedIds = new Set(value);
-
+  const handleMenuChange = (value: number[]): void => {
     setCheckedMenuIds(value);
-    setValue('menus', buildSelectedMenuTree(menuTreeData, selectedIds));
+    setValue('menuIds', value);
   };
 
   return (
     <Dialog open={visible} onOpenChange={open => !open && onCancel()}>
-      <DialogContent>
+      <DialogContent className="max-h-[calc(100vh-1rem)] min-h-[75vh] overflow-y-auto sm:max-w-xl">
         <DialogHeader>
           <DialogTitle>{modalTitle}</DialogTitle>
         </DialogHeader>
@@ -172,18 +114,62 @@ export default function RoleModal({ visible, type, formValue, menuTreeData, conf
           <form className="space-y-4" onSubmit={form.handleSubmit(onSave)}>
             <FormField
               control={form.control}
-              name="order"
-              rules={{ required: t(`${ROLE_PAGE_I18N_PREFIX}.validation.orderRequired`) }}
+              name="name"
+              rules={{
+                required: t(`${ROLE_PAGE_I18N_PREFIX}.validation.nameRequired`),
+                validate: value => value.trim().length > 0 || t(`${ROLE_PAGE_I18N_PREFIX}.validation.nameRequired`),
+                maxLength: { value: 64, message: t(`${ROLE_PAGE_I18N_PREFIX}.validation.nameMaxLength`) }
+              }}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t('common.fields.name')}</FormLabel>
+                  <FormControl>
+                    <Input {...field} maxLength={64} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="code"
+              rules={{
+                required: t(`${ROLE_PAGE_I18N_PREFIX}.validation.codeRequired`),
+                validate: value => value.trim().length > 0 || t(`${ROLE_PAGE_I18N_PREFIX}.validation.codeRequired`),
+                maxLength: { value: 64, message: t(`${ROLE_PAGE_I18N_PREFIX}.validation.codeMaxLength`) }
+              }}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t('common.fields.code')}</FormLabel>
+                  <FormControl>
+                    <Input {...field} maxLength={64} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="sort"
+              rules={{
+                required: t(`${ROLE_PAGE_I18N_PREFIX}.validation.orderRequired`),
+                validate: value =>
+                  (value !== undefined && Number.isInteger(value) && value >= 0 && value <= 2147483647) ||
+                  t(`${ROLE_PAGE_I18N_PREFIX}.validation.orderInvalid`)
+              }}
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>{t('common.fields.order')}</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
+                      min={0}
+                      max={2147483647}
+                      step={1}
                       value={field.value ?? ''}
                       onChange={event => {
-                        const value = event.target.value;
-                        field.onChange(value ? Number(value) : undefined);
+                        const nextValue = event.target.value;
+                        field.onChange(nextValue === '' ? undefined : Number(nextValue));
                       }}
                     />
                   </FormControl>
@@ -191,37 +177,6 @@ export default function RoleModal({ visible, type, formValue, menuTreeData, conf
                 </FormItem>
               )}
             />
-
-            <FormField
-              control={form.control}
-              name="name"
-              rules={{ required: t(`${ROLE_PAGE_I18N_PREFIX}.validation.nameRequired`) }}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t('common.fields.name')}</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="code"
-              rules={{ required: t(`${ROLE_PAGE_I18N_PREFIX}.validation.codeRequired`) }}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t('common.fields.code')}</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
             <FormField
               control={form.control}
               name="status"
@@ -229,61 +184,55 @@ export default function RoleModal({ visible, type, formValue, menuTreeData, conf
                 <FormItem>
                   <FormLabel>{t('common.fields.status')}</FormLabel>
                   <FormControl>
-                    <RadioGroup
-                      value={String(field.value ?? BasicStatusEnum.ENABLE)}
-                      onValueChange={value => field.onChange(Number(value))}>
+                    <RadioGroup value={String(field.value)} onValueChange={value => field.onChange(Number(value))}>
                       <div className="flex items-center space-x-2">
-                        <RadioGroupItem value={String(BasicStatusEnum.ENABLE)} id="role-status-enable" />
-                        <Label htmlFor="role-status-enable">{t(BASIC_STATUS_LABEL_KEY_MAP[BasicStatusEnum.ENABLE])}</Label>
+                        <RadioGroupItem value={String(BOOLEAN_VALUE_MAP.TRUE)} id="role-status-enable" />
+                        <Label htmlFor="role-status-enable">{t(BASIC_STATUS_LABEL_KEY_MAP[BOOLEAN_VALUE_MAP.TRUE])}</Label>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <RadioGroupItem value={String(BasicStatusEnum.DISABLE)} id="role-status-disable" />
-                        <Label htmlFor="role-status-disable">{t(BASIC_STATUS_LABEL_KEY_MAP[BasicStatusEnum.DISABLE])}</Label>
+                        <RadioGroupItem value={String(BOOLEAN_VALUE_MAP.FALSE)} id="role-status-disable" />
+                        <Label htmlFor="role-status-disable">{t(BASIC_STATUS_LABEL_KEY_MAP[BOOLEAN_VALUE_MAP.FALSE])}</Label>
                       </div>
                     </RadioGroup>
                   </FormControl>
                 </FormItem>
               )}
             />
-
             <FormField
               control={form.control}
-              name="desc"
+              name="description"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>{t('common.fields.description')}</FormLabel>
                   <FormControl>
-                    <Textarea value={field.value ?? ''} onChange={field.onChange} />
+                    <Textarea value={field.value ?? ''} maxLength={255} onChange={field.onChange} />
                   </FormControl>
                 </FormItem>
               )}
             />
-
             <FormField
               control={form.control}
-              name="menus"
+              name="menuIds"
               render={() => (
                 <FormItem>
                   <FormLabel>{t(`${ROLE_PAGE_I18N_PREFIX}.form.fields.authorizedMenus`)}</FormLabel>
                   <FormControl>
                     <TreeSelect
-                      treeData={menuTreeData}
+                      className="w-full [&_.ant-select-selector]:max-h-40 [&_.ant-select-selector]:overflow-y-auto"
+                      treeData={localizedMenuTree}
                       treeCheckable
                       allowClear
+                      showCheckedStrategy={TreeSelect.SHOW_ALL}
                       placeholder={t(`${ROLE_PAGE_I18N_PREFIX}.form.placeholders.authorizedMenus`)}
                       value={checkedMenuIds}
                       fieldNames={{ label: 'name', value: 'id', children: 'children' }}
                       getPopupContainer={node => node.parentElement ?? document.body}
-                      onChange={value => {
-                        const normalizedValues = (Array.isArray(value) ? value : []).map(item => String(item));
-                        handleMenuChange(normalizedValues);
-                      }}
+                      onChange={(value: number[]) => handleMenuChange(value)}
                     />
                   </FormControl>
                 </FormItem>
               )}
             />
-
             <DialogFooter>
               <Button type="button" variant="outline" onClick={onCancel}>
                 {t('common.actions.cancel')}

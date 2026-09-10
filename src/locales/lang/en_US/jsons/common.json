@@ -6,7 +6,9 @@
       "save": "Save",
       "saving": "Saving...",
       "confirm": "Confirm",
-      "confirmDelete": "Confirm Delete"
+      "confirmDelete": "Confirm Delete",
+      "search": "Search",
+      "reset": "Reset"
     },
     "cancel": "Cancel",
     "fields": {
