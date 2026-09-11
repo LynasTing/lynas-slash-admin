@@ -12,6 +12,8 @@
     },
     "cancel": "Cancel",
     "fields": {
+      "nickname": "Nickname",
+      "phone": "Phone",
       "action": "Action",
       "avatar": "Avatar",
       "code": "Code",

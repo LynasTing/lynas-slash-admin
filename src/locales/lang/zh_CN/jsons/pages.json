@@ -363,6 +363,9 @@
           "title": "用户列表",
           "actions": {
             "new": "新建用户",
+            "detail": "查看详情",
+            "showPassword": "显示密码",
+            "hidePassword": "隐藏密码",
             "edit": "编辑用户",
             "delete": "删除用户"
           },
@@ -375,18 +378,31 @@
             "title": "删除用户",
             "description": "确定要删除用户“{{name}}”吗？此操作无法撤销。"
           },
+          "detailDialog": {
+            "title": "用户详情",
+            "loading": "正在加载用户详情"
+          },
           "placeholders": {
             "username": "请输入用户名",
+            "nickname": "请输入昵称（选填）",
             "email": "请输入邮箱地址",
+            "phone": "请输入手机号（选填）",
+            "avatar": "请输入头像 URL 或相对路径",
             "roles": "请选择角色",
             "password": "请输入密码",
             "newPassword": "留空以保留当前密码"
           },
           "validation": {
             "usernameMinLength": "用户名至少需要 2 个字符",
+            "usernameMaxLength": "用户名不能超过 64 个字符",
+            "nicknameMaxLength": "昵称不能超过 50 个字符",
             "emailInvalid": "请输入有效的邮箱地址",
+            "emailMaxLength": "邮箱不能超过 255 个字符",
+            "phoneMaxLength": "手机号不能超过 32 个字符",
+            "avatarMaxLength": "头像地址不能超过 512 个字符",
             "rolesRequired": "请至少选择一个角色",
-            "passwordMinLength": "密码至少需要 8 个字符"
+            "passwordMinLength": "密码至少需要 8 个字符",
+            "passwordMaxLength": "密码不能超过 72 个字符"
           },
           "toast": {
             "createSuccess": "用户新增成功",

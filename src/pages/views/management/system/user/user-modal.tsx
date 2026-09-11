@@ -1,24 +1,25 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Select as AntdSelect } from 'antd';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { BasicStatusEnum } from '#/enum';
+import { BOOLEAN_VALUE_MAP } from '#/public/common';
+import type { SysRoleOption } from '#/system/role';
 import { BASIC_STATUS_LABEL_KEY_MAP } from '@/constants';
-import type { Role } from '#/entity';
-import { AvatarUpload } from '@/components/upload';
+import { Icon } from '@/components/icon';
 import Button from '@/ui/button';
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/ui/dialog';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/ui/form';
 import { Input } from '@/ui/input';
 import { Label } from '@/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/ui/radio-group';
-import { mockRoles } from '../role/role-mock';
-import type { UserFormValues, UserModalType } from './types';
+import type { SysUserSaveRequest } from '#/system/user';
 import useLocale from '@/locales/use-locale';
 import type { TFunction } from 'i18next';
 
 const USER_PAGE_I18N_PREFIX = 'pages.management.system.user';
+
+type UserModalType = 'create' | 'edit';
 
 /**
  * 用户基础表单校验规则。
@@ -41,16 +42,37 @@ const USER_PAGE_I18N_PREFIX = 'pages.management.system.user';
 const createUserFormSchema = (type: UserModalType, t: TFunction) =>
   z
     .object({
-      id: z.string().optional(),
       username: z
         .string()
         .trim()
-        .min(2, t(`${USER_PAGE_I18N_PREFIX}.validation.usernameMinLength`)),
-      email: z.email(t(`${USER_PAGE_I18N_PREFIX}.validation.emailInvalid`)),
-      avatar: z.string().optional(),
-      status: z.enum(BasicStatusEnum).optional(),
-      roleIds: z.array(z.string()).min(1, t(`${USER_PAGE_I18N_PREFIX}.validation.rolesRequired`)),
-      password: z.string().trim()
+        .min(2, t(`${USER_PAGE_I18N_PREFIX}.validation.usernameMinLength`))
+        .max(64, t(`${USER_PAGE_I18N_PREFIX}.validation.usernameMaxLength`)),
+      nickname: z
+        .string()
+        .trim()
+        .max(50, t(`${USER_PAGE_I18N_PREFIX}.validation.nicknameMaxLength`))
+        .optional(),
+      email: z
+        .string()
+        .trim()
+        .email(t(`${USER_PAGE_I18N_PREFIX}.validation.emailInvalid`))
+        .max(255, t(`${USER_PAGE_I18N_PREFIX}.validation.emailMaxLength`)),
+      phone: z
+        .string()
+        .trim()
+        .max(32, t(`${USER_PAGE_I18N_PREFIX}.validation.phoneMaxLength`))
+        .optional(),
+      avatar: z
+        .string()
+        .trim()
+        .max(512, t(`${USER_PAGE_I18N_PREFIX}.validation.avatarMaxLength`))
+        .optional(),
+      status: z.union([z.literal(BOOLEAN_VALUE_MAP.TRUE), z.literal(BOOLEAN_VALUE_MAP.FALSE)]),
+      roleIds: z.array(z.number().int().positive()).min(1, t(`${USER_PAGE_I18N_PREFIX}.validation.rolesRequired`)),
+      password: z
+        .string()
+        .trim()
+        .max(72, t(`${USER_PAGE_I18N_PREFIX}.validation.passwordMaxLength`))
     })
     .superRefine((values, context) => {
       // 把模式差异集中在这里，基础字段定义保持唯一，避免新增和编辑表单逐渐分叉。
@@ -76,25 +98,25 @@ export type UserModalProps = {
   visible: boolean;
 
   /**
-   * 弹窗模式。
+   * 是否处于编辑模式。
    *
-   * Modal mode.
+   * Whether the modal is editing an existing user.
    */
-  type: UserModalType;
+  isEditing: boolean;
 
   /**
    * 当前表单初始值。
    *
    * Initial form values.
    */
-  formValue: UserFormValues;
+  formValue: SysUserSaveRequest;
 
   /**
    * 表单可选择的角色列表。
    *
    * Roles available for selection in the form.
    */
-  roleOptions?: Role[];
+  roleOptions: SysRoleOption[];
 
   /**
    * 确认按钮是否处于提交状态。
@@ -110,7 +132,7 @@ export type UserModalProps = {
    * Save the user form.
    * @param values - Validated form values.
    */
-  onSave(values: UserFormValues): void | Promise<void>;
+  onSave(values: SysUserSaveRequest): void | Promise<void>;
 
   /**
    * 关闭弹窗。
@@ -122,25 +144,26 @@ export type UserModalProps = {
 
 /**
  * 用户新增、编辑表单弹窗。
- * 头像上传、账户信息和权限状态集中在同一表单中；编辑时留空密码会保留原密码。
+ * 头像地址、账户信息和权限状态集中在同一表单中；编辑时留空密码会保留原密码。
  * @param props - 用户表单弹窗属性。
  * @returns 用户表单弹窗。
  *
  * User create and edit form modal.
- * Avatar upload, account details, and access status share one form; an empty password preserves the current password while editing.
+ * Avatar address, account details, and access status share one form; an empty password preserves the current password while editing.
  * @param props - User form modal props.
  * @returns User form modal.
  */
 export default function UserModal({
   visible,
-  type,
+  isEditing,
   formValue,
-  roleOptions = mockRoles,
+  roleOptions,
   confirmLoading = false,
   onSave,
   onCancel
 }: UserModalProps) {
   const { t } = useLocale();
+  const type: UserModalType = isEditing ? 'edit' : 'create';
   /**
    * React Hook Form 表单实例。
    * resolver 随弹窗模式切换，因此新增和编辑既能共用字段又能拥有不同的密码规则。
@@ -149,17 +172,19 @@ export default function UserModal({
    * The resolver changes with the dialog mode, allowing shared fields while preserving different password rules for create and edit flows.
    */
   const userFormSchema = useMemo(() => createUserFormSchema(type, t), [t, type]);
-  const form = useForm<UserFormValues>({
+  const form = useForm<SysUserSaveRequest>({
     resolver: zodResolver(userFormSchema),
     defaultValues: formValue
   });
-  const { reset, setValue } = form;
+  const { reset } = form;
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const modalTitle = t(type === 'create' ? `${USER_PAGE_I18N_PREFIX}.modal.createTitle` : `${USER_PAGE_I18N_PREFIX}.modal.editTitle`);
 
   useEffect(() => {
     // 弹窗切换目标用户或模式时重置表单，避免受控字段保留前一次输入。
     // Reset when the target user or mode changes so controlled fields cannot retain the prior input.
     reset(formValue);
+    setIsPasswordVisible(false);
   }, [formValue, reset, type]);
 
   return (
@@ -171,27 +196,6 @@ export default function UserModal({
 
         <Form {...form}>
           <form className="space-y-6" onSubmit={form.handleSubmit(onSave)}>
-            <FormField
-              control={form.control}
-              name="avatar"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t('common.fields.avatar')}</FormLabel>
-                  <FormControl>
-                    <AvatarUpload
-                      key={`${type}-${formValue.id}-${formValue.avatar ?? ''}`}
-                      defaultAvatar={field.value}
-                      customRequest={({ onSuccess }) => onSuccess?.({})}
-                      onAvatarChange={(_, previewUrl) => {
-                        setValue('avatar', previewUrl, { shouldDirty: true, shouldValidate: true });
-                      }}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
             <div className="grid gap-4 sm:grid-cols-2">
               <FormField
                 control={form.control}
@@ -201,6 +205,34 @@ export default function UserModal({
                     <FormLabel>{t('common.fields.username')}</FormLabel>
                     <FormControl>
                       <Input autoComplete="name" placeholder={t(`${USER_PAGE_I18N_PREFIX}.placeholders.username`)} {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="avatar"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('common.fields.avatar')}</FormLabel>
+                    <FormControl>
+                      <Input placeholder={t(`${USER_PAGE_I18N_PREFIX}.placeholders.avatar`)} {...field} value={field.value ?? ''} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="nickname"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('common.fields.nickname')}</FormLabel>
+                    <FormControl>
+                      <Input placeholder={t(`${USER_PAGE_I18N_PREFIX}.placeholders.nickname`)} {...field} value={field.value ?? ''} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -224,22 +256,45 @@ export default function UserModal({
               <FormField
                 control={form.control}
                 name="roleIds"
-                render={({ field }) => (
+                render={({ field, fieldState }) => (
                   <FormItem>
                     <FormLabel>{t('common.fields.roles')}</FormLabel>
+                    <AntdSelect
+                      mode="multiple"
+                      allowClear
+                      className="w-full"
+                      placeholder={t(`${USER_PAGE_I18N_PREFIX}.placeholders.roles`)}
+                      value={field.value ?? []}
+                      aria-invalid={Boolean(fieldState.error)}
+                      // Ant Design 默认将下拉菜单挂到 body，Radix Dialog 会阻止弹窗外部的点击，导致选项可见但无法选中。
+                      // Render the popup inside the dialog because Radix Dialog blocks pointer events outside its content.
+                      getPopupContainer={triggerNode => triggerNode.parentElement ?? document.body}
+                      options={roleOptions.map(role => ({
+                        value: role.id,
+                        label: role.name,
+                        disabled: role.status === BOOLEAN_VALUE_MAP.FALSE
+                      }))}
+                      onChange={(roleIds: number[]) => field.onChange(roleIds)}
+                      onBlur={field.onBlur}
+                    />
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('common.fields.phone')}</FormLabel>
                     <FormControl>
-                      <AntdSelect
-                        mode="multiple"
-                        allowClear
-                        className="w-full"
-                        placeholder={t(`${USER_PAGE_I18N_PREFIX}.placeholders.roles`)}
-                        value={field.value}
-                        options={roleOptions.map(role => ({
-                          value: role.id,
-                          label: role.name,
-                          disabled: role.status === BasicStatusEnum.DISABLE
-                        }))}
-                        onChange={field.onChange}
+                      <Input
+                        type="tel"
+                        autoComplete="tel"
+                        placeholder={t(`${USER_PAGE_I18N_PREFIX}.placeholders.phone`)}
+                        {...field}
+                        value={field.value ?? ''}
                       />
                     </FormControl>
                     <FormMessage />
@@ -256,12 +311,22 @@ export default function UserModal({
                       {type === 'create' ? t('common.fields.password') : t(`${USER_PAGE_I18N_PREFIX}.modal.newPassword`)}
                     </FormLabel>
                     <FormControl>
-                      <Input
-                        type="password"
-                        autoComplete="new-password"
-                        placeholder={t(`${USER_PAGE_I18N_PREFIX}.placeholders.${type === 'create' ? 'password' : 'newPassword'}`)}
-                        {...field}
-                      />
+                      <div className="relative">
+                        <Input
+                          type={isPasswordVisible ? 'text' : 'password'}
+                          autoComplete="new-password"
+                          className="pr-10"
+                          placeholder={t(`${USER_PAGE_I18N_PREFIX}.placeholders.${type === 'create' ? 'password' : 'newPassword'}`)}
+                          {...field}
+                        />
+                        <button
+                          type="button"
+                          className="absolute inset-y-0 right-0 flex w-10 items-center justify-center text-text-secondary transition-colors hover:text-text-primary"
+                          aria-label={t(`${USER_PAGE_I18N_PREFIX}.actions.${isPasswordVisible ? 'hidePassword' : 'showPassword'}`)}
+                          onClick={() => setIsPasswordVisible(visible => !visible)}>
+                          <Icon icon={isPasswordVisible ? 'solar:eye-closed-bold-duotone' : 'solar:eye-bold-duotone'} size={18} />
+                        </button>
+                      </div>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -278,15 +343,15 @@ export default function UserModal({
                   <FormControl>
                     <RadioGroup
                       className="flex gap-6"
-                      value={String(field.value ?? BasicStatusEnum.ENABLE)}
+                      value={String(field.value ?? BOOLEAN_VALUE_MAP.TRUE)}
                       onValueChange={value => field.onChange(Number(value))}>
                       <div className="flex items-center gap-2">
-                        <RadioGroupItem value={String(BasicStatusEnum.ENABLE)} id="user-status-enable" />
-                        <Label htmlFor="user-status-enable">{t(BASIC_STATUS_LABEL_KEY_MAP[BasicStatusEnum.ENABLE])}</Label>
+                        <RadioGroupItem value={String(BOOLEAN_VALUE_MAP.TRUE)} id="user-status-enable" />
+                        <Label htmlFor="user-status-enable">{t(BASIC_STATUS_LABEL_KEY_MAP[BOOLEAN_VALUE_MAP.TRUE])}</Label>
                       </div>
                       <div className="flex items-center gap-2">
-                        <RadioGroupItem value={String(BasicStatusEnum.DISABLE)} id="user-status-disable" />
-                        <Label htmlFor="user-status-disable">{t(BASIC_STATUS_LABEL_KEY_MAP[BasicStatusEnum.DISABLE])}</Label>
+                        <RadioGroupItem value={String(BOOLEAN_VALUE_MAP.FALSE)} id="user-status-disable" />
+                        <Label htmlFor="user-status-disable">{t(BASIC_STATUS_LABEL_KEY_MAP[BOOLEAN_VALUE_MAP.FALSE])}</Label>
                       </div>
                     </RadioGroup>
                   </FormControl>

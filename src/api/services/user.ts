@@ -1,20 +1,5 @@
-import type { User } from '#/entity';
-import { apiClient } from '@/utils';
-import type { UserFormValues } from '@/pages/views/management/system/user/types';
-
-/**
- * 用户管理接口地址。
- * 统一维护路径，避免页面、mock handler 和服务层各自书写字符串后发生漂移。
- *
- * User management API endpoints.
- * Paths are centralized so pages, mock handlers, and the service layer cannot drift through separately written string literals.
- */
-export const USER_API_MAP = {
-  LIST: '/system/user/list',
-  CREATE: '/system/user/create',
-  DELETE: '/system/user/delete',
-  UPDATE: '/system/user/update'
-} as const;
+import type { SysUserListItem, SysUserListPage, SysUserListQuery, SysUserSaveRequest } from '#/system/user';
+import apiClient from '@/utils/request';
 
 /**
  * 获取用户列表。
@@ -23,9 +8,10 @@ export const USER_API_MAP = {
  * Get the user list.
  * @returns User list.
  */
-const getUserListApi = () =>
-  apiClient.get<User[]>({
-    url: USER_API_MAP.LIST
+const getUserListApi = (params: SysUserListQuery): Promise<SysUserListPage> =>
+  apiClient.get<SysUserListPage>({
+    url: '/system/user/list',
+    params
   });
 
 /**
@@ -39,9 +25,9 @@ const getUserListApi = () =>
  * @param data - Submitted values for the new user form.
  * @returns Create request Promise.
  */
-const createUserApi = (data: UserFormValues) =>
-  apiClient.post({
-    url: USER_API_MAP.CREATE,
+const createUserApi = (data: SysUserSaveRequest): Promise<void> =>
+  apiClient.post<void>({
+    url: '/system/user/add',
     data
   });
 
@@ -51,8 +37,22 @@ export type DeleteUserPayload = {
    *
    * Unique identifier of the user to delete.
    */
-  id: User['id'];
+  id: number;
 };
+
+/**
+ * 查询用户详情。
+ * @param id - 用户主键 ID。
+ * @returns 用户详情。
+ *
+ * Gets a user detail.
+ * @param id - User primary key ID.
+ * @returns User detail.
+ */
+const getUserDetailApi = (id: number): Promise<SysUserListItem> =>
+  apiClient.get<SysUserListItem>({
+    url: `/system/user/${id}`
+  });
 
 /**
  * 删除指定用户。
@@ -63,10 +63,9 @@ export type DeleteUserPayload = {
  * @param data - Delete request body containing only the target user id.
  * @returns Delete request Promise.
  */
-const deleteUserApi = (data: DeleteUserPayload) =>
-  apiClient.delete({
-    url: USER_API_MAP.DELETE,
-    data
+const deleteUserApi = (data: DeleteUserPayload): Promise<void> =>
+  apiClient.delete<void>({
+    url: `/system/user/${data.id}`
   });
 
 /**
@@ -80,10 +79,10 @@ const deleteUserApi = (data: DeleteUserPayload) =>
  * @param data - Submitted values from the edited user form.
  * @returns Update request Promise.
  */
-const updateUserApi = (data: UserFormValues) =>
-  apiClient.put({
-    url: USER_API_MAP.UPDATE,
+const updateUserApi = (id: number, data: SysUserSaveRequest): Promise<void> =>
+  apiClient.put<void>({
+    url: `/system/user/${id}`,
     data
   });
 
-export { getUserListApi, createUserApi, deleteUserApi, updateUserApi };
+export { getUserListApi, getUserDetailApi, createUserApi, deleteUserApi, updateUserApi };

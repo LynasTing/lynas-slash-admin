@@ -1,9 +1,8 @@
 import { http, delay, HttpResponse } from 'msw';
 import { GLOBAL_CONFIG } from '@/config/global';
-import { USER_API_MAP, type DeleteUserPayload } from '@/api/services/user';
 import { ResultStatusEnum } from '#/enum';
 import { DB_USER } from '@/_mock/_backup';
-import type { UserFormValues } from '@/pages/views/management/system/user/types';
+import type { SysUserSaveRequest } from '#/system/user';
 import type { Role, User } from '#/entity';
 import { mockRoles } from '@/pages/views/management/system/role/role-mock';
 import { faker } from '@faker-js/faker';
@@ -28,13 +27,15 @@ const userStore: User[] = DB_USER;
  * @param roleIds - Role ids selected in the form.
  * @returns Resolved roles, or null when an unknown role is included.
  */
-const resolveUserRoles = (roleIds: string[]): Role[] | null => {
+const resolveUserRoles = (roleIds: number[]): Role[] | null => {
   /*
    * 只接受角色数据源中存在的 ID，避免把失效或伪造的角色写入用户。
    *
    * Only ids present in the role source are accepted, preventing stale or fabricated roles from being stored on a user.
    */
-  const selectedRoles = roleIds.map(roleId => mockRoles.find(role => role.id === roleId)).filter((role): role is Role => Boolean(role));
+  const selectedRoles = roleIds
+    .map(roleId => mockRoles.find(role => role.id === String(roleId)))
+    .filter((role): role is Role => Boolean(role));
 
   return selectedRoles.length === roleIds.length ? structuredClone(selectedRoles) : null;
 };
@@ -46,7 +47,7 @@ const resolveUserRoles = (roleIds: string[]): Role[] | null => {
  * Gets the user list.
  * The delay simulates real network latency so the page can exercise loading, submission, and refresh timing.
  */
-const getUserList = http.get(GLOBAL_CONFIG.apiBaseUrl + USER_API_MAP.LIST, async () => {
+const getUserList = http.get(`${GLOBAL_CONFIG.apiBaseUrl}/system/user/list`, async () => {
   await delay(300);
 
   return HttpResponse.json({
@@ -63,10 +64,10 @@ const getUserList = http.get(GLOBAL_CONFIG.apiBaseUrl + USER_API_MAP.LIST, async
  * Creates a user.
  * The request payload retains roleIds, which must be converted into complete roles before storage so DB_USER always conforms to the User entity definition.
  */
-const createUser = http.post(GLOBAL_CONFIG.apiBaseUrl + USER_API_MAP.CREATE, async ({ request }) => {
+const createUser = http.post(`${GLOBAL_CONFIG.apiBaseUrl}/system/user/add`, async ({ request }) => {
   await delay(300);
 
-  const value = (await request.json()) as UserFormValues;
+  const value = (await request.json()) as SysUserSaveRequest;
   const roles = resolveUserRoles(value.roleIds);
 
   /*
@@ -119,10 +120,10 @@ const createUser = http.post(GLOBAL_CONFIG.apiBaseUrl + USER_API_MAP.CREATE, asy
  * Deletes a user.
  * A missing target returns a business failure instead of succeeding silently, allowing the page to detect stale list data or an invalid request.
  */
-const deleteUser = http.delete(GLOBAL_CONFIG.apiBaseUrl + USER_API_MAP.DELETE, async ({ request }) => {
+const deleteUser = http.delete(`${GLOBAL_CONFIG.apiBaseUrl}/system/user/:id`, async ({ params }) => {
   await delay(300);
 
-  const { id } = (await request.json()) as DeleteUserPayload;
+  const id = String(params.id);
   const targetIndex = userStore.findIndex(i => i.id === id);
 
   if (targetIndex < 0) {
@@ -151,8 +152,8 @@ const deleteUser = http.delete(GLOBAL_CONFIG.apiBaseUrl + USER_API_MAP.DELETE, a
  * @param value - User form fields to validate.
  * @returns Whether a duplicate username exists.
  */
-const hasDuplicateUsername = (value: Pick<UserFormValues, 'id' | 'username'>): boolean =>
-  userStore.filter(i => i.id !== value.id).some(i => i.username.trim().toUpperCase() === value.username.trim().toUpperCase());
+const hasDuplicateUsername = (value: Pick<SysUserSaveRequest, 'username'>, currentUserId?: string): boolean =>
+  userStore.filter(i => i.id !== currentUserId).some(i => i.username.trim().toUpperCase() === value.username.trim().toUpperCase());
 
 /**
  * 校验邮箱是否与其他用户重复。
@@ -163,8 +164,8 @@ const hasDuplicateUsername = (value: Pick<UserFormValues, 'id' | 'username'>): b
  * @param value - User form fields to validate.
  * @returns Whether a duplicate email exists.
  */
-const hasDuplicateUserEmail = (value: Pick<UserFormValues, 'id' | 'email'>): boolean =>
-  userStore.filter(i => i.id !== value.id).some(i => i.email?.trim().toUpperCase() === value.email?.trim().toUpperCase());
+const hasDuplicateUserEmail = (value: Pick<SysUserSaveRequest, 'email'>, currentUserId?: string): boolean =>
+  userStore.filter(i => i.id !== currentUserId).some(i => i.email?.trim().toUpperCase() === value.email?.trim().toUpperCase());
 
 /**
  * 更新用户。
@@ -173,11 +174,12 @@ const hasDuplicateUserEmail = (value: Pick<UserFormValues, 'id' | 'email'>): boo
  * Updates a user.
  * It preserves an omitted password and resolves roleIds into complete roles before writing, preventing the form transport shape from polluting the user entity.
  */
-const updateUser = http.put(GLOBAL_CONFIG.apiBaseUrl + USER_API_MAP.UPDATE, async ({ request }) => {
+const updateUser = http.put(`${GLOBAL_CONFIG.apiBaseUrl}/system/user/:id`, async ({ params, request }) => {
   await delay(300);
 
-  const value = (await request.json()) as UserFormValues;
-  const targetIndex = userStore.findIndex(i => i.id === value.id);
+  const value = (await request.json()) as SysUserSaveRequest;
+  const id = String(params.id);
+  const targetIndex = userStore.findIndex(i => i.id === id);
 
   /*
    * 编辑只能覆盖已存在用户，避免过期表单把更新错误地变成新增。
@@ -191,13 +193,13 @@ const updateUser = http.put(GLOBAL_CONFIG.apiBaseUrl + USER_API_MAP.UPDATE, asyn
     });
   }
 
-  if (hasDuplicateUsername(value)) {
+  if (hasDuplicateUsername(value, id)) {
     return HttpResponse.json({
       status: ResultStatusEnum.ERROR,
       message: '重复的用户名'
     });
   }
-  if (hasDuplicateUserEmail(value)) {
+  if (hasDuplicateUserEmail(value, id)) {
     return HttpResponse.json({
       status: ResultStatusEnum.ERROR,
       message: '该邮箱已被使用'
