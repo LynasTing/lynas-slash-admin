@@ -12,6 +12,8 @@
     },
     "cancel": "取消",
     "fields": {
+      "nickname": "昵称",
+      "phone": "手机号",
       "action": "操作",
       "avatar": "头像",
       "code": "编码",

@@ -363,6 +363,9 @@
           "title": "User List",
           "actions": {
             "new": "New User",
+            "detail": "View details",
+            "showPassword": "Show password",
+            "hidePassword": "Hide password",
             "edit": "Edit User",
             "delete": "Delete User"
           },
@@ -375,18 +378,31 @@
             "title": "Delete User",
             "description": "Are you sure you want to delete \"{{name}}\"? This action cannot be undone."
           },
+          "detailDialog": {
+            "title": "User Details",
+            "loading": "Loading user details"
+          },
           "placeholders": {
             "username": "Enter username",
+            "nickname": "Enter nickname (optional)",
             "email": "Enter email address",
+            "phone": "Enter phone number (optional)",
+            "avatar": "Enter avatar URL or relative path",
             "roles": "Select roles",
             "password": "Enter password",
             "newPassword": "Leave blank to keep the current password"
           },
           "validation": {
             "usernameMinLength": "Username must contain at least 2 characters",
+            "usernameMaxLength": "Username cannot exceed 64 characters",
+            "nicknameMaxLength": "Nickname cannot exceed 50 characters",
             "emailInvalid": "Enter a valid email address",
+            "emailMaxLength": "Email cannot exceed 255 characters",
+            "phoneMaxLength": "Phone number cannot exceed 32 characters",
+            "avatarMaxLength": "Avatar URL cannot exceed 512 characters",
             "rolesRequired": "Select at least one role",
-            "passwordMinLength": "Password must contain at least 8 characters"
+            "passwordMinLength": "Password must contain at least 8 characters",
+            "passwordMaxLength": "Password cannot exceed 72 characters"
           },
           "toast": {
             "createSuccess": "User created successfully",
