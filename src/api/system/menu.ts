@@ -1,6 +1,12 @@
 import apiClient from '@/utils/request';
 import type { SysMenuSaveRequest, SysMenuTreeNode } from '#/system/menu';
 
+export const SYSTEM_MENU_API_MAP = {
+  LIST: '/system/menu/list',
+  CREATE: '/system/menu/add',
+  RESOURCE: '/system/menu'
+} as const;
+
 /**
  * 获取菜单管理树。
  * 后端直接返回递归 children，前端不得再按分页结果拼接树结构。
@@ -14,7 +20,7 @@ import type { SysMenuSaveRequest, SysMenuTreeNode } from '#/system/menu';
  */
 export const getSysMenuListApi = (): Promise<SysMenuTreeNode[]> =>
   apiClient.get<SysMenuTreeNode[]>({
-    url: '/system/menu/list'
+    url: SYSTEM_MENU_API_MAP.LIST
   });
 
 /**
@@ -32,7 +38,7 @@ export const getSysMenuListApi = (): Promise<SysMenuTreeNode[]> =>
  */
 export const createSysMenuApi = (data: SysMenuSaveRequest): Promise<void> =>
   apiClient.post<void>({
-    url: '/system/menu/add',
+    url: SYSTEM_MENU_API_MAP.CREATE,
     data
   });
 
@@ -53,7 +59,7 @@ export const createSysMenuApi = (data: SysMenuSaveRequest): Promise<void> =>
  */
 export const updateSysMenuApi = (id: number, data: SysMenuSaveRequest): Promise<void> =>
   apiClient.put<void>({
-    url: `/system/menu/${id}`,
+    url: `${SYSTEM_MENU_API_MAP.RESOURCE}/${id}`,
     data
   });
 
@@ -72,5 +78,5 @@ export const updateSysMenuApi = (id: number, data: SysMenuSaveRequest): Promise<
  */
 export const deleteSysMenuApi = (id: number): Promise<void> =>
   apiClient.delete<void>({
-    url: `/system/menu/${id}`
+    url: `${SYSTEM_MENU_API_MAP.RESOURCE}/${id}`
   });

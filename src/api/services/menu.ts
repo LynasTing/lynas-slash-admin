@@ -1,11 +1,11 @@
 import type { MenuTreeNode } from '#/entity';
 import { apiClient } from '@/utils';
 
-export enum MenuApi {
-  List = '/system/menu/list',
-  Create = '/system/menu/create',
-  Update = '/system/menu/update'
-}
+export const MENU_API_MAP = {
+  LIST: '/system/menu/list',
+  CREATE: '/system/menu/add',
+  UPDATE: '/system/menu'
+} as const;
 
 /**
  * 获取菜单管理列表
@@ -16,7 +16,7 @@ export enum MenuApi {
  */
 const getMenuListApi = () =>
   apiClient.get<MenuTreeNode[]>({
-    url: MenuApi.List
+    url: MENU_API_MAP.LIST
   });
 
 /**
@@ -30,7 +30,7 @@ const getMenuListApi = () =>
  */
 const createMenuApi = (data: MenuTreeNode) =>
   apiClient.post<MenuTreeNode[]>({
-    url: MenuApi.Create,
+    url: MENU_API_MAP.CREATE,
     data
   });
 
@@ -45,7 +45,7 @@ const createMenuApi = (data: MenuTreeNode) =>
  */
 const updateMenuApi = (data: MenuTreeNode) =>
   apiClient.post<MenuTreeNode[]>({
-    url: MenuApi.Update,
+    url: MENU_API_MAP.UPDATE,
     data
   });
 
