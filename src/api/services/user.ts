@@ -1,6 +1,12 @@
 import type { SysUserListItem, SysUserListPage, SysUserListQuery, SysUserSaveRequest } from '#/system/user';
 import apiClient from '@/utils/request';
 
+export const SYSTEM_USER_API_MAP = {
+  LIST: '/system/user/list',
+  RESOURCE: '/system/user',
+  CREATE: '/system/user/add'
+} as const;
+
 /**
  * 获取用户列表。
  * @returns 用户列表。
@@ -10,7 +16,7 @@ import apiClient from '@/utils/request';
  */
 const getUserListApi = (params: SysUserListQuery): Promise<SysUserListPage> =>
   apiClient.get<SysUserListPage>({
-    url: '/system/user/list',
+    url: SYSTEM_USER_API_MAP.LIST,
     params
   });
 
@@ -27,7 +33,7 @@ const getUserListApi = (params: SysUserListQuery): Promise<SysUserListPage> =>
  */
 const createUserApi = (data: SysUserSaveRequest): Promise<void> =>
   apiClient.post<void>({
-    url: '/system/user/add',
+    url: SYSTEM_USER_API_MAP.CREATE,
     data
   });
 
@@ -51,7 +57,7 @@ export type DeleteUserPayload = {
  */
 const getUserDetailApi = (id: number): Promise<SysUserListItem> =>
   apiClient.get<SysUserListItem>({
-    url: `/system/user/${id}`
+    url: `${SYSTEM_USER_API_MAP.RESOURCE}/${id}`
   });
 
 /**
@@ -65,7 +71,7 @@ const getUserDetailApi = (id: number): Promise<SysUserListItem> =>
  */
 const deleteUserApi = (data: DeleteUserPayload): Promise<void> =>
   apiClient.delete<void>({
-    url: `/system/user/${data.id}`
+    url: `${SYSTEM_USER_API_MAP.RESOURCE}/${data.id}`
   });
 
 /**
@@ -81,7 +87,7 @@ const deleteUserApi = (data: DeleteUserPayload): Promise<void> =>
  */
 const updateUserApi = (id: number, data: SysUserSaveRequest): Promise<void> =>
   apiClient.put<void>({
-    url: `/system/user/${id}`,
+    url: `${SYSTEM_USER_API_MAP.RESOURCE}/${id}`,
     data
   });
 

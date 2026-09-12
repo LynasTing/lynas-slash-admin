@@ -1,11 +1,11 @@
 import type { User, UserToken } from '#/entity';
 import { apiClient } from '@/utils';
 
-export enum UserApi {
-  SignIn = '/auth/signIn',
-  SignUp = '/auth/signUp',
-  TokenExpired = '/user/tokenExpired'
-}
+export const USER_API_MAP = {
+  SIGN_IN: '/auth/signIn',
+  SIGN_UP: '/auth/signUp',
+  TOKEN_EXPIRED: '/user/tokenExpired'
+} as const;
 
 export interface SignInRequest {
   username: string;
@@ -30,7 +30,7 @@ export interface SignUpRequest extends SignInRequest {
  */
 const signUpApi = (data: SignUpRequest) =>
   apiClient.post<SignInResponse>({
-    url: UserApi.SignUp,
+    url: USER_API_MAP.SIGN_UP,
     data
   });
 
@@ -40,7 +40,7 @@ const signUpApi = (data: SignUpRequest) =>
  */
 const signInApi = (data: SignInRequest) =>
   apiClient.post<SignInResponse>({
-    url: UserApi.SignIn,
+    url: USER_API_MAP.SIGN_IN,
     data
   });
 
@@ -49,7 +49,7 @@ const signInApi = (data: SignInRequest) =>
  */
 const tokenExpiredApi = () =>
   apiClient.post({
-    url: UserApi.TokenExpired
+    url: USER_API_MAP.TOKEN_EXPIRED
   });
 
 export { signInApi, signUpApi, tokenExpiredApi };

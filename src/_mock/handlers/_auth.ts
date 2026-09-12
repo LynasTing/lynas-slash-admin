@@ -1,6 +1,6 @@
 import { http, HttpResponse } from 'msw';
 import { GLOBAL_CONFIG } from '@/config/global';
-import { UserApi } from '@/api/services/auth';
+import { USER_API_MAP } from '@/api/services/auth';
 import { DB_ROLE, DB_USER, DB_USER_ROLE, DB_ROLE_PERMISSION, DB_MENU, DB_PERMISSION } from '../_backup';
 import { convertFlatToTree } from '@/utils';
 import { ResultStatusEnum, HttpStatusEnum } from '#/enum';
@@ -14,7 +14,7 @@ import type { User } from '#/entity';
  * 使用 msw 拦截请求，模拟用户登录验证与权限返回。
  * Intercepts HTTP requests using MSW, simulating user authentication and permission response.
  */
-const signIn = http.post(GLOBAL_CONFIG.apiBaseUrl + UserApi.SignIn, async ({ request }) => {
+const signIn = http.post(GLOBAL_CONFIG.apiBaseUrl + USER_API_MAP.SIGN_IN, async ({ request }) => {
   /**
    * 从请求体中解析用户名和密码
    * Parse username and password from request body
@@ -92,7 +92,7 @@ const signIn = http.post(GLOBAL_CONFIG.apiBaseUrl + UserApi.SignIn, async ({ req
  * Mock 注册接口
  * Mock sign-up API handler
  */
-const signUp = http.post(GLOBAL_CONFIG.apiBaseUrl + UserApi.SignUp, async ({ request }) => {
+const signUp = http.post(GLOBAL_CONFIG.apiBaseUrl + USER_API_MAP.SIGN_UP, async ({ request }) => {
   const { username, password, email } = (await request.json()) as Record<string, string>;
 
   /**
@@ -153,7 +153,7 @@ const signUp = http.post(GLOBAL_CONFIG.apiBaseUrl + UserApi.SignUp, async ({ req
  * Mock Token 过期接口
  * Mock token expired API handler
  */
-const mockTokenExpired = http.post(GLOBAL_CONFIG.apiBaseUrl + UserApi.TokenExpired, () => {
+const mockTokenExpired = http.post(GLOBAL_CONFIG.apiBaseUrl + USER_API_MAP.TOKEN_EXPIRED, () => {
   return new HttpResponse(null, {
     status: HttpStatusEnum.UNAUTHORIZED
   });
