@@ -1,143 +1,99 @@
-import { http, HttpResponse, delay } from 'msw';
-import type { MenuTreeNode } from '#/entity';
-import { MenuApi } from '@/api/services/menu';
+import { http, delay, HttpResponse } from 'msw';
 import { GLOBAL_CONFIG } from '@/config/global';
 import { ResultStatusEnum } from '#/enum';
-import { DB_SYSTEM_MENU } from '../_backup';
+import type { SysMenuSaveRequest, SysMenuTreeNode } from '#/system/menu';
+import { SYSTEM_MENU_API_MAP as MENU_API } from '@/api/system/menu';
+import { SYSTEM_MENUS } from '../system-data';
 
-/**
- * 克隆菜单树，避免接口调用方直接修改 mock 数据源
- * Clone the menu tree to prevent callers from mutating the mock data source directly
- *
- * @returns 克隆后的菜单树
- * @returns Cloned menu tree
- */
-const cloneMenuTree = (): MenuTreeNode[] => structuredClone(DB_SYSTEM_MENU);
+const cloneMenuTree = (): SysMenuTreeNode[] => structuredClone(SYSTEM_MENUS);
 
-/**
- * 构建新增菜单节点
- * Build a created menu node
- *
- * @param value 表单提交值
- * @param value Submitted form value
- * @returns 可写入 mock 数据源的新节点
- * @returns New node ready to be written into the mock data source
- */
-const createMenuNode = (value: MenuTreeNode): MenuTreeNode => ({
-  ...value,
-  id: value.id || `menu-${Date.now()}`
-});
+const findMenu = (nodes: SysMenuTreeNode[], id: number): SysMenuTreeNode | undefined => {
+  for (const node of nodes) {
+    if (node.id === id) return node;
+    const child = findMenu(node.children, id);
+    if (child) return child;
+  }
+  return undefined;
+};
 
-/**
- * 向菜单树追加节点
- * Append a node to the menu tree
- *
- * @param data 当前菜单树
- * @param data Current menu tree
- * @param node 待追加节点
- * @param node Node to append
- * @returns 是否追加成功
- * @returns Whether the append succeeded
- */
-const appendMenuNode = (data: MenuTreeNode[], node: MenuTreeNode): boolean => {
-  if (!node.parentId) {
-    data.push(node);
+const appendMenu = (nodes: SysMenuTreeNode[], node: SysMenuTreeNode): boolean => {
+  if (node.parentId === 0) {
+    nodes.push(node);
     return true;
   }
-
-  for (const item of data) {
-    if (item.id === node.parentId) {
-      item.children = [...(item.children ?? []), node];
-      return true;
-    }
-
-    // 递归查找父节点，命中后提前结束 / Recursively find the parent and stop once matched
-    if (item.children?.length && appendMenuNode(item.children, node)) {
-      return true;
-    }
-  }
-
-  return false;
+  const parent = findMenu(nodes, node.parentId);
+  if (!parent) return false;
+  parent.children.push(node);
+  return true;
 };
 
-/**
- * 更新菜单树中的节点
- * Update a node inside the menu tree
- *
- * @param data 当前菜单树
- * @param data Current menu tree
- * @param value 更新后的菜单节点
- * @param value Updated menu node
- * @returns 是否更新成功
- * @returns Whether the update succeeded
- */
-const updateMenuNode = (data: MenuTreeNode[], value: MenuTreeNode): boolean => {
-  for (const item of data) {
-    if (item.id === value.id) {
-      Object.assign(item, {
-        ...value,
-        children: value.children ?? item.children
-      });
-      return true;
-    }
-
-    // 递归更新子节点，命中后提前结束 / Recursively update child nodes and stop once matched
-    if (item.children?.length && updateMenuNode(item.children, value)) {
-      return true;
-    }
-  }
-
-  return false;
+const nextMenuId = (): number => {
+  const ids: number[] = [];
+  const collect = (nodes: SysMenuTreeNode[]): void => {
+    nodes.forEach(node => {
+      ids.push(node.id);
+      collect(node.children);
+    });
+  };
+  collect(SYSTEM_MENUS);
+  return Math.max(0, ...ids) + 1;
 };
 
-/**
- * Mock 获取菜单列表接口
- * Mock menu list API
- */
-const getMenuList = http.get(GLOBAL_CONFIG.apiBaseUrl + MenuApi.List, async () => {
-  await delay(300);
-
-  return HttpResponse.json({
-    code: ResultStatusEnum.SUCCESS,
-    message: '',
-    data: cloneMenuTree()
-  });
+const toMenuNode = (value: SysMenuSaveRequest, id: number): SysMenuTreeNode => ({
+  ...value,
+  id,
+  parentName: findMenu(SYSTEM_MENUS, value.parentId)?.name ?? null,
+  i18nKey: value.i18nKey ?? '',
+  path: value.path ?? null,
+  component: value.component ?? null,
+  icon: value.icon ?? null,
+  description: value.description ?? null,
+  externalLink: value.externalLink ?? null,
+  children: []
 });
 
-/**
- * Mock 新增菜单接口
- * Mock create menu API
- */
-const createMenu = http.post(GLOBAL_CONFIG.apiBaseUrl + MenuApi.Create, async ({ request }) => {
-  await delay(300);
-
-  const value = (await request.json()) as MenuTreeNode;
-  const createdNode = createMenuNode(value);
-
-  appendMenuNode(DB_SYSTEM_MENU, createdNode);
-
-  return HttpResponse.json({
-    code: ResultStatusEnum.SUCCESS,
-    message: '',
-    data: cloneMenuTree()
-  });
+const getMenuList = http.get(GLOBAL_CONFIG.apiBaseUrl + MENU_API.LIST, async () => {
+  await delay(100);
+  return HttpResponse.json({ code: ResultStatusEnum.SUCCESS, message: '', data: cloneMenuTree() });
 });
 
-/**
- * Mock 更新菜单接口
- * Mock update menu API
- */
-const updateMenu = http.post(GLOBAL_CONFIG.apiBaseUrl + MenuApi.Update, async ({ request }) => {
-  await delay(300);
-
-  const value = (await request.json()) as MenuTreeNode;
-  updateMenuNode(DB_SYSTEM_MENU, value);
-
-  return HttpResponse.json({
-    code: ResultStatusEnum.SUCCESS,
-    message: '',
-    data: cloneMenuTree()
-  });
+const createMenu = http.post(GLOBAL_CONFIG.apiBaseUrl + MENU_API.CREATE, async ({ request }) => {
+  await delay(100);
+  const value = (await request.json()) as SysMenuSaveRequest;
+  const created = toMenuNode(value, nextMenuId());
+  if (!appendMenu(SYSTEM_MENUS, created)) {
+    return HttpResponse.json({ code: ResultStatusEnum.ERROR, message: 'Parent menu not found', data: null }, { status: 400 });
+  }
+  return HttpResponse.json({ code: ResultStatusEnum.SUCCESS, message: '', data: null });
 });
 
-export { getMenuList, createMenu, updateMenu };
+const updateMenu = http.put(`${GLOBAL_CONFIG.apiBaseUrl}${MENU_API.RESOURCE}/:id`, async ({ params, request }) => {
+  await delay(100);
+  const id = Number(params.id);
+  const target = findMenu(SYSTEM_MENUS, id);
+  if (!target) {
+    return HttpResponse.json({ code: ResultStatusEnum.ERROR, message: 'Menu not found', data: null }, { status: 404 });
+  }
+  const value = (await request.json()) as SysMenuSaveRequest;
+  Object.assign(target, toMenuNode(value, id), { children: target.children });
+  return HttpResponse.json({ code: ResultStatusEnum.SUCCESS, message: '', data: null });
+});
+
+const deleteMenu = http.delete(`${GLOBAL_CONFIG.apiBaseUrl}${MENU_API.RESOURCE}/:id`, async ({ params }) => {
+  await delay(100);
+  const id = Number(params.id);
+  const remove = (nodes: SysMenuTreeNode[]): boolean => {
+    const index = nodes.findIndex(node => node.id === id);
+    if (index >= 0) {
+      nodes.splice(index, 1);
+      return true;
+    }
+    return nodes.some(node => remove(node.children));
+  };
+  if (!remove(SYSTEM_MENUS)) {
+    return HttpResponse.json({ code: ResultStatusEnum.ERROR, message: 'Menu not found', data: null }, { status: 404 });
+  }
+  return HttpResponse.json({ code: ResultStatusEnum.SUCCESS, message: '', data: null });
+});
+
+export { getMenuList, createMenu, updateMenu, deleteMenu };
