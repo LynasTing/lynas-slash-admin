@@ -10,6 +10,7 @@
     "typecheck": "tsc -b --pretty false",
     "preview": "vite preview",
     "prepare": "husky install",
+    "test": "VITE_APP_API_BASE_URL=http://localhost/api vitest run",
     "commit": "cz",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
@@ -101,7 +102,8 @@
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.35.1",
     "vite": "^7.0.4",
-    "vite-tsconfig-paths": "^5.1.4"
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^5.0.0"
   },
   "config": {
     "commitizen": {
