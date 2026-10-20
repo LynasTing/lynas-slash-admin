@@ -190,4 +190,4 @@ ai/local-backend-integration.md
 # =============================
 # Local files explicitly excluded from Git
 # =============================
-*_gitignore
+*_gitignore.*
