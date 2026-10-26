@@ -295,19 +295,6 @@ export const viewRoutes: AppRouteObject[] = [
                   hidden: BOOLEAN_VALUE_MAP.FALSE,
                   icon: 'solar:clipboard-bold-duotone'
                 }
-              },
-              {
-                path: 'token-expired',
-                element: Component('/pages/views/others/functions/token-expired'),
-                meta: {
-                  name: 'sys.nav.functions.tokenExpired',
-                  code: 'functions-token-expired',
-                  category: SYS_MENU_CATEGORY_MAP.MENU,
-                  sort: 2,
-                  status: BOOLEAN_VALUE_MAP.TRUE,
-                  hidden: BOOLEAN_VALUE_MAP.FALSE,
-                  icon: 'solar:password-bold-duotone'
-                }
               }
             ]
           },

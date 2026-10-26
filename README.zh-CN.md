@@ -426,7 +426,6 @@ src/locales/lang/
 - `others/calendar`：FullCalendar 视图和事件编辑演示；
 - `others/kanban`：dnd-kit 驱动的看板与任务抽屉；
 - `others/link/iframe` 与 `others/link/external`：外部页面嵌入与新窗口跳转；
-- `functions/token-expired`：401、清理认证状态和登录跳转链路的演示入口。
 
 ## 开发指南
 

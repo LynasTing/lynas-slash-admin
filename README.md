@@ -229,7 +229,6 @@ i18n initializes in [`src/locales/i18n.ts`](src/locales/i18n.ts), with resources
 - `management/user/{profile,account}`: personal settings; `management/system/{menu,role,user}`: management demos.
 - `components/{toast,icon,multi-language,scroll,chart,animate,upload}`: component playground pages.
 - `others/calendar`, `others/kanban`, and `others/link/*`: calendar, drag-and-drop Kanban, iframe, and external-link demos.
-- `functions/token-expired`: 401, authentication cleanup, and login-redirect demo.
 
 ## Development guide
 
