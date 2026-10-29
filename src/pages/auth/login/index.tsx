@@ -8,11 +8,11 @@ import { cn } from '@/utils';
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/ui/form';
 import { Input } from '@/ui/input';
 import { useForm } from 'react-hook-form';
-import type { SignInRequest } from '@/api/services/auth';
+import type { LoginRequest } from '@/api/services/auth';
 import Button from '@/ui/button';
 import { useTranslation } from 'react-i18next';
 import { useState, type ComponentPropsWithoutRef } from 'react';
-import { useSignIn } from '@/store/user';
+import { useUserActions } from '@/store/user';
 import { toast } from 'sonner';
 import { useLoginStateContext } from '../providers/declaration';
 import { LoginStateEnum } from '../providers/declaration';
@@ -21,7 +21,8 @@ import { useNavigate } from 'react-router';
 import { GLOBAL_CONFIG } from '@/config/global';
 import { Checkbox } from '@/ui/checkbox';
 import { Icon } from '@/components/icon';
-import { DB_USER } from '@/_mock/_backup';
+import { loginApi } from '@/api/auth';
+import { useMutation } from '@tanstack/react-query';
 
 /**
  * ComponentPropsWithoutRef React 内置的类型工具
@@ -33,14 +34,28 @@ function LoginForm({ className, ...props }: ComponentPropsWithoutRef<'form'>) {
   const navigate = useNavigate();
   /** 记住我 / remeberme */
   const [remember, setRemember] = useState(true);
+  const { setUserToken, setUserInfo } = useUserActions();
 
+  /**
+   * useMutation 专门用来做 会改变服务器状态的操作（POST / PUT / DELETE…）
+   * - 它不会缓存数据（不像 useQuery 会缓存 GET 请求）
+   *
+   * 返回一个对象，里面主要包含：
+   * - mutate(data, options) — 触发 mutation，是异步但回调风格
+   * - mutateAsync(data, options) — 返回 Promise，方便 async/await
+   * - status — idle | loading | success | error
+   * - data — mutation 返回的成功数据
+   * - error — 请求失败返回的错误对象
+   */
+  const loginMutation = useMutation({
+    mutationFn: loginApi
+  });
   const { loginState, setLoginState } = useLoginStateContext();
-  const signIn = useSignIn();
 
-  const form = useForm<SignInRequest>({
+  const form = useForm<LoginRequest>({
     defaultValues: {
-      username: DB_USER[0].username,
-      password: DB_USER[0].password
+      username: 'LynasTing',
+      password: 'LynasTing'
     }
   });
 
@@ -89,14 +104,16 @@ function LoginForm({ className, ...props }: ComponentPropsWithoutRef<'form'>) {
    * 提交登录
    * submit
    */
-  const finish = async (values: SignInRequest) => {
+  const finish = async (values: LoginRequest) => {
     setLoading(true);
     try {
-      await signIn(values);
-      navigate(GLOBAL_CONFIG.defaultRoute, { replace: true });
+      const { user, accessToken } = await loginMutation.mutateAsync(values);
+      setUserToken(accessToken);
+      setUserInfo(user);
       toast.success(t('auth.loginSuccessTitle'), {
         closeButton: true
       });
+      navigate(GLOBAL_CONFIG.defaultRoute, { replace: true });
     } finally {
       setLoading(false);
     }

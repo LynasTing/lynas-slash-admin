@@ -4,7 +4,7 @@ import { t } from '@/locales/i18n';
 import { ResultStatusEnum, HttpStatusEnum } from '#/enum';
 import type { Api } from '#/public/api';
 import { toast } from 'sonner';
-import { clearUserAuth } from '@/store/user';
+import { clearUserAuth, getUserToken } from '@/store/user';
 import { redirectToLogin } from '@/router/navigation';
 
 const instance = axios.create({
@@ -12,7 +12,10 @@ const instance = axios.create({
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json;charset=UTF-8'
-  }
+  },
+  withCredentials: true,
+  xsrfCookieName: 'XSRF-TOKEN',
+  xsrfHeaderName: 'X-XSRF-TOKEN'
 });
 
 /**
@@ -20,7 +23,7 @@ const instance = axios.create({
  */
 instance.interceptors.request.use(
   config => {
-    config.headers.Authorization = 'Bearer Token';
+    config.headers.Authorization = `Bearer ${getUserToken()}`;
     return config;
   },
   error => {

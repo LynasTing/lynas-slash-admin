@@ -3,7 +3,7 @@ import { useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
 export default function AuthGuard({ children }: { children: React.ReactNode }) {
-  const { accessToken } = useUserToken();
+  const accessToken = useUserToken();
   const navigate = useNavigate();
 
   /**

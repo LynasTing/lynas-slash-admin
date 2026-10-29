@@ -5,9 +5,12 @@ import { NavLink } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { useLoginStateContext, LoginStateEnum } from '@/pages/auth/providers/declaration';
 import { useNavigate } from 'react-router';
+import { logoutApi } from '@/api/auth';
+import { faker } from '@faker-js/faker';
 
 export default function AccountDropdown() {
-  const { avatar, username, email } = useUserInfo();
+  const fakerAvatar = faker.image.avatarGitHub();
+  const { avatar = fakerAvatar, username, email } = useUserInfo();
   const { t } = useTranslation();
   const { clearUserInfoAndToken } = useUserActions();
   const { setLoginState } = useLoginStateContext();
@@ -17,10 +20,9 @@ export default function AccountDropdown() {
    * 退出登录
    * Logout
    */
-  const logout: () => void = () => {
+  const logout: () => void = async () => {
     try {
-      clearUserInfoAndToken();
-      setLoginState(LoginStateEnum.LOGIN);
+      await logoutApi();
     } catch (error: unknown) {
       /**
        * 清理会话失败不应阻止用户回到登录页，避免保留在失效的受保护页面。
@@ -29,6 +31,8 @@ export default function AccountDropdown() {
        */
       console.error('Failed to clear the user session', error);
     } finally {
+      clearUserInfoAndToken();
+      setLoginState(LoginStateEnum.LOGIN);
       navigate('/auth/login', {
         replace: true
       });
@@ -39,12 +43,12 @@ export default function AccountDropdown() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost">
-          <img src={avatar} className="h-6 w-6 rounded-full" alt="avatar" />
+          <img src={avatar ?? fakerAvatar} className="h-6 w-6 rounded-full" alt="avatar" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         <div className="flex items-center gap-2 p-2">
-          <img src={avatar} className="h-10 w-10 rounded-full" alt="avatar" />
+          <img src={avatar ?? fakerAvatar} className="h-10 w-10 rounded-full" alt="avatar" />
           <div className="flex flex-col items-start">
             <div className="tex-sm font-medium text-text-primary">{username}</div>
             <div className="text-xs text-text-secondary">{email}</div>
