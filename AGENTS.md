@@ -6,7 +6,7 @@
 - 所有代码修改前，必须阅读并遵循 `ai/rules/code-style-ai.md`。
 - 涉及提交、暂存或生成 commit message 时，必须阅读并遵循 `ai/rules/git-commit-message.md`。
 - 涉及代码修改、验证或提交时，必须阅读并遵循 `ai/workflow/pr-review-flow.md`。
-- 涉及本地后端接口联调、接口类型、请求服务或表单校验时，必须阅读并遵循 `ai/local-backend-integration.md`。
+- 涉及本地后端接口联调、接口类型、请求服务或表单校验时，必须阅读并遵循 `docs/local-backend-integration.md`。
 
 规则查找要求：
 
