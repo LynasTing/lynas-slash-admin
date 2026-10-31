@@ -23,6 +23,13 @@ export default tseslint.config([
           component: true,
           html: true
         }
+      ],
+      // 允许空对象
+      '@typescript-eslint/no-empty-object-type': [
+        'error',
+        {
+          allowInterfaces: 'with-single-extends'
+        }
       ]
     },
     languageOptions: {
