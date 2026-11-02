@@ -17,3 +17,19 @@ export const BOOLEAN_VALUE_MAP = {
 } as const;
 
 export type BooleanValue = (typeof BOOLEAN_VALUE_MAP)[keyof typeof BOOLEAN_VALUE_MAP];
+
+/**
+ * 分页查询通用请求参数
+ * Common page query request parameters
+ */
+export interface PageRequest {
+  /**
+   * 当前页码
+   */
+  pageNum: number;
+
+  /**
+   * 每页数据条数
+   */
+  pageSize: number;
+}

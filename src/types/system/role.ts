@@ -1,4 +1,4 @@
-import type { BooleanValue } from '../public/common';
+import type { BooleanValue, PageRequest } from '../public/common';
 
 /**
  * 新增或修改角色的请求参数。
@@ -46,19 +46,7 @@ export interface SysRoleSaveRequest {
  * 角色列表查询参数。
  * Role list query parameters.
  */
-export interface SysRoleListQuery {
-  /**
-   * 当前页码，从 1 开始。
-   * Current page number, starting from 1.
-   */
-  pageNum: number;
-
-  /**
-   * 每页记录数，范围为 1 到 999。
-   * Records per page, from 1 to 999.
-   */
-  pageSize: number;
-
+export interface SysRoleListQuery extends PageRequest {
   /**
    * 按角色名称模糊筛选，最多 64 个字符。
    * Fuzzy filter by role name, up to 64 characters.

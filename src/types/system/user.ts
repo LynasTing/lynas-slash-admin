@@ -1,4 +1,4 @@
-import type { BooleanValue } from '../public/common';
+import type { BooleanValue, PageRequest } from '../public/common';
 
 /**
  * 当前登录用户的精简角色。
@@ -234,19 +234,7 @@ export interface CurrentUser {
  * 用户列表查询参数。
  * User list query parameters.
  */
-export interface SysUserListQuery {
-  /**
-   * 当前页码，从 1 开始。
-   * Current page number, starting from 1.
-   */
-  pageNum: number;
-
-  /**
-   * 每页记录数，范围为 1 到 999。
-   * Records per page, from 1 to 999.
-   */
-  pageSize: number;
-}
+export interface SysUserListQuery extends PageRequest {}
 
 /**
  * 用户列表记录。
