@@ -30,6 +30,14 @@ export default tseslint.config([
         {
           allowInterfaces: 'with-single-extends'
         }
+      ],
+      // TS 类型命名必须使用 PascalCase
+      '@typescript-eslint/naming-convention': [
+        'error',
+        {
+          selector: 'typeLike',
+          format: ['PascalCase']
+        }
       ]
     },
     languageOptions: {
