@@ -11,8 +11,8 @@ import { BASIC_STATUS_LABEL_KEY_MAP } from '@/constants';
 import { Icon } from '@/components/icon';
 import UserModal, { type UserModalProps } from './user-modal';
 import { useCallback, useEffect, useState } from 'react';
-import { getUserListApi, getUserDetailApi, createUserApi, deleteUserApi, updateUserApi } from '@/api/services/user';
-import { getRoleOptionsApi } from '@/api/services/role';
+import { createUserApi, deleteUserApi, getUserDetailApi, getUserListApi, updateUserApi } from '@/api/system/user';
+import { getRoleOptionsApi } from '@/api/system/role';
 import { toast } from 'sonner';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/ui/dialog';
 import useLocale from '@/locales/use-locale';
@@ -208,9 +208,7 @@ export default function UserPage() {
     if (!deletingUser) return;
 
     try {
-      await deleteUserApi({
-        id: deletingUser.id
-      });
+      await deleteUserApi(deletingUser.id);
       setDeleteUser(null);
       await fetchDataSource(pageNum, pageSize);
       toast.success(t(`${USER_PAGE_I18N_PREFIX}.toast.deleteSuccess`));

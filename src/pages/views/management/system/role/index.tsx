@@ -14,7 +14,7 @@ import { Card, CardContent, CardHeader } from '@/ui/card';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/ui/dialog';
 import { Text, Title } from '@/ui/typography';
 import { toast } from 'sonner';
-import { createRoleApi, deleteRoleApi, getRoleDetailApi, getRoleListApi, updateRoleApi } from '@/api/services/role';
+import { createRoleApi, deleteRoleApi, getRoleDetailApi, getRoleListApi, updateRoleApi } from '@/api/system/role';
 import { getSysMenuListApi } from '@/api/system/menu';
 import RoleModal from './role-modal';
 
