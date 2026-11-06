@@ -9,7 +9,10 @@ import type { CurrentUser } from '#/system/user';
 export const registerApi = (data: RegisterRequest) =>
   apiClient.post({
     url: `/auth/register`,
-    data
+    data,
+    skipAuthRefresh: true,
+    skipAuthorization: true,
+    skipUnauthorizedRedirect: true
   });
 
 /**
@@ -19,7 +22,10 @@ export const registerApi = (data: RegisterRequest) =>
 export const loginApi = (data: LoginRequest) =>
   apiClient.post<AuthLoginResponse>({
     url: '/auth/login',
-    data
+    data,
+    skipAuthRefresh: true,
+    skipAuthorization: true,
+    skipUnauthorizedRedirect: true
   });
 
 /**
@@ -27,7 +33,10 @@ export const loginApi = (data: LoginRequest) =>
  */
 export const logoutApi = () =>
   apiClient.post({
-    url: '/auth/logout'
+    url: '/auth/logout',
+    skipAuthRefresh: true,
+    skipAuthorization: true,
+    skipUnauthorizedRedirect: true
   });
 
 /**
@@ -35,7 +44,7 @@ export const logoutApi = () =>
  */
 export const getPublicUserInfoApi = () =>
   apiClient.get<CurrentUser>({
-    url: `auth/me`
+    url: `/auth/me`
   });
 
 /**
