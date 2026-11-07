@@ -140,3 +140,13 @@ export interface AuthCsrfTokenResponse {
    */
   parameterName: string;
 }
+
+/**
+ * 用户认证材料状态
+ *
+ * - idle: 没有用户资料
+ * - loading: 正在加载用户资料
+ * - ready: 已加载用户资料
+ * - failed: 加载用户资料失败
+ */
+export type AuthBootstrapStatus = 'idle' | 'loading' | 'ready' | 'failed';

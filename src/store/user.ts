@@ -1,16 +1,18 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { StorageEnum } from '#/enum';
-import type { AuthLoginResponse } from '#/auth';
+import type { AuthLoginResponse, AuthBootstrapStatus } from '#/auth';
 import type { CurrentUser } from '#/system/user';
 
 type UserStore = {
   userInfo: CurrentUser;
   userToken: AuthLoginResponse['accessToken'];
+  authBootstrapStatus: AuthBootstrapStatus;
   actions: {
     setUserInfo: (userInfo: CurrentUser) => void;
     setUserToken: (userToken: AuthLoginResponse['accessToken']) => void;
     clearUserInfoAndToken: () => void;
+    setAuthBootstrapStatus: (s: AuthBootstrapStatus) => void;
   };
 };
 
@@ -31,12 +33,14 @@ const useUserStore = create<UserStore>()(
     set => ({
       userInfo: emptyUserInfo,
       userToken: '',
+      authBootstrapStatus: 'idle',
       actions: {
         setUserInfo: userInfo => set({ userInfo }),
         setUserToken: userToken => set({ userToken }),
         clearUserInfoAndToken: () => {
           set({ userInfo: emptyUserInfo, userToken: '' });
-        }
+        },
+        setAuthBootstrapStatus: (s: AuthBootstrapStatus) => set({ authBootstrapStatus: s })
       }
     }),
     {
@@ -65,3 +69,11 @@ export const clearUserAuth = () => {
 };
 
 export const getUserToken = () => useUserStore.getState().userToken;
+export const setUserToken = (s: AuthLoginResponse['accessToken']) => {
+  useUserStore.getState().actions.setUserToken(s);
+};
+
+export const useAuthBootstrapStatus = () => useUserStore(s => s.authBootstrapStatus);
+export const setAuthBootstrapStatus = (s: AuthBootstrapStatus) => {
+  useUserStore.getState().actions.setAuthBootstrapStatus(s);
+};
