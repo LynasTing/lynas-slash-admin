@@ -1,4 +1,5 @@
 import type { BooleanValue, PageRequest } from '../public/common';
+import type { SysMenuCategory } from './menu';
 
 /**
  * 当前登录用户的精简角色。
@@ -79,7 +80,7 @@ export interface CurrentUserMenuNode {
    * Numeric menu category.
    * Swagger only declares an integer and does not provide an allowed value range.
    */
-  category: number;
+  category: SysMenuCategory;
 
   /**
    * 菜单显示排序值。
@@ -132,7 +133,7 @@ export interface CurrentUserMenuNode {
    * Numeric menu visibility status.
    * Swagger only declares an integer and does not constrain it to the shared numeric boolean values.
    */
-  hidden: number;
+  hidden: BooleanValue;
 
   /**
    * 菜单描述；未填写时为 `null`。
