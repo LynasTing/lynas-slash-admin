@@ -40,7 +40,7 @@ export type NavItemDataProps = {
    * 路由路径
    * Route path
    */
-  path: string;
+  path?: string;
 
   /**
    * 标题文本
