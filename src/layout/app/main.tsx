@@ -1,34 +1,19 @@
 import { type ReactNode, Suspense, useMemo } from 'react';
 import { matchRoutes, ScrollRestoration, type Location, type Params, useLocation, useOutlet, useParams } from 'react-router';
 import { LineLoading } from '@/components/loading';
-import { cn, flattenTree } from '@/utils';
+import { cn } from '@/utils';
 import { useSettingStoreState } from '@/store/setting';
-import { AuthGuard } from '@/components/auth';
 import { routersSections } from '@/router';
 import type { AppRouteObject, RouteMeta } from '@/router/types';
-import { getNavDataByRouterMode } from './nav/nav-data';
 import MultiTabs from './multi-tabs';
 import { MultiTabsProvider } from './multi-tabs/providers/multi-tabs.provider';
 import type { KeepAliveTab } from './multi-tabs/types';
-
-/** 导航数据 / Navigation data */
-const navData = getNavDataByRouterMode();
-
-/** 平铺导航数据后的所有导航项 / Flattened navigation items */
-const allItems = navData.flatMap(i => flattenTree(i.items));
-
-/**
- * 根据当前路由去找对应的权限列表
- * Find the permission list corresponding to the current route
- */
-const findAuthByPath = (path: string): string[] => allItems.find(i => i.path === path)?.auth || [];
 
 const Main = () => {
   const { themeStretch, multiTab = false } = useSettingStoreState();
   const location: Location = useLocation();
   const params: Readonly<Params<string>> = useParams();
   const outlet: ReactNode = useOutlet();
-  const currentNavAuth: string[] = findAuthByPath(location.pathname);
 
   /**
    * 当前路由匹配链，用于读取 React Router 默认不会暴露的自定义 meta 字段
@@ -70,13 +55,7 @@ const Main = () => {
   }, [activeTabKey, outlet, params, routeMeta]);
 
   return (
-    <AuthGuard
-      permissionAll={currentNavAuth}
-      fallback={
-        <>
-          <div>error</div>
-        </>
-      }>
+    <>
       {multiTab && (
         <MultiTabsProvider currentTab={currentTab} activeTabKey={activeTabKey}>
           <MultiTabs />
@@ -124,7 +103,7 @@ const Main = () => {
           <ScrollRestoration />
         </Suspense>
       </main>
-    </AuthGuard>
+    </>
   );
 };
 export default Main;
