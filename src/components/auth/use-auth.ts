@@ -10,13 +10,13 @@ import { useMemo } from 'react';
  */
 export const useAuthCheck = () => {
   /** 当前用户 token / access token */
-  const { accessToken } = useUserToken();
+  const accessToken = useUserToken();
 
   /** 当前用户权限列表和角色列表 / permissions & roles */
   const { permissions = [], roles = [] } = useUserInfo();
 
   /** 将权限数组转换为 Set 提高查询性能 O(1) / Convert permissions array to Set for fast lookup */
-  const permissionSet = useMemo(() => new Set(permissions.map(i => i.code)), [permissions]);
+  const permissionSet = useMemo(() => new Set(permissions), [permissions]);
 
   /**
    * 检查用户是否拥有指定权限
