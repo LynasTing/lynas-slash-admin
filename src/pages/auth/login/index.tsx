@@ -8,7 +8,7 @@ import { cn } from '@/utils';
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/ui/form';
 import { Input } from '@/ui/input';
 import { useForm } from 'react-hook-form';
-import type { LoginRequest } from '@/api/services/auth';
+import type { LoginRequest } from '#/auth';
 import Button from '@/ui/button';
 import { useTranslation } from 'react-i18next';
 import { useState, type ComponentPropsWithoutRef } from 'react';
@@ -23,6 +23,8 @@ import { Checkbox } from '@/ui/checkbox';
 import { Icon } from '@/components/icon';
 import { loginApi } from '@/api/auth';
 import { useMutation } from '@tanstack/react-query';
+import { setAuthBootstrapStatus } from '@/store/user';
+import { findFirstAccessibleMenu } from '@/router/navigation/user-menu';
 
 /**
  * ComponentPropsWithoutRef React 内置的类型工具
@@ -113,7 +115,9 @@ function LoginForm({ className, ...props }: ComponentPropsWithoutRef<'form'>) {
       toast.success(t('auth.loginSuccessTitle'), {
         closeButton: true
       });
-      navigate(GLOBAL_CONFIG.defaultRoute, { replace: true });
+      setAuthBootstrapStatus('ready');
+      const path = findFirstAccessibleMenu(user.menu);
+      navigate(path ?? GLOBAL_CONFIG.defaultRoute, { replace: true });
     } finally {
       setLoading(false);
     }
